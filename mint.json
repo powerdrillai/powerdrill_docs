@@ -41,7 +41,7 @@
       "pages": ["api-reference/authentication"]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Endpoints",
       "pages": [
         "api-reference/endpoint/get",
         "api-reference/endpoint/create",
