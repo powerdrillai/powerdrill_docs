@@ -21,18 +21,37 @@
     "name": "Get Started",
     "url": "https://powerdrill.ai"
   },
-
+  "tabs": [
+    {
+      "name": "API Reference",
+      "url": "api-reference"
+    }
+  ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction"]
+      "pages": ["introduction", "quickstart", "development"]
     },
     {
-      "group": "Solutions",
-      "pages": ["solutions/chat-app", "solutions/dataset-chatgpt-plugin", "solutions/proxy", "solutions/proxy-dataset"]
+      "group": "Essentials",
+      "pages": ["essentials/markdown", "essentials/code", "essentials/images", "essentials/settings", "essentials/navigation"]
+    },
+    {
+      "group": "API Documentation",
+      "pages": ["api-reference/authentication"]
+    },
+    {
+      "group": "Endpoints",
+      "pages": [
+        "api-reference/endpoint/get",
+        "api-reference/endpoint/create",
+        "api-reference/endpoint/update",
+        "api-reference/endpoint/delete"
+      ]
     }
   ],
   "footerSocials": {
+    "twitter": "https://twitter.com/mintlify",
     "github": "https://github.com/powerdrillai",
     "linkedin": "https://www.linkedin.com/company/powerdrill"
   },
