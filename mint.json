@@ -30,6 +30,10 @@
     {
       "group": "Solutions",
       "pages": ["solutions/chat-app", "solutions/dataset-chatgpt-plugin", "solutions/proxy", "solutions/dataset-proxy"]
+    },
+    {
+      "group": "Legal",
+      "pages": ["legal/privacy-notice", "legal/terms-of-service"]
     }
   ],
   "footerSocials": {
