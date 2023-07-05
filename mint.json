@@ -29,7 +29,7 @@
     },
     {
       "group": "Solutions",
-      "pages": ["solutions/chat-app", "solutions/dataset-chatgpt-plugin", "solutions/proxy", "solutions/dataset-proxy"]
+      "pages": ["solutions/dataset-chatgpt-plugin", "solutions/proxy", "solutions/dataset-proxy", "solutions/chat-app"]
     },
     {
       "group": "Legal",
