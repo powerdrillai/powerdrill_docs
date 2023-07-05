@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-07-05T05:50:35.433Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="EqyCuDGHPfMYu0cj0sf8" version="21.5.2" type="github">
+<mxfile host="app.diagrams.net" modified="2023-07-05T05:51:07.166Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="ZtFcTTHA1gsldhEcY_He" version="21.5.2" type="github">
   <diagram name="Page-1" id="-RpIPuz9YmKVfhQ-e5wv">
     <mxGraphModel dx="981" dy="1131" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -113,7 +113,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="CgtcT7TGVHsWQZtcHPxX-1" value="OpenAI" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;strokeColor=#CCFFCC;" vertex="1" parent="1">
+        <mxCell id="CgtcT7TGVHsWQZtcHPxX-1" value="LLM (OpenAI)" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;strokeColor=#CCFFCC;" vertex="1" parent="1">
           <mxGeometry x="195" y="830" width="555" height="40" as="geometry" />
         </mxCell>
       </root>
