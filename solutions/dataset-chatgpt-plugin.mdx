@@ -3,6 +3,8 @@ title: Dataset as ChatGPT Plugin
 description: 'Create your datasets and publish as ChatGPT plugins, interacting with the OpenAI ecosystem'
 ---
 
+## Introduction
+
 This solution scenario allows you to create your own dataset and upload your data into it. Powerdrill will automatically create a REST service interface for this dataset, which complies with the development specifications of the OpenAI ChatGPT Plugin (https://platform.openai.com/docs/plugins/introduction). This way, you can install your own Dataset as a Plugin on OpenAI's ChatGPT (https://chat.openai.com/?model=gpt-4-plugins) and use it within the OpenAI ChatGPT Plugin ecosystem. This is a zero-code approach to integrating your data with the OpenAI ChatGPT Plugin ecosystem. Please note that to use this feature, you must already be a Beta user of the OpenAI ChatGPT Plugin (apply at https://openai.com/waitlist/plugins).
 
 <Frame>
@@ -16,3 +18,13 @@ This solution scenario requires just 3 simple steps:
 * **Install** the Dataset plugin on OpenAI ChatGPT
 
 That's it! You can now directly use the Dataset plugin on OpenAI ChatGPT. The ChatGPT Plugin ecosystem allows you to integrate your own data and explore a variety of new data application possibilities.
+
+## Q&A
+
+### Why the plugin is not used by ChatGPT?
+
+You need to optimize the "description" field when you were creating the Dataset. ChatGPT relies on the description of the plugin to decide whether to use it or not. See more about the ChatGPT plugin description (https://platform.openai.com/docs/plugins/getting-started/writing-descriptions).
+
+### How to publish a public ChatGPT plugin?
+
+In order to publish a public ChatGPT plugin that other OpenAI ChatGPT plugin user could see, you need to submit your plugin to the review process. See more at https://platform.openai.com/docs/plugins/review/submit-a-plugin-for-review.
