@@ -25,7 +25,7 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quick-start"]
+      "pages": ["introduction", "quick-start", "release-notes"]
     },
     {
       "group": "Features",
