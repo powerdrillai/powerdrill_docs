@@ -29,7 +29,7 @@
     },
     {
       "group": "Features",
-      "pages": ["features/chat-app", "features/proxy", "features/dataset-proxy", "features/dataset-chatgpt-plugin", "features/no-code-app-builder"]
+      "pages": ["features/chat-app", "features/proxy", "features/dataset-proxy", "features/dataset-chatgpt-plugin", "features/no-code-app-builder", "dataset-sharing"]
     },
     {
       "group": "Legal",
