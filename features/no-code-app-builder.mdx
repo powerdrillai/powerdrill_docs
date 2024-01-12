@@ -7,7 +7,11 @@ description: 'Offers a no-code approach to building Apps by using natural langua
 
 The No-Code App Builder feature is a no-code approach that allows you to build Apps by using natural language. With this feature, all you need is to provide an App name and a piece of prompt written in natural language, and then your App is right here, ready to use. 
 
-Currently, you can use this feature to create text generators on Powerdrill. The support for chatbots is coming soon. If you want to try a chatbot on Powerdrill, you can use the built-in App named **Simple Chat** by following instructions provided in [Chat App over Dataset](/features/chat-app).
+The No-Code App Builder supports two types of Apps:
+
+ - **Text generators**: can generate high-quality text in response to given prompts.
+
+ - **Chatbots**: are capable of providing accurate responses to inqueries.
 
 ## How to use this feature
 
@@ -22,20 +26,34 @@ For more information about how to sign in to Powerdrill, see Step 1 in [Try Out 
 ### Procedure
 
 1. On the **Apps** page, click **+ App** in the upper-right corner.
-2. In the **Create App** dialog box, enter the App name, retain the default setting **Text Generator** for **Type**, and click **Continue**.
-3. On the **Prompt Setup** page, configure related information:
+2. In the **Create App** dialog box, enter the App name, choose the type, and click **Continue**.
+3. On the **Prompt Setup** page, configure related information.
 
-    a. In the **Prompt** field, write a prompt and click **Save**. The variables used in the prompt will then be listed in the **Variables** area.
+    If you set the type **Text Generator**, parameters needed include:
 
-    b. In the **Variables** list, set a simple value for each variable. Then, you can click **Run** in the **User Input Preview** area on the right. The example execution result will be displayed in the **Output Preview** area.
-    
-    c. (Optional) In the **Dataset** area, click **+ Add** to select datasets as the knowledge base for the App. After datasets are added, the App will generate text based on the datasets.
-    
-    The datasets can be your private datasets and datasets shared with you. For information about how to create a dataset, see Step 2 in [Try Out Powerdrill in 3 Minutes](/quick-start#step-2-import-your-data).
-    
+    | Parameter | Description |
+    | :- | :- |
+    | Prompt | Used to guide your App's response. Click **Save** after setting it. |
+    | Variables | The elements you specify in your prompts in the format of "{{variable_name}}". Variables are fields that must be specified when using the App. The variables are automatically generated based on your prompt. |
+    | Datasets | If you want your App to reference specific knowledge when generating content, click **+ Select** to associate the App with selected datasets. For information about how to create a dataset, see Step 2 in [Try Out Powerdrill in 3 Minutes](/quick-start#step-2-import-your-data). |
+
+    <br/>
+
+
+    If you set the type **Chatbot**, parameters needed include:    
+
+    | Parameter | Description |
+    | :- | :- |
+    | Prompt | Used to set your App's behavior. Click **Save** after setting it. |
+    | Welcome Message | The initial greeting displayed at the start of a conversation. |
+    | Datasets | If you want your App to reference specific knowledge when generating content, click **+ Select** to associate the App with selected datasets. For information about how to create a dataset, see Step 2 in [Try Out Powerdrill in 3 Minutes](/quick-start#step-2-import-your-data). |
+
+    <br/>    
+
 4. Click **Finish**. 
 
 Now, your App is ready to use.
+
 
 ### More actions
 
