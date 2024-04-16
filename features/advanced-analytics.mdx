@@ -9,163 +9,158 @@ Are you finding yourself overwhelmed with raw data, struggling to discover the i
 
 Advanced Analytics can generate visualizations such as charts and maps after analyzing raw data. With Advanced Analytics, all you need to do is to "tell" Advanced Analytics what you want in natural language and let it uncover the trends and patterns in your data.
 
-And we are excited to announce its new capaiblity -- SQL Advanced Analytics. With this new capability, you can connect your SQL databases as your data sources for analysis. 
+We are excited to announce our extension on this feature -- SQL Advanced Analytics. This powerful new tool allows you to seamlessly integrate your SQL databases as data sources. Once connected, Powerdrill empowers you to delve into your data with the full suite of SQL commands, unlocking sophisticated analytical possibilities.
 
 
-## How to use this feature
+## How to use general Advanced Analytics
+
+
+1. Sign in with [Powerdrill](https://powerdrill.ai/auth/signin).
+
+2. Select **Advanced Analytics** and select the files you want to analyze.
+
+    Only CSV, TSV, and Excel files are supported. Up to 10 files can be uploaded at a time.
+
+3. Chat with Powerdrill to start your conversation over your dataset.
+
+If you just want to see the effect of Advanced Analytics before uploading your own data, you can try our demo to take a glimpse.
+
+
+## How to use SQL Advanced Analytics
+
+To use SQL Advanced Analytics, you must first connect your SQL databases to Powerdrill. Currently, Powerdrill supports two types of SQL databases: MySQL and PostgreSQL.
+
+<Tip>At Powerdrill, we prioritize the security of your data and privacy above all else. We have implemented robust security measures to ensure that your keys and passwords are never accessed or stored by our system.</Tip>
+
+1. Sign in with [Powerdrill](https://powerdrill.ai/auth/signin).
+
+2. In the left sidebar, select **Datasets**. 
+
+3. On the page that is displayed, click **+ Dataset** in the upper-right corner.
+
+4. On the **Create Dataset** page, click the **SQL Databases** tab.
+
+    If this is your first time using this feature, the platform will prompt you to specify a user with read-only access to your database. For details about how to create a user with read-only privileges on the database, see [Set user privileges to read-only](#set-user-privileges-to-read-only).
+
+5. Select your SQL database type. 
+
+    - For PostgreSQL-compatible databases, select **PostgreSQL**.
+    
+    - For MySQL-compatible databases, select **MySQL**.
+
+6. Configure credentials.
+
+    - If you choose the `General` form, you need to specify the hostname, port, and name of the database to connect.
+
+    - If you choose the `Advanced` form, fill in the domain name of the database to connect to complete the URL.
+    
+7. Configure authentication information, including the username and password used to connect to the database.
+
+8. If the database is configured with IP allowlists or blocklists, ensure the IP addresses provided on the page are in the allowlists.
+
+9. Click **Test Connection**. If the connection is successful, click **Finish**.
+
+Now, you can message Powerdrill to ask questions about anything you want to know from your data.
+
+
+### Set user privileges to read-only
+
+The detailed procedure varies with your database type:
 
 <Tabs>
-  <Tab title="Use General Advanced Analytics">
+    <Tab title="PostgreSQL databases">
 
-    1. Sign in with [Powerdrill](https://powerdrill.ai/auth/signin).
-
-    2. Select **Advanced Analytics** and select the files you want to analyze.
-
-        Only CSV, TSC, and Excel files are supported. Up to 10 files can be uploaded at a time.
-
-    3. Message Powerdrill to start your conversation over your dataset.
-
-    If you just want to see the effect of Advanced Analytics before uploading your own data, you can try our demo to take a glimpse.
-
-  </Tab>
-  <Tab title="Use SQL Advanced Analytics">
-
-    To use SQL Advanced Analytics, you must first connect your SQL databases to Powerdrill. Currently, Powerdrill supports two types of SQL databases: MySQL and PostgreSQL.
-
-    <Tip>At Powerdrill, we prioritize the security of your data and privacy above all else. We have implemented robust security measures to ensure that your keys and passwords are never accessed or stored by our system.</Tip>
-
-    1. Sign in with [Powerdrill](https://powerdrill.ai/auth/signin).
-
-    2. In the left sidebar, select **Datasets**. 
-
-    3. On the page that is displayed, click **+ Dataset** in the upper-right corner.
-
-    4. On the **Create Dataset** page, click the **SQL Databases** tab.
-
-        If this is your first time for using this feature, the platform will prompt you with a message to recommend you to configure the user you provide to read-only. For details about how to configure the user to read-only, see [Set user privileges to read-only](#set-user-privileges-to-read-only).
-
-    5. Select your SQL database type. 
-
-        - For PostgreSQL-compatible databases, select **PostgreSQL**.
+    1. Connect to your PostgreSQL database as a superuser or a user with the necessary privileges to create roles and assign permissions. 
     
-        - For MySQL-compatible databases, select **MySQL**.
+        For example, run the following command in the `psql` CLI:
 
-    6. Configure credentials.
+        ```bash
+        psql -U postgres
+        ```
 
-        - If you choose the `General` form, you need to specify the hostname, port, and name of the database to connect.
+        Replace `postgres` with your superuser or administrative username.
 
-        - If you choose the `Advanced` form, paste the domain name of the database to connect to complete the URL.
-    
-    7. Configure authentication information, including the username and password used to connect to the database.
+    2. Run `CREATE ROLE` to create a role.
 
-    8. If the database is configured with IP allowlists or blocklists, ensure the IP addresses provided on the page are in the allowlists.
+        ```sql
+        CREATE ROLE readonly_user WITH LOGIN PASSWORD 'password';
+        ```
 
-    9. Click **Test Connection**. If the connection is successful, click **Finish**.
+        Replace `readonly_user` with the desired username and `password` with a strong password. Alternatively, you can run `CREATE USER` as a shortcut for `CREATE ROLE ... WITH LOGIN`.
 
-    Now, you can message Powerdrill to ask questions about anything you want to know from your data.
+    3. Grant the `CONNECT` privilege on the database to the user.
 
+        ```sql
+        GRANT CONNECT ON DATABASE <database_name> TO readonly_user;
+        ```
 
-    ### Set user privileges to read-only
+    4. Grant the `USAGE` privilege on the schema where your data resides.
 
-    The detailed procedure varies with your database type:
+        ```sql
+        GRANT USAGE ON SCHEMA <schema_name> TO readonly_user;
+        ```
 
-    <Tabs>
-      <Tab title="PostgreSQL databases">
+    5. Grant the `SELECT` privilege on the tables in the schema.
 
-        1. Connect to your PostgreSQL database as a superuser or a user with the necessary privileges to create roles and assign permissions. 
-    
-            For example, run the following command in the `psql` CLI:
+        ```sql
+        GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO readonly_user;
+        ```
 
-            ```bash
-            psql -U postgres
-            ```
+    6. Set default privileges to allow `readonly_user` has the `SELECT` privilege on tables future created in the schema.
 
-            Replace `postgres` with your superuser or administrative username.
-
-        2. Run `CREATE ROLE` to create a role.
-
-            ```sql
-            CREATE ROLE readonly_user WITH LOGIN PASSWORD 'password';
-            ```
-
-            Replace `readonly_user` with the desired username and `password` with a strong password. Alternatively, you can run `CREATE USER` as a shortcut for `CREATE ROLE ... WITH LOGIN`.
-
-        3. Grant the `CONNECT` privilege on the database to the user.
-
-            ```sql
-            GRANT CONNECT ON DATABASE <database_name> TO readonly_user;
-            ```
-
-        4. Grant the `USAGE` privilege on the schema where your data resides.
-
-            ```sql
-            GRANT USAGE ON SCHEMA <schema_name> TO readonly_user;
-            ```
-
-        5. Grant the `SELECT` privilege on the tables in the schema.
-
-            ```sql
-            GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO readonly_user;
-            ```
-
-        6. Set default privileges to allow `readonly_user` has the `SELECT` privilege on tables created in the future.
-
-            ```sql
-            ALTER DEFAULT PRIVILEGES IN SCHEMA <schema_name> GRANT SELECT ON TABLES TO readonly_user;
-            ```
+        ```sql
+        ALTER DEFAULT PRIVILEGES IN SCHEMA <schema_name> GRANT SELECT ON TABLES TO readonly_user;
+        ```
         
-        7. Check whether the user privileges are configured as expected in `psql`:
+    7. Check whether the user privileges are configured as expected in `psql`:
 
-            ```bash
-            psql -U readonly_user -d database_name
-            ```
+        ```bash
+        psql -U readonly_user -d database_name
+        ```
 
 
-      </Tab>
-      <Tab title="MySQL databases">
-        1. Use a MySQL CLI to connect to your MySQL server as the root user or another user with sufficient privileges to create new users and grant permissions.
+    </Tab>
+    <Tab title="MySQL databases">
+    1. Use a MySQL CLI to connect to your MySQL server as the root user or another user with sufficient privileges to create new users and grant permissions.
 
-            Following uses the `root` user and the `mysql` CLI as an example.
+        Following uses the `root` user and the `mysql` CLI as an example.
         
-            ```bash
-            mysql -u root -p
-            ```
+        ```bash
+        mysql -u root -p
+        ```
 
-        2. Enter the password as prompted.
+    2. Enter the password as prompted.
 
-        3. Create a user and set a password for the user. 
+    3. Create a user and set a password for the user. 
 
-            ```sql
-            CREATE USER 'readonly_user'@'<localhost>' IDENTIFIED BY '<password>';
-            ```
+        ```sql
+        CREATE USER 'readonly_user'@'localhost' IDENTIFIED BY '<password>';
+        ```
             
-            <Tip>
-            - `readonly_user` is an example only. Replace it as needed. 
-            - If you want to allow the user to connect from any host, set *`<localhost>`* to `%`.
-            </Tip>
+        <Tip>
+        - `readonly_user` is an example only. Replace it as needed. 
+        - If you want to allow the user to connect from any host, replace `localhost` with `%`.
+        </Tip>
 
-        4. Grant the `SELECT` privilege on all tables in the database to the `readonly_user` user.
+    4. Grant the `SELECT` privilege on all tables in the database to the `readonly_user` user.
 
-            ```sql
-            GRANT SELECT ON <database_name>.* TO 'readonly_user'@'<localhost>';
-            ```
+        ```sql
+        GRANT SELECT ON <database_name>.* TO 'readonly_user'@'localhost';
+        ```
 
-        5. Make the privileges effective.
+    5. Make the privileges take effect.
 
-            ```sql
-            FLUSH PRIVILEGES;
-            ```
+        ```sql
+        FLUSH PRIVILEGES;
+        ```
         
-        6. Check whether the user privileges are configured as expected in `mysql`:
+    6. Check whether the user privileges are configured as expected in `mysql`:
 
-            ```sql
-            mysql -u readonly_user -p
-            ```
+        ```sql
+        mysql -u readonly_user -p
+        ```
 
-      </Tab>
-    </Tabs>
-
-  </Tab>
+    </Tab>
 </Tabs>
 
 
