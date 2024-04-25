@@ -29,7 +29,7 @@
     },
     {
       "group": "Features",
-      "pages": ["features/multimedia", "features/smart-docmap", "features/advanced-analytics", "features/chat-app", "features/proxy", "features/dataset-proxy", "features/dataset-chatgpt-plugin", "features/no-code-app-builder", "features/dataset-sharing"]
+      "pages": ["features/multimedia", "features/smart-docmap", "features/advanced-analytics", "features/chat-app", "features/proxy", "features/dataset-proxy", "features/no-code-app-builder", "features/dataset-sharing"]
     },
     {
       "group": "Legal",
