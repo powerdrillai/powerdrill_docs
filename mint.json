@@ -29,7 +29,7 @@
     },
     {
       "group": "Features",
-      "pages": ["features/multimedia", "features/smart-docmap", "features/advanced-analytics", "features/chat-app", "features/no-code-app-builder", "features/dataset-sharing", "features/chat-sharing", "features/discover", "features/ai-presentation", "features/ai-data-reports"]
+      "pages": ["features/advanced-analytics", "features/ai-presentation", "features/ai-data-reports", "features/smart-docmap",  "features/chat-app", "features/no-code-app-builder", "features/dataset-sharing", "features/chat-sharing", "features/discover", "features/multimedia"]
     },
     {
       "group": "Legal",
