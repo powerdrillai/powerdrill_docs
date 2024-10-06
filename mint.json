@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Powerdrill",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/dark_old.svg",
+    "light": "/logo/light_old.svg"
   },
   "favicon": "/favicon.png",
   "colors": {
