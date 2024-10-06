@@ -33,9 +33,13 @@
     },
     {
       "name": "API References",
-      "url": "api-references"
+      "url": "api-reference"
     }
   ],
+
+  "primaryTab": {
+    "name": "Documentation"
+  },
 
   "navigation": [
     {
