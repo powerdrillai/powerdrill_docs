@@ -13,6 +13,10 @@
   },
   "topbarLinks": [
     {
+      "name": "Blog",
+      "url": "https://powerdrill.ai/blog"
+    },
+    {
       "name": "Github",
       "url": "https://github.com/powerdrillai"
     }
