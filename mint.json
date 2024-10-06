@@ -26,6 +26,17 @@
     "url": "https://powerdrill.ai"
   },
 
+  "tabs": [
+    {
+        "name": "Documentation",
+        "url": "introduction"
+    },
+    {
+      "name": "API References",
+      "url": "api-references"
+    }
+  ],
+
   "navigation": [
     {
       "group": "Get Started",
@@ -40,6 +51,7 @@
       "pages": ["legal/privacy-notice", "legal/terms-of-service"]
     }
   ],
+
   "footerSocials": {
     "github": "https://github.com/powerdrillai",
     "youtube": "https://www.youtube.com/@powerdrill_ai",
