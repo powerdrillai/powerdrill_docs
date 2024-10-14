@@ -32,6 +32,10 @@
         "url": "introduction"
     },
     {
+      "name": "API Docs",
+      "url": "api-docs/query"
+    },
+    {
       "name": "API References",
       "url": "api-reference",
       "openapi": "/api-reference/openapi.json"
