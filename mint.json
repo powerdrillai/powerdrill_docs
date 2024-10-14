@@ -32,8 +32,8 @@
         "url": "introduction"
     },
     {
-      "name": "API Docs",
-      "url": "/api-docs/query"
+        "name": "API Docs",
+        "url": "api-docs/query"
     },
     {
       "name": "API References",
