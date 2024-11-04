@@ -48,15 +48,15 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quick-start", "release-notes"]
+      "pages": ["documentation/get-started/introduction", "documentation/get-started/quick-start"]
     },
     {
       "group": "Features",
-      "pages": ["features/advanced-analytics", "features/ai-presentation", "features/ai-data-reports", "features/smart-docmap",  "features/chat-app", "features/no-code-app-builder", "features/dataset-sharing", "features/chat-sharing", "features/discover", "features/multimedia"]
+      "pages": ["documentation/features/advanced-analytics", "documentation/features/ai-presentation", "documentation/features/ai-data-reports", "documentation/features/smart-docmap",  "documentation/features/chat-app", "documentation/features/no-code-app-builder", "documentation/features/dataset-sharing", "documentation/features/chat-sharing", "documentation/features/discover", "documentation/features/multimedia"]
     },
     {
       "group": "Legal",
-      "pages": ["legal/privacy-notice", "legal/terms-of-service"]
+      "pages": ["documentation/legal/privacy-notice", "documentation/legal/terms-of-service"]
     }
   ],
 
