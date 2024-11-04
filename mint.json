@@ -25,11 +25,7 @@
   "tabs": [
     {
     "name": "Documentation",
-    "url": "introduction"
-    },
-    {
-    "name": "API Docs",
-    "url": "api-docs/query"
+    "url": "documentation/get-started/introduction"
     },
     {
     "name": "API References",
