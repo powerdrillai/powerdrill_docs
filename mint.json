@@ -33,9 +33,16 @@
       "icon": "user",
       "url": "enterprise"
     },
+  ]
 
   "primaryTab": {
     "name": "Documentation"
+  },
+
+
+  "topAnchor": {
+    "name": "Documentation",
+    "icon": "building"
   },
 
   "navigation": [
