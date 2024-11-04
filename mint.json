@@ -22,21 +22,27 @@
     "url": "https://powerdrill.ai"
   },
 
-  "tabs": [
+  "anchors": [
     {
-        "name": "Documentation",
-        "url": "introduction"
+      "name": "Documentation",
+      "icon": "images/DocumentationOutlined",
+      "url": "introduction"
+    },  
+    {
+      "name": "API Reference",
+      "icon": "images/APIOutlined",
+      "url": "api-reference"
+    },  
+    {
+      "name": "Enterprise",
+      "icon": "images/OrganizationOutlined",
+      "url": "enterprise"
     },
     {
-        "name": "API Docs",
-        "url": "api-docs/query"
+      "name": "JavaScript Library",
+      "icon": "js",
+      "url": "https://github.com/elevenlabs/elevenlabs-js"
     },
-    {
-      "name": "API References",
-      "url": "api-reference",
-      "openapi": "/api-reference/openapi.json"
-    }
-  ],
 
   "primaryTab": {
     "name": "Documentation"
