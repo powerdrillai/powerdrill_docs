@@ -22,28 +22,26 @@
     "url": "https://powerdrill.ai"
   },
 
-  "anchors": [
+  "tabs": [
     {
-      "name": "API Reference",
-      "icon": "code",
-      "url": "api-reference"
-    },  
-    {
-      "name": "Enterprise",
-      "icon": "user",
-      "url": "enterprise"
+    "name": "Documentation",
+    "url": "introduction"
     },
-  ],
+    {
+    "name": "API Docs",
+    "url": "api-docs/query"
+    },
+    {
+    "name": "API References",
+    "url": "api-reference",
+    "openapi": "/api-reference/openapi.json"
+    }
+    ],
 
   "primaryTab": {
     "name": "Documentation"
   },
 
-
-  "topAnchor": {
-    "name": "Documentation",
-    "icon": "building"
-  },
 
   "navigation": [
     {
