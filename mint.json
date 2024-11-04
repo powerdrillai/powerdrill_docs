@@ -24,24 +24,14 @@
 
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "images/DocumentationOutlined",
-      "url": "introduction"
-    },  
-    {
       "name": "API Reference",
-      "icon": "images/APIOutlined",
+      "icon": "code",
       "url": "api-reference"
     },  
     {
       "name": "Enterprise",
-      "icon": "images/OrganizationOutlined",
+      "icon": "user",
       "url": "enterprise"
-    },
-    {
-      "name": "JavaScript Library",
-      "icon": "js",
-      "url": "https://github.com/elevenlabs/elevenlabs-js"
     },
 
   "primaryTab": {
