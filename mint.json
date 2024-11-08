@@ -28,8 +28,8 @@
     "url": "documentation/get-started/introduction"
     },
     {
-      "name": "API Docs",
-      "url": "api-docs/query"
+      "name": "Enterprise",
+      "url": "enterprise/introduction"
     },
     {
     "name": "API References",
@@ -46,15 +46,19 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["documentation/get-started/introduction", "documentation/get-started/quick-start"]
+      "pages": ["get-started/introduction", "get-started/quick-start"]
     },
     {
       "group": "Features",
-      "pages": ["documentation/features/advanced-analytics", "documentation/features/ai-presentation", "documentation/features/ai-data-reports", "documentation/features/smart-docmap",  "documentation/features/chat-app", "documentation/features/no-code-app-builder", "documentation/features/dataset-sharing", "documentation/features/chat-sharing", "documentation/features/discover", "documentation/features/multimedia"]
+      "pages": ["features/advanced-analytics", "features/ai-presentation", "features/ai-data-reports", "features/smart-docmap",  "features/chat-app", "features/no-code-app-builder", "features/dataset-sharing", "features/chat-sharing", "features/discover", "features/multimedia"]
     },
     {
       "group": "Legal",
-      "pages": ["documentation/legal/privacy-notice", "documentation/legal/terms-of-service"]
+      "pages": ["legal/privacy-notice", "legal/terms-of-service"]
+    },
+    {
+      "group": "Enterprise",
+      "pages": ["enterprise/introduction", "enterprise/pricing"]
     }
   ],
 
