@@ -55,6 +55,10 @@
     {
       "group": "Legal",
       "pages": ["legal/privacy-notice", "legal/terms-of-service"]
+    },
+    {
+      "group": "Enterprise",
+      "pages": ["enterprise/introduction", "enterprise/pricing"]
     }
   ],
 
