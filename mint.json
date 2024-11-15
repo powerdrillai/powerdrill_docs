@@ -33,8 +33,7 @@
     },
     {
     "name": "API References",
-    "url": "api-reference",
-    "openapi": "/api-reference/openapi.json"
+    "url": "api-reference/overview"
     }
     ],
 
@@ -59,6 +58,34 @@
     {
       "group": "Enterprise",
       "pages": ["enterprise/introduction", "enterprise/pricing"]
+    },
+    {
+      "group": "API Reference Overview",
+      "pages": ["api-reference/overview"]
+    },
+    {
+      "group": "Sessions",
+      "pages": ["api-reference/create-sessions", "api-reference/get-session", "api-reference/get-job-history", "api-reference/list-sessions", "api-reference/modify-session", "api-reference/delete-session"]
+    },
+    {
+      "group": "Datasets",
+      "pages": ["api-reference/create-dataset", "api-reference/get-dataset-status", "api-reference/list-dataset", "api-reference/modify-dataset", "api-reference/delete-dataset"]
+    },
+    {
+      "group": "Data sources",
+      "pages": ["api-reference/create-data-source", "api-reference/create-data-source-without-dataset", "api-reference/get-data-source", "api-reference/list-data-sources", "api-reference/delete-data-source"]
+    },
+    {
+      "group": "Jobs",
+      "pages": ["api-reference/create-job"]
+    },
+    {
+      "group": "Agents",
+      "pages": ["api-reference/create-agent", "api-reference/get-agent", "api-reference/delete-agent"]
+    },
+    {
+      "group": "Subscriptions",
+      "pages": ["api-reference/create-subscription", "api-reference/get-subscription", "api-reference/renew", "api-reference/unsubscribe"]
     }
   ],
 
