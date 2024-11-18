@@ -65,7 +65,7 @@
     },
     {
       "group": "Sessions",
-      "pages": ["api-reference/create-sessions", "api-reference/get-session", "api-reference/get-job-history", "api-reference/list-sessions", "api-reference/modify-session", "api-reference/delete-session"]
+      "pages": ["api-reference/create-session", "api-reference/get-session", "api-reference/get-job-history", "api-reference/list-sessions", "api-reference/modify-session", "api-reference/delete-session"]
     },
     {
       "group": "Datasets",
