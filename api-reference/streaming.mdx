@@ -14,7 +14,7 @@ Let's start with an example.
 
 Below is a Python example of a streaming request:
 
-```python
+```python Example request
 
 import requests
 import json
@@ -178,7 +178,7 @@ However, if streaming is disabled, Powerdrill will return the response once the 
 Let's use the same request as an example. The only difference is that we set `stream` to `False`.
 
 
-```python
+```python Example request
 
 import requests
 import json
@@ -343,8 +343,8 @@ The response structure is outlined as follows:
       - `expiredAt`: The expiration time for `url`.
     - `SOURCES`: Represents the source of the response block, including:
       - `source`: The file name of the data source.
-      - **`datasourceId`**: The ID of the data source.
-      - **`datasetId`**: The ID of the dataset.
-      - **`fileType`**: The name extension of the data source file.
+      - `datasourceId`: The ID of the data source.
+      - `datasetId`: The ID of the dataset.
+      - `fileType`: The name extension of the data source file.
 
-    - **`QUESTIONS`**: Represents follow-up questions suggested by Powerdrill. 
+    - `QUESTIONS`: Represents follow-up questions suggested by Powerdrill. 

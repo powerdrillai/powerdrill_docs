@@ -210,9 +210,9 @@ You can create data sources and datasets in two ways:
         </CodeGroup>
 
 
-        <Warning>
+        <Tip>
          Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-api-key).  
-        </Warning>
+        </Tip>
 
         **Example response**:
 
@@ -291,11 +291,13 @@ You can create data sources and datasets in two ways:
         ```
         </CodeGroup>
 
-        <Info>
+        <Tip>
+        When making a request:
+
         - Replace the `datasetId` value with the ID of the dataset you've created in the previous sub-step. 
 
         - Specify either `url` or `fileKey`, but not both. Use `url` to upload a file through a publicly accessible URL. For privately accessible files, use `fileKey` (this feature will be supported soon).
-        </Info>
+        </Tip>
 
         **Example response**:
 
@@ -507,6 +509,8 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     ```
     </CodeGroup>
 
+    <br/>
+
 
     <Accordion title="Example response:">
 
@@ -670,6 +674,8 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     });
     ```
     </CodeGroup>
+
+    <br/>
 
 
     <Accordion title="Example response:">
