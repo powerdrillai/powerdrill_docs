@@ -45,7 +45,7 @@ To create a session, make a request to the [POST /v1/sessions](api-reference/cre
 
 <CodeGroup>
 
-```curl
+```curl cURL
 curl --location 'https://ai.data.cloud/api/v1/sessions' \
 --header 'x-pd-api-key: $PD_API_KEY' \
 --header 'x-pd-api-agent-id: GENERAL' \
@@ -58,7 +58,7 @@ curl --location 'https://ai.data.cloud/api/v1/sessions' \
 }'
 ```
 
-```python
+```python Python
 import requests
 import json
 
@@ -81,7 +81,7 @@ response = requests.request("POST", url, headers=headers, data=payload)
 print(response.text)
 ```
 
-```node.js
+```node.js Nodejs
 var request = require('request');
 var options = {
   'method': 'POST',
@@ -107,7 +107,9 @@ request(options, function (error, response) {
 </CodeGroup>
 
 
-<Tip>
+<Tip> 
+
+When making a request:
 
 - Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-api-key). 
 
@@ -156,7 +158,7 @@ You can create data sources and datasets in two ways:
 
         <CodeGroup>
 
-        ```curl
+        ```curl cURL
         curl --location 'https://ai.data.cloud/api/v1/datasets' \
         --header 'x-pd-api-key: $PD_API_KEY' \
         --header 'Content-Type: application/json' \
@@ -166,7 +168,7 @@ You can create data sources and datasets in two ways:
         }'
         ```
 
-        ```python
+        ```python Python
         import requests
         import json
 
@@ -186,7 +188,7 @@ You can create data sources and datasets in two ways:
         print(response.text)
         ```
 
-        ```node.js
+        ```node.js Nodejs
         var request = require('request');
         var options = {
           'method': 'POST',
@@ -209,9 +211,9 @@ You can create data sources and datasets in two ways:
         </CodeGroup>
 
 
-        <Info>
+        <Warning>
          Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-api-key).  
-        </Info>
+        </Warning>
 
         **Example response**:
 
@@ -232,7 +234,7 @@ You can create data sources and datasets in two ways:
         **Example request**:
 
         <CodeGroup>
-        ```curl
+        ```curl cURL
         curl --location 'https://ai.data.cloud/api/v1/datasets/cm3my37en3q36017q7x3hyyf4/datasources' \
         --header 'x-pd-api-key: $PD_API_KEY' \
         --header 'Content-Type: application/json' \
@@ -244,7 +246,7 @@ You can create data sources and datasets in two ways:
         }'
         ```
 
-        ```python
+        ```python Python
         import requests
         import json
 
@@ -266,7 +268,7 @@ You can create data sources and datasets in two ways:
         print(response.text)
         ```
 
-        ```node.js
+        ```node.js Nodejs
         var request = require('request');
         var options = {
           'method': 'POST',
@@ -325,7 +327,7 @@ You can create data sources and datasets in two ways:
     **Example request**:
 
     <CodeGroup>
-    ```curl
+    ```curl cURL
     curl --location 'https://ai.data.cloud/api/v1/datasets/cm3my37en3q36017q7x3hyyf4/datasources' \
     --header 'x-pd-api-key: $PD_API_KEY' \
     --header 'Content-Type: application/json' \
@@ -337,7 +339,7 @@ You can create data sources and datasets in two ways:
     }'
     ```
 
-    ```python
+    ```python Python
     import requests
     import json
 
@@ -359,7 +361,7 @@ You can create data sources and datasets in two ways:
     print(response.text)
     ```
 
-    ```node.js
+    ```node.js Nodejs
     var request = require('request');
     var options = {
       'method': 'POST',
@@ -432,7 +434,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
   
     <CodeGroup>
 
-    ```curl
+    ```curl cURL
     curl --location 'https://ai.data.cloud/api/v1/job' \
     --header 'x-pd-api-key: $PD_API_KEY' \
     --header 'x-pd-api-agent-id: GENERAL' \
@@ -449,7 +451,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     }'
     ```
 
-    ```python
+    ```python Python
     import requests
     import json
 
@@ -477,7 +479,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     ```
 
 
-    ```node.js
+    ```node.js Nodejs
     var request = require('request');
     var options = {
       'method': 'POST',
@@ -518,15 +520,15 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     **Example request**:
 
     <CodeGroup>
-    ```curl
+    ```curl cURL
 
     ```
 
-    ```python
+    ```python Python
 
     ```
 
-    ```node.js
+    ```node.js Nodejs
 
     ```
     </CodeGroup>
@@ -568,7 +570,7 @@ For each new organization, Powerdrill Enterprise offers 500 general jobs for fre
 **Sample request**:
 
 <CodeGroup>
-```curl
+```curl cURL
 curl --location 'https://ai.data.cloud/api/v1/subscriptions' \
 --header 'x-pd-api-key: $PD_API_KEY' \
 --header 'Content-Type: application/json' \
@@ -581,7 +583,7 @@ curl --location 'https://ai.data.cloud/api/v1/subscriptions' \
 }'
 ```
 
-```python
+```python Python
 import requests
 import json
 
@@ -604,7 +606,7 @@ print(response.text)
 ```
 
 
-```node.js
+```node.js Nodejs
 var request = require('request');
 var options = {
   'method': 'POST',
@@ -654,15 +656,15 @@ To check whether your subscription is active, make a request to the [GET /v1/sub
 
 
 <CodeGroup>
-```curl
+```curl cURL
 
 ```
 
-```python
+```python Python
 
 ```
 
-```node.js
+```node.js Nodejs
 
 ```
 </CodeGroup>
