@@ -413,9 +413,9 @@ You can create data sources and datasets in two ways:
 
 Now, after you've prepared a session and probably a dataset stuffed with data sources, you can create a job to start conversing with Powerdrill.
 
-<Tip>
+<Info>
 For the definition of job, see [What is a job?](enterprise/pricing/#what-is-a-job).
-</Tip>
+</Info>
 
 Make a request to the [POST /v1/jobs](api-reference/create-job) endpoint. 
 
@@ -426,68 +426,36 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
 - If `stream` is set to `false`, streaming is disabled.
 
 
-**Example 1**: When `stream` is set to `true`:
+<Tabs>
+  <Tab title="When `stream` is set to `true`:">
+    **Example request**: 
+  
+    <CodeGroup>
 
-- **Request**: 
+    ```curl
+    curl --location 'https://ai.data.cloud/api/v1/job' \
+    --header 'x-pd-api-key: $PD_API_KEY' \
+    --header 'x-pd-api-agent-id: GENERAL' \
+    --header 'Content-Type: application/json' \
+    --data '{
+      "datasetId": "cm3my37en3q36017q7x3hyyf4",
+      "datasourceIdList": [
+        "cm3myfsfc03jn011csb8wah6p"
+      ],
+      "languageType": "IT",
+      "question": "How do '\''Digital Services for Taxpayers'\'' scores vary across economies, and which economy has the most advanced digital services?",
+      "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
+      "stream": true
+    }'
+    ```
 
-  <CodeGroup>
+    ```python
+    import requests
+    import json
 
-  ```curl
-  curl --location 'https://ai.data.cloud/api/v1/job' \
-  --header 'x-pd-api-key: $PD_API_KEY' \
-  --header 'x-pd-api-agent-id: GENERAL' \
-  --header 'Content-Type: application/json' \
-  --data '{
-    "datasetId": "cm3my37en3q36017q7x3hyyf4",
-    "datasourceIdList": [
-      "cm3myfsfc03jn011csb8wah6p"
-    ],
-    "languageType": "IT",
-    "question": "How do '\''Digital Services for Taxpayers'\'' scores vary across economies, and which economy has the most advanced digital services?",
-    "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
-    "stream": true
-  }'
-  ```
+    url = "https://ai.data.cloud/api/v1/job"
 
-  ```python
-  import requests
-  import json
-
-  url = "https://ai.data.cloud/api/v1/job"
-
-  payload = json.dumps({
-    "datasetId": "cm3my37en3q36017q7x3hyyf4",
-    "datasourceIdList": [
-      "cm3myfsfc03jn011csb8wah6p"
-    ],
-    "languageType": "IT",
-    "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
-    "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
-    "stream": True
-  })
-  headers = {
-    'x-pd-api-key': '$PD_API_KEY',
-    'x-pd-api-agent-id': 'GENERAL',
-    'Content-Type': 'application/json'
-  }
-
-  response = requests.request("POST", url, headers=headers, data=payload)
-
-  print(response.text)
-  ```
-
-
-  ```node.js
-  var request = require('request');
-  var options = {
-    'method': 'POST',
-    'url': 'https://ai.data.cloud/api/v1/job',
-    'headers': {
-      'x-pd-api-key': '$PD_API_KEY',
-      'x-pd-api-agent-id': 'GENERAL',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
+    payload = json.dumps({
       "datasetId": "cm3my37en3q36017q7x3hyyf4",
       "datasourceIdList": [
         "cm3myfsfc03jn011csb8wah6p"
@@ -495,51 +463,91 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
       "languageType": "IT",
       "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
       "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
-      "stream": true
+      "stream": True
     })
+    headers = {
+      'x-pd-api-key': '$PD_API_KEY',
+      'x-pd-api-agent-id': 'GENERAL',
+      'Content-Type': 'application/json'
+    }
 
-  };
-  request(options, function (error, response) {
-    if (error) throw new Error(error);
-    console.log(response.body);
-  });
-  ```
-  </CodeGroup>
+    response = requests.request("POST", url, headers=headers, data=payload)
 
-
-- **Response:**
-
-  ```json
-
-  ```
-
-**Example 2**: When `stream` is set to `false`: 
-
-- **Request**:
-
-  <CodeGroup>
-  ```curl
-
-  ```
-
-  ```python
-
-  ```
-
-  ```node.js
-
-  ```
-  </CodeGroup>
+    print(response.text)
+    ```
 
 
-- **Response**:
+    ```node.js
+    var request = require('request');
+    var options = {
+      'method': 'POST',
+      'url': 'https://ai.data.cloud/api/v1/job',
+      'headers': {
+        'x-pd-api-key': '$PD_API_KEY',
+        'x-pd-api-agent-id': 'GENERAL',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "datasetId": "cm3my37en3q36017q7x3hyyf4",
+        "datasourceIdList": [
+          "cm3myfsfc03jn011csb8wah6p"
+        ],
+        "languageType": "IT",
+        "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
+        "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
+        "stream": true
+      })
 
-  ```json
+    };
+    request(options, function (error, response) {
+      if (error) throw new Error(error);
+      console.log(response.body);
+    });
+    ```
+    </CodeGroup>
 
-  ```
+    **Example response:**
+
+    ```json
+
+    ```
 
 
-<Info>
+  </Tab>
+  <Tab title="When `stream` is set to `false`:">
+    **Example request**:
+
+    <CodeGroup>
+    ```curl
+
+    ```
+
+    ```python
+
+    ```
+
+    ```node.js
+
+    ```
+    </CodeGroup>
+
+
+    **Example response:**
+
+    ```json
+
+    ```
+  </Tab>
+</Tabs>
+
+
+
+
+
+
+<Tip>
+
+When making a request:
 
 - Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-api-key).
 
@@ -549,7 +557,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
 
 - To enable Powerdrill to retrieve information from your own data and provide responses specific to it, set the `datasetId` to the ID of the dataset obtained in [Step 3](step-3-create-a-data-source-and-a-dataset).
 
-</Info>
+</Tip>
 
 
 
@@ -628,13 +636,15 @@ request(options, function (error, response) {
 ```
 
 
-<Info>
+<Tip>
+
+When making a request:
 
 - Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-api-key).
 
 - Set `targetID` to your team/project ID, `targetType` to `RPOJECT_GENERAL_MODE_PLAN`, `tier` to your desired tier. For more information about the resources provided by each tier, see [Pricing plans for general mode](enterprise/pricing#pricing-plans-for-general-mode).
 
-</Info>
+</Tip>
 
 
 
