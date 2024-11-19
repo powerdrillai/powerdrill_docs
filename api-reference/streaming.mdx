@@ -34,11 +34,11 @@ The structure of a response block is as follows:
 
 Each streaming response block contains the following fields:
 
-- `id` and `groupId`: the ID of the group to which the response block belongs.
+- `id` and `groupId`: The ID of the group to which the response block belongs.
 
     A group in the streaming response is a collection of response blocks. For example, in a general job, each step in the `Analyze` stage is a group, and the entire `Respond` stage is a group.
 
-- `content`: the content of the response block, which varies with the block type. For more details, see [Content description](#content-description).
+- `content`: The content of the response block, which varies with the block type. For more details, see [Content description](#content-description).
 
 - `created`: The timestamp indicating when the content was created.
 
