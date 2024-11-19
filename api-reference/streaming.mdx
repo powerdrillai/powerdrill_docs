@@ -1,0 +1,350 @@
+---
+title: "Streaming"
+description: "Know all about our streaming capability"
+---
+
+Powerdrill Enterprise Open API supports streaming responses to clients, enabling partial results for specific requests. This functionality is implemented using the [Server-Sent Events (SSE)](https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events) standard.
+
+
+
+## How to understand streaming responses
+
+
+Let's start with an example. 
+
+Below is a Python example of a streaming request:
+
+```python
+
+import requests
+import json
+
+url = "https://ai.data.cloud/api/v1/job"
+
+payload = json.dumps({
+    "datasetId": "cm3my37en3q36017q7x3hyyf4",
+    "datasourceIdList": [
+        "cm3myfsfc03jn011csb8wah6p"
+    ],
+    "languageType": "EN",
+    "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
+    "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
+    "stream": True
+})
+headers = {
+    'x-pd-api-key': '$PD_API_KEY',
+    'x-pd-api-agent-id': 'GENERAL',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+
+The response is simlilar to this:
+
+<Accordion title="Example response">
+
+```
+event:JOB_ID
+data:job-cm3ik4yhz01vg01l17yk4467y
+
+event:TITLE_GENERATION
+data:test session
+
+id:2b5cba4a-d8a5-4beb-aef9-a8612828c405
+event:TASK
+data:{"id":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","model":"","choices":[{"delta":{"content":{"name":"Analyze","id":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","status":"running","stage":"Analyze","properties":{}}},"index":0}],"created":1731664172,"groupId":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","groupName":"Analyze","stage":"Analyze"}
+
+id:2b5cba4a-d8a5-4beb-aef9-a8612828c405
+event:TASK
+data:{"id":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","model":"","choices":[{"delta":{"content":{"name":"Analyze","id":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","status":"running","stage":"Analyze","properties":{"files":""}}},"index":0}],"created":1731664172,"groupId":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","groupName":"Analyze","stage":"Analyze"}
+
+id:2b5cba4a-d8a5-4beb-aef9-a8612828c405
+event:TASK
+data:{"id":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","model":"","choices":[{"delta":{"content":{"name":"Analyze","id":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","status":"done","stage":"Analyze","properties":{"files":""}}},"index":0}],"created":1731664175,"groupId":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","groupName":"Analyze","stage":"Analyze"}
+
+id:d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8
+event:TASK
+data:{"id":"d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8","model":"","choices":[{"delta":{"content":{"name":"Data Understanding","id":"d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8","status":"running","stage":"Analyze","properties":{}}},"index":0}],"created":1731664176,"groupId":"d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8","groupName":"Data Understanding","stage":"Analyze"}
+
+id:0ca99d5d-20cf-416c-8bda-0b2549dc8733
+event:TASK
+data:{"id":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","model":"","choices":[{"delta":{"content":{"name":"Aggregate the data by year and calculate the total number of deaths for each disaster type across all entities. This will prepare the data for visualization.","id":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","status":"running","stage":"Analyze","properties":{"files":"makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv"}}},"index":0}],"created":1731664176,"groupId":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","groupName":"Aggregate the data by year and calculate the total number of deaths for each disaster type across all entities. This will prepare the data for visualization.","stage":"Analyze"}
+
+id:0ca99d5d-20cf-416c-8bda-0b2549dc8733
+event:TASK
+data:{"id":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","model":"","choices":[{"delta":{"content":{"name":"Aggregate the data by year and calculate the total number of deaths for each disaster type across all entities. This will prepare the data for visualization.","id":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","status":"running","stage":"Analyze","properties":{"files":"makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv"}}},"index":0}],"created":1731664176,"groupId":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","groupName":"Aggregate the data by year and calculate the total number of deaths for each disaster type across all entities. This will prepare the data for visualization.","stage":"Analyze"}
+
+id:d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8
+event:TASK
+data:{"id":"d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8","model":"","choices":[{"delta":{"content":{"name":"Data Understanding","id":"d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8","status":"done","stage":"Analyze","properties":{}}},"index":0}],"created":1731664176,"groupId":"d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8","groupName":"Data Understanding","stage":"Analyze"}
+
+id:0ca99d5d-20cf-416c-8bda-0b2549dc8733
+event:CODE
+data:{"id":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","model":"","choices":[{"delta":{"content":"```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv\n    '''\n    # Group by 'Year' and sum the deaths for each disaster type\n    aggregated_data = input_0.groupby('Year').sum()\n    \n    # Select only the columns related to deaths\n    death_columns = [\n        'Deaths - Drought (decadal)', \n        'Deaths - Flood (decadal)', \n        'Deaths - Earthquake (decadal)', \n        'Deaths - Extreme weather (decadal)', \n        'Deaths - Extreme temperature (decadal)', \n        'Deaths - Volcanic activity (decadal)', \n        'Deaths - Wildfire (decadal)', \n        'Deaths - Glacial lake outburst flood (decadal)', \n        'Deaths - Dry mass movement (decadal)', \n        'Deaths - Wet mass movement (decadal)', \n        'Deaths - Fog (decadal)'\n    ]\n    \n    # Filter the aggregated data to include only the death columns\n    output = aggregated_data[death_columns].reset_index()\n    \n    return output\n\n```"},"index":0}],"created":1731664185,"groupId":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","groupName":"Aggregate the data by year and calculate the total number of deaths for each disaster type across all entities. This will prepare the data for visualization.","stage":"Analyze"}
+
+id:0ca99d5d-20cf-416c-8bda-0b2549dc8733
+event:TABLE
+data:{"id":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","model":"","choices":[{"delta":{"content":{"name":"aggregated_data.csv","url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/42b06cab-f91b-461b-bc72-40509bad07ad.csv","expiredAt":"2024-11-21T09:49:45.773535Z"}},"index":0}],"created":1731664185,"groupId":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","groupName":"Aggregate the data by year and calculate the total number of deaths for each disaster type across all entities. This will prepare the data for visualization.","stage":"Analyze"}
+
+...
+...
+...
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:IMAGE
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":{"url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/5e3a766c-8d16-4fc0-b06f-7a337196186d.png","name":"Trends of Deaths from Different Disaster Types Over the Years","expiredAt":"2024-11-21T09:50:00.026476Z"}},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:MESSAGE
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"\n\n"},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:MESSAGE
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"- **Chart Description**: The chart illustrates the trend of death tolls over time for various types of disasters.\n"},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:MESSAGE
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"- **Key Trends**:\n"},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:MESSAGE
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"  - Droughts and floods had high death tolls in the early 20th century.\n"},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:MESSAGE
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"  - Droughts and floods had higher death tolls in the early 20th century. \n"},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:MESSAGE
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"  - Death tolls from other disaster types remained relatively low and stable. \n\n"},"index":0}],"created":1731664201,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:MESSAGE
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"#### Conclusions and Insights\n"},"index":0}],"created":1731664201,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:MESSAGE
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"- **Significant Impact of Droughts and Floods**: In the early 20th century, droughts and floods caused significantly higher death tolls compared to other disasters.\n"},"index":0}],"created":1731664201,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:MESSAGE
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"- **Fluctuations in Earthquakes and Extreme Weather**: These disasters had significant impacts on death tolls in certain years, highlighting the need for enhanced preventive measures."},"index":0}],"created":1731664202,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:QUESTIONS
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":["Please analyze the distribution of deaths caused by different types of natural disasters across various countries and regions, and generate a corresponding ECharts map chart.","Please compare the changes in death tolls caused by natural disasters across different decades, and generate a corresponding ECharts line chart.","Please analyze the global death toll trend of a specific natural disaster (e.g., earthquakes) and generate a corresponding ECharts bar chart."]},"index":0}],"created":1731664202,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:TRIGGER
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":{"name":"conclusion_slice","arguments":{"answer":"$answer"}}},"index":0}],"created":1731664202,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+event:TASK
+data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":{"name":"Conclusions","id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","status":"done","stage":"Respond","properties":{}}},"index":0}],"created":1731664202,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+
+id:-1
+event:SOURCES
+data:{"id":"-1","model":"","choices":[{"delta":{"content":[{"id":"1","source":"makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv","datasourceId":"clxin6l9200oo01l1457bolx3","datasetId":"clxin6l8400ok01l1ff2m0s25","fileType":"csv","externalId":"clxin6l0h001901hzxhjaae6q"}]},"index":0}],"created":1731664202,"groupId":"-1","groupName":"","stage":"Analyze"}
+
+event:END_MARK
+data:[DONE]
+```
+
+</Accordion>
+
+The response is returned as multiple response blocks. Each `data` object is a response block.
+
+The fields contained in the `data` object include:
+
+- `content`: The block content.
+
+- `created`: The content creation timestamp.
+
+- `groupId`: The ID of the group to which the response block belongs.  
+  A group in the streaming response is a collection of response blocks. For example, in a general job, each step in the `Analyze` stage is a group, and the entire `Respond` stage is a group.
+
+- `groupName`: The name of the group, for example, `Conclusions`.
+
+- `stage`: The stage to which the response block belongs. Two stages are available:  
+  - `Analyze`
+  - `Respond`
+
+However, if streaming is disabled, Powerdrill will return the response once the entire response is ready. 
+
+Let's use the same request as an example. The only difference is that we set `stream` to `False`.
+
+
+```python
+
+import requests
+import json
+
+url = "https://ai.data.cloud/api/v1/job"
+
+payload = json.dumps({
+    "datasetId": "cm3my37en3q36017q7x3hyyf4",
+    "datasourceIdList": [
+        "cm3myfsfc03jn011csb8wah6p"
+        ],
+    "languageType": "EN",
+    "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
+    "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
+    "stream": True
+    })
+headers = {
+    'x-pd-api-key': '$PD_API_KEY',
+    'x-pd-api-agent-id': 'GENERAL',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+
+The response is simlilar to this:
+
+<Accordion title="Example response:">
+
+```
+{
+"code": 0,
+"data": {
+    "jobId": "job-cm3ikdeuj02zk01l1yeuirt77",
+    "blocks": [
+        {
+            "type": "CODE",
+            "content": "```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv\n    '''\n    # Group by 'Year' and sum the deaths for each type of disaster\n    aggregated_data = input_0.groupby('Year').sum().reset_index()\n    \n    # Select only the columns related to deaths\n    death_columns = [\n        'Deaths - Drought (decadal)', 'Deaths - Flood (decadal)', \n        'Deaths - Earthquake (decadal)', 'Deaths - Extreme weather (decadal)', \n        'Deaths - Extreme temperature (decadal)', 'Deaths - Volcanic activity (decadal)', \n        'Deaths - Wildfire (decadal)', 'Deaths - Glacial lake outburst flood (decadal)', \n        'Deaths - Dry mass movement (decadal)', 'Deaths - Wet mass movement (decadal)', \n        'Deaths - Fog (decadal)'\n    ]\n    \n    # Create a new DataFrame with the aggregated results\n    output = aggregated_data[['Year'] + death_columns]\n    \n    # Rename columns to be more descriptive\n    output.columns = ['Decade'] + [col.replace('Deaths - ', '').replace(' (decadal)', '') for col in death_columns]\n    \n    return output\n\n```",
+            "groupId": "33063572-6e88-4912-8e2d-4166bcc8caee",
+            "groupName": "Analyze the dataset to observe the trend of deaths caused by different types of natural disasters over the past century. This involves aggregating the data by decade and calculating the total number of deaths for each type of disaster to identify any changes in trends.",
+            "stage": "Analyze"
+        },
+        {
+            "type": "TABLE",
+            "content": {
+                "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/e24b6a5f-fdb8-48ca-ae35-dc91ac8e8ef7.csv",
+                "name": "trend_data.csv",
+                "expiredAt": "2024-11-21T09:56:34.290544Z"
+            },
+            "groupId": "33063572-6e88-4912-8e2d-4166bcc8caee",
+            "groupName": "Analyze the dataset to observe the trend of deaths caused by different types of natural disasters over the past century. This involves aggregating the data by decade and calculating the total number of deaths for each type of disaster to identify any changes in trends.",
+            "stage": "Analyze"
+        },
+        {
+            "type": "IMAGE",
+            "content": {
+                "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/81b75a33-a223-4954-9680-9f397872c8ad.png",
+                "name": "Trend of Deaths from Natural Disasters Over the Century",
+                "expiredAt": "2024-11-21T09:56:34.290544Z"
+            },
+            "groupId": "7501680b-5879-441b-bd96-f58b1029ae17",
+            "groupName": "Visualize the trend data to show how the number of deaths from different types of natural disasters has changed over the past century. Use line charts to represent the trends for each disaster type, which will help in understanding the impact of measures and technological advancements on reducing deaths.",
+            "stage": "Analyze"
+        },
+        {
+            "type": "MESSAGE",
+            "content": "\n\n`Analyzing Conclusions` \n\n### Analysis of Trends in Natural Disaster Fatalities\n\n#### Data Analysis\n\n",
+            "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
+            "groupName": "Conclusions",
+            "stage": "Respond"
+        },
+        {
+            "type": "TABLE",
+            "content": {
+                "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/e24b6a5f-fdb8-48ca-ae35-dc91ac8e8ef7.csv",
+                "name": "trend_data.csv",
+                "expiredAt": "2024-11-21T09:56:34.290544Z"
+            },
+            "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
+            "groupName": "Conclusions",
+            "stage": "Respond"
+        },
+        {
+            "type": "MESSAGE",
+            "content": "\n\n- **Droughts and Floods**: In the early 20th century, droughts and floods caused extremely high death tolls, particularly in the 1920s and 1930s.\n- **Earthquakes and Extreme Weather**: Earthquakes and extreme weather also led to significant fatalities throughout the century, especially in the 1970s and 1990s.\n- **Extreme Temperatures and Volcanic Activity**: These disasters had relatively lower death tolls, but in certain decades, such as the 2000s, deaths caused by extreme temperatures increased.\n\n#### Trend Visualization\n\n",
+            "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
+            "groupName": "Conclusions",
+            "stage": "Respond"
+        },
+        {
+            "type": "IMAGE",
+            "content": {
+                "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/81b75a33-a223-4954-9680-9f397872c8ad.png",
+                "name": "Trend of Deaths from Natural Disasters Over the Century",
+                "expiredAt": "2024-11-21T09:56:34.290544Z"
+            },
+            "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
+            "groupName": "Conclusions",
+            "stage": "Respond"
+        },
+        {
+            "type": "MESSAGE",
+            "content": "\n\n- **Overall Trend**: The chart shows that, despite spikes in death tolls caused by natural disasters in certain decades, the overall trend is declining.\n- **Impact of Technology and Measures**: Over time, advancements in technology and the strengthening of disaster prevention measures are likely key factors contributing to the reduction in fatalities.\n\n#### Conclusions and Insights\n- **Technological Advancements**: Progress in modern technology, such as improved early warning systems and construction techniques, may have reduced deaths caused by earthquakes and extreme weather.\n- **Disaster Prevention Measures**: The enhancement of global disaster prevention efforts and emergency response capabilities has likely played a crucial role in mitigating the fatality rates of natural disasters.",
+            "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
+            "groupName": "Conclusions",
+            "stage": "Respond"
+        },
+        {
+            "type": "SOURCES",
+            "content": [
+                {
+                    "source": "makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv",
+                    "datasourceId": "clxin6l9200oo01l1457bolx3",
+                    "datasetId": "clxin6l8400ok01l1ff2m0s25",
+                    "fileType": "csv",
+                    "externalId": "clxin6l0h001901hzxhjaae6q"
+                }
+            ],
+            "groupId": "",
+            "groupName": "",
+            "stage": "Respond"
+        },
+        {
+            "type": "QUESTIONS",
+            "content": [
+                "Analyze the changes in death toll trends for different types of natural disasters over the past century and explore which types of disasters have experienced the most significant reductions in fatalities.",
+                "Study the differences in technological advancements and measures for responding to natural disasters across various regions globally, and analyze how these differences have influenced changes in death tolls in each region.",
+                "Explore how potential future technological advancements and policy measures could further reduce fatalities caused by natural disasters, and assess their feasibility and potential impacts."
+            ],
+            "groupId": "-1",
+            "stage": "Respond"
+        }
+    ]
+}
+}
+```
+
+</Accordion>
+
+
+
+The response structure is outlined as follows:
+
+- `jobId`: the unique identifier of the job.
+
+- `blocks`: a list of response blocks that together form the entire response. Each block has the following properties:
+  - `type`: Indicates the block's content type. Possible values include:
+
+    - `MESSAGE`: Represents a piece of text.
+
+    - `CODE`: Represents a code snippet returned in Markdown format.
+    - `TABLE`: Represents tabular content, including:
+      - `name`: The `.csv` file name.
+      - `url`: The S3 key or URL to the file.
+      - `expiredAt`: The expiration time for `url`.
+    - `IMAGE`: Represents image content, including:
+      - `name`: The image name.
+      - `url`: The S3 key or URL to the image.
+      - `expiredAt`: The expiration time for `url`.
+    - `SOURCES`: Represents the source of the response block, including:
+      - `source`: The file name of the data source.
+      - **`datasourceId`**: The ID of the data source.
+      - **`datasetId`**: The ID of the dataset.
+      - **`fileType`**: The name extension of the data source file.
+
+    - **`QUESTIONS`**: Represents follow-up questions suggested by Powerdrill. 
