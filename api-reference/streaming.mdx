@@ -9,12 +9,102 @@ Powerdrill Enterprise Open API supports streaming responses to clients, enabling
 
 ## How to understand streaming responses
 
+The response to each request consists of a series of response blocks. When streaming mode is enabled for a request, Powerdrill will send real-time updates to the client, delivering continuous response blocks as they becomes available. 
 
-Let's start with an example. 
+The structure of a response block is as follows:
 
-Below is a Python example of a streaming request:
+```json
+{
+    "id": "<group_id>",
+    "model": "",
+    "choices": [
+        {
+            "delta": {
+                "content": {$content}
+            },
+            "index": 0
+        }
+    ],
+    "created": 1731664172,
+    "groupId": "<group_id>",
+    "groupName": "<group_name>",
+    "stage": "<block_stage>"
+}
+```
 
-```python Example request
+Each streaming response block contains the following fields:
+
+- `id` and `groupId`: the ID of the group to which the response block belongs.
+
+    A group in the streaming response is a collection of response blocks. For example, in a general job, each step in the `Analyze` stage is a group, and the entire `Respond` stage is a group.
+
+- `content`: the content of the response block, which varies with the block type. For more details, see [Content description](#content-description).
+
+- `created`: The timestamp indicating when the content was created.
+
+- `groupId`: The ID of the group to which the response block belongs.  
+
+- `groupName`: The name of the group, such as `Conclusions`.
+
+- `stage`: The stage to which the response block belongs. Two stages are available: `Analyze` and `Respond`.
+
+
+### Content description
+
+The value of `content` in each response block varies with the block content type:
+
+- When the block content type is `MESSAGE`:
+
+    The content is a piece of text.
+
+- When the block content type is `CODE`:
+
+    The content is a code snippet in Markdown format.
+
+
+- When the block content type is `TABLE`:
+
+    The content represents a table, consisting of:
+    
+    - `name`: The `.csv` file name.
+    
+    - `url`: The S3 key or URL to the file.
+    
+    - `expiredAt`: The expiration time for `url`. To save the table for future use, make sure to download it before it expires.
+
+
+- When the block content type is `IMAGE`:
+
+    The content represents an image, consisting of:
+    
+    - `name`: The image name.
+    
+    - `url`: The S3 key or URL to the image.
+    
+    - `expiredAt`: The expiration time for `url`. To save the image for future use, make sure to download it before it expires.
+
+
+- When the block content type is `SOURCES`:
+
+    The content represents the source of the response block, including:
+
+    - `source`: The file name of the data source.
+
+    - `datasourceId`: The ID of the data source.
+
+    - `datasetId`: The ID of the dataset.
+
+    - `fileType`: The name extension of the data source file.
+
+- When the block content type is `QUESTIONS`:
+
+    The content represents follow-up questions suggested by Powerdrill. 
+
+
+Let's see an example.
+
+
+```python Python request
 
 import requests
 import json
@@ -156,26 +246,10 @@ data:[DONE]
 
 </Accordion>
 
-The response is returned as multiple response blocks. Each `data` object is a response block.
 
-The fields contained in the `data` object include:
+However, if streaming is disabled, Powerdrill returns the response only after the entire response is ready.
 
-- `content`: The block content.
-
-- `created`: The content creation timestamp.
-
-- `groupId`: The ID of the group to which the response block belongs.  
-  A group in the streaming response is a collection of response blocks. For example, in a general job, each step in the `Analyze` stage is a group, and the entire `Respond` stage is a group.
-
-- `groupName`: The name of the group, for example, `Conclusions`.
-
-- `stage`: The stage to which the response block belongs. Two stages are available:  
-  - `Analyze`
-  - `Respond`
-
-However, if streaming is disabled, Powerdrill will return the response once the entire response is ready. 
-
-Let's use the same request as an example. The only difference is that we set `stream` to `False`.
+Let’s use the same request as an example for a clear comparison. The only difference is that `stream` is set to `False`.
 
 
 ```python Example request
@@ -193,7 +267,7 @@ payload = json.dumps({
     "languageType": "EN",
     "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
     "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
-    "stream": True
+    "stream": False
     })
 headers = {
     'x-pd-api-key': '$PD_API_KEY',
@@ -207,7 +281,7 @@ print(response.text)
 ```
 
 
-The response is simlilar to this:
+The response looks like this:
 
 <Accordion title="Example response:">
 
@@ -323,28 +397,5 @@ The response is simlilar to this:
 
 
 
-The response structure is outlined as follows:
 
-- `jobId`: the unique identifier of the job.
-
-- `blocks`: a list of response blocks that together form the entire response. Each block has the following properties:
-  - `type`: Indicates the block's content type. Possible values include:
-
-    - `MESSAGE`: Represents a piece of text.
-
-    - `CODE`: Represents a code snippet returned in Markdown format.
-    - `TABLE`: Represents tabular content, including:
-      - `name`: The `.csv` file name.
-      - `url`: The S3 key or URL to the file.
-      - `expiredAt`: The expiration time for `url`.
-    - `IMAGE`: Represents image content, including:
-      - `name`: The image name.
-      - `url`: The S3 key or URL to the image.
-      - `expiredAt`: The expiration time for `url`.
-    - `SOURCES`: Represents the source of the response block, including:
-      - `source`: The file name of the data source.
-      - `datasourceId`: The ID of the data source.
-      - `datasetId`: The ID of the dataset.
-      - `fileType`: The name extension of the data source file.
-
-    - `QUESTIONS`: Represents follow-up questions suggested by Powerdrill. 
+    
