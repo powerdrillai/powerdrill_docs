@@ -38,7 +38,7 @@ The Powerdrill Enterprise Open API is currently in beta. Join our waitlist by [f
 
 ## Step 2. Create a session
 
-To create a session, make a request to the [POST /v1/sessions](api-reference/create-session) endpoint. Sessions are essential for running jobs on Powerdrill, as each job must be linked to a session using its session ID.
+To create a session, make a request to the [POST /v1/sessions](create-session) endpoint. Sessions are essential for running jobs on Powerdrill, as each job must be linked to a session using its session ID.
 
 
 **Example request**:
@@ -228,7 +228,7 @@ You can create data sources and datasets in two ways:
 
         Obtain the `id` value (dataset ID) from the response and save it for later use.
         
-    2. Make a request to the [`POST /v1/datasets/{datasetId}/datasources`](api-reference/create-data-source) endpoint.
+    2. Make a request to the [`POST /v1/datasets/{datasetId}/datasources`](create-data-source) endpoint.
 
         **Example request**:
 
@@ -323,7 +323,7 @@ You can create data sources and datasets in two ways:
     
   </Tab>
   <Tab title="Method 2">
-    Make a request to the [POST /v1/datasources](api-reference/create-data-source-without-dataset) endpoint.
+    Make a request to the [POST /v1/datasources](create-data-source-without-dataset) endpoint.
 
     **Example request**:
 
@@ -420,9 +420,9 @@ Now, after you've prepared a session and probably a dataset stuffed with data so
 For the definition of job, see [What is a job?](enterprise/pricing/#what-is-a-job).
 </Info>
 
-Make a request to the [POST /v1/jobs](api-reference/create-job) endpoint. 
+Make a request to the [POST /v1/jobs](create-job) endpoint. 
 
-Powerdrill provides the ability to stream responses, controlled by the `stream` parameter. For more details about how to understand the streaming mode, see [Streaming](api-reference/streaming).
+Powerdrill provides the ability to stream responses, controlled by the `stream` parameter. For more details about how to understand the streaming mode, see [Streaming](streaming).
 
 - If `stream` is set to true, streaming is enabled.
 
@@ -815,7 +815,7 @@ When making a request:
 
 ## More to know
 
-For each new organization, Powerdrill Enterprise offers 500 general jobs for free. After the free quota is consumed, to run more general jobs, you must subscribe to Powerdrill Enterprise via the [POST /v1/subscriptions](api-reference/create-subscription) endpoint. 
+For each new organization, Powerdrill Enterprise offers 500 general jobs for free. After the free quota is consumed, to run more general jobs, you must subscribe to Powerdrill Enterprise via the [POST /v1/subscriptions](create-subscription) endpoint. 
 
 **Sample request**:
 
@@ -913,7 +913,7 @@ When making a request:
 
 
 
-To check whether your subscription is active, make a request to the [GET /v1/subscriptions/{subscriptionId}](api-reference/get-subscription) endpoint.
+To check whether your subscription is active, make a request to the [GET /v1/subscriptions/{subscriptionId}](get-subscription) endpoint.
 
 **Example request**:
 
