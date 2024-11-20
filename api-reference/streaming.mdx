@@ -109,7 +109,6 @@ For details about the `POST /v1/jobs` endpoint, see [Create job](create-job).
 
 
 ```python Python request
-
 import requests
 import json
 
@@ -134,15 +133,13 @@ headers = {
 response = requests.request("POST", url, headers=headers, data=payload)
 
 print(response.text)
-
 ```
 
 
 The response is simlilar to this:
 
 
-``` Example response
-
+```
 id:2b5cba4a-d8a5-4beb-aef9-a8612828c405
 event:TASK
 data:{"id":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","model":"","choices":[{"delta":{"content":{"name":"Analyze","id":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","status":"running","stage":"Analyze","properties":{}}},"index":0}],"created":1731664172,"groupId":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","groupName":"Analyze","stage":"Analyze"}
@@ -226,7 +223,6 @@ data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta"
 id:-1
 event:SOURCES
 data:{"id":"-1","model":"","choices":[{"delta":{"content":[{"id":"1","source":"makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv","datasourceId":"clxin6l9200oo01l1457bolx3","datasetId":"clxin6l8400ok01l1ff2m0s25","fileType":"csv","externalId":"clxin6l0h001901hzxhjaae6q"}]},"index":0}],"created":1731664202,"groupId":"-1","groupName":"","stage":"Analyze"}
-
 ```
 
 
@@ -237,7 +233,6 @@ Let's use the same request as an example for a clear comparison. The only differ
 
 
 ```python
-
 import requests
 import json
 
@@ -262,7 +257,6 @@ headers = {
 response = requests.request("POST", url, headers=headers, data=payload)
 
 print(response.text)
-
 ```
 
 
