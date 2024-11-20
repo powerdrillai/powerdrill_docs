@@ -139,9 +139,8 @@ print(response.text)
 
 The response is simlilar to this:
 
-<Accordion title="Example response">
 
-```
+```bash
 event:JOB_ID
 data:job-cm3ik4yhz01vg01l17yk4467y
 
@@ -246,9 +245,9 @@ data:{"id":"-1","model":"","choices":[{"delta":{"content":[{"id":"1","source":"m
 
 event:END_MARK
 data:[DONE]
+
 ```
 
-</Accordion>
 
 
 However, if streaming is disabled, Powerdrill returns the response only after the entire response is ready.
@@ -256,7 +255,7 @@ However, if streaming is disabled, Powerdrill returns the response only after th
 Let's use the same request as an example for a clear comparison. The only difference is that `stream` is set to `False`.
 
 
-```python Example request
+```python
 
 import requests
 import json
@@ -287,9 +286,8 @@ print(response.text)
 
 The response looks like this:
 
-<Accordion title="Example response:">
 
-```
+```bash
 {
 "code": 0,
 "data": {
@@ -397,7 +395,6 @@ The response looks like this:
 }
 ```
 
-</Accordion>
 
 
 
