@@ -174,19 +174,9 @@ data:{"id":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","model":"","choices":[{"delta"
 id:d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8
 event:TASK
 data:{"id":"d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8","model":"","choices":[{"delta":{"content":{"name":"Data Understanding","id":"d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8","status":"done","stage":"Analyze","properties":{}}},"index":0}],"created":1731664176,"groupId":"d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8","groupName":"Data Understanding","stage":"Analyze"}
-
-id:0ca99d5d-20cf-416c-8bda-0b2549dc8733
-event:CODE
-data:{"id":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","model":"","choices":[{"delta":{"content":"```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv\n    '''\n    # Group by 'Year' and sum the deaths for each disaster type\n    aggregated_data = input_0.groupby('Year').sum()\n    \n    # Select only the columns related to deaths\n    death_columns = [\n        'Deaths - Drought (decadal)', \n        'Deaths - Flood (decadal)', \n        'Deaths - Earthquake (decadal)', \n        'Deaths - Extreme weather (decadal)', \n        'Deaths - Extreme temperature (decadal)', \n        'Deaths - Volcanic activity (decadal)', \n        'Deaths - Wildfire (decadal)', \n        'Deaths - Glacial lake outburst flood (decadal)', \n        'Deaths - Dry mass movement (decadal)', \n        'Deaths - Wet mass movement (decadal)', \n        'Deaths - Fog (decadal)'\n    ]\n    \n    # Filter the aggregated data to include only the death columns\n    output = aggregated_data[death_columns].reset_index()\n    \n    return output\n\n```"},"index":0}],"created":1731664185,"groupId":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","groupName":"Aggregate the data by year and calculate the total number of deaths for each disaster type across all entities. This will prepare the data for visualization.","stage":"Analyze"}
-
-id:0ca99d5d-20cf-416c-8bda-0b2549dc8733
-event:TABLE
-data:{"id":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","model":"","choices":[{"delta":{"content":{"name":"aggregated_data.csv","url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/42b06cab-f91b-461b-bc72-40509bad07ad.csv","expiredAt":"2024-11-21T09:49:45.773535Z"}},"index":0}],"created":1731664185,"groupId":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","groupName":"Aggregate the data by year and calculate the total number of deaths for each disaster type across all entities. This will prepare the data for visualization.","stage":"Analyze"}
-
-...
-...
-...
-
+    ...
+    ...
+    ...
 id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
 event:IMAGE
 data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":{"url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/5e3a766c-8d16-4fc0-b06f-7a337196186d.png","name":"Trends of Deaths from Different Disaster Types Over the Years","expiredAt":"2024-11-21T09:50:00.026476Z"}},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
@@ -245,7 +235,6 @@ data:{"id":"-1","model":"","choices":[{"delta":{"content":[{"id":"1","source":"m
 
 event:END_MARK
 data:[DONE]
-
 ```
 
 
