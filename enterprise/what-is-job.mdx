@@ -1,0 +1,71 @@
+---
+title: What Is Job?
+description: 'Jobs are data tasks effortlessly handled by Powerdrill through natural language conversations'
+---
+
+On Powerdrill, a job is the fundamental unit used to measure the work performed by the platform. Billing is also based on the number of jobs you plan to create. Typically, a job encompasses the entire process, from Powerdrill receiving a user prompt to delivering the corresponding response.
+
+
+
+## A job's workflow 
+
+The figure below illustrates the workflow of a job initiated through an API call.
+
+
+<Frame>
+  <img src="/images/job-description.png" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+
+Upon initiating an API call, a job begins:
+
+1. Identify user intent.
+
+2. Create an execution plan for the task.
+
+3. Execute the task, where Powerdrill interacts with the user's dataset to generate output aligned with the user's intent, utilizing LLM capabilities.
+
+
+
+## What is considered a job?
+
+Each time you send a message to Powerdrill and receive a response, one job is deducted from your account.
+
+To maximize the value of each job, we recommend asking specific questions or clearly stating what you want to know or get from your data. This ensures that every job is used effectively and delivers meaningful results. 
+
+Here are some examples:
+
+A good one:
+
+```
+How do "Digital Services for Taxpayers" scores vary across economies?
+```
+
+In this scerario, Powerdrill will analyze your data and provide specific answers and insights tailored to your question.
+
+
+A bad case:
+
+```
+Hello, Powerdrill.
+```
+
+In this case, Powerdrill will simply greet you back without delivering any meaningful information, but it will still consume 1 job from your account.
+
+
+
+
+
+## Job types
+
+Powerdrill Enterprise provides two job types: general jobs and data agent jobs.
+
+- **General jobs**: These operate in generic mode, without utilizing agent-specific capabilities.  
+
+- **Data agent jobs** (coming soon): These jobs run in data agents for enhanced functionality, such as personalized memory. 
+
+
+
+
+
+

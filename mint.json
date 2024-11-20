@@ -57,7 +57,7 @@
     },
     {
       "group": "Enterprise",
-      "pages": ["enterprise/introduction", "enterprise/pricing"]
+      "pages": ["enterprise/introduction", "enterprise/pricing", "enterprise/what-is-job"]
     },
     {
       "group": "API Reference Overview",
