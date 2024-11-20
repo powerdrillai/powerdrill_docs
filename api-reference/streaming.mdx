@@ -116,36 +116,32 @@ import json
 url = "https://ai.data.cloud/api/v1/job"
 
 payload = json.dumps({
-    "datasetId": "cm3my37en3q36017q7x3hyyf4",
-    "datasourceIdList": [
-        "cm3myfsfc03jn011csb8wah6p"
-    ],
-    "languageType": "EN",
-    "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
-    "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
-    "stream": True
+  "datasetId": "cm3my37en3q36017q7x3hyyf4",
+  "datasourceIdList": [
+    "cm3myfsfc03jn011csb8wah6p"
+  ],
+  "languageType": "EN",
+  "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
+  "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
+  "stream": True
 })
 headers = {
-    'x-pd-api-key': '$PD_API_KEY',
-    'x-pd-api-agent-id': 'GENERAL',
-    'Content-Type': 'application/json'
+  'x-pd-api-key': '$PD_API_KEY',
+  'x-pd-api-agent-id': 'GENERAL',
+  'Content-Type': 'application/json'
 }
 
 response = requests.request("POST", url, headers=headers, data=payload)
 
 print(response.text)
+
 ```
 
 
 The response is simlilar to this:
 
 
-```curl Example response
-event:JOB_ID
-data:job-cm3ik4yhz01vg01l17yk4467y
-
-event:TITLE_GENERATION
-data:test session
+``` Example response
 
 id:2b5cba4a-d8a5-4beb-aef9-a8612828c405
 event:TASK
@@ -174,9 +170,7 @@ data:{"id":"0ca99d5d-20cf-416c-8bda-0b2549dc8733","model":"","choices":[{"delta"
 id:d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8
 event:TASK
 data:{"id":"d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8","model":"","choices":[{"delta":{"content":{"name":"Data Understanding","id":"d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8","status":"done","stage":"Analyze","properties":{}}},"index":0}],"created":1731664176,"groupId":"d9e9d1d4-fb0b-40e3-a2e6-1f606631a4b8","groupName":"Data Understanding","stage":"Analyze"}
-    ...
-    ...
-    ...
+
 id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
 event:IMAGE
 data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":{"url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/5e3a766c-8d16-4fc0-b06f-7a337196186d.png","name":"Trends of Deaths from Different Disaster Types Over the Years","expiredAt":"2024-11-21T09:50:00.026476Z"}},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
@@ -233,8 +227,6 @@ id:-1
 event:SOURCES
 data:{"id":"-1","model":"","choices":[{"delta":{"content":[{"id":"1","source":"makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv","datasourceId":"clxin6l9200oo01l1457bolx3","datasetId":"clxin6l8400ok01l1ff2m0s25","fileType":"csv","externalId":"clxin6l0h001901hzxhjaae6q"}]},"index":0}],"created":1731664202,"groupId":"-1","groupName":"","stage":"Analyze"}
 
-event:END_MARK
-data:[DONE]
 ```
 
 
@@ -252,31 +244,32 @@ import json
 url = "https://ai.data.cloud/api/v1/job"
 
 payload = json.dumps({
-    "datasetId": "cm3my37en3q36017q7x3hyyf4",
-    "datasourceIdList": [
-        "cm3myfsfc03jn011csb8wah6p"
-        ],
-    "languageType": "EN",
-    "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
-    "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
-    "stream": False
-    })
+  "datasetId": "cm3my37en3q36017q7x3hyyf4",
+  "datasourceIdList": [
+    "cm3myfsfc03jn011csb8wah6p"
+  ],
+  "languageType": "EN",
+  "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
+  "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
+  "stream": False
+})
 headers = {
-    'x-pd-api-key': '$PD_API_KEY',
-    'x-pd-api-agent-id': 'GENERAL',
-    'Content-Type': 'application/json'
+  'x-pd-api-key': '$PD_API_KEY',
+  'x-pd-api-agent-id': 'GENERAL',
+  'Content-Type': 'application/json'
 }
 
 response = requests.request("POST", url, headers=headers, data=payload)
 
 print(response.text)
+
 ```
 
 
 The response looks like this:
 
 
-```curl Example response
+```json Example response
 {
 "code": 0,
 "data": {
