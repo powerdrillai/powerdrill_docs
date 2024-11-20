@@ -1,0 +1,123 @@
+---
+title: "Streaming"
+description: "Know all about our streaming capability"
+---
+
+
+
+The response looks like this:
+
+
+```json Example response
+{
+"code": 0,
+"data": {
+    "jobId": "job-cm3ikdeuj02zk01l1yeuirt77",
+    "blocks": [
+        {
+            "type": "CODE",
+            "content": "```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv\n    '''\n    # Group by 'Year' and sum the deaths for each type of disaster\n    aggregated_data = input_0.groupby('Year').sum().reset_index()\n    \n    # Select only the columns related to deaths\n    death_columns = [\n        'Deaths - Drought (decadal)', 'Deaths - Flood (decadal)', \n        'Deaths - Earthquake (decadal)', 'Deaths - Extreme weather (decadal)', \n        'Deaths - Extreme temperature (decadal)', 'Deaths - Volcanic activity (decadal)', \n        'Deaths - Wildfire (decadal)', 'Deaths - Glacial lake outburst flood (decadal)', \n        'Deaths - Dry mass movement (decadal)', 'Deaths - Wet mass movement (decadal)', \n        'Deaths - Fog (decadal)'\n    ]\n    \n    # Create a new DataFrame with the aggregated results\n    output = aggregated_data[['Year'] + death_columns]\n    \n    # Rename columns to be more descriptive\n    output.columns = ['Decade'] + [col.replace('Deaths - ', '').replace(' (decadal)', '') for col in death_columns]\n    \n    return output\n\n```",
+            "groupId": "33063572-6e88-4912-8e2d-4166bcc8caee",
+            "groupName": "Analyze the dataset to observe the trend of deaths caused by different types of natural disasters over the past century. This involves aggregating the data by decade and calculating the total number of deaths for each type of disaster to identify any changes in trends.",
+            "stage": "Analyze"
+        },
+        {
+            "type": "TABLE",
+            "content": {
+                "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/e24b6a5f-fdb8-48ca-ae35-dc91ac8e8ef7.csv",
+                "name": "trend_data.csv",
+                "expiredAt": "2024-11-21T09:56:34.290544Z"
+            },
+            "groupId": "33063572-6e88-4912-8e2d-4166bcc8caee",
+            "groupName": "Analyze the dataset to observe the trend of deaths caused by different types of natural disasters over the past century. This involves aggregating the data by decade and calculating the total number of deaths for each type of disaster to identify any changes in trends.",
+            "stage": "Analyze"
+        },
+        {
+            "type": "IMAGE",
+            "content": {
+                "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/81b75a33-a223-4954-9680-9f397872c8ad.png",
+                "name": "Trend of Deaths from Natural Disasters Over the Century",
+                "expiredAt": "2024-11-21T09:56:34.290544Z"
+            },
+            "groupId": "7501680b-5879-441b-bd96-f58b1029ae17",
+            "groupName": "Visualize the trend data to show how the number of deaths from different types of natural disasters has changed over the past century. Use line charts to represent the trends for each disaster type, which will help in understanding the impact of measures and technological advancements on reducing deaths.",
+            "stage": "Analyze"
+        },
+        {
+            "type": "MESSAGE",
+            "content": "\n\n`Analyzing Conclusions` \n\n### Analysis of Trends in Natural Disaster Fatalities\n\n#### Data Analysis\n\n",
+            "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
+            "groupName": "Conclusions",
+            "stage": "Respond"
+        },
+        {
+            "type": "TABLE",
+            "content": {
+                "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/e24b6a5f-fdb8-48ca-ae35-dc91ac8e8ef7.csv",
+                "name": "trend_data.csv",
+                "expiredAt": "2024-11-21T09:56:34.290544Z"
+            },
+            "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
+            "groupName": "Conclusions",
+            "stage": "Respond"
+        },
+        {
+            "type": "MESSAGE",
+            "content": "\n\n- **Droughts and Floods**: In the early 20th century, droughts and floods caused extremely high death tolls, particularly in the 1920s and 1930s.\n- **Earthquakes and Extreme Weather**: Earthquakes and extreme weather also led to significant fatalities throughout the century, especially in the 1970s and 1990s.\n- **Extreme Temperatures and Volcanic Activity**: These disasters had relatively lower death tolls, but in certain decades, such as the 2000s, deaths caused by extreme temperatures increased.\n\n#### Trend Visualization\n\n",
+            "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
+            "groupName": "Conclusions",
+            "stage": "Respond"
+        },
+        {
+            "type": "IMAGE",
+            "content": {
+                "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/81b75a33-a223-4954-9680-9f397872c8ad.png",
+                "name": "Trend of Deaths from Natural Disasters Over the Century",
+                "expiredAt": "2024-11-21T09:56:34.290544Z"
+            },
+            "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
+            "groupName": "Conclusions",
+            "stage": "Respond"
+        },
+        {
+            "type": "MESSAGE",
+            "content": "\n\n- **Overall Trend**: The chart shows that, despite spikes in death tolls caused by natural disasters in certain decades, the overall trend is declining.\n- **Impact of Technology and Measures**: Over time, advancements in technology and the strengthening of disaster prevention measures are likely key factors contributing to the reduction in fatalities.\n\n#### Conclusions and Insights\n- **Technological Advancements**: Progress in modern technology, such as improved early warning systems and construction techniques, may have reduced deaths caused by earthquakes and extreme weather.\n- **Disaster Prevention Measures**: The enhancement of global disaster prevention efforts and emergency response capabilities has likely played a crucial role in mitigating the fatality rates of natural disasters.",
+            "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
+            "groupName": "Conclusions",
+            "stage": "Respond"
+        },
+        {
+            "type": "SOURCES",
+            "content": [
+                {
+                    "source": "makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv",
+                    "datasourceId": "clxin6l9200oo01l1457bolx3",
+                    "datasetId": "clxin6l8400ok01l1ff2m0s25",
+                    "fileType": "csv",
+                    "externalId": "clxin6l0h001901hzxhjaae6q"
+                }
+            ],
+            "groupId": "",
+            "groupName": "",
+            "stage": "Respond"
+        },
+        {
+            "type": "QUESTIONS",
+            "content": [
+                "Analyze the changes in death toll trends for different types of natural disasters over the past century and explore which types of disasters have experienced the most significant reductions in fatalities.",
+                "Study the differences in technological advancements and measures for responding to natural disasters across various regions globally, and analyze how these differences have influenced changes in death tolls in each region.",
+                "Explore how potential future technological advancements and policy measures could further reduce fatalities caused by natural disasters, and assess their feasibility and potential impacts."
+            ],
+            "groupId": "-1",
+            "stage": "Respond"
+        }
+    ]
+}
+}
+```
+
+
+
+
+
+    
