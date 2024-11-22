@@ -69,11 +69,15 @@
     },
     {
       "group": "Datasets",
-      "pages": ["api-reference/create-dataset", "api-reference/get-dataset-status", "api-reference/list-dataset", "api-reference/modify-dataset", "api-reference/delete-dataset"]
+      "pages": ["api-reference/create-dataset", "api-reference/get-dataset-status", "api-reference/list-datasets", "api-reference/modify-dataset", "api-reference/delete-dataset"]
     },
     {
       "group": "Data sources",
-      "pages": ["api-reference/create-data-source", "api-reference/create-data-source-without-dataset", "api-reference/get-data-source", "api-reference/list-data-sources", "api-reference/delete-data-source"]
+      "pages": ["api-reference/create-data-source", "api-reference/create-data-source-without-dataset", "api-reference/get-data-source", "api-reference/list-data-sources", "api-reference/delete-data-source", "api-reference/presign-data-source"]
+    },
+    {
+      "group": "Files",
+      "pages": ["api-reference/upload-file"]
     },
     {
       "group": "Jobs",
@@ -81,11 +85,19 @@
     },
     {
       "group": "Agents",
-      "pages": ["api-reference/create-agent", "api-reference/get-agent", "api-reference/delete-agent"]
+      "pages": ["api-reference/create-agent", "api-reference/get-agent", "api-reference/delete-agent", "api-reference/list-agents"]
     },
     {
       "group": "Subscriptions",
-      "pages": ["api-reference/create-subscription", "api-reference/get-subscription", "api-reference/renew", "api-reference/unsubscribe"]
+      "pages": ["api-reference/create-subscription", "api-reference/get-subscription", "api-reference/renew", "api-reference/unsubscribe", "api-reference/list-subscriptions"]
+    },
+    {
+      "group": "Projects",
+      "pages": ["api-reference/list-projects"]
+    },
+    {
+      "group": "Team",
+      "pages": ["api-reference/get-team", "api-reference/modify-team"]
     }
   ],
 
