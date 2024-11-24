@@ -37,104 +37,9 @@ The Powerdrill Enterprise Open API is currently in beta. Join our waitlist by [f
       **Keep your API key SECRET.** Never share it or include it in client-side code, such as browsers or apps. For production use, ensure all requests are routed through your backend server, where the API key can be securely accessed from an environment variable or a key management service.
     </Warning>
 
-## Step 2. Create a session
-
-To create a session, make a request to the [POST /v1/sessions](create-session) endpoint. Sessions are essential for running jobs on Powerdrill, as each job must be linked to a session using its session ID.
 
 
-**Example request**:
-
-<CodeGroup>
-
-```curl cURL
-curl --location 'https://ai.data.cloud/api/v1/sessions' \
-  --header 'x-pd-api-key: $PD_API_KEY' \
-  --header 'x-pd-api-agent-id: GENERAL' \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "title": "New Title",
-  "languageType": "EN",
-  "jobMode": "AUTO",
-  "maxMessagesInContext": 10
-}'
-```
-
-```python Python
-import requests
-import json
-
-url = "https://ai.data.cloud/api/v1/sessions"
-
-payload = json.dumps({
-  "title": "New Title",
-  "languageType": "EN",
-  "jobMode": "AUTO",
-  "maxMessagesInContext": 10
-})
-headers = {
-  'x-pd-api-key': '$PD_API_KEY',
-  'x-pd-api-agent-id': 'GENERAL',
-  'Content-Type': 'application/json'
-}
-
-response = requests.request("POST", url, headers=headers, data=payload)
-
-print(response.text)
-```
-
-```node.js Nodejs
-var request = require('request');
-var options = {
-  'method': 'POST',
-  'url': 'https://ai.data.cloud/api/v1/sessions',
-  'headers': {
-    'x-pd-api-key': '$PD_API_KEY',
-    'x-pd-api-agent-id': 'GENERAL',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    "title": "New Title",
-    "languageType": "EN",
-    "jobMode": "AUTO",
-    "maxMessagesInContext": 10
-  })
-
-};
-request(options, function (error, response) {
-  if (error) throw new Error(error);
-  console.log(response.body);
-});
-```
-</CodeGroup>
-
-
-<Tip> 
-
-When making a request:
-
-- Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-api-key). 
-
-- Since this topic covers running a general job and no data agent is used, set the `x-pd-api-agent-id` header to `GENERAL` (uppercase).
-
-</Tip>
-
-
-**Example response**:
-
-```json
-{
-    "code": 0,
-    "data": {
-        "id": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2"
-    }
-}
-```
-
-Obtain the `id` value (session ID) from the response and save it for use in the following step.
-
-
-
-## Step 3. Create a dataset and a data source
+## Step 2. Create a dataset and a data source
 
 <Tip>
  This step is optional but highly recommended, as it allows you to receive insights tailored to your own data.
@@ -411,6 +316,103 @@ You can create data sources and datasets in two ways:
     Obtain the `datasetId` value (dataset ID) from the response and save it for later use.
   </Tab>
 </Tabs>
+
+
+## Step 3. Create a session
+
+To create a session, make a request to the [POST /v1/sessions](create-session) endpoint. Sessions are essential for running jobs on Powerdrill, as each job must be linked to a session using its session ID.
+
+
+**Example request**:
+
+<CodeGroup>
+
+```curl cURL
+curl --location 'https://ai.data.cloud/api/v1/sessions' \
+  --header 'x-pd-api-key: $PD_API_KEY' \
+  --header 'x-pd-api-agent-id: GENERAL' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "title": "New Title",
+  "languageType": "EN",
+  "jobMode": "AUTO",
+  "maxMessagesInContext": 10
+}'
+```
+
+```python Python
+import requests
+import json
+
+url = "https://ai.data.cloud/api/v1/sessions"
+
+payload = json.dumps({
+  "title": "New Title",
+  "languageType": "EN",
+  "jobMode": "AUTO",
+  "maxMessagesInContext": 10
+})
+headers = {
+  'x-pd-api-key': '$PD_API_KEY',
+  'x-pd-api-agent-id': 'GENERAL',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```node.js Nodejs
+var request = require('request');
+var options = {
+  'method': 'POST',
+  'url': 'https://ai.data.cloud/api/v1/sessions',
+  'headers': {
+    'x-pd-api-key': '$PD_API_KEY',
+    'x-pd-api-agent-id': 'GENERAL',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    "title": "New Title",
+    "languageType": "EN",
+    "jobMode": "AUTO",
+    "maxMessagesInContext": 10
+  })
+
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+```
+</CodeGroup>
+
+
+<Tip> 
+
+When making a request:
+
+- Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-api-key). 
+
+- Since this topic covers running a general job and no data agent is used, set the `x-pd-api-agent-id` header to `GENERAL` (uppercase).
+
+</Tip>
+
+
+**Example response**:
+
+```json
+{
+    "code": 0,
+    "data": {
+        "id": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2"
+    }
+}
+```
+
+Obtain the `id` value (session ID) from the response and save it for use in the following step.
+
 
 
 ## Step 4. Create a job
