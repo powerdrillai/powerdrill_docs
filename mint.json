@@ -64,10 +64,6 @@
       "pages": ["api-reference/overview", "api-reference/quick-start-for-general", "api-reference/streaming" ]
     },
     {
-      "group": "Sessions",
-      "pages": ["api-reference/create-session", "api-reference/get-session", "api-reference/get-job-history", "api-reference/list-sessions", "api-reference/modify-session", "api-reference/delete-session"]
-    },
-    {
       "group": "Datasets",
       "pages": ["api-reference/create-dataset", "api-reference/get-dataset-status", "api-reference/list-datasets", "api-reference/modify-dataset", "api-reference/delete-dataset"]
     },
@@ -78,6 +74,10 @@
     {
       "group": "Files",
       "pages": ["api-reference/upload-file"]
+    },
+    {
+      "group": "Sessions",
+      "pages": ["api-reference/create-session", "api-reference/get-session", "api-reference/get-job-history", "api-reference/list-sessions", "api-reference/modify-session", "api-reference/delete-session"]
     },
     {
       "group": "Jobs",
