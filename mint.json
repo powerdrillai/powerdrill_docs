@@ -37,7 +37,7 @@
     },
     {
     "name": "Developer Guides",
-    "url": "api-reference"
+    "url": "developer-guides"
     }
     ],
 
@@ -102,6 +102,14 @@
     {
       "group": "Team",
       "pages": ["api-reference/get-team", "api-reference/modify-team"]
+    },
+    {
+      "group": "Overview",
+      "pages": ["developer-guides/quick-start"]
+    },
+    {
+      "group": "Manage data",
+      "pages": ["developer-guides/upload-file"]
     }
   ],
 
