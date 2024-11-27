@@ -1,0 +1,139 @@
+---
+title: "Upload Local Files to Create Data Sources"
+description: "How to quickly upload local files to create data sources"
+icon: "upload"
+---
+
+The [`POST api/v1/datasets/{datasetId}/datasources`](/api-reference/create-data-source) and [`POST /v1/datasources`](/api-reference/create-data-source-without-dataset) endpoints allow you to upload your data in two methods:
+
+- From a public URL: Use the `url` parameter.
+
+- From your local storage: Use the `fileKey` parameter.
+
+This guide explains how to upload a local file to create a data source. 
+
+
+## Step 1. Upload your local file and obtain the `fileKey`
+
+Use the [POST /v1/file/upload_datasource](/api-reference/upload-file) endpoint to upload your local file. After the upload, the response will include a `fileKey`. Save this `fileKey` to create a data source using the [Create data source](/api-reference/create-data-source) endpoint.
+
+Supported file formats include: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, and **.xlsx**.
+
+Here's an example in Python:
+
+```python Example request:
+import requests
+
+url = "https://ai.data.cloud/api/v1/file/upload_datasource"
+
+payload = "-----011000010111000001101001--\r\n\r\n"
+headers = {
+    "Content-Type": "multipart/form-data",
+    "x-pd-api-agent-id": "<x-pd-api-agent-id>",
+    "x-pd-api-key": "<api-key>"
+}
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+```
+
+
+Here's an example response:
+
+```python Example response:
+{
+  "code": 0,
+  "data": {
+    "fileKey": "/tmp/sdgsagdsgsadgasdg"
+  }
+}
+```
+
+Extract the `fileKey` value from the response for later use. In this example, it is `/tmp/sdgsagdsgsadgasdg`.
+
+---
+
+## Step 2. Create a data source
+
+Now, create a data source to embed and synchronize it with your AI Workspace. 
+
+You can do this by sending a request to either the [`POST api/v1/datasets/{datasetId}/datasources`](/api-reference/create-data-source) endpoint or the [`POST /v1/datasources`](/api-reference/create-data-source-without-dataset) endpoint. 
+
+
+The example below demonstrates the use of the [`POST /v1/datasources`](/api-reference/create-data-source-without-dataset) endpoint.
+
+
+```python Example request:
+import requests
+
+url = "https://ai.data.cloud/api/v1/datasources"
+
+payload = {
+    "name": "test.csv",
+    "fileName": "test.csv",
+    "type": "FILE",
+    "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2",
+    "fileKey": "/tmp/sdgsagdsgsadgasdg"
+}
+headers = {
+    "x-pd-api-key": "<api-key>",
+    "Content-Type": "application/json"
+}
+
+response = requests.request("POST", url, json=payload, headers=headers)
+
+print(response.text)
+```
+
+
+Replace the `fileKey` value with your specific one.
+
+
+## Step 3. Check data source status
+
+The data source must be in the **synched** state to be ready for use. To check its status, use the [`GET v1/datasets/{datasetId}/datasources/{datasourceId}`](/api-reference/get-data-source) endpoint.
+
+Here's an example:
+
+```python Example request
+import requests
+
+url = "https://ai.data.cloud/api/v1/datasets/{datasetId}/datasources/{datasourceId}"
+
+headers = {"x-pd-api-key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+Check the status in the response:
+
+```python Example response:
+{
+  "code": 0,
+  "data": {
+    "id": "datasource-cadsgfsdagasgadsg",
+    "datasetId": "dataset-dagasdgasgasg",
+    "name": "test.csv",
+    "fileName": "test.csv",
+    "type": "FILE",
+    "status": "synched"
+  }
+}
+```
+
+
+In this example, the data source is in the `synced` state and is ready for use in data analysis jobs.
+
+Possible statuses include:
+
+- **`pending`**: Waiting to be processed.
+- **`running`**: Currently being processed.
+- **`error`**: Processing failed.
+
+If the status is `pending` or `running`, wait for some time and check again until it changes to `synced`. 
+
+If the status is `error`, you'll need to re-upload the file by starting from [Step 1](#step-1-upload-your-local-file-and-obtain-fileKey).
+
