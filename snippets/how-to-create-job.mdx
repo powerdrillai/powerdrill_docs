@@ -312,6 +312,8 @@ You can create data sources and datasets in two ways:
   </Tab>
 </Tabs>
 
+When the data source created, 
+
 
 ## Step 3. Create a session
 
@@ -434,7 +436,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     <CodeGroup>
 
     ```curl cURL
-    curl --location 'https://ai.data.cloud/api/v1/job' \
+    curl --location 'https://ai.data.cloud/api/v1/jobs' \
       --header 'x-pd-api-key: $PD_API_KEY' \
       --header 'x-pd-api-agent-id: GENERAL' \
       --header 'Content-Type: application/json' \
@@ -454,7 +456,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     import requests
     import json
 
-    url = "https://ai.data.cloud/api/v1/job"
+    url = "https://ai.data.cloud/api/v1/jobs"
 
     payload = json.dumps({
       "datasetId": "cm3my37en3q36017q7x3hyyf4",
@@ -482,7 +484,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     var request = require('request');
     var options = {
       'method': 'POST',
-      'url': 'https://ai.data.cloud/api/v1/job',
+      'url': 'https://ai.data.cloud/api/v1/jobs',
       'headers': {
         'x-pd-api-key': '$PD_API_KEY',
         'x-pd-api-agent-id': 'GENERAL',
@@ -600,7 +602,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
 
     <CodeGroup>
     ```curl cURL
-    curl --location 'https://ai.data.cloud/api/v1/job' \
+    curl --location 'https://ai.data.cloud/api/v1/jobs' \
       --header 'x-pd-api-key: $PD_API_KEY' \
       --header 'x-pd-api-agent-id: GENERAL' \
       --header 'Content-Type: application/json' \
@@ -620,7 +622,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     import requests
     import json
 
-    url = "https://ai.data.cloud/api/v1/job"
+    url = "https://ai.data.cloud/api/v1/jobs"
 
     payload = json.dumps({
       "datasetId": "cm3my37en3q36017q7x3hyyf4",
@@ -648,7 +650,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     var request = require('request');
     var options = {
       'method': 'POST',
-      'url': 'https://ai.data.cloud/api/v1/job',
+      'url': 'https://ai.data.cloud/api/v1/jobs',
       'headers': {
         'x-pd-api-key': '$PD_API_KEY',
         'x-pd-api-agent-id': 'GENERAL',
@@ -911,7 +913,7 @@ When making a request:
 
 
 
-To check whether your subscription is active, make a request to the [GET /v1/subscriptions/{subscriptionId}](get-subscription) endpoint.
+To check whether your subscription is active, make a request to the [`GET /v1/subscriptions/{subscriptionId}`](get-subscription) endpoint.
 
 **Example request**:
 
