@@ -16,6 +16,14 @@ This guide focuses on the latter—uploading a local file to create a data sourc
 ---
 
 
+## Authentication
+
+All requests to Powerdrill must include an `x-pd-api-key` header with your API key. 
+
+To get your API key, see [Quick Start](https://docs.powerdrill.ai/developer-guides/quick-start#step-1-get-your-api-key).
+
+---
+
 ## Step 1. Upload your local file and obtain the `fileKey`
 
 Use the [POST /v1/file/upload_datasource](/api-reference/upload-file) endpoint to upload your local file. After the upload, the response will include a `fileKey`. Save this `fileKey` to create a data source using the [Create data source](/api-reference/create-data-source) endpoint.
