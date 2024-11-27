@@ -32,7 +32,11 @@
       "url": "enterprise"
     },
     {
-    "name": "API References",
+    "name": "API Reference",
+    "url": "api-reference"
+    },
+    {
+    "name": "Developer Guides",
     "url": "api-reference"
     }
     ],

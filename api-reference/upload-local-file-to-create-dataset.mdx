@@ -10,7 +10,10 @@ The [`POST api/v1/datasets/{datasetId}/datasources`](/api-reference/create-data-
 
 - From your local storage: Use the `fileKey` parameter.
 
-This guide explains how to upload a local file to create a data source. 
+This guide focuses on the latter—uploading a local file to create a data source.
+
+
+---
 
 
 ## Step 1. Upload your local file and obtain the `fileKey`
@@ -90,6 +93,9 @@ print(response.text)
 Replace the `fileKey` value with your specific one.
 
 
+---
+
+
 ## Step 3. Check data source status
 
 The data source must be in the **synched** state to be ready for use. To check its status, use the [`GET v1/datasets/{datasetId}/datasources/{datasourceId}`](/api-reference/get-data-source) endpoint.
@@ -125,7 +131,7 @@ Check the status in the response:
 ```
 
 
-In this example, the data source is in the `synced` state and is ready for use in data analysis jobs.
+In this example, the data source is in the `synced` state and is ready for use in [data analysis jobs](/api-reference/create-job).
 
 Possible statuses include:
 
@@ -133,7 +139,12 @@ Possible statuses include:
 - **`running`**: Currently being processed.
 - **`error`**: Processing failed.
 
+
+<Tip>
+
 If the status is `pending` or `running`, wait for some time and check again until it changes to `synced`. 
 
 If the status is `error`, you'll need to re-upload the file by starting from [Step 1](#step-1-upload-your-local-file-and-obtain-fileKey).
+
+</Tip>
 
