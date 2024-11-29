@@ -32,27 +32,27 @@ Supported file formats include: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**
 
 Here's an example in Python:
 
-```python Example request:
-import requests
-
-url = "https://ai.data.cloud/api/v1/file/upload_datasource"
-
-payload = "-----011000010111000001101001--\r\n\r\n"
-headers = {
-    "Content-Type": "multipart/form-data",
-    "x-pd-api-agent-id": "<x-pd-api-agent-id>",
-    "x-pd-api-key": "<api-key>"
-}
-
-response = requests.request("POST", url, data=payload, headers=headers)
-
-print(response.text)
+```curl
+curl --location 'http://ai.data.cloud/api/v1/file/upload_datasource' \
+--header 'Content-Type: multipart/form-data' \
+--header 'x-pd-api-key: <api-key>' \
+--header 'x-pd-api-agent-id: GENERAL' \
+--form 'file=@"<file_path>"'
 ```
+
+<Tip>
+When making a request:
+
+- Replace `<api-key>` with your actual API key.
+
+- Replace `<file_path>` with the actual full path to your file, for example, `/Users/test/workspace/sales_2024.csv`.
+</Tip>
+
 
 
 Here's an example response:
 
-```python Example response:
+```json Example response:
 {
   "code": 0,
   "data": {
@@ -75,30 +75,43 @@ You can do this by sending a request to either the [`POST api/v1/datasets/{datas
 The example below demonstrates the use of the [`POST /v1/datasources`](/api-reference/create-data-source-without-dataset) endpoint.
 
 
-```python Example request:
-import requests
+```curl Example request:
+curl --location 'https://ai.data.cloud/api/v1/datasets/cm3my37en3q36017q7x3hyyf4/datasources' \
+  --header 'x-pd-api-key: $PD_API_KEY' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "name": "test.csv",
+  "fileName": "test.csv",
+  "type": "FILE",
+  "fileKey": "/tmp/sdgsagdsgsadgasdg"
+}'
+```
 
-url = "https://ai.data.cloud/api/v1/datasources"
+<Tip>
+When making a request:
 
-payload = {
+- Replace `<api-key>` with your actual API key.
+- Set `fileKey` to your actual one.
+</Tip>
+
+
+```json Example response:
+{
+  "code": 0,
+  "data": {
+    "id": "datasource-cadsgfsdagasgadsg",
+    "datasetId": "dataset-dagasdgasgasg",
     "name": "test.csv",
     "fileName": "test.csv",
     "type": "FILE",
-    "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2",
-    "fileKey": "/tmp/sdgsagdsgsadgasdg"
+    "status": "pending"
+  }
 }
-headers = {
-    "x-pd-api-key": "<api-key>",
-    "Content-Type": "application/json"
-}
-
-response = requests.request("POST", url, json=payload, headers=headers)
-
-print(response.text)
 ```
 
 
-Replace the `fileKey` value with your specific one.
+Obtain the `id` (data source ID) and `datasetId` (dataset ID) for later use. In this example, the data source ID is `datasource-cadsgfsdagasgadsg` and the dataset ID is `dataset-dagasdgasgasg`.
+
 
 
 ---
@@ -110,17 +123,13 @@ The data source must be in the **synched** state to be ready for use. To check i
 
 Here's an example:
 
-```python Example request
-import requests
-
-url = "https://ai.data.cloud/api/v1/datasets/{datasetId}/datasources/{datasourceId}"
-
-headers = {"x-pd-api-key": "<api-key>"}
-
-response = requests.request("GET", url, headers=headers)
-
-print(response.text)
+```curl Example request
+curl --request GET \
+  --url https://ai.data.cloud/api/v1/datasets/dataset-dagasdgasgasg/datasources/datasource-cadsgfsdagasgadsg \
+  --header 'x-pd-api-key: <api-key>'
 ```
+
+
 
 Check the status in the response:
 
