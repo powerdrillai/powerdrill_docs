@@ -30,9 +30,9 @@ Use the [POST /v1/file/upload_datasource](/api-reference/upload-file) endpoint t
 
 Supported file formats include: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, and **.xlsx**.
 
-Here's an example in Python:
+Here's an example in cURL:
 
-```curl
+```curl Example request:
 curl --location 'http://ai.data.cloud/api/v1/file/upload_datasource' \
 --header 'Content-Type: multipart/form-data' \
 --header 'x-pd-api-key: <api-key>' \
@@ -133,7 +133,7 @@ curl --request GET \
 
 Check the status in the response:
 
-```python Example response:
+```json Example response:
 {
   "code": 0,
   "data": {
