@@ -11,7 +11,7 @@ You can use this endpoint to upload your local file and then use the `fileKey` y
 Only files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.
 
 
-<codeGroup>
+<CodeGroup>
 ```curl cURL
 curl --location 'http://ai.data.cloud/api/v1/file/upload_datasource' \
 --header 'Content-Type: multipart/form-data' \
@@ -39,7 +39,7 @@ response = requests.request("POST", url, headers=headers, data=payload, files=fi
 
 print(response.text)
 ```
-</codeGroup>
+</CodeGroup>
 
 
 
