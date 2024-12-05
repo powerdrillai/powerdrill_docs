@@ -1,5 +1,16 @@
 ---
 openapi: post /v1/jobs
+description: "Converses with your data. Ask any question you have about your data and get insights instantly. "
 ---
+
+On Powerdrill, a **job** refers to a task that Powerdrill performs to generate a response based on your request (e.g., a prompt or other workflows). Powerdrill Enterprise supports two types of jobs: **general jobs** and **data agent jobs**. Currently, only general jobs are available, so make sure the **x-pd-api-agent-id** header is set to **GENERAL**.  
+
+- For an in-depth explanation of **jobs**, see [What Is Job?](/enterprise/what-is-job).  
+
+- To quickly create and execute a job, see [Quick Start](/api-reference/quick-start-for-general).
+
+<Tip>
+ The **Response** section in this topic describes the structure of the response when `stream` is set to `false`. For an example of the response when `stream` is set to `true` and an explanation of how to interpret the streaming response, refer to [Streaming](/api-reference/streaming).
+</Tip>
 
 
