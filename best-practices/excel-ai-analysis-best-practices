@@ -1,0 +1,8 @@
+---
+title: "Excel AI Analysis Best Practices"
+description: "Best practices for using Powerdrill AI to analyze Excel files"
+---
+
+import MySnippet from '/snippets/excel-best-practices.mdx';
+
+<MySnippet beta="Powerdrill" />
