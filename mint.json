@@ -56,6 +56,10 @@
       "pages": ["features/advanced-analytics", "features/ai-presentation", "features/ai-data-reports", "features/smart-docmap",  "features/chat-app", "features/no-code-app-builder", "features/dataset-sharing", "features/chat-sharing", "features/discover", "features/multimedia"]
     },
     {
+      "group": "Best Practices",
+      "pages": ["best-practices/excel-ai-analysis-best-practices"]
+    },
+    {
       "group": "Legal",
       "pages": ["legal/privacy-notice", "legal/terms-of-service"]
     },
