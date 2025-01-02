@@ -1,5 +1,5 @@
 ---
-openapi: post /v1/file/upload_datasource
+openapi: post /v1/team/file/upload-datasource
 description: "Uploads a file. "
 mode: "wide"
 ---
@@ -13,7 +13,7 @@ Only files with the following extensions are supported: **.csv**, **.tsv**, **.m
 **Example request:**
 <CodeGroup>
 ```curl cURL
-curl --location 'http://ai.data.cloud/api/v1/file/upload_datasource' \
+curl --location 'http://ai.data.cloud/api/v1/team/file/upload_datasource' \
 --header 'Content-Type: multipart/form-data' \
 --header 'x-pd-api-key: <api-key>' \
 --header 'x-pd-api-agent-id: GENERAL' \
@@ -23,7 +23,7 @@ curl --location 'http://ai.data.cloud/api/v1/file/upload_datasource' \
 ```python Python
 import requests
 
-url = "http://ai.data.cloud/api/v1/file/upload_datasource"
+url = "http://ai.data.cloud/api/v1/team/file/upload_datasource"
 
 payload = {}
 files=[

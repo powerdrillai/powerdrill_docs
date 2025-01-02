@@ -105,7 +105,7 @@ The value of `content` in each response block varies with the block content type
 Let's see an example.
 
 <Info>
-For details about the `POST /v1/jobs` endpoint, see [Create job](create-job).
+For details about the `POST /v1/team/jobs` endpoint, see [Create job](create-job).
 </Info>
 
 
@@ -113,7 +113,7 @@ For details about the `POST /v1/jobs` endpoint, see [Create job](create-job).
 import requests
 import json
 
-url = "https://ai.data.cloud/api/v1/job"
+url = "https://ai.data.cloud/api/v1/team/job"
 
 payload = json.dumps({
   "datasetId": "cm3my37en3q36017q7x3hyyf4",
@@ -237,7 +237,7 @@ Let's use the same request as an example for a clear comparison. The only differ
 import requests
 import json
 
-url = "https://ai.data.cloud/api/v1/job"
+url = "https://ai.data.cloud/api/v1/team/job"
 
 payload = json.dumps({
   "datasetId": "cm3my37en3q36017q7x3hyyf4",
