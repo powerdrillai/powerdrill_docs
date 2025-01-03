@@ -68,6 +68,10 @@
       "pages": ["enterprise/introduction", "enterprise/pricing", "enterprise/what-is-job"]
     },
     {
+      "group": "Manage",
+      "pages": ["enterprise/workspaces"]
+    },
+    {
       "group": "API Reference Overview",
       "pages": ["api-reference/overview", "api-reference/quick-start-for-general", "api-reference/streaming" ]
     },
