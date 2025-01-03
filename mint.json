@@ -64,7 +64,7 @@
       "pages": ["legal/privacy-notice", "legal/terms-of-service"]
     },
     {
-      "group": "Enterprise",
+      "group": "Introduction",
       "pages": ["enterprise/introduction", "enterprise/pricing", "enterprise/what-is-job"]
     },
     {
