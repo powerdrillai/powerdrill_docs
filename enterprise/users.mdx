@@ -4,39 +4,179 @@ description: 'This guide describes each type of users on Powerdrill Enterprise a
 ---
 
 
+---
+
+
 ## What is a user?
 
-A user in Powerdrill Enterprise is an individual who has access to a workspace within the Powerdrill Enterprise environment. There are different types
-Users can have different roles, such as administrators or regular team members, with varying levels of permissions to manage, view, and interact with resources and projects within the workspace. Depending on the assigned role, users can create, modify, and manage data, collaborate with other team members, and access specific features within Powerdrill Enterprise.
-
-
-## What is a team member?
-
-
-## What is a system user?
-
-
-## What is virtual user?
+A user in Powerdrill Enterprise is an individual who has access to a workspace within the Powerdrill Enterprise environment. 
 
 
 ---
 
-## Invite users
+
+## User types
+
+Powerdrill Enterprise Edition provides three types of users, each designed with varying permissions to meet diverse requirements:
+
+- **Team member**: A team member is a user with full access to all features on the console. They collaborate with other team members, managing and interacting with data within the projects they are part of. 
+
+    Team members can perform the following operations in projects where they hold membership:
+
+    - Create and manage datasets and data sources
+
+    - Run jobs based on the datasets
+
+    - Collaborate with other team members
 
 
-## Remove a user from your organizations
+
+    <Tip>
+    Team members are ideal for teams using Powerdrill Enterprise as their AI-driven data analytics platform, empowering each individual to optimize data analysis based on their personalized needs.
+
+    Team members do not have access to the Powerdrill Open API, as it is unnecessary for their role.
+    </Tip>
+
+- **System user**: A system user can utilize the Powerdrill Open API to run jobs in large batches, but does not have access to the memory feature.
+
+    System users can perform the following operations in projects where they hold membership:
+
+    - Leverage Powerdrill Enteprise's AI capabilties via API calls.
+
+    - Run jobs in batches efficienctly.
+
+    - Develop custom solutions via the Powerdrill Open API to serve their users.
+
+    <Tip>
+    System users are ideal for your organization's developers, data engineers, and technical personnel who need to automate tasks, run jobs in large batches, or integrate Powerdrill's AI capabilities into their custom applications. They are best suited for scenarios requiring API-driven operations or secondary development to extend services to end-users.
+    </Tip>
+
+- **Virtual users**: A virtual user can use the Powerdrill Open API to run jobs, with access to the memory feature. 
+
+    <Tip>
+    Virtual users are best suited for external customers or clients of your organization who need controlled access to specific features of Powerdrill. They are ideal for scenarios where users require API-based functionality along with access to the memory feature. Virtual users ensure a secure and tailored experience without exposing unnecessary details about Powerdrill.
+    </Tip>    
 
 
-## FAQ
 
-### Can I tranfer a seat to another user?
+
+
+
+---
+
+## Create a user
+
+Perform the following steps to invite users to join in your project:
+
+1. Sign in to Powerdrill.
+
+2. Click your profile icon in the lower-left corner.
+
+3. In the menu, go to the **Workspace** section and click **Switch Workspace**.
+
+    <Frame>
+      <img src="/enterprise/img/switch-workspace.png" style={{ borderRadius: '0.5rem' }} />
+    </Frame>
+
+    A list of all the workspaces you're in will appear.
+
+4. Click the **Admin console** next to the team that you own.
+
+    <Frame>
+      <img src="/enterprise/img/enter-admin.png" style={{ borderRadius: '0.5rem' }} />
+    </Frame>
+
+5. On the top-navigation bar, select **Users**. On the **Users** page, click **Create user**.
+
+6. On the **Create user** page, select the user type you want to create, configure user information, and click **Create**.
+
+    For details about how to select the user type, see [User types](#user-types).
+
+    <Tabs>
+     <Tab title="Create a team member">
+      <Frame>
+        <img src="/enterprise/img/create-team-member.png" style={{ borderRadius: '0.5rem' }} />
+      </Frame>
+
+      Parameter description:
+
+      | Parameter | Required | Description |
+      | :- | :- | :- |
+      | Email | Yes | The email address of the invitee. |
+      | Associate plan | No | The subscription ID the user will be associated with. Only users  associated with a plan can run jobs. |
+      | Add to projects | No | Select the projects you want the user to join. Users can perform operations only in projects where they hold membership. |
+
+     </Tab>
+
+     <Tab title="Create a system user">
+      <Frame>
+       <img src="/enterprise/img/create-system-user.png" style={{ borderRadius: '0.5rem' }} />
+      </Frame>
+
+      Parameter description:
+
+      | Parameter | Required | Description |
+      | :- | :- | :- |
+      | Display name | Yes | The identifier that represents the user publicly. |
+      | Associate plan | No | The subscription ID the user will be associated with. Only users  associated with a plan can run jobs. |
+      | Add to projects | No | Select the projects you want the user to join. Users can perform operations only in projects where they hold membership. |
+
+     </Tab>
+     <Tab title="Create a virtual user">
+      <Frame>
+       <img src="/enterprise/img/create-virtual-user.png" style={{ borderRadius: '0.5rem' }} />
+      </Frame>
+      
+      Parameter description:
+
+      | Parameter | Required | Description |
+      | :- | :- | :- |
+      | Display name | Yes | The identifier that represents the user publicly. |
+      | Associate plan | No | The subscription ID the user will be associated with. Only users  associated with a plan can run jobs. |
+      | Add to projects | No | Select the projects you want the user to join. Users can perform operations only in projects where they hold membership. |
+
+     </Tab>
+    </Tabs>
+
+    Once the user is created, you can view their details on the **Users** page, including the user ID, email or display name, user type, project memberships, and associated plan.
+
+    <Info>
+    If you create a team member, you can view the user information only after the invitee accepts your invitation.
+    </Info>
+
+
+---
+
+## Delete a user from your team
+
+You can remove unnecessary users from your team.
+
+1. Sign in to Powerdrill.
+
+2. Click your profile icon in the lower-left corner.
+
+3. In the menu, go to the **Workspace** section and click **Switch Workspace**.
+
+    <Frame>
+      <img src="/enterprise/img/switch-workspace.png" style={{ borderRadius: '0.5rem' }} />
+    </Frame>
+
+    A list of all the workspaces you're in will appear.
+
+4. Click the **Admin console** next to the team that you own.
+
+    <Frame>
+      <img src="/enterprise/img/enter-admin.png" style={{ borderRadius: '0.5rem' }} />
+    </Frame>
+
+5. On the top-navigation bar, select **Users**. On the **Users** page, click **Create user**.
 
 
 ### Will other users have access to job execution history in the project?
 
+
+
 ### Can a member create in one organization has access to other projects?
-
-
 
 ### How do I delete my account?
 
