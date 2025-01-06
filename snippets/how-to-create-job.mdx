@@ -52,14 +52,14 @@ You can create data sources and datasets in two ways:
 <Tabs>
   <Tab title="Method 1">
 
-    1. Make a request to `POST /v1/team/datasets` endpoint to create a dataset.
+    1. Make a request to `POST /v1/datasets` endpoint to create a dataset.
 
         **Example request**:
 
         <CodeGroup>
 
         ```curl cURL
-        curl --location 'https://ai.data.cloud/api/v1/team/datasets' \
+        curl --location 'https://ai.data.cloud/api/v1/datasets' \
           --header 'x-pd-api-key: $PD_API_KEY' \
           --header 'Content-Type: application/json' \
           --data '{
@@ -72,7 +72,7 @@ You can create data sources and datasets in two ways:
         import requests
         import json
 
-        url = "https://ai.data.cloud/api/v1/team/datasets"
+        url = "https://ai.data.cloud/api/v1/datasets"
 
         payload = json.dumps({
           "description": "My dataset",
@@ -92,7 +92,7 @@ You can create data sources and datasets in two ways:
         var request = require('request');
         var options = {
           'method': 'POST',
-          'url': 'https://ai.data.cloud/api/v1/team/datasets',
+          'url': 'https://ai.data.cloud/api/v1/datasets',
           'headers': {
             'x-pd-api-key': '$PD_API_KEY',
             'Content-Type': 'application/json'
@@ -129,13 +129,13 @@ You can create data sources and datasets in two ways:
 
         Obtain the `id` value (dataset ID) from the response and save it for later use.
         
-    2. Make a request to the [`POST /v1/team/datasets/{datasetId}/datasources`](create-data-source) endpoint.
+    2. Make a request to the [`POST /v1/datasets/{datasetId}/datasources`](create-data-source) endpoint.
 
         **Example request**:
 
         <CodeGroup>
         ```curl cURL
-        curl --location 'https://ai.data.cloud/api/v1/team/datasets/cm3my37en3q36017q7x3hyyf4/datasources' \
+        curl --location 'https://ai.data.cloud/api/v1/datasets/cm3my37en3q36017q7x3hyyf4/datasources' \
           --header 'x-pd-api-key: $PD_API_KEY' \
           --header 'Content-Type: application/json' \
           --data '{
@@ -150,7 +150,7 @@ You can create data sources and datasets in two ways:
         import requests
         import json
 
-        url = "https://ai.data.cloud/api/v1/team/datasets/cm3my37en3q36017q7x3hyyf4/datasources"
+        url = "https://ai.data.cloud/api/v1/datasets/cm3my37en3q36017q7x3hyyf4/datasources"
 
         payload = json.dumps({
           "name": "test.pdf",
@@ -172,7 +172,7 @@ You can create data sources and datasets in two ways:
         var request = require('request');
         var options = {
           'method': 'POST',
-          'url': 'https://ai.data.cloud/api/v1/team/datasets/cm3my37en3q36017q7x3hyyf4/datasources',
+          'url': 'https://ai.data.cloud/api/v1/datasets/cm3my37en3q36017q7x3hyyf4/datasources',
           'headers': {
             'x-pd-api-key': '$PD_API_KEY',
             'Content-Type': 'application/json'
@@ -224,13 +224,13 @@ You can create data sources and datasets in two ways:
     
   </Tab>
   <Tab title="Method 2">
-    Make a request to the [POST /v1/team/datasources](create-data-source-without-dataset) endpoint.
+    Make a request to the [POST /v1/datasources](create-data-source-without-dataset) endpoint.
 
     **Example request**:
 
     <CodeGroup>
     ```curl cURL
-    curl --location 'https://ai.data.cloud/api/v1/team/datasets/cm3my37en3q36017q7x3hyyf4/datasources' \
+    curl --location 'https://ai.data.cloud/api/v1/datasets/cm3my37en3q36017q7x3hyyf4/datasources' \
       --header 'x-pd-api-key: $PD_API_KEY' \
       --header 'Content-Type: application/json' \
       --data '{
@@ -245,7 +245,7 @@ You can create data sources and datasets in two ways:
     import requests
     import json
 
-    url = "https://ai.data.cloud/api/v1/team/datasets/cm3my37en3q36017q7x3hyyf4/datasources"
+    url = "https://ai.data.cloud/api/v1/datasets/cm3my37en3q36017q7x3hyyf4/datasources"
 
     payload = json.dumps({
       "name": "test.pdf",
@@ -267,7 +267,7 @@ You can create data sources and datasets in two ways:
     var request = require('request');
     var options = {
       'method': 'POST',
-      'url': 'https://ai.data.cloud/api/v1/team/datasets/cm3my37en3q36017q7x3hyyf4/datasources',
+      'url': 'https://ai.data.cloud/api/v1/datasets/cm3my37en3q36017q7x3hyyf4/datasources',
       'headers': {
         'x-pd-api-key': '$PD_API_KEY',
         'Content-Type': 'application/json'
@@ -317,7 +317,7 @@ When the data source created,
 
 ## Step 3. Create a session
 
-To create a session, make a request to the [POST /v1/team/sessions](create-session) endpoint. Sessions are essential for running jobs on Powerdrill, as each job must be linked to a session using its session ID.
+To create a session, make a request to the [POST /v1/sessions](create-session) endpoint. Sessions are essential for running jobs on Powerdrill, as each job must be linked to a session using its session ID.
 
 
 **Example request**:
@@ -325,7 +325,7 @@ To create a session, make a request to the [POST /v1/team/sessions](create-sessi
 <CodeGroup>
 
 ```curl cURL
-curl --location 'https://ai.data.cloud/api/v1/team/sessions' \
+curl --location 'https://ai.data.cloud/api/v1/sessions' \
   --header 'x-pd-api-key: $PD_API_KEY' \
   --header 'x-pd-api-agent-id: GENERAL' \
   --header 'Content-Type: application/json' \
@@ -341,7 +341,7 @@ curl --location 'https://ai.data.cloud/api/v1/team/sessions' \
 import requests
 import json
 
-url = "https://ai.data.cloud/api/v1/team/sessions"
+url = "https://ai.data.cloud/api/v1/sessions"
 
 payload = json.dumps({
   "title": "New Title",
@@ -364,7 +364,7 @@ print(response.text)
 var request = require('request');
 var options = {
   'method': 'POST',
-  'url': 'https://ai.data.cloud/api/v1/team/sessions',
+  'url': 'https://ai.data.cloud/api/v1/sessions',
   'headers': {
     'x-pd-api-key': '$PD_API_KEY',
     'x-pd-api-agent-id': 'GENERAL',
@@ -420,7 +420,7 @@ Now, after you've prepared a session and probably a dataset stuffed with data so
 For the definition of job, see [What Is Job?](/enterprise/what-is-job).
 </Info>
 
-Make a request to the [POST /v1/team/jobs](create-job) endpoint. 
+Make a request to the [POST /v1/jobs](create-job) endpoint. 
 
 Powerdrill provides the ability to stream responses, controlled by the `stream` parameter. For more details about how to understand the streaming mode, see [Streaming](streaming).
 
@@ -436,7 +436,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     <CodeGroup>
 
     ```curl cURL
-    curl --location 'https://ai.data.cloud/api/v1/team/jobs' \
+    curl --location 'https://ai.data.cloud/api/v1/jobs' \
       --header 'x-pd-api-key: $PD_API_KEY' \
       --header 'x-pd-api-agent-id: GENERAL' \
       --header 'Content-Type: application/json' \
@@ -456,7 +456,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     import requests
     import json
 
-    url = "https://ai.data.cloud/api/v1/team/jobs"
+    url = "https://ai.data.cloud/api/v1/jobs"
 
     payload = json.dumps({
       "datasetId": "cm3my37en3q36017q7x3hyyf4",
@@ -484,7 +484,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     var request = require('request');
     var options = {
       'method': 'POST',
-      'url': 'https://ai.data.cloud/api/v1/team/jobs',
+      'url': 'https://ai.data.cloud/api/v1/jobs',
       'headers': {
         'x-pd-api-key': '$PD_API_KEY',
         'x-pd-api-agent-id': 'GENERAL',
@@ -602,7 +602,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
 
     <CodeGroup>
     ```curl cURL
-    curl --location 'https://ai.data.cloud/api/v1/team/jobs' \
+    curl --location 'https://ai.data.cloud/api/v1/jobs' \
       --header 'x-pd-api-key: $PD_API_KEY' \
       --header 'x-pd-api-agent-id: GENERAL' \
       --header 'Content-Type: application/json' \
@@ -622,7 +622,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     import requests
     import json
 
-    url = "https://ai.data.cloud/api/v1/team/jobs"
+    url = "https://ai.data.cloud/api/v1/jobs"
 
     payload = json.dumps({
       "datasetId": "cm3my37en3q36017q7x3hyyf4",
@@ -650,7 +650,7 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     var request = require('request');
     var options = {
       'method': 'POST',
-      'url': 'https://ai.data.cloud/api/v1/team/jobs',
+      'url': 'https://ai.data.cloud/api/v1/jobs',
       'headers': {
         'x-pd-api-key': '$PD_API_KEY',
         'x-pd-api-agent-id': 'GENERAL',
@@ -815,13 +815,13 @@ When making a request:
 
 ## More to know
 
-For each new organization, Powerdrill Enterprise offers 500 general jobs for free. After the free quota is consumed, to run more general jobs, you must subscribe to Powerdrill Enterprise via the [POST /v1/team/subscriptions](create-subscription) endpoint. 
+For each new organization, Powerdrill Enterprise offers 500 general jobs for free. After the free quota is consumed, to run more general jobs, you must subscribe to Powerdrill Enterprise via the [POST /v1/subscriptions](create-subscription) endpoint. 
 
 **Sample request**:
 
 <CodeGroup>
 ```curl cURL
-curl --location 'https://ai.data.cloud/api/v1/team/subscriptions' \
+curl --location 'https://ai.data.cloud/api/v1/subscriptions' \
 --header 'x-pd-api-key: $PD_API_KEY' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -837,7 +837,7 @@ curl --location 'https://ai.data.cloud/api/v1/team/subscriptions' \
 import requests
 import json
 
-url = "https://ai.data.cloud/api/v1/team/subscriptions"
+url = "https://ai.data.cloud/api/v1/subscriptions"
 
 payload = json.dumps({
   "targetId": "proj-cm3iheok703l401l1o1gyr1rt",
@@ -860,7 +860,7 @@ print(response.text)
 var request = require('request');
 var options = {
   'method': 'POST',
-  'url': 'https://ai.data.cloud/api/v1/team/subscriptions',
+  'url': 'https://ai.data.cloud/api/v1/subscriptions',
   'headers': {
     'x-pd-api-key': '$PD_API_KEY',
     'Content-Type': 'application/json'
@@ -913,14 +913,14 @@ When making a request:
 
 
 
-To check whether your subscription is active, make a request to the [`GET /v1/team/subscriptions/{subscriptionId}`](get-subscription) endpoint.
+To check whether your subscription is active, make a request to the [`GET /v1/subscriptions/{subscriptionId}`](get-subscription) endpoint.
 
 **Example request**:
 
 
 <CodeGroup>
 ```curl cURL
-curl --location 'https://ai.data.cloud/api/v1/team/subscriptions/sub-cfgdsagdgsfa45232' \
+curl --location 'https://ai.data.cloud/api/v1/subscriptions/sub-cfgdsagdgsfa45232' \
 --header 'x-pd-api-key: $PD_API_KEY' \
 --data ''
 ```
@@ -928,7 +928,7 @@ curl --location 'https://ai.data.cloud/api/v1/team/subscriptions/sub-cfgdsagdgsf
 ```python Python
 import requests
 
-url = "https://ai.data.cloud/api/v1/team/subscriptions/sub-cfgdsagdgsfa45232"
+url = "https://ai.data.cloud/api/v1/subscriptions/sub-cfgdsagdgsfa45232"
 
 payload = ""
 headers = {
@@ -946,7 +946,7 @@ print(response.text)
 var request = require('request');
 var options = {
   'method': 'GET',
-  'url': 'https://ai.data.cloud/api/v1/team/subscriptions/sub-cfgdsagdgsfa45232',
+  'url': 'https://ai.data.cloud/api/v1/subscriptions/sub-cfgdsagdgsfa45232',
   'headers': {
     'x-pd-api-key': '$PD_API_KEY'
   }

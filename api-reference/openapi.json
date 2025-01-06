@@ -23,7 +23,7 @@
     }
   ],
   "paths": {
-    "/v1/team/sessions": {
+    "/v1/sessions": {
       "post": {
         "summary": "Create session",
         "deprecated": false,
@@ -99,7 +99,7 @@
                   },
                   "userId": {
                     "type": "string",
-                    "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click Users in the top navigation bar, and find your user ID in the list of users."
+                    "description": "A reserved parameter. Leave it blank.."
                   }
                 },
                 "required": [
@@ -210,7 +210,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
+            "description": "A reserved parameter. Leave it blank.",
             "required": true,
             "schema": {
               "type": "string"
@@ -406,7 +406,7 @@
         ]
       }
     },
-    "/v1/team/sessions/{sessionId}": {
+    "/v1/sessions/{sessionId}": {
       "post": {
         "summary": "Modify session",
         "deprecated": false,
@@ -427,7 +427,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
+            "description": "A reserved parameter. Leave it blank.",
             "required": true,
             "schema": {
               "type": "string"
@@ -567,7 +567,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
+            "description": "A reserved parameter. Leave it blank.",
             "required": true,
             "schema": {
               "type": "string"
@@ -646,7 +646,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
+            "description": "A reserved parameter. Leave it blank.",
             "required": true,
             "schema": {
               "type": "string"
@@ -723,7 +723,7 @@
         ]
       }
     },
-    "/v1/team/sessions/{sessionId}/history": {
+    "/v1/sessions/{sessionId}/history": {
       "get": {
         "summary": "Get job history in session",
         "deprecated": false,
@@ -762,7 +762,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
+            "description": "A reserved parameter. Leave it blank.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1073,7 +1073,7 @@
         ]
       }
     },
-    "/v1/team/datasets": {
+    "/v1/datasets": {
       "post": {
         "summary": "Create dataset",
         "deprecated": false,
@@ -1109,7 +1109,7 @@
                   },
                   "userId": {
                     "type": "string",
-                    "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users."
+                    "description": "A reserved parameter. Leave it blank."
                   }
                 },
                 "required": [
@@ -1321,7 +1321,7 @@
         ]
       }
     },
-    "/v1/team/datasets/{datasetId}": {
+    "/v1/datasets/{datasetId}": {
       "delete": {
         "summary": "Delete dataset",
         "deprecated": false,
@@ -1421,7 +1421,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
+            "description": "A reserved parameter. Leave it blank.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1505,7 +1505,7 @@
         ]
       }
     },
-    "/v1/team/datasets/{datasetId}/status": {
+    "/v1/datasets/{datasetId}/status": {
       "get": {
         "summary": "Get dataset status",
         "deprecated": false,
@@ -1609,7 +1609,7 @@
         ]
       }
     },
-    "/v1/team/datasets/{datasetId}/overview": {
+    "/v1/datasets/{datasetId}/overview": {
       "get": {
         "summary": "Get dataset overview",
         "deprecated": false,
@@ -1736,7 +1736,7 @@
         "security": []
       }
     },
-    "/v1/team/datasets/{datasetId}/datasources": {
+    "/v1/datasets/{datasetId}/datasources": {
       "post": {
         "summary": "Create data source",
         "deprecated": false,
@@ -1757,7 +1757,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "Your user ID.\n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
+            "description": "A reserved parameter. Leave it blank.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1803,7 +1803,7 @@
                   },
                   "userId": {
                     "type": "string",
-                    "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users."
+                    "description": "A reserved parameter. Leave it blank."
                   }
                 },
                 "required": [
@@ -2034,7 +2034,7 @@
         ]
       }
     },
-    "/v1/team/datasets/{datasetId}/datasources/{datasourceId}": {
+    "/v1/datasets/{datasetId}/datasources/{datasourceId}": {
       "delete": {
         "summary": "Delete data source",
         "deprecated": false,
@@ -2064,7 +2064,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
+            "description": "A reserved parameter. Leave it blank.",
             "required": true,
             "schema": {
               "type": "string"
@@ -2220,7 +2220,7 @@
         ]
       }
     },
-    "/v1/team/datasources": {
+    "/v1/datasources": {
       "post": {
         "summary": "Create data source without specifying a dataset",
         "deprecated": false,
@@ -2232,7 +2232,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "Your user ID.\n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
+            "description": "A reserved parameter. Leave it blank.",
             "required": true,
             "schema": {
               "type": "string"
@@ -2308,7 +2308,7 @@
         ]
       }
     },
-    "/v1/team/datasets/{datasetId}/datasources/{datasourceId}/presign": {
+    "/v1/datasets/{datasetId}/datasources/{datasourceId}/presign": {
       "post": {
         "summary": "Presign data source ",
         "deprecated": false,
@@ -2436,7 +2436,7 @@
         ]
       }
     },
-    "/v1/team/file/upload-datasource": {
+    "/v1/file/upload-datasource": {
       "post": {
         "summary": "Upload local file",
         "deprecated": false,
@@ -2448,7 +2448,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "Your user ID.\n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
+            "description": "A reserved parameter. Leave it blank.",
             "required": true,
             "schema": {
               "type": "string"
@@ -2558,7 +2558,7 @@
         ]
       }
     },
-    "/v1/team/jobs": {
+    "/v1/jobs": {
       "post": {
         "summary": "Create job",
         "deprecated": false,
@@ -2570,7 +2570,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "Your user ID.\n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
+            "description": "A reserved parameter. Leave it blank.",
             "required": true,
             "schema": {
               "type": "string"
@@ -3011,7 +3011,7 @@
           },
           "userId": {
             "type": "string",
-            "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users."
+            "description": "A reserved parameter. Leave it blank."
           }
         },
         "required": [
@@ -3146,7 +3146,7 @@
           },
           "userId": {
             "type": "string",
-            "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users."
+            "description": "A reserved parameter. Leave it blank."
           }
         },
         "required": [
