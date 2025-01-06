@@ -68,7 +68,7 @@
       "pages": ["enterprise/introduction", "enterprise/pricing", "enterprise/what-is-job"]
     },
     {
-      "group": "Manage & use",
+      "group": "Manage",
       "pages": ["enterprise/workspaces"]
     },
     {
