@@ -64,7 +64,7 @@
       "pages": ["legal/privacy-notice", "legal/terms-of-service"]
     },
     {
-      "group": "Introduction",
+      "group": "Get Started",
       "pages": ["enterprise/introduction", "enterprise/pricing", "enterprise/what-is-job"]
     },
     {

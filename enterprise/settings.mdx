@@ -32,7 +32,14 @@ In the **Basic information** section, you can update your organization name and 
 
 In the **Payment settings** section, you can add a credit card as your payment method if one hasn't been configured yet. You can also update your payment method here.
 
-In the **DANGER ZONE** section, you have the option to delete your organization. **This action is highly discouraged**—once deleted, all data, including datasets and job execution history, will be permanently erased and cannot be recovered under any circumstances. Proceed with extreme caution.
+To change a credit card, perform the following steps:
+
+1. Click **Change credit card**. 
+
+2. In the dialog box that is displayed, enter your new credit card, and click **Change credit card.**
+
+
+In the **DANGER ZONE** section, you have the option to delete your organization. **This action is highly discouraged**—once deleted, all assets in your team, including datasets and job execution history, will be permanently erased and cannot be recovered under any circumstances. Proceed with extreme caution.
 
 
 
@@ -48,12 +55,54 @@ When creating an API key, make sure to save the generated secret key, as it will
 
 ---
 
+
 ## FAQ
 
-### What should I do when the 
+### What should I do if the system prompts me to check my payment settings?
+
+If the system prompts you to check your payment settings, it means the credit card currently set for payment is unavailable. To avoid any service interruptions, please update your payment method by following these steps:
+
+1. On the Admin console of your team, select **Settings** from the top navigation bar.
+
+2. In the **Payment settings** section, click **Change credit card**.
+
+3. In the dialog that appears, enter the new credit card details and click **Change credit card**.
+
+Your new credit card will replace the old one for payment.
 
 
+### How can I delete my organization?
 
+Deleting your organization is a serious action and cannot be undone. We strongly recommend carefully considering whether it's absolutely necessary before proceeding. Please make sure this is the right decision for your team and data.
+
+<Warning>
+Once you delete your organization, the following will be lost:
+
+- All users will be removed from the team.
+
+- All subscription records will be deleted.
+
+- All projects and datasets within those projects will be removed.
+
+- Credit card information will be deleted.
+
+- Usage and billing data will be erased.
+</Warning>
+
+
+If you still wish to delete your organization, please follow these steps in the Admin console:
+
+1. Cancel all subscriptions to job plans (if any): 
+    
+    Go to the **Subscriptions & plans** page, choose **Manage** > **Unsubscribe** in the **Actions** column for each subscription, and confirm the operation.
+
+2. Cancel your subscription to the AI Workspace capacity plan (if any): 
+
+    Go to the **Usage & billing** page, click **Unsubscribe** in the **Workspace capacity** section.
+
+3. Delete your organization: 
+
+    Go to the **Settings** page, click **Delete organization** in the **DANGER ZONE** section, and confirm the action.
 
 
 
