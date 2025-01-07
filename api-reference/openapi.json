@@ -2436,7 +2436,7 @@
         ]
       }
     },
-    "/v1/file/upload-datasource": {
+    "/v1/file/upload_datasource": {
       "post": {
         "summary": "Upload local file",
         "deprecated": false,
