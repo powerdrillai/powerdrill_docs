@@ -72,6 +72,10 @@
       "pages": ["enterprise/workspaces"]
     },
     {
+      "group": "FAQ",
+      "pages": ["enterprise/delete-account"]
+    },
+    {
       "group": "API Reference Overview",
       "pages": ["api-reference/overview", "api-reference/quick-start-for-general", "api-reference/streaming" ]
     },
