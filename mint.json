@@ -69,7 +69,7 @@
     },
     {
       "group": "Manage",
-      "pages": ["enterprise/workspaces"]
+      "pages": ["enterprise/workspaces", "enterprise/projects", "enterprise/users", "enterprise/subscriptions", "enterprise/settings"]
     },
     {
       "group": "FAQ",
