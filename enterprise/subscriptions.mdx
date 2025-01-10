@@ -69,7 +69,9 @@ Each team receives 100 MB of free Workspace capacity upon creation. If your team
 
 ## Manage your subscriptions
 
-You can manage your your job plan subscriptions on the **Subscriptions & plans** page.
+### Manage your job subscriptions
+
+You can manage your job plan subscriptions on the **Subscriptions & plans** page.
 
 Once on the **Subscriptions & plans** page, you'll be able to view all your active job plan subscriptions.
 
@@ -79,13 +81,13 @@ Once on the **Subscriptions & plans** page, you'll be able to view all your acti
 
 Parameter description:
 
-- **Subscription ID**: The unique identifier of a subscription.
+- **Subscription ID**: The unique identifier for the subscription.
 
-- **Pricing tier**: The pricing tier to which the subscription makes.
+- **Pricing tier**: The subscribed pricing tier.
 
-- **Effective date**: The date when the subscription takes effect.
+- **Effective date**: The date when the subscription becomes active.
 
-- **Associated with**: The user to which the subscription is linked. If the value is **None**, it means that the subscription is associated with no user. You can click the Expand button and associate the plan with the target user.
+- **Associated with**: The user to whom the subscription is linked. If marked as **None**, it indicates that the subscription is not associated with any user. You can click the Expand button to link the subscription to the desired user.
 
   <Frame>
    <img src="/enterprise/img/associate-user.png" style={{ borderRadius: '0.5rem' }} />
@@ -94,39 +96,43 @@ Parameter description:
 
 - **Status**: Whether the subscription is available.
 
-- **Actions**: Whether the subscription is 
+- **Actions**: Manage each subscription. Supported actions include:
+
+  - **Associate**: Associate the subscription with a user.
+
+  - **Unsubcribe**: Cancel the supcription. Unavailable for the free plan subscription and one-time purchase.
+
+  - **Resume**: Reactivate the subscription. This option is available only if the subscription was previously canceled and has not expired.
 
 
-## Cancel subscriptions
+### Manage your Workspace capacity subscription
 
+You can manage your subscription to Workspace capacity plan on the **Usage & billing** page.
 
+When your Workspace capacity is insufficient, you can:
 
+- Click **Subscribe** in the **Workspace capacity** section to choose a paid plan.
 
+- Click **Upgrade** in the **Workspace capacity** section to upgrade to a higher capacity plan.
 
+If you no longer need a paid plan, click **Unsubcribe** to switch to the free 100 MB Workspace capacity.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<Warning>
+After unsubscribing from a paid Workspace plan, no new data can be uploaded once the current subscription expires. To upload more data, you'll need to manually reduce the data in your organization to below 100 MB.
+</Warning>
 
 
 
 import MySnippet from '/snippets/discord-cta.mdx';
 
 <MySnippet beta="community" />
+
+
+
+
+
+
+
 
 
 
