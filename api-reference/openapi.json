@@ -51,7 +51,7 @@
                 "properties": {
                   "title": {
                     "type": "string",
-                    "description": "The session name., 最长长度128字符截取"
+                    "description": "The session name, which can be up to 128 characters in length. If it exceeds this limit, it will be truncated."
                   },
                   "languageType": {
                     "type": "string",
@@ -94,7 +94,7 @@
                   },
                   "agentId": {
                     "type": "string",
-                    "description": "The ID of the agent. You can leave it blank or set it to **DATA_ANALYSIS_AGENT**.",
+                    "description": "The ID of the agent. You don't need to specify it or set it to **DATA_ANALYSIS_AGENT**.",
                     "default": "DATA_ANALYSIS_AGENT"
                   },
                   "userId": {
@@ -108,11 +108,11 @@
                 ]
               },
               "example": {
-                "title": "New Title",
+                "title": "My session",
                 "languageType": "AUTO",
                 "jobMode": "AUTO",
                 "maxMessagesInContext": 10,
-                "agentId": "GENERAL"
+                "userId": "tmm-egejgowqg=g=egen"
               }
             }
           }
@@ -150,7 +150,7 @@
                 },
                 "examples": {
                   "1": {
-                    "summary": "成功示例",
+                    "summary": "Success example",
                     "value": {
                       "code": 0,
                       "data": {
@@ -348,37 +348,85 @@
                 },
                 "examples": {
                   "1": {
-                    "summary": "成功示例",
+                    "summary": "Success example",
                     "value": {
                       "code": 0,
                       "data": {
-                        "total": 67,
-                        "pageNumber": 9,
-                        "pageSize": 85,
+                        "total": 8,
+                        "pageSize": 10,
+                        "pageNumber": 1,
                         "records": [
                           {
-                            "id": "bb1jvo6he9ehMleTAjADF",
-                            "title": "sales_performance",
-                            "languageType": "DE",
+                            "id": "04b69928-532d-408a-8716-8f5e70fcacc6",
+                            "title": "Finding Your Inner Spark",
+                            "languageType": "AUTO",
                             "jobMode": "AUTO",
-                            "maxMessagesInContext": 3,
-                            "agentId": "DATA_ANALYSIS_AGENT"
+                            "maxMessagesInContext": 10,
+                            "agentId": "DATA_ANALYSIS_AGENT",
+                            "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
                           },
                           {
-                            "id": "LjNFcqnlf6R7Fag_q41ik",
-                            "title": "sales_q3",
-                            "languageType": "JA",
-                            "jobMode": "AUTO",
-                            "maxMessagesInContext": 2,
-                            "agentId": "DATA_ANALYSIS_AGENT"
-                          },
-                          {
-                            "id": "yGe51steV1XvKV6rBgtDN",
-                            "title": "sales_q2",
-                            "languageType": "PL",
+                            "id": "7e9941af-ad1b-4834-a421-4b37b54aae19",
+                            "title": "session_trade_analyze_001",
+                            "languageType": "EN",
                             "jobMode": "AUTO",
                             "maxMessagesInContext": 1,
-                            "agentId": "DATA_ANALYSIS_AGENT"
+                            "agentId": "DATA_ANALYSIS_AGENT",
+                            "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
+                          },
+                          {
+                            "id": "a137ecc8-9554-42c3-b042-2458dd2aeb36",
+                            "title": "My first session",
+                            "languageType": "AUTO",
+                            "jobMode": "AUTO",
+                            "maxMessagesInContext": 10,
+                            "agentId": "DATA_ANALYSIS_AGENT",
+                            "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
+                          },
+                          {
+                            "id": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
+                            "title": "New Title",
+                            "languageType": "EN",
+                            "jobMode": "AUTO",
+                            "maxMessagesInContext": 10,
+                            "agentId": "DATA_ANALYSIS_AGENT",
+                            "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
+                          },
+                          {
+                            "id": "3eb5e294-11eb-4bf0-8854-7177c415d15c",
+                            "title": "trade_analyze_001",
+                            "languageType": "ZH-CN",
+                            "jobMode": "AUTO",
+                            "maxMessagesInContext": 10,
+                            "agentId": "DATA_ANALYSIS_AGENT",
+                            "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
+                          },
+                          {
+                            "id": "ccca6d34-894f-4f6f-a8b5-c9df93126309",
+                            "title": "lhtest-old",
+                            "languageType": "ZH-CN",
+                            "jobMode": "AUTO",
+                            "maxMessagesInContext": 5,
+                            "agentId": "DATA_ANALYSIS_AGENT",
+                            "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
+                          },
+                          {
+                            "id": "c28a1f47-da68-4456-bb0b-e85bf5a0e98e",
+                            "title": "lhtest-newest",
+                            "languageType": "ZH-TW",
+                            "jobMode": "AUTO",
+                            "maxMessagesInContext": 6,
+                            "agentId": "DATA_ANALYSIS_AGENT",
+                            "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
+                          },
+                          {
+                            "id": "fbde9b45-69cd-408e-97d1-f874236aadac",
+                            "title": "General-session",
+                            "languageType": "ZH-CN",
+                            "jobMode": "AUTO",
+                            "maxMessagesInContext": 10,
+                            "agentId": "DATA_ANALYSIS_AGENT",
+                            "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
                           }
                         ]
                       }
@@ -687,7 +735,7 @@
                 },
                 "examples": {
                   "1": {
-                    "summary": "成功示例",
+                    "summary": "Success example",
                     "value": {
                       "code": 0,
                       "data": {
@@ -697,7 +745,7 @@
                         "jobMode": "AUTO",
                         "maxMessagesInContext": 10,
                         "agentId": "DATA_ANALYSIS_AGENT",
-                        "userId": "egtttx3ghp"
+                        "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
                       }
                     }
                   }
@@ -894,7 +942,7 @@
                 },
                 "examples": {
                   "1": {
-                    "summary": "成功示例",
+                    "summary": "Success example",
                     "value": {
                       "code": 0,
                       "data": {
@@ -1119,7 +1167,8 @@
               },
               "example": {
                 "name": "My dataset",
-                "description": "my default dataset"
+                "description": "my default dataset",
+                "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
               }
             }
           }
@@ -1156,7 +1205,7 @@
                 },
                 "examples": {
                   "1": {
-                    "summary": "成功示例",
+                    "summary": "Success example",
                     "value": {
                       "code": 0,
                       "data": {
@@ -1282,7 +1331,7 @@
                 },
                 "examples": {
                   "1": {
-                    "summary": "成功示例",
+                    "summary": "Success example",
                     "value": {
                       "code": 0,
                       "data": {
@@ -1342,7 +1391,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "",
+            "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1577,7 +1626,7 @@
                 },
                 "examples": {
                   "1": {
-                    "summary": "成功示例",
+                    "summary": "Success example",
                     "value": {
                       "code": 0,
                       "data": {
@@ -1816,7 +1865,8 @@
                 "name": "test.csv",
                 "fileName": "test.csv",
                 "type": "FILE",
-                "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2"
+                "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2",
+                "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
               }
             }
           }
@@ -1845,7 +1895,7 @@
                 },
                 "examples": {
                   "1": {
-                    "summary": "成功示例",
+                    "summary": "Success example",
                     "value": {
                       "code": 0,
                       "data": {
@@ -1972,8 +2022,49 @@
                         "records": {
                           "type": "array",
                           "items": {
-                            "$ref": "#/components/schemas/DatasourceDTO",
-                            "description": "The returned data object."
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The data source ID, which uniquely identifies the data source."
+                              },
+                              "datasetId": {
+                                "type": "string",
+                                "description": "The dataset ID."
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "The data source name."
+                              },
+                              "fileName": {
+                                "type": "string",
+                                "description": "The file name."
+                              },
+                              "type": {
+                                "type": "string",
+                                "description": "The type of the data source, which is fixed to **FILE**.",
+                                "enum": [
+                                  "FILE"
+                                ]
+                              },
+                              "status": {
+                                "type": "string",
+                                "description": "The processing status of the data source. Possible values are:\n- `invalid`: Awaiting processing.\n- `synching`: Currently processing.\n- `synched`: Successfully synchronized.",
+                                "enum": [
+                                  "synching",
+                                  "synched",
+                                  "invalid"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "datasetId",
+                              "name",
+                              "fileName",
+                              "type",
+                              "status"
+                            ]
                           }
                         }
                       },
@@ -1992,7 +2083,7 @@
                 },
                 "examples": {
                   "1": {
-                    "summary": "成功示例",
+                    "summary": "Success example",
                     "value": {
                       "code": 0,
                       "data": {
@@ -2174,8 +2265,49 @@
                       "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. Possible error codes include: \n- 100: Bad request. \n- 201: Request frequency limit.\n- 9999: Internal error. \n- 100001: Invalid operation. "
                     },
                     "data": {
-                      "$ref": "#/components/schemas/DatasourceDTO",
-                      "description": "The returned data object."
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The data source ID, which uniquely identifies the data source."
+                        },
+                        "datasetId": {
+                          "type": "string",
+                          "description": "The dataset ID."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The data source name."
+                        },
+                        "fileName": {
+                          "type": "string",
+                          "description": "The file name."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "The type of the data source, which is fixed to **FILE**.",
+                          "enum": [
+                            "FILE"
+                          ]
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "The processing status of the data source. Possible values are:\n- `invalid`: Awaiting processing.\n- `synching`: Currently processing.\n- `synched`: Successfully synchronized.",
+                          "enum": [
+                            "synching",
+                            "synched",
+                            "invalid"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "datasetId",
+                        "name",
+                        "fileName",
+                        "type",
+                        "status"
+                      ]
                     }
                   },
                   "required": [
@@ -2185,7 +2317,7 @@
                 },
                 "examples": {
                   "1": {
-                    "summary": "成功示例",
+                    "summary": "Success example",
                     "value": {
                       "code": 0,
                       "data": {
@@ -2261,7 +2393,8 @@
                 "fileName": "test.csv",
                 "type": "FILE",
                 "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2",
-                "fileKey": "/tmp/sdgsagdsgsadgasdg"
+                "fileKey": "/tmp/sdgsagdsgsadgasdg",
+                "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
               }
             }
           }
@@ -2279,8 +2412,50 @@
                       "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. Possible error codes include: \n- 100: Bad request. \n- 201: Request frequency limit.\n- 9999: Internal error. \n- 100001: Invalid operation. "
                     },
                     "data": {
-                      "$ref": "#/components/schemas/DatasourceDTO",
-                      "description": "The returned data object."
+                      "description": "The returned data object.",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The data source ID, which uniquely identifies the data source."
+                        },
+                        "datasetId": {
+                          "type": "string",
+                          "description": "The dataset ID."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The data source name."
+                        },
+                        "fileName": {
+                          "type": "string",
+                          "description": "The file name."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "The type of the data source, which is fixed to **FILE**.",
+                          "enum": [
+                            "FILE"
+                          ]
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "The processing status of the data source. Possible values are:\n- `invalid`: Awaiting processing.\n- `synching`: Currently processing.\n- `synched`: Successfully synchronized.",
+                          "enum": [
+                            "synching",
+                            "synched",
+                            "invalid"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "datasetId",
+                        "name",
+                        "fileName",
+                        "type",
+                        "status"
+                      ]
                     }
                   },
                   "required": [
@@ -2422,7 +2597,7 @@
                 },
                 "examples": {
                   "1": {
-                    "summary": "成功示例",
+                    "summary": "Success example",
                     "value": {
                       "code": 0,
                       "data": {
@@ -2959,7 +3134,8 @@
             ]
           },
           "userId": {
-            "type": "string"
+            "type": "string",
+            "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users."
           }
         },
         "required": [
