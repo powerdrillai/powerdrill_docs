@@ -73,7 +73,7 @@
     },
     {
       "group": "FAQ",
-      "pages": ["enterprise/delete-account"]
+      "pages": ["enterprise/delete-account", "enterprise/enter-admin-console"]
     },
     {
       "group": "API Reference Overview",
