@@ -101,7 +101,7 @@
     },
     {
       "group": "Overview",
-      "pages": ["developer-guides/quick-start"]
+      "pages": ["developer-guides/quick-start", "developer-guides/create-subscription"]
     },
     {
       "group": "Manage data",
