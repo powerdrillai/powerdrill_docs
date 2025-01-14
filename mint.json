@@ -77,7 +77,7 @@
     },
     {
       "group": "API Reference Overview",
-      "pages": ["api-reference/overview", "api-reference/streaming" ]
+      "pages": ["api-reference/overview", "api-reference/authentication", "api-reference/streaming" ]
     },
     {
       "group": "Datasets",

@@ -1,0 +1,78 @@
+---
+title: "Authentication"
+description: "Get your API keys before working on Powerdrill Enterprise"
+icon: "key"
+---
+
+The Powerdrill Enterprise Open API uses API keys for authentication. Each API request must include your API key, which is used to authenticate the request and track your usage quota.
+
+There are two types of API keys:
+
+- **Project API keys**: provide access to a specific project. A project's API key can only be used to access resources within that project.
+
+- **Team API keys**: provide access to manage projects, such as creating new projects. Only the team admin account can manage projects.
+
+    <Tip>
+     Since project-related API endpoints are still under development, team API keys are currently non-functional. As the team's admin, you can [manage your projects]() through the admin console instead.
+    </Tip>
+
+Please be reminded that **your API key is a secret**. Do not share it with others or expose it in browsers, apps, or other client-side code.
+
+All API requests must include your API key in the `x-pd-api-key` HTTP header, as shown below:
+
+```shell
+x-pd-api-key: API_KEY
+```
+
+
+
+---
+
+## Making requests
+
+You can copy and paste the command below into your terminal to execute your first API request. Be sure to replace `$PROJECT_API_KEY` with your secret API key and `$USER_ID` with your actual user ID.
+
+
+<CodeGroup>
+
+```curl cURL
+curl --request POST \
+  --url https://ai.data.cloud/api/v1/team/sessions \
+  --header 'Content-Type: application/json' \
+  --header 'x-pd-api-key: $PROJECT_API_KEY' \
+  --data '{
+  "title": "My session",
+  "languageType": "AUTO",
+  "jobMode": "AUTO",
+  "maxMessagesInContext": 10,
+  "userId": "$USER_ID"
+}'
+```
+
+```python Python
+import requests
+
+url = "https://ai.data.cloud/api/v1/team/sessions"
+
+payload = {
+    "title": "My session",
+    "languageType": "AUTO",
+    "jobMode": "AUTO",
+    "maxMessagesInContext": 10,
+    "userId": "$USER_ID"
+}
+headers = {
+    "x-pd-api-key": "$PROJECT_API_KEY",
+    "Content-Type": "application/json"
+}
+
+response = requests.request("POST", url, json=payload, headers=headers)
+
+print(response.text)
+```
+
+</CodeGroup>
+
+
+
+
