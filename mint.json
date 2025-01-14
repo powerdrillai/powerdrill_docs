@@ -32,12 +32,12 @@
       "url": "enterprise"
     },
     {
-    "name": "API Reference",
-    "url": "api-reference"
-    },
-    {
     "name": "Developer Guides",
     "url": "developer-guides"
+    },
+    {
+    "name": "API Reference",
+    "url": "api-reference"
     }
     ],
 
@@ -77,7 +77,7 @@
     },
     {
       "group": "API Reference Overview",
-      "pages": ["api-reference/overview", "api-reference/quick-start-for-general", "api-reference/streaming" ]
+      "pages": ["api-reference/overview", "api-reference/streaming" ]
     },
     {
       "group": "Datasets",
@@ -101,7 +101,7 @@
     },
     {
       "group": "Overview",
-      "pages": ["developer-guides/quick-start", "developer-guides/create-subscription"]
+      "pages": ["developer-guides/create-subscription"]
     },
     {
       "group": "Manage data",
