@@ -3,17 +3,18 @@ title: Workspaces and teams
 description: 'This guide explains the concepts of workspaces and teams, and provides instructions on how to manage them'
 ---
 
----
 
-## What is a workspace?
+## Key terms
+
+
+### Workspace
 
 A workspace is a dedicated Powerdrill environment with its own settings, members, and resources. 
 
 Users can access multiple workspaces, such as a personal workspace and a Powerdrill Enterprise workspace. Each workspace is tailored to meet different needs and functions.
 
----
 
-## What is a team?
+### Team
 
 A team is the virtual representation of a Powerdrill Enterprise workspace. 
 
@@ -28,9 +29,9 @@ A team is the virtual representation of a Powerdrill Enterprise workspace.
 When you sign in to Powerdrill, a personal workspace is automatically created for you. No additional steps are required.
 
 
-**Powerdrill Enterprise Workspace:**
+**Team space:**
 
-To get a Powerdrill Enterprise workspace, you need to create a team. The procedure is as follows:
+To get a team space, you need to create a team. The procedure is as follows:
 
 1. Sign in to Powerdrill.
 
@@ -48,6 +49,11 @@ To get a Powerdrill Enterprise workspace, you need to create a team. The procedu
 5. Choose a pricing plan and set up payment, or skip this step and subscribe later.
 
 Your team is now ready to manage.
+
+
+<Info>
+ An account can create only one team, but you can be a regular user in other teams if added or invited by their admins.
+</Info>
 
 ---
 
@@ -75,7 +81,65 @@ To switch between workspaces, perform the following steps:
 4. From here, you can either click the **Admin console** to access your team's management console or select the project you want to enter.
 
 
+
 ---
+
+## Delete a workspace
+
+### Delete your team space
+
+<Warning>
+ You can only delete the team you created.
+</Warning>
+
+Deleting a workspace permanently removes the entire organization. This action is irreversible and cannot be undone. We strongly recommend carefully evaluating whether this step is absolutely necessary. Please ensure this decision is the right choice for your team and data.
+
+<Warning>
+Once you delete your organization, the following will be lost:
+
+- All users will be removed from the team.
+
+- All subscription records will be deleted.
+
+- All projects and datasets within those projects will be removed.
+
+- Credit card information will be deleted.
+
+- Usage and billing data will be erased.
+</Warning>
+
+
+If you still wish to delete your organization, please follow these steps in the Admin console:
+
+<Info>
+ Don't know how to enter the Admin console? Refer to this [FAQ](/enterprise/enter-admin-console.mdx).
+</Info>
+
+1. Cancel all subscriptions to job plans (if any): 
+    
+    Go to the **Subscriptions & plans** page, choose **Manage** > **Unsubscribe** in the **Actions** column for each subscription, and confirm the operation.
+
+2. Cancel your subscription to the AI Workspace capacity plan (if any): 
+
+    Go to the **Usage & billing** page, click **Unsubscribe** in the **Workspace capacity** section.
+
+3. Delete your organization: 
+
+    Go to the **Settings** page, click **Delete organization** in the **DANGER ZONE** section, and confirm the action.
+
+
+### Delete your private workspace
+
+Deleting your private workspace is the same as deleting your account from Powerdrill.
+
+If your account is the admin of a Powerdrill Enterprise team, refer to [How Can I Delete My Account After I Have Created a Team on Powerdrill Enterprise?](/enterprise/delete-account) for a detailed guide.
+
+If your account does not belong to any team, simply follow [Step 3](/enterprise/delete-account#step-3- delete-your-account) to delete your account.
+
+
+---
+
+
 
 
 ## FAQ
@@ -84,7 +148,7 @@ To switch between workspaces, perform the following steps:
 
 One account can only be the owner of up to one team. This means, you can create a team only when there is no team is owned by your account.
 
-However, you can be regular users in multiple teams when you're added to other teams 
+However, you can be regular users in multiple teams as long as your account has been added to other teams.
 
 
 import MySnippet from '/snippets/discord-cta.mdx';
