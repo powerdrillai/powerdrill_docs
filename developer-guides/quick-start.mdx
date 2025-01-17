@@ -4,8 +4,6 @@ description: "Start running your first data job on Powerdrill Enterprise"
 icon: "rocket"
 ---
 
----
-
 
 Follow this guide to learn how to create a dataset, add data sources to the dataset, create a session associated with the dataset, and then run jobs to start anayzing the uploaded data.
 
@@ -16,13 +14,13 @@ Follow this guide to learn how to create a dataset, add data sources to the data
 ## Step 1. Get your project API key
 
 
-If you're the admin of your team, [get API key of the target project](/developer-guides/quick-start#manage-project-api-keys) on the admin console.
+If you're the admin of your team, [get API key of the target project](/enterprise/projects#manage-project-api-keys) on the admin console.
 
 <Warning>
 No team on Powerdrill Enterprise? Join our waitlist by [filling out the form](https://docs.google.com/forms/d/e/1FAIpQLSf1YvW9HRlKBAmCOTlV253AUbfw1X0_XtQXrDVulyrNgBa6aQ/viewform). Once approved, you'll receive a confirmation email promptly. After that, follow the [guides](/enterprise/workspaces#create-a-workspace) to create a team.
 </Warning>
 
-If you're a team member, simply ask your admin to provide you with one.
+If you're a system user or virtual user in a team, simply ask your admin to provide you with one.
 
 
 
@@ -102,7 +100,11 @@ You can create data sources and datasets in two ways:
 
         Obtain the `id` value (dataset ID) from the response and save it for later use.
         
-    2. Make a request to the [`POST /v1/team/datasets/{datasetId}/datasources`](create-data-source) endpoint.
+    2. Make a request to the [`POST /v1/team/datasets/{datasetId}/datasources`](create-data-source) endpoint. Replace the `datasetId` value with the ID of the dataset you've created in the previous sub-step
+    
+    <Warning>
+    When making the request, specify either `url` or `fileKey`, **but not both**. Use `url` to upload a file through a publicly accessible URL. For privately accessible files, use `fileKey`.
+    </Warning>
 
         **Example request**:
 
@@ -134,7 +136,7 @@ You can create data sources and datasets in two ways:
             "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
         }
         headers = {
-            "x-pd-api-key": "<api-key>",
+            "x-pd-api-key": "$PD_API_KEY",
             "Content-Type": "application/json"
         }
 
@@ -145,11 +147,7 @@ You can create data sources and datasets in two ways:
         </CodeGroup>
 
         <Tip>
-        When making a request:
 
-        - Replace the `datasetId` value with the ID of the dataset you've created in the previous sub-step. 
-
-        - Specify either `url` or `fileKey`, but not both. Use `url` to upload a file through a publicly accessible URL. For privately accessible files, use `fileKey` (this feature will be supported soon).
         </Tip>
 
         **Example response**:
@@ -169,9 +167,9 @@ You can create data sources and datasets in two ways:
 
         ```
 
-        <Info>
+        <Tip>
          Repeat this sub-step to create multiple data sources in the same dataset.
-        </Info>
+        </Tip>
 
     
   </Tab>
