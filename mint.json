@@ -45,11 +45,6 @@
     "name": "Documentation"
   },
 
-  "versions": ["v2", "v1"],
-
-
-
-
   "navigation": [
     {
       "group": "Get Started",
@@ -81,13 +76,7 @@
     },
     {
       "group": "API Reference Overview",
-      "version": "v1",
       "pages": ["api-reference/overview", "api-reference/authentication", "api-reference/streaming" ]
-    },
-    {
-      "group": "API Reference Overview",
-      "version": "v2",
-      "pages": ["api-reference/v2/overview"]
     },
     {
       "group": "Datasets",
