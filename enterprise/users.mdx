@@ -143,6 +143,63 @@ Perform the following steps to invite users to join in your project:
     </Info>
 
 
+---
+
+## Check user information
+
+You can check information about each user existed in your team.
+
+<Frame>
+  <img src="/enterprise/img/user-info.png" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+In this list, you can check the following information:
+
+| Field | Description |
+| :- | :- |
+| User ID | The ID and username/display name of the user are displayed. The user ID serves as the unique identifier for a user within your team and is prefixed with **tmm-**. If the user is a **team member**, their username is shown. For **system or virtual users**, their display name is shown instead. | 
+| User type | The user type, which can be one of the following: **Team member**, **System user**, or **Virtual user**. For details on the differences, refer to [User types](#user-types). |
+| Project memberships | A list of projects that the user is in. |
+| Associated plan | The pricing tier and its corresponding subscription ID associated with the user. The subscription ID is prefixed with **ts-**. |
+| Actions | Actions that can be performed on the user. |
+
+
+
+---
+
+## Manage project memberships for a user
+
+On the **Users** page, you can add a user to or remove a user from projects.
+
+<Warning>
+Users not added to any projects will face the following limitations when using Powerdrill Enterprise:
+- Unable to upload data sources or create datasets.
+- Cannot specify datasets for question answering. 
+
+Therefore, we highly recommend you to add users to the appropriate projects to fully utilize Powerdrill Enterprise's data analysis capabilities.
+</Warning>
+
+
+---
+
+## Manage the subscription for a user
+
+You can associate a user with a subscription to grant them job credits for processing data tasks on Powerdrill. You can also unassociate the subscription from the user to prevent them from consuming the job credits provided by the subscription.
+
+<Tip>
+ Only users linked to a subscription can run jobs in Powerdrill Enterprise. To know more about managing your subscriptions, see [Subscriptions](/enterprise/subscriptions).
+</Tip>
+
+1. On the **Users** page, locate the target user in the list and click the Expand icon in the **Associated Plan** column.
+
+2. In the dialog box that appears, select the pricing tier and the ID of an unassigned subscription, then click **Confirm**.
+
+  To unassociate a subscription from a user, simply deselect the assigned subscription and click **Confirm**.
+
+  <Frame>
+   <img src="/enterprise/img/select-subscription.png" style={{ borderRadius: '0.5rem' }} />
+  </Frame>
+
 
 
 
@@ -150,27 +207,20 @@ Perform the following steps to invite users to join in your project:
 
 ## Delete a user from your team
 
-You can remove unnecessary users from your team.
+You can remove unnecessary users from your team. Once a user is removed, their associated subscription will be released and can be reassigned to another user.
 
-1. Sign in to Powerdrill.
+<Warning>
+  Once a user is removed, all data associated with them will be deleted. This action cannot be undone. Proceed with caution.
+</Warning>
 
-2. Click your profile icon in the lower-left corner.
+1. On the **Users** page, locate the unnecesary user, and click the Delete icon in the **Actions** column.
 
-3. In the menu, go to the **Workspace** section and click **Switch Workspace**.
-
-    <Frame>
-      <img src="/enterprise/img/switch-workspace.png" style={{ borderRadius: '0.5rem' }} />
-    </Frame>
-
-    A list of all the workspaces you're in will appear.
-
-4. Click the **Admin console** next to the team that you own.
+2. In the confirmation dialog box, click **Yes, revoke**.
 
     <Frame>
-      <img src="/enterprise/img/enter-admin.png" style={{ borderRadius: '0.5rem' }} />
+     <img src="/enterprise/img/revoke-user.png" style={{ borderRadius: '0.5rem' }} />
     </Frame>
 
-5. On the top navigation bar, select **Users**. On the **Users** page, click **Create user**.
 
 
 
