@@ -4,10 +4,69 @@ description: "Description and troubleshooting suggestions for the error codes yo
 icon: "screwdriver-wrench"
 ---
 
+Powerdrill Enterprise uses standard HTTP response codes to indicate the result of an API request. In general, codes in the `2xx` range indicate success; codes in the `4xx` range indicate client-side errors (for example, invalid arguments); codes in the `5xx` range indicate server-side errors (these are rare).
+
+
+---
+
+## API errors
+
+| Code | Meaning |
+| :- | :- |
+| `400 Bad Request` | Invalid parameters provided. |
+| `401 Unauthorized` | Invalid API key. |
+| `402 Request Failed` | The parameters were valid, but the request couldn't be completed. |
+| `403 Forbidden` | The API key lacks the necessary permissions to perform this action. |
+| `404 Not Found` | The requested resource doesn't exist. |
+| `409 Conflict` | The request conflicts with another (for example, using the same idempotent key). |
+| `429 Too Many Requests` | Too many requests sent in a short time. We recommend implementing exponential backoff. |
+| `500, 502, 503, 504 Server Errors` | Something went wrong on Powerdrill's end (rare). |
+
+
+
+---
+
+## Error types
+
+| Error type | Description |
+| :- | :- |
+| `authentication_error` | An authentication error indicates your API key is invalid, expired, or revoked. This could be caused by a typo, formatting mistake, or a potential security issue. |
+| `invalid_request_error` | Invalid request errors arise when your request has invalid parameters. |
+| `internal_server_error` | An internal server error indicates something went wrong on our end while processing your request. This could be due to a temporary issue, a bug, or a system outage. |
+| `idempotency_error` | Idempotency errors occur when the same Idempotency-Key is used for a request with a different API endpoint or set of parameters than the original request. |
+| `rate_limit_error` | A rate limit error indicates you've exceeded your assigned rate limit. This occurs when you've sent too many requests within a certain time frame, and our services have temporarily blocked your further requests. |
+| `permission_error` | You are not authorized to do this operation. (Action: %s, Resource: %s.) |
+
+ 
+---
+
+
 ## Client-side error codes
 
-| Error code | Error message | HTTP status code | Troubleshooting suggestions |
+| Error code | Error message | HTTP status code | Description |
 | :- | :- | :- | :- |
-| 204001 | xxxx | 200 | Check whether all required parameters are provided. |
-| 214002 | xxxx | 200 | Check whether the user you use is added to the project. |
-| 210014 | xxxx | 400 | 
+| `300001` | Invalid parameters *`<error_details>`* | 400 | A required parameter is missing or incorrectly configured. Please verify that all parameters are properly set. |
+| `300002` | No permissions *`<error_details>`* | 200 | You do not have the necessary permissions to perform this operation. | 
+| `300003` | *`<resource_name>`* not found | 200 | The specified resource could not be found in your project. Please verify that the resource ID is correct. | 
+| `300004` | Invalid file extension | 200 | The file extension is not supported by Powerdrill. Supported extensions include **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, and **.xlsx**. |
+| `300005` | Empty file | 200 | The file is empty. Please check that you have uploaded the correct file. |
+| `300006` | Insufficient storage space | 200 | There is not enough available storage space to upload the file. Please upgrade your [workspace capacity plan](/developer-guides/create-subscription). |
+| `300007` | Failed to upload the file | 200 | An error occured while uploading the file. Please check that the file is in a supported format and try again. |
+| `300008` | An error occurred while generating the presigned URL | 200 | An error occurred while generating the presigned URL. Check that all parameters are correctly set and try again. |
+| `300009` | The number of sessions has reached the upper limit | 200 | The maximum number of sessions has been reached. Please delete any unnecessary sessions and try again. |
+| `300010` | The value of 'model_group' can only be 'default'. | 400 | Please check that the value of `model_group` is set to `default`. |
+| `300011` | Fail to create datasource | 200 | Failed to create the data source due to an internal error. |
+
+
+
+---
+
+## Server-side error code
+
+| Error code | Message | HTTP status code | Description |
+| :- | :- | :- | :- |
+| `9999 internal_server_error` | Internal server error | `500` | The request could not be processed due to an unknown error. |
+| `201 rate_limit_error` | Rate limit reached for requests | `429` | A rate limit error occurs when you exceed your assigned limit. Currently, each team is allowed up to 20 API requests per second. |
+| `1002 authentication_error` | Expired credentials | `403` | The provided credentials have expired and are no longer valid. You may need to renew or refresh them. |
+| `1003 authentication_error` | Insufficient authentication | `403` | The provided authentication is insufficient or incomplete. Please ensure all required authentication details are included. |
+| `1004 authentication_error` | Bad credentials | `403` | The provided credentials are incorrect or malformed. Please verify that all credentials are correct. |
