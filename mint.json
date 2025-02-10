@@ -75,28 +75,37 @@
       "pages": ["enterprise/enter-admin-console", "enterprise/delete-account"]
     },
     {
-      "group": "API Reference Overview",
+      "group": "Overview",
       "pages": ["api-reference/overview", "api-reference/authentication", "api-reference/streaming" ]
     },
     {
-      "group": "Datasets",
-      "pages": ["api-reference/create-dataset", "api-reference/get-dataset-status", "api-reference/get-dataset-overview", "api-reference/list-datasets", "api-reference/modify-dataset", "api-reference/delete-dataset"]
-    },
-    {
-      "group": "Data sources",
-      "pages": ["api-reference/create-data-source", "api-reference/create-data-source-without-dataset", "api-reference/get-data-source", "api-reference/list-data-sources", "api-reference/delete-data-source", "api-reference/presign-data-source"]
-    },
-    {
-      "group": "Files",
-      "pages": ["api-reference/upload-file"]
-    },
-    {
-      "group": "Sessions",
-      "pages": ["api-reference/create-session", "api-reference/get-session", "api-reference/get-job-history", "api-reference/list-sessions", "api-reference/modify-session", "api-reference/delete-session"]
-    },
-    {
-      "group": "Jobs",
-      "pages": ["api-reference/create-job"]
+      "groups": [
+        {
+          "group": "API V1 Reference",
+          "pages": [
+            {
+              "group": "Datasets",
+              "pages": ["api-reference/create-dataset", "api-reference/get-dataset-status", "api-reference/get-dataset-overview", "api-reference/list-datasets", "api-reference/modify-dataset", "api-reference/delete-dataset"]          
+            },
+            {
+              "group": "Data sources",
+              "pages": ["api-reference/create-data-source", "api-reference/create-data-source-without-dataset", "api-reference/get-data-source", "api-reference/list-data-sources", "api-reference/delete-data-source", "api-reference/presign-data-source"]
+            },
+            {
+              "group": "Files",
+              "pages": ["api-reference/upload-file"]
+            },
+            {
+              "group": "Sessions",
+              "pages": ["api-reference/create-session", "api-reference/get-session", "api-reference/get-job-history", "api-reference/list-sessions", "api-reference/modify-session", "api-reference/delete-session"]
+            },
+            {
+              "group": "Jobs",
+              "pages": ["api-reference/create-job"]
+            }
+          ]
+        }
+      ]
     },
     {
       "group": "Overview",
