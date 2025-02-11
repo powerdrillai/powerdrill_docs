@@ -5,20 +5,14 @@
     "description": "",
     "version": "1.0.0"
   },
-  "tags": [
-    {
-      "name": "Session"
-    }
-  ],
+  "tags": [],
   "paths": {
     "/v2/team/sessions": {
       "post": {
         "summary": "Create session",
         "deprecated": false,
         "description": "Creates a session. \nA session represents a continuous interaction between a user and Powerdrill within a single conversation. Each user can have up to 150 active sessions simultaneously. If this limit is reached, you can remove unused sessions to free up space for new ones.",
-        "tags": [
-          "Session"
-        ],
+        "tags": [],
         "parameters": [
           {
             "name": "x-pd-api-key",
@@ -174,6 +168,1021 @@
           }
         },
         "security": []
+      },
+      "get": {
+        "summary": "List sessions",
+        "deprecated": false,
+        "description": "Lists sessions that you created.\n",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "The page number to start listing. If not specified, the default value `1` will be used.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items on a single page. If not specified, the default value `10` will be used.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "The search keyword, which can be up to 128 characters in length. Sessions with names containing this keyword will be listed. \n\nIf omitted, all sessions created by you will be listed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "total_items": {
+                          "type": "integer",
+                          "description": "The total number of sessions returned in the response."
+                        },
+                        "page_number": {
+                          "type": "integer",
+                          "description": "The page number of the current page."
+                        },
+                        "page_size": {
+                          "type": "integer",
+                          "description": "The number of items that are returned in a single page."
+                        },
+                        "records": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The session ID, which uniquely identifies the session in your project."
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "The session name. If it is longer than 128 characters, only the first 128 characters will be returned."
+                              },
+                              "output_language": {
+                                "type": "string",
+                                "enum": [
+                                  "AUTO",
+                                  "EN",
+                                  "ES",
+                                  "AR",
+                                  "PT",
+                                  "ID",
+                                  "JA",
+                                  "RU",
+                                  "HI",
+                                  "FR",
+                                  "DE",
+                                  "VI",
+                                  "TR",
+                                  "PL",
+                                  "IT",
+                                  "KO",
+                                  "ZH-CN",
+                                  "ZH-TW"
+                                ],
+                                "default": "AUTO",
+                                "description": "The language in which the output is generated. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese"
+                              },
+                              "job_mode": {
+                                "type": "string",
+                                "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate job mode from data analysis and information retrieval.\n- `DATA_ANALYTICS`: Powerdrill focuses specifically on data analysis.",
+                                "enum": [
+                                  "AUTO",
+                                  "DATA_ANALYTICS"
+                                ],
+                                "default": "DATA_ANALYTICS"
+                              },
+                              "max_contextual_job_history": {
+                                "type": "integer",
+                                "description": "The maximum number of recent jobs retained as context for your next job run in the session, with a value range from `0` to `10`. The default value is `10`. Value `0` indicates that the jobs run in the session are processed without any context."
+                              },
+                              "agent_id": {
+                                "type": "string",
+                                "enum": [
+                                  "DATA_ANALYSIS_AGENT"
+                                ],
+                                "default": "DATA_ANALYSIS_AGENT",
+                                "description": "The ID of the agent. A reserved parameter. Ignore it."
+                              }
+                            },
+                            "description": "The information about a session.",
+                            "required": [
+                              "id",
+                              "name"
+                            ]
+                          },
+                          "description": "A list of sessions returned in a page."
+                        }
+                      },
+                      "required": [
+                        "total_items",
+                        "page_number",
+                        "page_size",
+                        "records"
+                      ],
+                      "description": "A paginated list of sessions."
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "total_items": 8,
+                        "page_size": 10,
+                        "page_number": 1,
+                        "records": [
+                          {
+                            "id": "04b69928-532d-408a-8716-8f5e70fcacc6",
+                            "name": "Finding Your Inner Spark",
+                            "output_language": "AUTO",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 10,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "7e9941af-ad1b-4834-a421-4b37b54aae19",
+                            "name": "session_trade_analyze_001",
+                            "output_language": "EN",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 1,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "a137ecc8-9554-42c3-b042-2458dd2aeb36",
+                            "name": "My first session",
+                            "output_language": "AUTO",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 10,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
+                            "name": "New name",
+                            "output_language": "EN",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 10,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "3eb5e294-11eb-4bf0-8854-7177c415d15c",
+                            "name": "trade_analyze_001",
+                            "output_language": "ZH-CN",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 10,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "ccca6d34-894f-4f6f-a8b5-c9df93126309",
+                            "name": "lhtest-old",
+                            "output_language": "ZH-CN",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 5,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "c28a1f47-da68-4456-bb0b-e85bf5a0e98e",
+                            "name": "lhtest-newest",
+                            "output_language": "ZH-TW",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 6,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "fbde9b45-69cd-408e-97d1-f874236aadac",
+                            "name": "General-session",
+                            "output_language": "ZH-CN",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 10,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/sessions/{id}": {
+      "post": {
+        "summary": "Modify session",
+        "deprecated": false,
+        "description": "Modifies the configuration of a session that you created.",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the session you want to modify.\n\nTo check sessions existing in your project, call [GET /v1/team/sessions](/api-reference/list-sessions).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The session name, which can be up to 128 characters in length. If it exceeds this limit, it will be truncated."
+                  },
+                  "output_language": {
+                    "type": "string",
+                    "enum": [
+                      "AUTO",
+                      "EN",
+                      "ES",
+                      "AR",
+                      "PT",
+                      "ID",
+                      "JA",
+                      "RU",
+                      "HI",
+                      "FR",
+                      "DE",
+                      "VI",
+                      "TR",
+                      "PL",
+                      "IT",
+                      "KO",
+                      "ZH-CN",
+                      "ZH-TW"
+                    ],
+                    "default": "AUTO",
+                    "description": "The language in which the output is generated. For example, if set to `EN`, the output will be in English. If not specified, the default setting `AUTO` will be used, which allows Powerdrill Enterprise to automatically detect the appropriate language for the output based on your question. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese"
+                  },
+                  "job_mode": {
+                    "type": "string",
+                    "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate job mode from data analysis and information retrieval.\n- `DATA_ANALYTICS`: Powerdrill focuses specifically on data analysis.\n\nIf not specified, the default setting `AUTO` will be used. However, if your intent is clearly data analysis, we recommend specifying the value as **DATA_ANALYSIS**. This helps Powerdrill skip the intention detection step, enabling faster question processing.",
+                    "enum": [
+                      "AUTO",
+                      "DATA_ANALYTICS"
+                    ],
+                    "default": "DATA_ANALYTICS"
+                  },
+                  "max_contextual_job_history": {
+                    "type": "integer",
+                    "description": "The maximum number of recent jobs retained as context for the next job, with a value range of `0` to `10`. The default value is `10`. If set to `0`, jobs will be run without any context from previous jobs."
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "name",
+                  "user_id"
+                ]
+              },
+              "example": {
+                "name": "hello",
+                "output_language": "EN",
+                "job_mode": "DATA_ANALYSIS",
+                "max_contextual_job_history": 3,
+                "user_id": "tmm-ddsdfsfgs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "Null is returned when the operation is successful."
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Delete session",
+        "deprecated": false,
+        "description": "Deletes a session that you created. Once deleted, both the session and its job history will be permanently removed and cannot be recovered.",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the session you want to delete.\n\nTo check sessions you created, call [GET /v1/team/sessions](/api-reference/list-sessions).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "user_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "Null is returned when the operation is successful."
+                    }
+                  },
+                  "required": [
+                    "code"
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Get session",
+        "deprecated": false,
+        "description": "Obtains information about a session you created.",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the target session.\n\nTo check sessions you created, call [GET /v1/team/sessions](/api-reference/list-sessions).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "description": "A session object.",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The session ID, which uniquely identifies the session in your project."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The session name. If it is longer than 128 characters, only the first 128 characters will be returned."
+                        },
+                        "output_language": {
+                          "type": "string",
+                          "enum": [
+                            "AUTO",
+                            "EN",
+                            "ES",
+                            "AR",
+                            "PT",
+                            "ID",
+                            "JA",
+                            "RU",
+                            "HI",
+                            "FR",
+                            "DE",
+                            "VI",
+                            "TR",
+                            "PL",
+                            "IT",
+                            "KO",
+                            "ZH-CN",
+                            "ZH-TW"
+                          ],
+                          "default": "AUTO",
+                          "description": "The language in which the output is generated. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese"
+                        },
+                        "job_mode": {
+                          "type": "string",
+                          "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate job mode from data analysis and information retrieval.\n- `DATA_ANALYTICS`: Powerdrill focuses specifically on data analysis.",
+                          "enum": [
+                            "AUTO",
+                            "DATA_ANALYTICS"
+                          ],
+                          "default": "DATA_ANALYTICS"
+                        },
+                        "max_contextual_job_history": {
+                          "type": "integer",
+                          "description": "The maximum number of recent jobs retained as context for your next job run in the session, with a value range from `0` to `10`. The default value is `10`. Value `0` indicates that the jobs run in the session are processed without any context."
+                        },
+                        "agent_id": {
+                          "type": "string",
+                          "enum": [
+                            "DATA_ANALYSIS_AGENT"
+                          ],
+                          "default": "DATA_ANALYSIS_AGENT",
+                          "description": "The ID of the agent. A reserved parameter. Ignore it."
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "id": "cckrXXg68P8lmb59dg4yO",
+                        "name": "Analyze performance",
+                        "output_language": "HI",
+                        "job_mode": "AUTO",
+                        "max_contextual_job_history": 76,
+                        "agent_id": "DATA_ANALYSIS_AGENT"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/sessions/{id}/history": {
+      "get": {
+        "summary": "Get job history in session",
+        "deprecated": false,
+        "description": "Obtains the job history contained in the specified session.",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the target session.\n\nTo check sessions existing in your project, call [GET /v1/team/sessions](/api-reference/list-sessions).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "The page number to start listing. If not specified, the default value `1` will be used.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items on a single page. If not specified, the default value `10` will be used.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "total_items": {
+                          "type": "integer",
+                          "description": "The total number of job records returned in the response."
+                        },
+                        "page_number": {
+                          "type": "integer",
+                          "description": "The page number of the current page."
+                        },
+                        "page_size": {
+                          "type": "integer",
+                          "description": "The number of items that are returned in a single page."
+                        },
+                        "records": {
+                          "type": "array",
+                          "items": {
+                            "description": "Information about each job record.",
+                            "type": "object",
+                            "properties": {
+                              "question": {
+                                "description": "Your question.",
+                                "type": "object",
+                                "properties": {
+                                  "blocks": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "description": "The content type of the question block. Possible values are:\n- `MESSAGE`: The content is a piece of text.\n- `CODE`: The content a code snippet in Markdown format.",
+                                          "enum": [
+                                            "MESSAGE",
+                                            "CODE"
+                                          ]
+                                        },
+                                        "content": {
+                                          "type": "string",
+                                          "description": "The block content. It is a piece of text when the `type` is `MESSAGE`, and a code snippet when the `type` is `CODE`."
+                                        }
+                                      },
+                                      "description": "The content of each question block.",
+                                      "required": [
+                                        "type",
+                                        "content"
+                                      ]
+                                    },
+                                    "description": "A list of content blocks that make up the entire question."
+                                  }
+                                },
+                                "required": [
+                                  "blocks"
+                                ]
+                              },
+                              "answer": {
+                                "description": "Powerdrill's answer to the question.",
+                                "type": "object",
+                                "properties": {
+                                  "blocks": {
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/BlockDTO",
+                                      "description": "A list of content blocks that make up the entire answer."
+                                    },
+                                    "description": "Powerdrill's answer."
+                                  }
+                                },
+                                "required": [
+                                  "blocks"
+                                ]
+                              },
+                              "job_id": {
+                                "type": "string",
+                                "description": "The job ID, which uniquely identifies the job in the session."
+                              }
+                            },
+                            "required": [
+                              "question",
+                              "answer",
+                              "job_id"
+                            ]
+                          },
+                          "description": "A list of job records returned on a page."
+                        }
+                      },
+                      "required": [
+                        "total_items",
+                        "page_number",
+                        "page_size",
+                        "records"
+                      ],
+                      "description": "A paginated list of job records."
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "total_items": 1,
+                        "page_number": 1,
+                        "page_size": 10,
+                        "records": [
+                          {
+                            "job_id": "job-1dsfasddfasgddsaffds",
+                            "question": {
+                              "blocks": [
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "Check for negative values across all sales columns"
+                                }
+                              ]
+                            },
+                            "answer": {
+                              "blocks": [
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "- Check for negative values across all sales columns.\n- Filter the DataFrame to retain only rows with no negative sales values.",
+                                  "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
+                                  "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "CODE",
+                                  "content": "```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  SalesByChannelByDay_Summary_Demo.Sheet1_0_table_1.csv\n    '''\n    # Identify columns that represent sales data (all except the first column)\n    sales_columns = input_0.columns[1:]\n    \n    # Filter rows where any sales value is negative\n    filtered_df = input_0[~(input_0[sales_columns] < 0).any(axis=1)]\n    \n    # Assign the result to the output variable\n    output = filtered_df\n    \n    return output\n\n```",
+                                  "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
+                                  "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "TABLE",
+                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/baf7d6d1-fb81-4fdb-bcdd-32923d214c7b.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9bcb5af552793f162e35f41d62fb9306cf90888924bfbdce81ea687265fddf83",
+                                  "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
+                                  "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "- Sum the sales across all days for each channel.\n- Create a new DataFrame with the channel names and their corresponding total sales.",
+                                  "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
+                                  "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "CODE",
+                                  "content": "```python\n\nimport pandas as pd\n\ndef invoke(negative_sales_channels: pd.DataFrame) -> pd.DataFrame:\n    '''\n    negative_sales_channels: pd.DataFrame  negative_sales_channels.csv\n    '''\n    # Sum the sales across all days for each channel\n    total_sales = negative_sales_channels.iloc[:, 1:].sum(axis=1)\n    \n    # Create a new DataFrame with the channel names and their corresponding total sales\n    output = pd.DataFrame({\n        'Channel': negative_sales_channels.iloc[:, 0],\n        'Total Sales': total_sales\n    })\n    \n    return output\n\n```",
+                                  "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
+                                  "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "TABLE",
+                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/10cffac2-8bf3-45f4-86e6-1ed8457329f2.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c6f5b522d2ddceea730304b86a45d5f5165f05f9fda3c1d275d11e9022c1e7ac",
+                                  "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
+                                  "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "- Replace any negative sales values with zero in the data.\n- Sum the sales across all days for each channel.\n- Create a new data structure with the summed sales values.",
+                                  "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
+                                  "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "CODE",
+                                  "content": "```python\n\nimport pandas as pd\n\ndef invoke(negative_sales_channels: pd.DataFrame) -> pd.DataFrame:\n    '''\n    negative_sales_channels: pd.DataFrame  negative_sales_channels.csv\n    '''\n    # Replace negative values with zero\n    negative_sales_channels.iloc[:, 1:] = negative_sales_channels.iloc[:, 1:].clip(lower=0)\n    \n    # Sum the sales across all days for each channel\n    sales_sum = negative_sales_channels.iloc[:, 1:].sum(axis=1)\n    \n    # Create a new DataFrame with the summed sales values\n    output = pd.DataFrame({\n        'Channel': negative_sales_channels.iloc[:, 0],\n        'Total Sales': sales_sum\n    })\n    \n    return output\n\n```",
+                                  "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
+                                  "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "TABLE",
+                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/f4c99616-dd7c-48b1-8a35-d3141d732c36.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=d21a8d939ab09547bc201754ba253ca6c0d1da5361752f2228237e3ff59be256",
+                                  "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
+                                  "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "- Merge the two datasets on the 'Channel' column to align sales data for comparison.\n- Calculate the difference in 'Total Sales' between the datasets for each channel.\n- Store the results, including channel name and calculated difference, in a new dataset.",
+                                  "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
+                                  "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "CODE",
+                                  "content": "```python\n\nimport pandas as pd\n\ndef invoke(sales_trend_with_negatives: pd.DataFrame, sales_trend_without_negatives: pd.DataFrame) -> pd.DataFrame:\n    # Merge the two DataFrames on the 'Channel' column\n    merged_df = pd.merge(sales_trend_with_negatives, sales_trend_without_negatives, on='Channel', suffixes=('_with_negatives', '_without_negatives'))\n    \n    # Calculate the difference in 'Total Sales' between the two DataFrames\n    merged_df['Sales Difference'] = merged_df['Total Sales_without_negatives'] - merged_df['Total Sales_with_negatives']\n    \n    # Create a new DataFrame to store the results\n    output = merged_df[['Channel', 'Sales Difference']]\n    \n    return output\n\n```",
+                                  "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
+                                  "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "TABLE",
+                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/aaf4f2f7-e2db-4f2e-98ae-0bdd18f42333.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=19fcfe97c70bf40292b920ecbf0299c101e1de11e49b54fb8f62934b6e874f52",
+                                  "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
+                                  "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "\n\n`Analyzing Conclusions` \n\n### The impact of negative sales values on overall sales trends\n\n#### Sales variance analysis\n\n",
+                                  "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
+                                  "group_name": "Conclusions",
+                                  "stage": "Respond"
+                                },
+                                {
+                                  "type": "TABLE",
+                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/aaf4f2f7-e2db-4f2e-98ae-0bdd18f42333.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=19fcfe97c70bf40292b920ecbf0299c101e1de11e49b54fb8f62934b6e874f52",
+                                  "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
+                                  "group_name": "Conclusions",
+                                  "stage": "Respond"
+                                },
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "\n\n- **Sales variance**：In all channels (including EC, JD, Tmall, WeChat, retail, corporate stores, outlets, and total), the sales difference is 0.0. This indicates that regardless of the presence of negative sales values, the sales trend has not changed.\n\n#### Conclusion and Insights\n- **The impact of negative sales values**：Based on the provided data, negative sales values have no impact on the overall sales trend of the affected channels, as the sales variance for all channels is 0.0.\n- **Data consistency**：The sales discrepancies across all channels are consistent, indicating that there are no anomalies or deviations caused by negative sales values during data processing or analysis.",
+                                  "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
+                                  "group_name": "Conclusions",
+                                  "stage": "Respond"
+                                },
+                                {
+                                  "type": "SOURCES",
+                                  "content": [
+                                    {
+                                      "source": "SalesByChannelByDay_Summary_Demo.xlsx",
+                                      "datasource_id": "cm2ej4wmo000001fcdkwbdrml",
+                                      "dataset_id": "cm2ej4vx900hp01l1o378zr9o",
+                                      "file_type": "xlsx",
+                                      "external_id": ""
+                                    }
+                                  ],
+                                  "group_id": "",
+                                  "group_name": "",
+                                  "stage": "Respond"
+                                },
+                                {
+                                  "type": "QUESTIONS",
+                                  "content": [
+                                    "Analyze the specific channels with negative sales values on different dates and discuss whether the sales strategies of these channels might lead to negative values.",
+                                    "Study the long-term impact of negative sales values on overall sales trends and assess whether adjustments to data analysis methods are needed to more accurately reflect the actual situation.",
+                                    "Investigate the source of negative sales values, whether they are related to returns, discounts, or other factors, and propose possible solutions to reduce the occurrence of negative values."
+                                  ],
+                                  "group_id": "-1",
+                                  "stage": "Respond"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
       }
     }
   },
@@ -242,6 +1251,69 @@
           "user_id"
         ]
       },
+      "SessionDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The session ID, which uniquely identifies the session in your project."
+          },
+          "name": {
+            "type": "string",
+            "description": "The session name. If it is longer than 128 characters, only the first 128 characters will be returned."
+          },
+          "output_language": {
+            "type": "string",
+            "enum": [
+              "AUTO",
+              "EN",
+              "ES",
+              "AR",
+              "PT",
+              "ID",
+              "JA",
+              "RU",
+              "HI",
+              "FR",
+              "DE",
+              "VI",
+              "TR",
+              "PL",
+              "IT",
+              "KO",
+              "ZH-CN",
+              "ZH-TW"
+            ],
+            "default": "AUTO",
+            "description": "The language in which the output is generated. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese"
+          },
+          "job_mode": {
+            "type": "string",
+            "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate job mode from data analysis and information retrieval.\n- `DATA_ANALYTICS`: Powerdrill focuses specifically on data analysis.",
+            "enum": [
+              "AUTO",
+              "DATA_ANALYTICS"
+            ],
+            "default": "DATA_ANALYTICS"
+          },
+          "max_contextual_job_history": {
+            "type": "integer",
+            "description": "The maximum number of recent jobs retained as context for your next job run in the session, with a value range from `0` to `10`. The default value is `10`. Value `0` indicates that the jobs run in the session are processed without any context."
+          },
+          "agent_id": {
+            "type": "string",
+            "enum": [
+              "DATA_ANALYSIS_AGENT"
+            ],
+            "default": "DATA_ANALYSIS_AGENT",
+            "description": "The ID of the agent. A reserved parameter. Ignore it."
+          }
+        },
+        "required": [
+          "name",
+          "id"
+        ]
+      },
       "返回模型": {
         "type": "object",
         "properties": {
@@ -252,6 +1324,49 @@
         },
         "required": [
           "code"
+        ]
+      },
+      "BlockDTO": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The content type of the answer block. Possible values are:\n- `MESSAGE`: The content is a piece of text.\n- `CODE`: The content a code snippet.\n- `TABLE`: The content represents a table.\n- `IMAGE`: The content represents an image.\n- `SOURCE`: The content represents a reference source of the answer block.\n- `QUESTIONS`: Suggested questions generated by Powerdrill to help guide your follow-up exploration of the data.",
+            "enum": [
+              "MESSAGE",
+              "CODE",
+              "TABLE",
+              "SOURCES",
+              "QUESTIONS"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "The block content, which varies with the value of `type`:\n\n- When `type` is `MESSAGE`, the content is a piece of text.\n- When `type` is ` CODE`, the content a code snippet in Markdown format.\n- When `type` is `TABLE`, the content represents a table, consisting of:\n    - `name`: The `.csv` file name.\n    - `url`: The S3 key or URL to the file.\n- `expires_at`: The expiration time for `url`. To save the table for future use, make sure to download it before it expires.\n- When `type` is `IMAGE`, the content represents an image, consisting of:\n    - `name`: The image name.\n    - `url`: The S3 key or URL to the image.\n- `expires_at`: The expiration time for `url`. To save the image for future use, make sure to download it before it expires.\n\n- When `type` is `SOURCE`, the content represents a reference source of the answer block, including:\n    - `source`: The file name of the data source.\n    - `datasourceId`: The ID of the data source.\n    - `datasetId`: The ID of the dataset.\n- `fileType`: The name extension of the data source file.\n\n- When `type` is `QUESTIONS`, the content is suggested questions generated by Powerdrill to help guide your follow-up exploration of the data."
+          },
+          "group_id": {
+            "type": "string",
+            "description": "The ID of the group containing the answer block."
+          },
+          "group_name": {
+            "type": "string",
+            "description": "The name of the group containing the answer block."
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "Analyze",
+              "Respond"
+            ],
+            "description": "There are two phases when Powerdrill generates an answer: `Analyze` and `Respond`. Answer blocks in the `Analyze` phase are not part of the final answer; they represent the output of the analysis process and are used to help you understand how the answer is generated. Answer blocks in the `Respond` phase are the final answer generated by Powerdrill in response to your question."
+          }
+        },
+        "required": [
+          "type",
+          "content",
+          "group_id",
+          "group_name",
+          "stage"
         ]
       }
     },
