@@ -1,0 +1,199 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Powerdrill",
+  "colors": {
+    "primary": "#803FE2",
+    "light": "#9E6CE8",
+    "dark": "#803FE2"
+  },
+  "favicon": "/favicon.png",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "get-started/quick-start"
+            ]
+          },
+          {
+            "group": "Features",
+            "pages": [
+              "features/advanced-analytics",
+              "features/ai-presentation",
+              "features/ai-data-reports",
+              "features/smart-docmap",
+              "features/chat-app",
+              "features/no-code-app-builder",
+              "features/dataset-sharing",
+              "features/chat-sharing",
+              "features/discover",
+              "features/multimedia"
+            ]
+          },
+          {
+            "group": "Best Practices",
+            "pages": [
+              "best-practices/excel-ai-analysis-best-practices"
+            ]
+          },
+          {
+            "group": "Legal",
+            "pages": [
+              "legal/privacy-notice",
+              "legal/terms-of-service"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "get-started/introduction"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Enterprise",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "enterprise/introduction",
+              "enterprise/pricing",
+              "enterprise/what-is-job"
+            ]
+          },
+          {
+            "group": "Administration",
+            "pages": [
+              "enterprise/workspaces",
+              "enterprise/settings",
+              "enterprise/projects",
+              "enterprise/users",
+              "enterprise/subscriptions"
+            ]
+          },
+          {
+            "group": "FAQ",
+            "pages": [
+              "enterprise/enter-admin-console",
+              "enterprise/delete-account"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Developer Guides",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "developer-guides/create-subscription"
+            ]
+          },
+          {
+            "group": "Manage data",
+            "pages": [
+              "developer-guides/upload-file"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api-reference/overview",
+              "api-reference/authentication",
+              "api-reference/streaming"
+            ]
+          },
+          {
+            "group": "Datasets",
+            "pages": [
+              "api-reference/create-dataset",
+              "api-reference/get-dataset-status",
+              "api-reference/get-dataset-overview",
+              "api-reference/list-datasets",
+              "api-reference/modify-dataset",
+              "api-reference/delete-dataset"
+            ]
+          },
+          {
+            "group": "Data sources",
+            "pages": [
+              "api-reference/create-data-source",
+              "api-reference/create-data-source-without-dataset",
+              "api-reference/get-data-source",
+              "api-reference/list-data-sources",
+              "api-reference/delete-data-source",
+              "api-reference/presign-data-source"
+            ]
+          },
+          {
+            "group": "Files",
+            "pages": [
+              "api-reference/upload-file"
+            ]
+          },
+          {
+            "group": "Sessions",
+            "pages": [
+              "api-reference/create-session",
+              "api-reference/get-session",
+              "api-reference/get-job-history",
+              "api-reference/list-sessions",
+              "api-reference/modify-session",
+              "api-reference/delete-session"
+            ]
+          },
+          {
+            "group": "Jobs",
+            "pages": [
+              "api-reference/create-job"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "light": "/logo/light_old.svg",
+    "dark": "/logo/dark_old.svg"
+  },
+  "background": {
+    "image": "/background.png"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/powerdrillai"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Get Started",
+      "href": "https://powerdrill.ai"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/powerdrillai",
+      "youtube": "https://www.youtube.com/@powerdrill_ai",
+      "twitter": "https://twitter.com/powerdrillai",
+      "discord": "https://discord.gg/ZsyyD5ysRC",
+      "linkedin": "https://www.linkedin.com/company/powerdrill"
+    }
+  }
+}
