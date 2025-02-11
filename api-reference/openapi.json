@@ -3364,3 +3364,3618 @@
     }
   ]
 }
+
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Team Open API Version 2 (programming)",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "Session"
+    },
+    {
+      "name": "Dataset"
+    },
+    {
+      "name": "Data source"
+    },
+    {
+      "name": "File"
+    },
+    {
+      "name": "Job"
+    }
+  ],
+  "paths": {
+    "/v2/team/sessions": {
+      "post": {
+        "summary": "Create session",
+        "deprecated": false,
+        "description": "Creates a session. \nA session represents a continuous interaction between a user and Powerdrill within a single conversation. Each user can have up to 150 active sessions simultaneously. If this limit is reached, you can remove unused sessions to free up space for new ones.",
+        "tags": [
+          "Session"
+        ],
+        "parameters": [
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The session name, which can be up to 128 characters in length. If it exceeds this limit, it will be truncated."
+                  },
+                  "output_language": {
+                    "type": "string",
+                    "enum": [
+                      "AUTO",
+                      "EN",
+                      "ES",
+                      "AR",
+                      "PT",
+                      "ID",
+                      "JA",
+                      "RU",
+                      "HI",
+                      "FR",
+                      "DE",
+                      "VI",
+                      "TR",
+                      "PL",
+                      "IT",
+                      "KO",
+                      "ZH-CN",
+                      "ZH-TW"
+                    ],
+                    "default": "AUTO",
+                    "description": "The language in which the output is generated. For example, if set to `EN`, the output will be in English. If not specified, the default setting `AUTO` will be used, which allows Powerdrill Enterprise to automatically detect the appropriate language for the output based on your question. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese"
+                  },
+                  "job_mode": {
+                    "type": "string",
+                    "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate job mode from data analysis and information retrieval.\n- `DATA_ANALYTICS`: Powerdrill focuses specifically on data analysis.\n\nIf not specified, the default setting `AUTO` will be used. However, if your intent is clearly data analysis, we recommend specifying the value as **DATA_ANALYSIS**. This helps Powerdrill skip the intention detection step, enabling faster question processing.",
+                    "enum": [
+                      "AUTO",
+                      "DATA_ANALYTICS"
+                    ],
+                    "default": "DATA_ANALYTICS"
+                  },
+                  "max_contextual_job_history": {
+                    "type": "integer",
+                    "description": "The maximum number of recent jobs retained as context for the next job, with a value range of `0` to `10`. The default value is `10`. If set to `0`, jobs will be run without any context from previous jobs."
+                  },
+                  "agent_id": {
+                    "type": "string",
+                    "enum": [
+                      "DATA_ANALYSIS_AGENT"
+                    ],
+                    "default": "DATA_ANALYSIS_AGENT",
+                    "description": "The ID of the agent. This is a reserved parameter, don't specify it or set it to **DATA_ANALYSIS_AGENT**."
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "name",
+                  "user_id"
+                ]
+              },
+              "example": {
+                "name": "My session",
+                "output_language": "FR",
+                "job_mode": "AUTO",
+                "max_contextual_job_history": 10,
+                "agent_id": "DATA_ANALYSIS_AGENT",
+                "user_id": "tmm-dafasdfasdfasdf"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "description": "The returned data object.",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The session ID.\n\nSave it if you want to use this session to [run your jobs](/api-reference/create-job) later."
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "id": "session-dasfasdgasdgfasdgasdg"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "List sessions",
+        "deprecated": false,
+        "description": "Lists sessions that you created.\n",
+        "tags": [
+          "Session"
+        ],
+        "parameters": [
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "The page number to start listing. If not specified, the default value `1` will be used.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items on a single page. If not specified, the default value `10` will be used.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "The search keyword, which can be up to 128 characters in length. Sessions with names containing this keyword will be listed. \n\nIf omitted, all sessions created by you will be listed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "total_items": {
+                          "type": "integer",
+                          "description": "The total number of sessions returned in the response."
+                        },
+                        "page_number": {
+                          "type": "integer",
+                          "description": "The page number of the current page."
+                        },
+                        "page_size": {
+                          "type": "integer",
+                          "description": "The number of items that are returned in a single page."
+                        },
+                        "records": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The session ID, which uniquely identifies the session in your project."
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "The session name. If it is longer than 128 characters, only the first 128 characters will be returned."
+                              },
+                              "output_language": {
+                                "type": "string",
+                                "enum": [
+                                  "AUTO",
+                                  "EN",
+                                  "ES",
+                                  "AR",
+                                  "PT",
+                                  "ID",
+                                  "JA",
+                                  "RU",
+                                  "HI",
+                                  "FR",
+                                  "DE",
+                                  "VI",
+                                  "TR",
+                                  "PL",
+                                  "IT",
+                                  "KO",
+                                  "ZH-CN",
+                                  "ZH-TW"
+                                ],
+                                "default": "AUTO",
+                                "description": "The language in which the output is generated. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese"
+                              },
+                              "job_mode": {
+                                "type": "string",
+                                "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate job mode from data analysis and information retrieval.\n- `DATA_ANALYTICS`: Powerdrill focuses specifically on data analysis.",
+                                "enum": [
+                                  "AUTO",
+                                  "DATA_ANALYTICS"
+                                ],
+                                "default": "DATA_ANALYTICS"
+                              },
+                              "max_contextual_job_history": {
+                                "type": "integer",
+                                "description": "The maximum number of recent jobs retained as context for your next job run in the session, with a value range from `0` to `10`. The default value is `10`. Value `0` indicates that the jobs run in the session are processed without any context."
+                              },
+                              "agent_id": {
+                                "type": "string",
+                                "enum": [
+                                  "DATA_ANALYSIS_AGENT"
+                                ],
+                                "default": "DATA_ANALYSIS_AGENT",
+                                "description": "The ID of the agent. A reserved parameter. Ignore it."
+                              }
+                            },
+                            "description": "The information about a session.",
+                            "required": [
+                              "id",
+                              "name"
+                            ]
+                          },
+                          "description": "A list of sessions returned in a page."
+                        }
+                      },
+                      "required": [
+                        "total_items",
+                        "page_number",
+                        "page_size",
+                        "records"
+                      ],
+                      "description": "A paginated list of sessions."
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "total_items": 8,
+                        "page_size": 10,
+                        "page_number": 1,
+                        "records": [
+                          {
+                            "id": "04b69928-532d-408a-8716-8f5e70fcacc6",
+                            "name": "Finding Your Inner Spark",
+                            "output_language": "AUTO",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 10,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "7e9941af-ad1b-4834-a421-4b37b54aae19",
+                            "name": "session_trade_analyze_001",
+                            "output_language": "EN",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 1,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "a137ecc8-9554-42c3-b042-2458dd2aeb36",
+                            "name": "My first session",
+                            "output_language": "AUTO",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 10,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
+                            "name": "New name",
+                            "output_language": "EN",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 10,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "3eb5e294-11eb-4bf0-8854-7177c415d15c",
+                            "name": "trade_analyze_001",
+                            "output_language": "ZH-CN",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 10,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "ccca6d34-894f-4f6f-a8b5-c9df93126309",
+                            "name": "lhtest-old",
+                            "output_language": "ZH-CN",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 5,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "c28a1f47-da68-4456-bb0b-e85bf5a0e98e",
+                            "name": "lhtest-newest",
+                            "output_language": "ZH-TW",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 6,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          },
+                          {
+                            "id": "fbde9b45-69cd-408e-97d1-f874236aadac",
+                            "name": "General-session",
+                            "output_language": "ZH-CN",
+                            "job_mode": "AUTO",
+                            "max_contextual_job_history": 10,
+                            "agent_id": "DATA_ANALYSIS_AGENT"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/sessions/{id}": {
+      "post": {
+        "summary": "Modify session",
+        "deprecated": false,
+        "description": "Modifies the configuration of a session that you created.",
+        "tags": [
+          "Session"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the session you want to modify.\n\nTo check sessions existing in your project, call [GET /v1/team/sessions](/api-reference/list-sessions).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The session name, which can be up to 128 characters in length. If it exceeds this limit, it will be truncated."
+                  },
+                  "output_language": {
+                    "type": "string",
+                    "enum": [
+                      "AUTO",
+                      "EN",
+                      "ES",
+                      "AR",
+                      "PT",
+                      "ID",
+                      "JA",
+                      "RU",
+                      "HI",
+                      "FR",
+                      "DE",
+                      "VI",
+                      "TR",
+                      "PL",
+                      "IT",
+                      "KO",
+                      "ZH-CN",
+                      "ZH-TW"
+                    ],
+                    "default": "AUTO",
+                    "description": "The language in which the output is generated. For example, if set to `EN`, the output will be in English. If not specified, the default setting `AUTO` will be used, which allows Powerdrill Enterprise to automatically detect the appropriate language for the output based on your question. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese"
+                  },
+                  "job_mode": {
+                    "type": "string",
+                    "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate job mode from data analysis and information retrieval.\n- `DATA_ANALYTICS`: Powerdrill focuses specifically on data analysis.\n\nIf not specified, the default setting `AUTO` will be used. However, if your intent is clearly data analysis, we recommend specifying the value as **DATA_ANALYSIS**. This helps Powerdrill skip the intention detection step, enabling faster question processing.",
+                    "enum": [
+                      "AUTO",
+                      "DATA_ANALYTICS"
+                    ],
+                    "default": "DATA_ANALYTICS"
+                  },
+                  "max_contextual_job_history": {
+                    "type": "integer",
+                    "description": "The maximum number of recent jobs retained as context for the next job, with a value range of `0` to `10`. The default value is `10`. If set to `0`, jobs will be run without any context from previous jobs."
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "name",
+                  "user_id"
+                ]
+              },
+              "example": {
+                "name": "hello",
+                "output_language": "EN",
+                "job_mode": "DATA_ANALYSIS",
+                "max_contextual_job_history": 3,
+                "user_id": "tmm-ddsdfsfgs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "Null is returned when the operation is successful."
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Delete session",
+        "deprecated": false,
+        "description": "Deletes a session that you created. Once deleted, both the session and its job history will be permanently removed and cannot be recovered.",
+        "tags": [
+          "Session"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the session you want to delete.\n\nTo check sessions you created, call [GET /v1/team/sessions](/api-reference/list-sessions).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "user_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "Null is returned when the operation is successful."
+                    }
+                  },
+                  "required": [
+                    "code"
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Get session",
+        "deprecated": false,
+        "description": "Obtains information about a session you created.",
+        "tags": [
+          "Session"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the target session.\n\nTo check sessions you created, call [GET /v1/team/sessions](/api-reference/list-sessions).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "description": "A session object.",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The session ID, which uniquely identifies the session in your project."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The session name. If it is longer than 128 characters, only the first 128 characters will be returned."
+                        },
+                        "output_language": {
+                          "type": "string",
+                          "enum": [
+                            "AUTO",
+                            "EN",
+                            "ES",
+                            "AR",
+                            "PT",
+                            "ID",
+                            "JA",
+                            "RU",
+                            "HI",
+                            "FR",
+                            "DE",
+                            "VI",
+                            "TR",
+                            "PL",
+                            "IT",
+                            "KO",
+                            "ZH-CN",
+                            "ZH-TW"
+                          ],
+                          "default": "AUTO",
+                          "description": "The language in which the output is generated. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese"
+                        },
+                        "job_mode": {
+                          "type": "string",
+                          "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate job mode from data analysis and information retrieval.\n- `DATA_ANALYTICS`: Powerdrill focuses specifically on data analysis.",
+                          "enum": [
+                            "AUTO",
+                            "DATA_ANALYTICS"
+                          ],
+                          "default": "DATA_ANALYTICS"
+                        },
+                        "max_contextual_job_history": {
+                          "type": "integer",
+                          "description": "The maximum number of recent jobs retained as context for your next job run in the session, with a value range from `0` to `10`. The default value is `10`. Value `0` indicates that the jobs run in the session are processed without any context."
+                        },
+                        "agent_id": {
+                          "type": "string",
+                          "enum": [
+                            "DATA_ANALYSIS_AGENT"
+                          ],
+                          "default": "DATA_ANALYSIS_AGENT",
+                          "description": "The ID of the agent. A reserved parameter. Ignore it."
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "id": "cckrXXg68P8lmb59dg4yO",
+                        "name": "Analyze performance",
+                        "output_language": "HI",
+                        "job_mode": "AUTO",
+                        "max_contextual_job_history": 76,
+                        "agent_id": "DATA_ANALYSIS_AGENT"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/sessions/{id}/history": {
+      "get": {
+        "summary": "Get job history in session",
+        "deprecated": false,
+        "description": "Obtains the job history contained in the specified session.",
+        "tags": [
+          "Session"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the target session.\n\nTo check sessions existing in your project, call [GET /v1/team/sessions](/api-reference/list-sessions).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "The page number to start listing. If not specified, the default value `1` will be used.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items on a single page. If not specified, the default value `10` will be used.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "total_items": {
+                          "type": "integer",
+                          "description": "The total number of job records returned in the response."
+                        },
+                        "page_number": {
+                          "type": "integer",
+                          "description": "The page number of the current page."
+                        },
+                        "page_size": {
+                          "type": "integer",
+                          "description": "The number of items that are returned in a single page."
+                        },
+                        "records": {
+                          "type": "array",
+                          "items": {
+                            "description": "Information about each job record.",
+                            "type": "object",
+                            "properties": {
+                              "question": {
+                                "description": "Your question.",
+                                "type": "object",
+                                "properties": {
+                                  "blocks": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "description": "The content type of the question block. Possible values are:\n- `MESSAGE`: The content is a piece of text.\n- `CODE`: The content a code snippet in Markdown format.",
+                                          "enum": [
+                                            "MESSAGE",
+                                            "CODE"
+                                          ]
+                                        },
+                                        "content": {
+                                          "type": "string",
+                                          "description": "The block content. It is a piece of text when the `type` is `MESSAGE`, and a code snippet when the `type` is `CODE`."
+                                        }
+                                      },
+                                      "description": "The content of each question block.",
+                                      "required": [
+                                        "type",
+                                        "content"
+                                      ]
+                                    },
+                                    "description": "A list of content blocks that make up the entire question."
+                                  }
+                                },
+                                "required": [
+                                  "blocks"
+                                ]
+                              },
+                              "answer": {
+                                "description": "Powerdrill's answer to the question.",
+                                "type": "object",
+                                "properties": {
+                                  "blocks": {
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/BlockDTO",
+                                      "description": "A list of content blocks that make up the entire answer."
+                                    },
+                                    "description": "Powerdrill's answer."
+                                  }
+                                },
+                                "required": [
+                                  "blocks"
+                                ]
+                              },
+                              "job_id": {
+                                "type": "string",
+                                "description": "The job ID, which uniquely identifies the job in the session."
+                              }
+                            },
+                            "required": [
+                              "question",
+                              "answer",
+                              "job_id"
+                            ]
+                          },
+                          "description": "A list of job records returned on a page."
+                        }
+                      },
+                      "required": [
+                        "total_items",
+                        "page_number",
+                        "page_size",
+                        "records"
+                      ],
+                      "description": "A paginated list of job records."
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "total_items": 1,
+                        "page_number": 1,
+                        "page_size": 10,
+                        "records": [
+                          {
+                            "job_id": "job-1dsfasddfasgddsaffds",
+                            "question": {
+                              "blocks": [
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "Check for negative values across all sales columns"
+                                }
+                              ]
+                            },
+                            "answer": {
+                              "blocks": [
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "- Check for negative values across all sales columns.\n- Filter the DataFrame to retain only rows with no negative sales values.",
+                                  "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
+                                  "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "CODE",
+                                  "content": "```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  SalesByChannelByDay_Summary_Demo.Sheet1_0_table_1.csv\n    '''\n    # Identify columns that represent sales data (all except the first column)\n    sales_columns = input_0.columns[1:]\n    \n    # Filter rows where any sales value is negative\n    filtered_df = input_0[~(input_0[sales_columns] < 0).any(axis=1)]\n    \n    # Assign the result to the output variable\n    output = filtered_df\n    \n    return output\n\n```",
+                                  "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
+                                  "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "TABLE",
+                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/baf7d6d1-fb81-4fdb-bcdd-32923d214c7b.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9bcb5af552793f162e35f41d62fb9306cf90888924bfbdce81ea687265fddf83",
+                                  "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
+                                  "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "- Sum the sales across all days for each channel.\n- Create a new DataFrame with the channel names and their corresponding total sales.",
+                                  "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
+                                  "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "CODE",
+                                  "content": "```python\n\nimport pandas as pd\n\ndef invoke(negative_sales_channels: pd.DataFrame) -> pd.DataFrame:\n    '''\n    negative_sales_channels: pd.DataFrame  negative_sales_channels.csv\n    '''\n    # Sum the sales across all days for each channel\n    total_sales = negative_sales_channels.iloc[:, 1:].sum(axis=1)\n    \n    # Create a new DataFrame with the channel names and their corresponding total sales\n    output = pd.DataFrame({\n        'Channel': negative_sales_channels.iloc[:, 0],\n        'Total Sales': total_sales\n    })\n    \n    return output\n\n```",
+                                  "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
+                                  "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "TABLE",
+                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/10cffac2-8bf3-45f4-86e6-1ed8457329f2.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c6f5b522d2ddceea730304b86a45d5f5165f05f9fda3c1d275d11e9022c1e7ac",
+                                  "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
+                                  "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "- Replace any negative sales values with zero in the data.\n- Sum the sales across all days for each channel.\n- Create a new data structure with the summed sales values.",
+                                  "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
+                                  "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "CODE",
+                                  "content": "```python\n\nimport pandas as pd\n\ndef invoke(negative_sales_channels: pd.DataFrame) -> pd.DataFrame:\n    '''\n    negative_sales_channels: pd.DataFrame  negative_sales_channels.csv\n    '''\n    # Replace negative values with zero\n    negative_sales_channels.iloc[:, 1:] = negative_sales_channels.iloc[:, 1:].clip(lower=0)\n    \n    # Sum the sales across all days for each channel\n    sales_sum = negative_sales_channels.iloc[:, 1:].sum(axis=1)\n    \n    # Create a new DataFrame with the summed sales values\n    output = pd.DataFrame({\n        'Channel': negative_sales_channels.iloc[:, 0],\n        'Total Sales': sales_sum\n    })\n    \n    return output\n\n```",
+                                  "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
+                                  "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "TABLE",
+                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/f4c99616-dd7c-48b1-8a35-d3141d732c36.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=d21a8d939ab09547bc201754ba253ca6c0d1da5361752f2228237e3ff59be256",
+                                  "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
+                                  "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "- Merge the two datasets on the 'Channel' column to align sales data for comparison.\n- Calculate the difference in 'Total Sales' between the datasets for each channel.\n- Store the results, including channel name and calculated difference, in a new dataset.",
+                                  "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
+                                  "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "CODE",
+                                  "content": "```python\n\nimport pandas as pd\n\ndef invoke(sales_trend_with_negatives: pd.DataFrame, sales_trend_without_negatives: pd.DataFrame) -> pd.DataFrame:\n    # Merge the two DataFrames on the 'Channel' column\n    merged_df = pd.merge(sales_trend_with_negatives, sales_trend_without_negatives, on='Channel', suffixes=('_with_negatives', '_without_negatives'))\n    \n    # Calculate the difference in 'Total Sales' between the two DataFrames\n    merged_df['Sales Difference'] = merged_df['Total Sales_without_negatives'] - merged_df['Total Sales_with_negatives']\n    \n    # Create a new DataFrame to store the results\n    output = merged_df[['Channel', 'Sales Difference']]\n    \n    return output\n\n```",
+                                  "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
+                                  "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "TABLE",
+                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/aaf4f2f7-e2db-4f2e-98ae-0bdd18f42333.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=19fcfe97c70bf40292b920ecbf0299c101e1de11e49b54fb8f62934b6e874f52",
+                                  "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
+                                  "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
+                                  "stage": "Analyze"
+                                },
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "\n\n`Analyzing Conclusions` \n\n### The impact of negative sales values on overall sales trends\n\n#### Sales variance analysis\n\n",
+                                  "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
+                                  "group_name": "Conclusions",
+                                  "stage": "Respond"
+                                },
+                                {
+                                  "type": "TABLE",
+                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/aaf4f2f7-e2db-4f2e-98ae-0bdd18f42333.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=19fcfe97c70bf40292b920ecbf0299c101e1de11e49b54fb8f62934b6e874f52",
+                                  "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
+                                  "group_name": "Conclusions",
+                                  "stage": "Respond"
+                                },
+                                {
+                                  "type": "MESSAGE",
+                                  "content": "\n\n- **Sales variance**：In all channels (including EC, JD, Tmall, WeChat, retail, corporate stores, outlets, and total), the sales difference is 0.0. This indicates that regardless of the presence of negative sales values, the sales trend has not changed.\n\n#### Conclusion and Insights\n- **The impact of negative sales values**：Based on the provided data, negative sales values have no impact on the overall sales trend of the affected channels, as the sales variance for all channels is 0.0.\n- **Data consistency**：The sales discrepancies across all channels are consistent, indicating that there are no anomalies or deviations caused by negative sales values during data processing or analysis.",
+                                  "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
+                                  "group_name": "Conclusions",
+                                  "stage": "Respond"
+                                },
+                                {
+                                  "type": "SOURCES",
+                                  "content": [
+                                    {
+                                      "source": "SalesByChannelByDay_Summary_Demo.xlsx",
+                                      "datasource_id": "cm2ej4wmo000001fcdkwbdrml",
+                                      "dataset_id": "cm2ej4vx900hp01l1o378zr9o",
+                                      "file_type": "xlsx",
+                                      "external_id": ""
+                                    }
+                                  ],
+                                  "group_id": "",
+                                  "group_name": "",
+                                  "stage": "Respond"
+                                },
+                                {
+                                  "type": "QUESTIONS",
+                                  "content": [
+                                    "Analyze the specific channels with negative sales values on different dates and discuss whether the sales strategies of these channels might lead to negative values.",
+                                    "Study the long-term impact of negative sales values on overall sales trends and assess whether adjustments to data analysis methods are needed to more accurately reflect the actual situation.",
+                                    "Investigate the source of negative sales values, whether they are related to returns, discounts, or other factors, and propose possible solutions to reduce the occurrence of negative values."
+                                  ],
+                                  "group_id": "-1",
+                                  "stage": "Respond"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/datasets/{id}/overview": {
+      "get": {
+        "summary": "Get dataset overview",
+        "deprecated": false,
+        "description": "Obtains the basic information about the dataset, including the keywords, description, and pre-generated questions.",
+        "tags": [
+          "Dataset"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the dataset for which you want to view details.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "$ref": "#/components/schemas/%E8%BF%94%E5%9B%9E%E6%A8%A1%E5%9E%8B",
+                      "required": [
+                        "code"
+                      ]
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The dataset ID, which uniquely identifies the dataset."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The dataset name."
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "The dataset description."
+                        },
+                        "summary": {
+                          "type": "string",
+                          "description": "Summary about data sources in the dataset."
+                        },
+                        "exploration_questions": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Questions pre-generated by Powerdrill for you to explore the dataset."
+                        },
+                        "keywords": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Keywords that help you better understand the dataset's content."
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "description",
+                        "summary",
+                        "exploration_questions",
+                        "keywords"
+                      ],
+                      "description": "A dataset object."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "success example",
+                    "value": {
+                      "code": {
+                        "code": 0
+                      },
+                      "data": {
+                        "id": "dset-cm5axptyyxxx298",
+                        "name": "sales_indicators_2024",
+                        "description": "A dataset comprising 373 travel bookings with 15 attributes, offering insights into booking patterns, pricing strategies, and more",
+                        "summary": "This dataset contains 373 travel bookings with 15 attributes, enabling analysis of booking trends, pricing strategies, and travel agency dynamics.",
+                        "exploration_questions": [
+                          "How does the booking price trend over time based on the BookingTimestamp?",
+                          "How does the average booking price change with respect to the TravelDate?",
+                          "Are there any significant outliers in the booking prices, and what might be causing them?",
+                          "How does the average price vary between one-way and round-trip bookings?"
+                        ],
+                        "keywords": [
+                          "Travel Bookings",
+                          "Booking Trends",
+                          "Travel Agencies"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/datasets": {
+      "post": {
+        "summary": "Create dataset",
+        "deprecated": false,
+        "description": "Creates a dataset. \n\nA dataset is a collection of related data sources, such as Excel, CSV, PDF, Word, webpages, Markdown, and plain text. It allows easy access to and utilization of your data for analysis. You can create a dataset to host all the data sources needed for a specific analysis. Then, when creating a session, simply associate it with the dataset to access all the required data sources.",
+        "tags": [
+          "Dataset"
+        ],
+        "parameters": [
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The dataset name, which can be up to 128 characters in length. If it exceeds this limit, it will be truncated."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The dataset description, which can be up to 50,000 characters in length. If it exceeds this limit, it will be truncated. "
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "name",
+                  "user_id"
+                ]
+              },
+              "example": {
+                "name": "My dataset",
+                "description": "my default dataset"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The dataset ID. \n\nSave the dataset ID if you want to [upload data sources](/api-reference/create-data-source) to it or [associate it with a session](/api-reference/create-session) for data exploration."
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "id": "dataset-adsdfasafdsfasdgasd"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "List datasets",
+        "deprecated": false,
+        "description": "Lists datasets.\n\nOnly datasets created within the same project as your API key will be listed. \n\nYou can specify a search keyword to filter datasets by name and description.",
+        "tags": [
+          "Dataset"
+        ],
+        "parameters": [
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "The page number to start listing. If not specified, the default value `1` will be used.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items on a single page. If not specified, the default value `10` will be used.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "The search keyword, which can be up to 128 characters in length. Datasets with names or descriptions containing this keyword will be listed. \n\nIf omitted, all datasets in the project will be listed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "page_number": {
+                          "type": "integer",
+                          "description": "The page number of the current page."
+                        },
+                        "page_size": {
+                          "type": "integer",
+                          "description": "The number of items that are returned in a single page."
+                        },
+                        "total_items": {
+                          "type": "integer",
+                          "description": "The total number of datasets returned in the response."
+                        },
+                        "records": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/DatasetDTO",
+                            "description": "Information about each dataset."
+                          },
+                          "description": "A list of dataset objects."
+                        }
+                      },
+                      "required": [
+                        "page_number",
+                        "page_size",
+                        "total_items",
+                        "records"
+                      ],
+                      "description": "The returned data object."
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "page_number": 1,
+                        "page_size": 10,
+                        "total_items": 1,
+                        "records": [
+                          {
+                            "id": "dataset-dasfadsgadsgas",
+                            "name": "mysql",
+                            "description": "mysql databases"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/datasets/{id}": {
+      "delete": {
+        "summary": "Delete dataset",
+        "deprecated": false,
+        "description": "Deletes a dataset that you created. Once deleted, all data sources within the dataset will also be permanently removed and cannot be recovered.",
+        "tags": [
+          "Dataset"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the dataset you want to delete. You can only delete the dataset that you created.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "user_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "Null is returned when the operation is successful."
+                    }
+                  },
+                  "required": [
+                    "code"
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "summary": "Modify dataset",
+        "deprecated": false,
+        "description": "Modifies the name or description of specified dataset.",
+        "tags": [
+          "Dataset"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the dataset to modify. You can only modify the dataset that you created.\n\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The new name of the dataset, which can be up to 128 characters in length. If it exceeds this limit, it will be truncated.\n\n`name` and `description` cannot be both blank."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The new description of the dataset, which can be up to 50,000 characters in length. If it exceeds this limit, it will be truncated.\n\n`name` and `description` cannot be both blank."
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "user_id"
+                ]
+              },
+              "example": {
+                "name": "sales_data",
+                "description": "sales data of all regions",
+                "user_id": "tmm-dsadfdsafasdf"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "Null is returned when the operation is successful."
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/datasets/{id}/status": {
+      "get": {
+        "summary": "Get status summary of data sources in dataset",
+        "deprecated": false,
+        "description": "This endpoint returns the count of data sources for each status in the specified dataset. You can use it to verify if all data sources are synchronized and ready for running data analysis jobs.\n\nIf both `invalidCount` and `synchingCount` in the response are `0`, all data sources in the dataset are accessible to Powerdrill for answering questions. Otherwise, any unsynchronized data sources cannot be accessed.",
+        "tags": [
+          "Dataset"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the dataset for which you want to check the status of data sources.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "synched_count": {
+                          "type": "integer",
+                          "description": "The number of synchronized data sources."
+                        },
+                        "invalid_count": {
+                          "type": "integer",
+                          "description": "The number of data sources failed to be synchronized."
+                        },
+                        "synching_count": {
+                          "type": "integer",
+                          "description": "The number of data sources waiting to be synchronized or being synchronized."
+                        }
+                      },
+                      "description": "The number of data sources per state.\n\n<Tip>\nNote that only when both `invalidCount` and `synchingCount` are `0`, all data sources in the dataset can be used by Powerdrill to answer your questions. Otherwise, starting a job immediately cannot fetching data from data sources that are not synchronized.\n</Tip>",
+                      "required": [
+                        "synched_count",
+                        "invalid_count",
+                        "synching_count"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "synched_count": 5,
+                        "invalid_count": 0,
+                        "synching_count": 0
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/datasets/{id}/datasources": {
+      "post": {
+        "summary": "Create data source",
+        "deprecated": false,
+        "description": "Creates a data source in the specified dataset. You can create data sources only in datasets that you have created.\n\nA data source can be in one of the following formats: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.",
+        "tags": [
+          "Data source"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the dataset in which you want to create a data  source.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the data source, including the file extension (e.g., `example.csv`). The name must be between 1 and 128 characters. If it exceeds this limit, it will be truncated."
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "The type of the data source. Set it to **FILE**.",
+                    "title": "FILE"
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "The URL of the file for public access. \n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**."
+                  },
+                  "file_object_key": {
+                    "type": "string",
+                    "description": "The object storage path to your locally uploaded file.\n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.\n\nHow to obtain:\n\nEach time you upload a file through the [Upload file](/api-reference/upload-file) endpoint, its `file_object_key` is returned. For more details, see [How to Upload Local Files](/developer-guides/upload-file).\n"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "name",
+                  "type",
+                  "user_id"
+                ]
+              },
+              "example": {
+                "name": "test.csv",
+                "type": "FILE",
+                "user_id": "tmm-dsfasdfasdfa",
+                "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "description": "A data source object.",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The data source ID, which uniquely identifies the data source."
+                        },
+                        "dataset_id": {
+                          "type": "string",
+                          "description": "The ID of the dataset that hosts the data source."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The data source name."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "The type of the data source, which is fixed to **FILE**.",
+                          "enum": [
+                            "FILE"
+                          ]
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "The processing status of the data source. Possible values are:\n- `invalid`: Awaiting processing.\n- `synching`: Currently processing.\n- `synched`: Successfully synchronized.",
+                          "enum": [
+                            "synching",
+                            "synched",
+                            "invalid"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "dataset_id",
+                        "name",
+                        "type",
+                        "status"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "id": "datasource-cadsgfsdagasgadsg",
+                        "dataset_id": "dataset-dagasdgasgasg",
+                        "name": "test.csv",
+                        "type": "FILE",
+                        "status": "pending"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "List data sources",
+        "deprecated": false,
+        "description": "Lists data sources in the specified dataset. When using this endpoint:\n- Make sure the specified dataset belongs to the same project as your API key.\n- To check the datasets you have access to in the project, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+        "tags": [
+          "Data source"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the dataset of which the data sources you want to list.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "The page number to start listing. If not specified, the default value `1` will be used.",
+            "required": false,
+            "example": 0,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items on a single page. If not specified, the default value `10` will be used.",
+            "required": false,
+            "example": 0,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "The status of data sources to list. Possible values are:\n- `invalid`: Awaiting processing.\n- `synching`: Currently processing.\n- `synched`: Successfully synchronized.\nIf not specified, data sources in any status will be returned.\nMultiple statuses can be specified in a comma-separated list, and data sources matching any will be displayed.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "synching",
+                "invalid",
+                "synched"
+              ]
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "total_items": {
+                          "type": "integer",
+                          "description": "The total number of data sources returned in the response."
+                        },
+                        "page_size": {
+                          "type": "integer",
+                          "description": "The number of items that are returned in a single page."
+                        },
+                        "page_number": {
+                          "type": "integer",
+                          "description": "The page number of the current page."
+                        },
+                        "records": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The data source ID, which uniquely identifies the data source."
+                              },
+                              "dataset_id": {
+                                "type": "string",
+                                "description": "The ID of the dataset that hosts the data source."
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "The data source name."
+                              },
+                              "type": {
+                                "type": "string",
+                                "description": "The type of the data source, which is fixed to **FILE**.",
+                                "enum": [
+                                  "FILE"
+                                ]
+                              },
+                              "status": {
+                                "type": "string",
+                                "description": "The processing status of the data source. Possible values are:\n- `invalid`: Awaiting processing.\n- `synching`: Currently processing.\n- `synched`: Successfully synchronized.",
+                                "enum": [
+                                  "synching",
+                                  "synched",
+                                  "invalid"
+                                ]
+                              }
+                            },
+                            "description": "Information about each data source.",
+                            "required": [
+                              "id",
+                              "dataset_id",
+                              "name",
+                              "type",
+                              "status"
+                            ]
+                          },
+                          "description": "A list of data sources returned on a page."
+                        }
+                      },
+                      "required": [
+                        "total_items",
+                        "page_size",
+                        "page_number",
+                        "records"
+                      ],
+                      "description": "A paginated list of data sources."
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "total_items": 1,
+                        "page_size": 10,
+                        "page_number": 1,
+                        "records": [
+                          {
+                            "id": "datasource-cadsgfsdagasgadsg",
+                            "dataset_id": "dataset-dagasdgasgasg",
+                            "name": "test.csv",
+                            "type": "FILE",
+                            "status": "pending"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/datasets/{dataset_id}/datasources/{datasource_id}": {
+      "delete": {
+        "summary": "Delete data source",
+        "deprecated": false,
+        "description": "Deletes a data source from the specified dataset. Once deleted, the data source cannot be recovered.\n\nYou can only delete data sources from datasets you have created.",
+        "tags": [
+          "Data source"
+        ],
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The ID of the dataset that contains the data source you want to delete.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "datasource_id",
+            "in": "path",
+            "description": "The ID of the data source you want to delete.\n\nTo check data sources existing in a specified dataset, call [GET /v1/team/datasets/{id}/datasources](/api-reference/list-data-sources).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "user_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "Null returned when the operation is successful.",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "code"
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Get data source",
+        "deprecated": false,
+        "description": "Obtains information about the specified data source.",
+        "tags": [
+          "Data source"
+        ],
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The ID of the dataset that contains the target data source.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "datasource_id",
+            "in": "path",
+            "description": "The ID of the target data source.\n\nTo check data sources existing in a specified dataset, call [GET /v1/team/datasets/{id}/datasources](/api-reference/list-data-sources).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The data source ID, which uniquely identifies the data source."
+                        },
+                        "dataset_id": {
+                          "type": "string",
+                          "description": "The ID of the dataset that hosts the data source."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The data source name."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "The type of the data source, which is fixed to **FILE**.",
+                          "enum": [
+                            "FILE"
+                          ]
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "The processing status of the data source. Possible values are:\n- `invalid`: Awaiting processing.\n- `synching`: Currently processing.\n- `synched`: Successfully synchronized.",
+                          "enum": [
+                            "synching",
+                            "synched",
+                            "invalid"
+                          ]
+                        }
+                      },
+                      "description": "A data source object.",
+                      "required": [
+                        "id",
+                        "dataset_id",
+                        "name",
+                        "type",
+                        "status"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "id": "datasource-cadsgfsdagasgadsg",
+                        "dataset_id": "dataset-dagasdgasgasg",
+                        "name": "test.csv",
+                        "type": "FILE",
+                        "status": "pending"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/datasources": {
+      "post": {
+        "summary": "Create data source without specifying a dataset",
+        "deprecated": false,
+        "description": "Creates a data source without specifying a dataset.\n\nWhen calling this endpoint, Powerdrill will automatically create a dataset for the new data source. Save the dataset ID in the response so that you can [associate it with a session](/api-reference/create-session) and explore the data source.",
+        "tags": [
+          "Data source"
+        ],
+        "parameters": [
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataSourceConfig"
+              },
+              "example": {
+                "name": "test.csv",
+                "type": "FILE",
+                "file_object_key": "/tmp/sdgsagdsgsadgasdg"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "description": "A data source object.",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The data source ID, which uniquely identifies the data source."
+                        },
+                        "dataset_id": {
+                          "type": "string",
+                          "description": "The ID of the dataset that hosts the data source."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The data source name."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "The type of the data source, which is fixed to **FILE**.",
+                          "enum": [
+                            "FILE"
+                          ]
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "The processing status of the data source. Possible values are:\n- `invalid`: Awaiting processing.\n- `synching`: Currently processing.\n- `synched`: Successfully synchronized.",
+                          "enum": [
+                            "synching",
+                            "synched",
+                            "invalid"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "dataset_id",
+                        "name",
+                        "type",
+                        "status"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "Success example:",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "id": "datasource-cadsgfsdagasgadsg",
+                        "datasetId": "dataset-dagasdgasgasg",
+                        "name": "test.csv",
+                        "type": "FILE",
+                        "status": "pending"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/datasets/{dataset_id}/datasources/{datasource_id}/presign": {
+      "post": {
+        "summary": "Presign data source ",
+        "deprecated": false,
+        "description": "If you want to download a data source, you can use this endpoint to generate a presigned URL, which allows you to download the data source via the URL.\n\nPresigned URLs have an expiration period. Be sure to download your data sources before the URL expires.",
+        "tags": [
+          "Data source"
+        ],
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The ID of the dataset that contains the target data source.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "datasource_id",
+            "in": "path",
+            "description": "The ID of the target data source.\n\nTo check data sources existing in a specified dataset, call [GET /v1/team/datasets/{id}/datasources](/api-reference/list-data-sources).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "expires_in": {
+                    "type": "integer",
+                    "description": "The duration after which the presigned URL will expire. The value is expressed in seconds. The minimum value is `1` and is default to `600`.",
+                    "default": 600,
+                    "minimum": 60
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "user_id"
+                ]
+              },
+              "example": {
+                "expires_in": 600
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "presigned_url": {
+                          "type": "string",
+                          "description": "The presigned URL to download the data source."
+                        },
+                        "expires_at": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "The expiration date and time of the presigned URL."
+                        }
+                      },
+                      "required": [
+                        "presigned_url",
+                        "expires_at"
+                      ],
+                      "description": "The returned data object."
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "presigned_url": "string",
+                        "expires_at": "2024-11-13T14:15:22.123Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/file/upload-datasource": {
+      "post": {
+        "summary": "Upload local file",
+        "deprecated": false,
+        "description": "Uploads a local file in one of the following formats:  **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.\n\nYou can use this endpoint to upload your local file and then use the `file_object_key` you obtained to create a data source. For a detailed guide, refer to [How to Upload Local Files](/developer-guides/upload-file).",
+        "tags": [
+          "File"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "multipart/form-data",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "format": "binary",
+                    "type": "string",
+                    "description": "The file to be uploaded. This is a required field and should contain the file data. For example, `--form 'file=@\"/Users/jiaoqi/Downloads/0f9a7ebd-7a2a-454a-8cd9-96accffa3107.csv\"'`.",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+                    "example": "",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "file",
+                  "user_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "file_object_key": {
+                          "type": "string",
+                          "description": "The object storage path to the file."
+                        }
+                      },
+                      "required": [
+                        "file_object_key"
+                      ],
+                      "description": "The returned data object."
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "Success example:",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "file_object_key": "/tmp/sdgsagdsgsadgasdg.csv"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v2/team/jobs": {
+      "post": {
+        "summary": "Create job",
+        "deprecated": false,
+        "description": "Converses with your data. Ask any question you have about your data and get insights instantly.  \n\nOn Powerdrill, a **job** refers to a task that Powerdrill performs to generate a response based on your request (e.g., a prompt or other workflows). \n\n- For an in-depth explanation of **jobs**, see [What Is Job?](/enterprise/what-is-job).  \n\n- To quickly create and execute a job, see [Quick Start](/api-reference/quick-start-for-general).\n\n",
+        "tags": [
+          "Job"
+        ],
+        "parameters": [
+          {
+            "name": "x-pd-api-key",
+            "in": "header",
+            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "session_id": {
+                    "type": "string",
+                    "description": "The session ID.\n\nTo check sessions you created, call [GET /v1/team/sessions](/api-reference/list-sessions)."
+                  },
+                  "stream": {
+                    "type": "boolean",
+                    "description": "Whether to use stream mode. If set to `true`, Powerdrill will send real-time updates to the client, delivering continuous data as it becomes available. If set to `false`, Powerdrill will return the full response only once the entire answer is ready.\n\nIf not specified, the default value `false` will be used.\n\nFor details about how to understand streaming responses, see \"Content description\" in [Streaming](/api-reference/streaming#content-description).",
+                    "default": false
+                  },
+                  "question": {
+                    "type": "string",
+                    "description": "The question you want Powerdrill to answer."
+                  },
+                  "dataset_id": {
+                    "type": "string",
+                    "description": "The ID of the dataset to attach to the job. If not specified, the session's `dataset_id` setting will be used. \n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets)."
+                  },
+                  "datasource_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Specifies the IDs of the data sources to use in the conversation, rather than the entire dataset. You can specify up to 1,000 data sources. If not specified, the session's `datasource_ids` setting will be used. "
+                  },
+                  "output_language": {
+                    "type": "string",
+                    "description": "The language in which the output is generated. For example, if set to `EN`, the output will be in English. If not specified, the session's `output_language` setting will be used. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese",
+                    "enum": [
+                      "AUTO",
+                      "EN",
+                      "ES",
+                      "AR",
+                      "PT",
+                      "ID",
+                      "JA",
+                      "RU",
+                      "HI",
+                      "FR",
+                      "DE",
+                      "VI",
+                      "TR",
+                      "PL",
+                      "IT",
+                      "KO",
+                      "ZH-CN",
+                      "ZH-TW"
+                    ],
+                    "default": "AUTO"
+                  },
+                  "job_mode": {
+                    "type": "string",
+                    "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate mode for data analysis or information retrieval.\n- `DATA_ANALYSIS`: Powerdrill focuses solely on data analysis.\n\nIf not specified, the session's `job_mode` setting will be used.",
+                    "enum": [
+                      "AUTO",
+                      "DATA_ANALYTICS"
+                    ],
+                    "default": "AUTO"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "question",
+                  "session_id",
+                  "user_id"
+                ]
+              },
+              "example": {
+                "session_id": "cxxdgegeegeg3433fff",
+                "stream": true,
+                "question": "Hello World",
+                "dataset_id": "cm1gjmg8e0057r3x22v1fdu8m",
+                "datasource_ids": [
+                  "cm1gjmmoo0001h0x24uk1xgu9"
+                ],
+                "output_language": "AUTO",
+                "job_mode": "AUTO",
+                "answer_config": {
+                  "model_group": "default",
+                  "temperature": 21
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "string",
+                          "description": "The job ID, which uniquely identifies the job in the session."
+                        },
+                        "blocks": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/BlockDTO",
+                            "description": "A list of content blocks that make up the entire answer."
+                          },
+                          "description": "A list of answer blocks that make up the entire answer."
+                        }
+                      },
+                      "required": [
+                        "job_id",
+                        "blocks"
+                      ],
+                      "description": "A job object."
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "Stream=false",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "job_id": "job-cm3ikdeuj02zk01l1yeuirt77",
+                        "blocks": [
+                          {
+                            "type": "CODE",
+                            "content": "```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv\n    '''\n    # Group by 'Year' and sum the deaths for each type of disaster\n    aggregated_data = input_0.groupby('Year').sum().reset_index()\n    \n    # Select only the columns related to deaths\n    death_columns = [\n        'Deaths - Drought (decadal)', 'Deaths - Flood (decadal)', \n        'Deaths - Earthquake (decadal)', 'Deaths - Extreme weather (decadal)', \n        'Deaths - Extreme temperature (decadal)', 'Deaths - Volcanic activity (decadal)', \n        'Deaths - Wildfire (decadal)', 'Deaths - Glacial lake outburst flood (decadal)', \n        'Deaths - Dry mass movement (decadal)', 'Deaths - Wet mass movement (decadal)', \n        'Deaths - Fog (decadal)'\n    ]\n    \n    # Create a new DataFrame with the aggregated results\n    output = aggregated_data[['Year'] + death_columns]\n    \n    # Rename columns to be more descriptive\n    output.columns = ['Decade'] + [col.replace('Deaths - ', '').replace(' (decadal)', '') for col in death_columns]\n    \n    return output\n\n```",
+                            "group_id": "33063572-6e88-4912-8e2d-4166bcc8caee",
+                            "group_name": "Analyze the dataset to observe the trend of deaths caused by different types of natural disasters over the past century. This involves aggregating the data by decade and calculating the total number of deaths for each type of disaster to identify any changes in trends.",
+                            "stage": "Analyze"
+                          },
+                          {
+                            "type": "TABLE",
+                            "content": {
+                              "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/e24b6a5f-fdb8-48ca-ae35-dc91ac8e8ef7.csv",
+                              "name": "trend_data.csv",
+                              "expires_at": "2024-11-21T09:56:34.290544Z"
+                            },
+                            "group_id": "33063572-6e88-4912-8e2d-4166bcc8caee",
+                            "group_name": "Analyze the dataset to observe the trend of deaths caused by different types of natural disasters over the past century. This involves aggregating the data by decade and calculating the total number of deaths for each type of disaster to identify any changes in trends.",
+                            "stage": "Analyze"
+                          },
+                          {
+                            "type": "IMAGE",
+                            "content": {
+                              "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/81b75a33-a223-4954-9680-9f397872c8ad.png",
+                              "name": "Trend of Deaths from Natural Disasters Over the Century",
+                              "expires_at": "2024-11-21T09:56:34.290544Z"
+                            },
+                            "group_id": "7501680b-5879-441b-bd96-f58b1029ae17",
+                            "group_name": "Visualize the trend data to show how the number of deaths from different types of natural disasters has changed over the past century. Use line charts to represent the trends for each disaster type, which will help in understanding the impact of measures and technological advancements on reducing deaths.",
+                            "stage": "Analyze"
+                          },
+                          {
+                            "type": "MESSAGE",
+                            "content": "\n\n`Analyzing Conclusions` \n\n### Analysis of Trends in the Number of Deaths from Natural Disasters \n\n#### Data Analysis\n\n",
+                            "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
+                            "group_name": "Conclusions",
+                            "stage": "Respond"
+                          },
+                          {
+                            "type": "TABLE",
+                            "content": {
+                              "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/e24b6a5f-fdb8-48ca-ae35-dc91ac8e8ef7.csv",
+                              "name": "trend_data.csv",
+                              "expires_at": "2024-11-21T09:56:34.290544Z"
+                            },
+                            "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
+                            "group_name": "Conclusions",
+                            "stage": "Respond"
+                          },
+                          {
+                            "type": "MESSAGE",
+                            "content": "\n\n- **Droughts and Floods**: In the early 20th century, droughts and floods caused extremely high death tolls, particularly during the 1920s and 1930s.\n- **Earthquakes and Extreme Weather**: Earthquakes and extreme weather also led to significant death tolls throughout the century, especially in the 1970s and 1990s.\n- **Extreme Temperatures and Volcanic Activity**: These disasters had relatively lower death tolls, but in certain decades, such as the 2000s, deaths caused by extreme temperatures increased.\n\n#### Trend Visualization\n\n",
+                            "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
+                            "group_name": "Conclusions",
+                            "stage": "Respond"
+                          },
+                          {
+                            "type": "IMAGE",
+                            "content": {
+                              "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/81b75a33-a223-4954-9680-9f397872c8ad.png",
+                              "name": "Trend of Deaths from Natural Disasters Over the Century",
+                              "expires_at": "2024-11-21T09:56:34.290544Z"
+                            },
+                            "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
+                            "group_name": "Conclusions",
+                            "stage": "Respond"
+                          },
+                          {
+                            "type": "MESSAGE",
+                            "content": "\n\n- **Overall Trend**: The chart shows that although certain decades experienced spikes in death tolls caused by natural disasters, the overall trend is declining.\n- **Impact of Technology and Measures**: Over time, advancements in technology and the implementation of disaster prevention measures are likely key factors in reducing death tolls.\n\n#### Conclusions and Insights\n- **Technological Advancements**: Modern technological progress, such as improved early warning systems and better construction techniques, may have reduced the fatalities caused by earthquakes and extreme weather.\n- **Disaster Prevention Measures**: The enhancement of disaster prevention measures and emergency response capabilities on a global scale has likely contributed to the decreased fatality rates of natural disasters.",
+                            "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
+                            "group_name": "Conclusions",
+                            "stage": "Respond"
+                          },
+                          {
+                            "type": "SOURCES",
+                            "content": [
+                              {
+                                "source": "makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv",
+                                "datasource_id": "clxin6l9200oo01l1457bolx3",
+                                "dataset_id": "clxin6l8400ok01l1ff2m0s25",
+                                "file_type": "csv"
+                              }
+                            ],
+                            "group_id": "",
+                            "group_name": "",
+                            "stage": "Respond"
+                          },
+                          {
+                            "type": "QUESTIONS",
+                            "content": [
+                              "Analyze the trends in death tolls from different types of natural disasters over the past century and explore which disaster types have shown the most significant reduction in fatalities.",
+                              "Study the technological advancements and measures in responding to natural disasters across different regions globally, and analyze how these differences have influenced changes in death tolls in each region.",
+                              "Explore how future technological advancements and policy measures could further reduce fatalities caused by natural disasters, and assess their feasibility and potential impacts."
+                            ],
+                            "group_id": "-1",
+                            "stage": "Respond"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID returned by Powerdrill. If a failure occurs, you can provide it to the Powerdrill team to assist with troubleshooting.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "1": {
+                    "summary": "400",
+                    "value": {
+                      "code": 210021,
+                      "msg": "Job quota exceeded"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "1": {
+                    "summary": "403",
+                    "value": {
+                      "code": 1003,
+                      "msg": "insufficient.authentication"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "1": {
+                    "summary": "500",
+                    "value": {
+                      "code": 210020,
+                      "msg": "Something went wrong during job execution. Please try again."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateSessionRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The session name, which can be up to 128 characters in length. If it exceeds this limit, it will be truncated."
+          },
+          "output_language": {
+            "type": "string",
+            "enum": [
+              "AUTO",
+              "EN",
+              "ES",
+              "AR",
+              "PT",
+              "ID",
+              "JA",
+              "RU",
+              "HI",
+              "FR",
+              "DE",
+              "VI",
+              "TR",
+              "PL",
+              "IT",
+              "KO",
+              "ZH-CN",
+              "ZH-TW"
+            ],
+            "default": "AUTO",
+            "description": "The language in which the output is generated. For example, if set to `EN`, the output will be in English. If not specified, the default setting `AUTO` will be used, which allows Powerdrill Enterprise to automatically detect the appropriate language for the output based on your question. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese"
+          },
+          "job_mode": {
+            "type": "string",
+            "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate job mode from data analysis and information retrieval.\n- `DATA_ANALYTICS`: Powerdrill focuses specifically on data analysis.\n\nIf not specified, the default setting `AUTO` will be used. However, if your intent is clearly data analysis, we recommend specifying the value as **DATA_ANALYSIS**. This helps Powerdrill skip the intention detection step, enabling faster question processing.",
+            "enum": [
+              "AUTO",
+              "DATA_ANALYTICS"
+            ],
+            "default": "DATA_ANALYTICS"
+          },
+          "max_contextual_job_history": {
+            "type": "integer",
+            "description": "The maximum number of recent jobs retained as context for the next job, with a value range of `0` to `10`. The default value is `10`. If set to `0`, jobs will be run without any context from previous jobs."
+          },
+          "agent_id": {
+            "type": "string",
+            "enum": [
+              "DATA_ANALYSIS_AGENT"
+            ],
+            "default": "DATA_ANALYSIS_AGENT",
+            "description": "The ID of the agent. This is a reserved parameter, don't specify it or set it to **DATA_ANALYSIS_AGENT**."
+          },
+          "user_id": {
+            "type": "string",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+          }
+        },
+        "required": [
+          "name",
+          "user_id"
+        ]
+      },
+      "SessionDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The session ID, which uniquely identifies the session in your project."
+          },
+          "name": {
+            "type": "string",
+            "description": "The session name. If it is longer than 128 characters, only the first 128 characters will be returned."
+          },
+          "output_language": {
+            "type": "string",
+            "enum": [
+              "AUTO",
+              "EN",
+              "ES",
+              "AR",
+              "PT",
+              "ID",
+              "JA",
+              "RU",
+              "HI",
+              "FR",
+              "DE",
+              "VI",
+              "TR",
+              "PL",
+              "IT",
+              "KO",
+              "ZH-CN",
+              "ZH-TW"
+            ],
+            "default": "AUTO",
+            "description": "The language in which the output is generated. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese"
+          },
+          "job_mode": {
+            "type": "string",
+            "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate job mode from data analysis and information retrieval.\n- `DATA_ANALYTICS`: Powerdrill focuses specifically on data analysis.",
+            "enum": [
+              "AUTO",
+              "DATA_ANALYTICS"
+            ],
+            "default": "DATA_ANALYTICS"
+          },
+          "max_contextual_job_history": {
+            "type": "integer",
+            "description": "The maximum number of recent jobs retained as context for your next job run in the session, with a value range from `0` to `10`. The default value is `10`. Value `0` indicates that the jobs run in the session are processed without any context."
+          },
+          "agent_id": {
+            "type": "string",
+            "enum": [
+              "DATA_ANALYSIS_AGENT"
+            ],
+            "default": "DATA_ANALYSIS_AGENT",
+            "description": "The ID of the agent. A reserved parameter. Ignore it."
+          }
+        },
+        "required": [
+          "name",
+          "id"
+        ]
+      },
+      "DatasourceDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The data source ID, which uniquely identifies the data source."
+          },
+          "dataset_id": {
+            "type": "string",
+            "description": "The ID of the dataset that hosts the data source."
+          },
+          "name": {
+            "type": "string",
+            "description": "The data source name."
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the data source, which is fixed to **FILE**.",
+            "enum": [
+              "FILE"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "The processing status of the data source. Possible values are:\n- `invalid`: Awaiting processing.\n- `synching`: Currently processing.\n- `synched`: Successfully synchronized.",
+            "enum": [
+              "synching",
+              "synched",
+              "invalid"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "dataset_id",
+          "status"
+        ]
+      },
+      "DatasetDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The dataset ID, which uniquely identifies the dataset."
+          },
+          "name": {
+            "type": "string",
+            "description": "The dataset name."
+          },
+          "description": {
+            "type": "string",
+            "description": "The dataset description."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description"
+        ]
+      },
+      "返回模型": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "BlockDTO": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The content type of the answer block. Possible values are:\n- `MESSAGE`: The content is a piece of text.\n- `CODE`: The content a code snippet.\n- `TABLE`: The content represents a table.\n- `IMAGE`: The content represents an image.\n- `SOURCE`: The content represents a reference source of the answer block.\n- `QUESTIONS`: Suggested questions generated by Powerdrill to help guide your follow-up exploration of the data.",
+            "enum": [
+              "MESSAGE",
+              "CODE",
+              "TABLE",
+              "SOURCES",
+              "QUESTIONS"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "The block content, which varies with the value of `type`:\n\n- When `type` is `MESSAGE`, the content is a piece of text.\n- When `type` is ` CODE`, the content a code snippet in Markdown format.\n- When `type` is `TABLE`, the content represents a table, consisting of:\n    - `name`: The `.csv` file name.\n    - `url`: The S3 key or URL to the file.\n- `expires_at`: The expiration time for `url`. To save the table for future use, make sure to download it before it expires.\n- When `type` is `IMAGE`, the content represents an image, consisting of:\n    - `name`: The image name.\n    - `url`: The S3 key or URL to the image.\n- `expires_at`: The expiration time for `url`. To save the image for future use, make sure to download it before it expires.\n\n- When `type` is `SOURCE`, the content represents a reference source of the answer block, including:\n    - `source`: The file name of the data source.\n    - `datasourceId`: The ID of the data source.\n    - `datasetId`: The ID of the dataset.\n- `fileType`: The name extension of the data source file.\n\n- When `type` is `QUESTIONS`, the content is suggested questions generated by Powerdrill to help guide your follow-up exploration of the data."
+          },
+          "group_id": {
+            "type": "string",
+            "description": "The ID of the group containing the answer block."
+          },
+          "group_name": {
+            "type": "string",
+            "description": "The name of the group containing the answer block."
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "Analyze",
+              "Respond"
+            ],
+            "description": "There are two phases when Powerdrill generates an answer: `Analyze` and `Respond`. Answer blocks in the `Analyze` phase are not part of the final answer; they represent the output of the analysis process and are used to help you understand how the answer is generated. Answer blocks in the `Respond` phase are the final answer generated by Powerdrill in response to your question."
+          }
+        },
+        "required": [
+          "type",
+          "content",
+          "group_id",
+          "group_name",
+          "stage"
+        ]
+      },
+      "DataSourceConfig": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the data source, including the file extension (e.g., `example.csv`). The name must be between 1 and 128 characters. If it exceeds this limit, it will be truncated."
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the data source. Set it to **FILE**.",
+            "title": "FILE"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL of the file for public access. \n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**."
+          },
+          "file_object_key": {
+            "type": "string",
+            "description": "The object storage path to your locally uploaded file.\n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.\n\nHow to obtain:\n\nEach time you upload a file through the [Upload file](/api-reference/upload-file) endpoint, its `file_object_key` is returned. For more details, see [How to Upload Local Files](/developer-guides/upload-file).\n"
+          },
+          "user_id": {
+            "type": "string",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+          }
+        },
+        "required": [
+          "type",
+          "name",
+          "user_id"
+        ]
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [
+    {
+      "url": "https://ai.data.cloud/api",
+      "description": "体验环境"
+    }
+  ],
+  "security": {}
+}
