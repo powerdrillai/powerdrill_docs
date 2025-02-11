@@ -50,17 +50,6 @@
         ]
       },
       {
-        "tab": "Documentation",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "get-started/introduction"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "Enterprise",
         "groups": [
           {
