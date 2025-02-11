@@ -100,12 +100,12 @@
       },
       {
         "tab": "API Reference",
-        "versions": [
+        "anchors": [
           {
-            "version": "V1",
-            "anchors": [
+            "anchor": "Open API V1",
+            "groups": [
               {
-                "anchor": "Overview",
+                "group": "Overview",
                 "pages": [
                   "api-reference/overview",
                   "api-reference/authentication",
@@ -113,7 +113,7 @@
                 ]
               },
               {
-                "anchor": "Datasets",
+                "group": "Datasets",
                 "pages": [
                   "api-reference/create-dataset",
                   "api-reference/get-dataset-status",
@@ -124,7 +124,7 @@
                 ]
               },
               {
-                "anchor": "Data sources",
+                "group": "Data sources",
                 "pages": [
                   "api-reference/create-data-source",
                   "api-reference/create-data-source-without-dataset",
@@ -135,13 +135,13 @@
                 ]
               },
               {
-                "anchor": "Files",
+                "group": "Files",
                 "pages": [
                   "api-reference/upload-file"
                 ]
               },
               {
-                "anchor": "Sessions",
+                "group": "Sessions",
                 "pages": [
                   "api-reference/create-session",
                   "api-reference/get-session",
@@ -152,7 +152,7 @@
                 ]
               },  
               {
-                "anchor": "Jobs",
+                "group": "Jobs",
                 "pages": [
                   "api-reference/create-job"
                 ]
