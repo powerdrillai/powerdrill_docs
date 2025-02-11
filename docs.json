@@ -102,6 +102,64 @@
         "tab": "API Reference",
         "anchors": [
           {
+            "anchor": "Open API V2",
+            "groups": [
+              {
+                "group": "Overview",
+                "pages": [
+                  "api-reference/v2/overview",
+                  "api-reference/authentication",
+                  "api-reference/streaming"
+                ]
+              },
+              {
+                "group": "Datasets",
+                "pages": [
+                  "api-reference/v2/create-dataset",
+                  "api-reference/v2/get-dataset-status",
+                  "api-reference/v2/get-dataset-overview",
+                  "api-reference/v2/list-datasets",
+                  "api-reference/v2/modify-dataset",
+                  "api-reference/v2/delete-dataset"
+                ]
+              },
+              {
+                "group": "Data sources",
+                "pages": [
+                  "api-reference/v2/create-data-source",
+                  "api-reference/v2/create-data-source-without-dataset",
+                  "api-reference/v2/get-data-source",
+                  "api-reference/v2/list-data-sources",
+                  "api-reference/v2/delete-data-source",
+                  "api-reference/v2/presign-data-source"
+                ]
+              },
+              {
+                "group": "Files",
+                "pages": [
+                  "api-reference/v2/upload-file"
+                ]
+              },
+              {
+                "group": "Sessions",
+                "pages": [
+                  "api-reference/v2/create-session",
+                  "api-reference/v2/get-session",
+                  "api-reference/v2/get-job-history",
+                  "api-reference/v2/list-sessions",
+                  "api-reference/v2/modify-session",
+                  "api-reference/v2/delete-session"
+                ]
+              },  
+              {
+                "group": "Jobs",
+                "pages": [
+                  "api-reference/v2/create-job"
+                ]
+              }
+            ]
+          },
+          {
             "anchor": "Open API V1",
             "groups": [
               {
