@@ -103,7 +103,7 @@
         "anchors": [
           {
             "anchor": "Open API V2",
-            "icon": "2",
+            "icon": "dice-two",
             "groups": [
               {
                 "group": "Overview",
@@ -162,7 +162,7 @@
           },
           {
             "anchor": "Open API V1",
-            "icon": "1",
+            "icon": "dice-one",
             "groups": [
               {
                 "group": "Overview",
