@@ -11,7 +11,7 @@
     }
   ],
   "paths": {
-    "/v2/team/sessions/{sessionId}": {
+    "/v1/team/sessions/{sessionId}": {
       "delete": {
         "summary": "Delete session",
         "deprecated": false,

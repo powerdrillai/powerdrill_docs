@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Team Open API",
+    "title": "Team Open API Snake",
     "description": "",
     "version": "1.0.0"
   },
@@ -11,33 +11,15 @@
     }
   ],
   "paths": {
-    "/v1/team/sessions/{id}": {
-      "delete": {
-        "summary": "Delete session",
+    "/v2/team/sessions": {
+      "post": {
+        "summary": "Create session",
         "deprecated": false,
-        "description": "Deletes a session that you created. Once deleted, both the session and its job history will be permanently removed and cannot be recovered.",
+        "description": "Creates a session. \nA session represents a continuous interaction between a user and Powerdrill within a single conversation. Each user can have up to 150 active sessions simultaneously. If this limit is reached, you can remove unused sessions to free up space for new ones.",
         "tags": [
           "Session"
         ],
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The ID of the session you want to delete.\n\nTo check sessions you created, call [GET /v2/team/sessions](/api-reference/list-sessions).",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-pd-api-key",
-            "in": "header",
-            "description": "Your API key to access the target project. \n\nFor more information, see [Authentication](/api-reference/authentication).",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "x-pd-external-trace-id",
             "in": "header",
@@ -55,14 +37,73 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The session name, which can be up to 128 characters in length. If it exceeds this limit, it will be truncated."
+                  },
+                  "output_language": {
+                    "type": "string",
+                    "enum": [
+                      "AUTO",
+                      "EN",
+                      "ES",
+                      "AR",
+                      "PT",
+                      "ID",
+                      "JA",
+                      "RU",
+                      "HI",
+                      "FR",
+                      "DE",
+                      "VI",
+                      "TR",
+                      "PL",
+                      "IT",
+                      "KO",
+                      "ZH-CN",
+                      "ZH-TW"
+                    ],
+                    "default": "AUTO",
+                    "description": "The language in which the output is generated. For example, if set to `EN`, the output will be in English. If not specified, the default setting `AUTO` will be used, which allows Powerdrill Enterprise to automatically detect the appropriate language for the output based on your question. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese"
+                  },
+                  "job_mode": {
+                    "type": "string",
+                    "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate job mode from data analysis and information retrieval.\n- `DATA_ANALYTICS`: Powerdrill focuses specifically on data analysis.\n\nIf not specified, the default setting `AUTO` will be used. However, if your intent is clearly data analysis, we recommend specifying the value as **DATA_ANALYSIS**. This helps Powerdrill skip the intention detection step, enabling faster question processing.",
+                    "enum": [
+                      "AUTO",
+                      "DATA_ANALYTICS"
+                    ],
+                    "default": "DATA_ANALYTICS"
+                  },
+                  "max_contextual_job_history": {
+                    "type": "integer",
+                    "description": "The maximum number of recent jobs retained as context for the next job, with a value range of `0` to `10`. The default value is `10`. If set to `0`, jobs will be run without any context from previous jobs."
+                  },
+                  "agent_id": {
+                    "type": "string",
+                    "enum": [
+                      "DATA_ANALYSIS_AGENT"
+                    ],
+                    "default": "DATA_ANALYSIS_AGENT",
+                    "description": "The ID of the agent. This is a reserved parameter, don't specify it or set it to **DATA_ANALYSIS_AGENT**."
+                  },
                   "user_id": {
                     "type": "string",
                     "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
                   }
                 },
                 "required": [
+                  "name",
                   "user_id"
                 ]
+              },
+              "example": {
+                "name": "My session",
+                "output_language": "FR",
+                "job_mode": "AUTO",
+                "max_contextual_job_history": 10,
+                "agent_id": "DATA_ANALYSIS_AGENT",
+                "user_id": "tmm-dafasdfasdfasdf"
               }
             }
           }
@@ -80,14 +121,34 @@
                       "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
                     },
                     "data": {
+                      "description": "The returned data object.",
                       "type": "object",
-                      "properties": {},
-                      "description": "Null is returned when the operation is successful."
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The session ID.\n\nSave it if you want to use this session to [run your jobs](/api-reference/create-job) later."
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ]
                     }
                   },
                   "required": [
+                    "data",
                     "code"
                   ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 0,
+                      "data": {
+                        "id": "session-dasfasdgasdgfasdgasdg"
+                      }
+                    }
+                  }
                 }
               }
             },
@@ -103,12 +164,79 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "apikey-header-x-pd-api-key": []
+          }
+        ]
       }
     }
   },
   "components": {
     "schemas": {
+      "CreateSessionRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The session name, which can be up to 128 characters in length. If it exceeds this limit, it will be truncated."
+          },
+          "output_language": {
+            "type": "string",
+            "enum": [
+              "AUTO",
+              "EN",
+              "ES",
+              "AR",
+              "PT",
+              "ID",
+              "JA",
+              "RU",
+              "HI",
+              "FR",
+              "DE",
+              "VI",
+              "TR",
+              "PL",
+              "IT",
+              "KO",
+              "ZH-CN",
+              "ZH-TW"
+            ],
+            "default": "AUTO",
+            "description": "The language in which the output is generated. For example, if set to `EN`, the output will be in English. If not specified, the default setting `AUTO` will be used, which allows Powerdrill Enterprise to automatically detect the appropriate language for the output based on your question. Possible values are:\n- `AUTO`: adaptive recognition\n- `EN`: English\n- `ES`: Spanish\n- `AR`: Arabic\n- `PT`: Portuguese\n- `ID`: Indonesian\n- `JA`: Japanese\n- `RU`: Russian\n- `HI`: Hindi\n- `FR`: French\n- `DE`: German\n- `VI`: Vietnamese\n- `TR`: Turkish\n- `PL`: Polish\n- `IT`: Italian\n- `KO`: Korean\n- `ZH-CN`: Simplified Chinese\n- `ZH-TW`: Traditional Chinese"
+          },
+          "job_mode": {
+            "type": "string",
+            "description": "Job mode. Possible values are:\n- `AUTO`: Powerdrill automatically detects your intent and selects the appropriate job mode from data analysis and information retrieval.\n- `DATA_ANALYTICS`: Powerdrill focuses specifically on data analysis.\n\nIf not specified, the default setting `AUTO` will be used. However, if your intent is clearly data analysis, we recommend specifying the value as **DATA_ANALYSIS**. This helps Powerdrill skip the intention detection step, enabling faster question processing.",
+            "enum": [
+              "AUTO",
+              "DATA_ANALYTICS"
+            ],
+            "default": "DATA_ANALYTICS"
+          },
+          "max_contextual_job_history": {
+            "type": "integer",
+            "description": "The maximum number of recent jobs retained as context for the next job, with a value range of `0` to `10`. The default value is `10`. If set to `0`, jobs will be run without any context from previous jobs."
+          },
+          "agent_id": {
+            "type": "string",
+            "enum": [
+              "DATA_ANALYSIS_AGENT"
+            ],
+            "default": "DATA_ANALYSIS_AGENT",
+            "description": "The ID of the agent. This is a reserved parameter, don't specify it or set it to **DATA_ANALYSIS_AGENT**."
+          },
+          "user_id": {
+            "type": "string",
+            "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+          }
+        },
+        "required": [
+          "name",
+          "user_id"
+        ]
+      },
       "返回模型": {
         "type": "object",
         "properties": {
@@ -122,7 +250,13 @@
         ]
       }
     },
-    "securitySchemes": { }
+    "securitySchemes": {
+      "apikey-header-x-pd-api-key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-pd-api-key"
+      }
+    }
   },
   "servers": [
     {
