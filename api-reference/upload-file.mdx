@@ -1,0 +1,57 @@
+---
+openapi: post /v1/team/file/upload_datasource
+description: "Uploads a file. "
+mode: "wide"
+---
+
+### Introduction
+
+You can use this endpoint to upload your local file and then use the `fileKey` you obtained to create a data source through the [Create data source](/api-reference/create-data-source) endpoint.
+
+Only files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.
+
+**Example request:**
+<CodeGroup>
+```curl cURL
+curl --location 'http://ai.data.cloud/api/v1/file/upload_datasource' \
+--header 'Content-Type: multipart/form-data' \
+--header 'x-pd-api-key: <api-key>' \
+--header 'x-pd-api-agent-id: GENERAL' \
+--form 'file=@"/Users/test/workspace/66C4547D0000650003AB1.xlsx"'
+```
+
+```python Python
+import requests
+
+url = "http://ai.data.cloud/api/v1/file/upload_datasource"
+
+payload = {}
+files=[
+  ('file',('66C4547D0000650003AB1.xlsx',open('/Users/test/workspace/66C4547D0000650003AB1.xlsx','rb'),'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'))
+]
+headers = {
+  'Content-Type': 'multipart/form-data',
+  'x-pd-api-key': '<api-key>',
+  'x-pd-api-agent-id': 'GENERAL'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+print(response.text)
+```
+</CodeGroup>
+
+**Example response:**
+
+```json 200
+{
+  "code": 0,
+  "data": {
+    "fileKey": "/tmp/sdgsagdsgsadgasdg"
+  }
+}
+```
+
+
+
+
