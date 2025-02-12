@@ -1,4 +1,43 @@
 ---
 openapi: get /v2/team/sessions/{id}
+description: "Obtains information about a session you created."
+mode: "wide"
 ---
+
+**Example request:**
+<CodeGroup>
+```curl cURL
+curl --request GET \
+  --url https://ai.data.cloud/api/v2/team/sessions/{id} \?user_id=tmm-dafasdfasdfasdf
+  --header 'x-pd-api-key: <api-key>'
+```
+
+```python Python
+import requests
+
+url = "https://ai.data.cloud/api/v2/team/sessions/{id}?user_id=tmm-dafasdfasdfasdf"
+
+headers = {"x-pd-api-key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+</CodeGroup>
+
+**Example response:**
+
+```json 200
+{
+  "code": 0,
+  "data": {
+    "id": "cckrXXg68P8lmb59dg4yO",
+    "name": "Analyze performance",
+    "output_language": "HI",
+    "job_mode": "AUTO",
+    "max_contextual_job_history": 76,
+    "agent_id": "DATA_ANALYSIS_AGENT"
+  }
+}
+```
 

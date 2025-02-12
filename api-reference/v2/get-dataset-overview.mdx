@@ -1,3 +1,54 @@
 ---
 openapi: get /v2/team/datasets/{id}/overview
+description: "Obtains the basic information about the dataset, including the keywords, description, and pre-generated questions."
+mode: "wide"
 ---
+
+**Example request:**
+<CodeGroup>
+```curl cURL
+curl --request GET \
+  --url https://ai.data.cloud/api/v2/team/datasets/{id}/overview \?user_id=tmm-dafasdfasdfasdf
+  --header 'x-pd-api-key: <api-key>'
+```
+
+```python Python
+import requests
+
+url = "https://ai.data.cloud/api/v2/team/datasets/{id}/overview?user_id=tmm-dafasdfasdfasdf"
+
+headers = {"x-pd-api-key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+</CodeGroup>
+
+**Example response:**
+
+```json 200
+{
+  "code": {
+    "code": 0
+  },
+  "data": {
+    "id": "dset-cm5axptyyxxx298",
+    "name": "sales_indicators_2024",
+    "description": "A dataset comprising 373 travel bookings with 15 attributes, offering insights into booking patterns, pricing strategies, and more",
+    "summary": "This dataset contains 373 travel bookings with 15 attributes, enabling analysis of booking trends, pricing strategies, and travel agency dynamics.",
+    "exploration_questions": [
+      "How does the booking price trend over time based on the BookingTimestamp?",
+      "How does the average booking price change with respect to the TravelDate?",
+      "Are there any significant outliers in the booking prices, and what might be causing them?",
+      "How does the average price vary between one-way and round-trip bookings?"
+    ],
+    "keywords": [
+      "Travel Bookings",
+      "Booking Trends",
+      "Travel Agencies"
+    ]
+  }
+}
+```
+

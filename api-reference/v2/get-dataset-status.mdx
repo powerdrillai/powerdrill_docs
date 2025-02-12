@@ -1,4 +1,44 @@
 ---
 openapi: get /v2/team/datasets/{id}/status
+description: "Counts the data sources for each status in a dataset."
+mode: "wide"
 ---
+
+
+This endpoint returns the count of data sources for each status in the specified dataset. You can use it to verify if all data sources are synchronized and ready for running data analysis jobs.
+
+If both `invalidCount` and `synchingCount` in the response are `0`, all data sources in the dataset are accessible to Powerdrill for answering questions. Otherwise, any unsynchronized data sources cannot be accessed.
+
+
+**Example request:**
+<CodeGroup>
+```curl cURL
+curl --request GET \
+  --url https://ai.data.cloud/api/v2/team/datasets/{id}/status?user_id=tmm-dafasdfasdfasdf
+```
+
+```python Python
+import requests
+
+url = "https://ai.data.cloud/api/v2/team/datasets/{id}/status?user_id=tmm-dafasdfasdfasdf"
+
+response = requests.request("GET", url)
+
+print(response.text)
+```
+</CodeGroup>
+
+**Example response:**
+
+```json 200
+{
+  "code": 0,
+  "data": {
+    "synched_count": 5,
+    "invalid_count": 0,
+    "synching_count": 0
+  }
+}
+```
+
 

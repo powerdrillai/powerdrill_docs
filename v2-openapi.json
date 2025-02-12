@@ -461,7 +461,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the session you want to modify.\n\nTo check sessions existing in your project, call [GET /v1/team/sessions](/api-reference/list-sessions).",
+            "description": "The ID of the session you want to modify.\n\nTo check sessions existing in your project, call [GET /v2/team/sessions](/api-reference/v2/list-sessions).",
             "required": true,
             "schema": {
               "type": "string"
@@ -691,7 +691,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the target session.\n\nTo check sessions you created, call [GET /v1/team/sessions](/api-reference/list-sessions).",
+            "description": "The ID of the target session.\n\nTo check sessions you created, call [GET /v2/team/sessions](/api-reference/v2/list-sessions).",
             "required": true,
             "schema": {
               "type": "string"
@@ -848,7 +848,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the target session.\n\nTo check sessions existing in your project, call [GET /v1/team/sessions](/api-reference/list-sessions).",
+            "description": "The ID of the target session.\n\nTo check sessions existing in your project, call [GET /v2/team/sessions](/api-reference/v2/list-sessions).",
             "required": true,
             "schema": {
               "type": "string"
@@ -1198,7 +1198,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the dataset for which you want to view details.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "description": "The ID of the dataset for which you want to view details.\n\nTo check the datasets you have access to, call [GET /v2/team/datasets](/api-reference/v2/list-datasets).",
             "required": true,
             "schema": {
               "type": "string"
@@ -1598,7 +1598,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the dataset you want to delete. You can only delete the dataset that you created.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "description": "The ID of the dataset you want to delete. You can only delete the dataset that you created.\n\nTo check the datasets you have access to, call [GET /v2/team/datasets](/api-reference/v2/list-datasets).",
             "required": true,
             "schema": {
               "type": "string"
@@ -1689,7 +1689,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the dataset to modify. You can only modify the dataset that you created.\n\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "description": "The ID of the dataset to modify. You can only modify the dataset that you created.\n\n\nTo check the datasets you have access to, call [GET /v2/team/datasets](/api-reference/v2/list-datasets).",
             "required": true,
             "schema": {
               "type": "string"
@@ -1847,7 +1847,7 @@
                           "description": "The number of data sources waiting to be synchronized or being synchronized."
                         }
                       },
-                      "description": "The number of data sources per state.\n\n<Tip>\nNote that only when both `invalidCount` and `synchingCount` are `0`, all data sources in the dataset can be used by Powerdrill to answer your questions. Otherwise, starting a job immediately cannot fetching data from data sources that are not synchronized.\n</Tip>",
+                      "description": "The number of data sources per state.\n\nNote that only when both `invalidCount` and `synchingCount` are `0`, all data sources in the dataset can be used by Powerdrill to answer your questions. Otherwise, starting a job immediately cannot fetching data from data sources that are not synchronized.",
                       "required": [
                         "synched_count",
                         "invalid_count",
@@ -1902,7 +1902,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the dataset in which you want to create a data  source.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "description": "The ID of the dataset in which you want to create a data  source.\n\nTo check the datasets you have access to, call [GET /v2/team/datasets](/api-reference/v2/list-datasets).",
             "required": true,
             "schema": {
               "type": "string"
@@ -1940,7 +1940,7 @@
                   },
                   "file_object_key": {
                     "type": "string",
-                    "description": "The object storage path to your locally uploaded file.\n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.\n\nHow to obtain:\n\nEach time you upload a file through the [Upload file](/api-reference/upload-file) endpoint, its `file_object_key` is returned. For more details, see [How to Upload Local Files](/developer-guides/upload-file).\n"
+                    "description": "The object storage path to your locally uploaded file.\n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.\n\nHow to obtain:\n\nEach time you upload a file through the [Upload file](/api-reference/v2/upload-file) endpoint, its `file_object_key` is returned. For more details, see [How to Upload Local Files](/developer-guides/upload-file).\n"
                   },
                   "user_id": {
                     "type": "string",
@@ -2059,7 +2059,7 @@
       "get": {
         "summary": "List data sources",
         "deprecated": false,
-        "description": "Lists data sources in the specified dataset. When using this endpoint:\n- Make sure the specified dataset belongs to the same project as your API key.\n- To check the datasets you have access to in the project, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+        "description": "Lists data sources in the specified dataset. When using this endpoint:\n- Make sure the specified dataset belongs to the same project as your API key.\n- To check the datasets you have access to in the project, call [GET /v2/team/datasets](/api-reference/v2/list-datasets).",
         "tags": [
           "Data source"
         ],
@@ -2270,7 +2270,7 @@
           {
             "name": "dataset_id",
             "in": "path",
-            "description": "The ID of the dataset that contains the data source you want to delete.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "description": "The ID of the dataset that contains the data source you want to delete.\n\nTo check the datasets you have access to, call [GET /v2/team/datasets](/api-reference/v2/list-datasets).",
             "required": true,
             "schema": {
               "type": "string"
@@ -2279,7 +2279,7 @@
           {
             "name": "datasource_id",
             "in": "path",
-            "description": "The ID of the data source you want to delete.\n\nTo check data sources existing in a specified dataset, call [GET /v1/team/datasets/{id}/datasources](/api-reference/list-data-sources).",
+            "description": "The ID of the data source you want to delete.\n\nTo check data sources existing in a specified dataset, call [GET /v2/team/datasets/{id}/datasources](/api-reference/v2/list-data-sources).",
             "required": true,
             "schema": {
               "type": "string"
@@ -2371,7 +2371,7 @@
           {
             "name": "dataset_id",
             "in": "path",
-            "description": "The ID of the dataset that contains the target data source.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "description": "The ID of the dataset that contains the target data source.\n\nTo check the datasets you have access to, call [GET /v2/team/datasets](/api-reference/v2/list-datasets).",
             "required": true,
             "schema": {
               "type": "string"
@@ -2380,7 +2380,7 @@
           {
             "name": "datasource_id",
             "in": "path",
-            "description": "The ID of the target data source.\n\nTo check data sources existing in a specified dataset, call [GET /v1/team/datasets/{id}/datasources](/api-reference/list-data-sources).",
+            "description": "The ID of the target data source.\n\nTo check data sources existing in a specified dataset, call [GET /v2/team/datasets/{id}/datasources](/api-reference/v2/list-data-sources).",
             "required": true,
             "schema": {
               "type": "string"
@@ -2505,7 +2505,7 @@
       "post": {
         "summary": "Create data source without specifying a dataset",
         "deprecated": false,
-        "description": "Creates a data source without specifying a dataset.\n\nWhen calling this endpoint, Powerdrill will automatically create a dataset for the new data source. Save the dataset ID in the response so that you can [associate it with a session](/api-reference/create-session) and explore the data source.",
+        "description": "Creates a data source without specifying a dataset.\n\nWhen calling this endpoint, Powerdrill will automatically create a dataset for the new data source. Save the dataset ID in the response so that you can [associate it with a session](/api-reference/v2/create-session) and explore the data source.",
         "tags": [
           "Data source"
         ],
@@ -2643,7 +2643,7 @@
           {
             "name": "dataset_id",
             "in": "path",
-            "description": "The ID of the dataset that contains the target data source.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).",
+            "description": "The ID of the dataset that contains the target data source.\n\nTo check the datasets you have access to, call [GET /v2/team/datasets](/api-reference/v2/list-datasets).",
             "required": true,
             "schema": {
               "type": "string"
@@ -2652,7 +2652,7 @@
           {
             "name": "datasource_id",
             "in": "path",
-            "description": "The ID of the target data source.\n\nTo check data sources existing in a specified dataset, call [GET /v1/team/datasets/{id}/datasources](/api-reference/list-data-sources).",
+            "description": "The ID of the target data source.\n\nTo check data sources existing in a specified dataset, call [GET /v2/team/datasets/{id}/datasources](/api-reference/v2/list-data-sources).",
             "required": true,
             "schema": {
               "type": "string"
@@ -3497,7 +3497,7 @@
           },
           "file_object_key": {
             "type": "string",
-            "description": "The object storage path to your locally uploaded file.\n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.\n\nHow to obtain:\n\nEach time you upload a file through the [Upload file](/api-reference/upload-file) endpoint, its `file_object_key` is returned. For more details, see [How to Upload Local Files](/developer-guides/upload-file).\n"
+            "description": "The object storage path to your locally uploaded file.\n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.\n\nHow to obtain:\n\nEach time you upload a file through the [Upload file](/api-reference/v2/upload-file) endpoint, its `file_object_key` is returned. For more details, see [How to Upload Local Files](/developer-guides/upload-file).\n"
           },
           "user_id": {
             "type": "string",

@@ -1,4 +1,189 @@
 ---
 openapi: get /v2/team/sessions/{id}/history
+description: "Obtains the job history retained in the specified session."
+mode: "wide"
 ---
 
+**Example request:**
+<CodeGroup>
+```curl cURL
+curl --request GET \
+  --url https://ai.data.cloud/api/v2/team/sessions/{id}/history \?user_id=tmm-dafasdfasdfasdf
+  --header 'x-pd-api-key: <api-key>'
+```
+
+```python Python
+import requests
+
+url = "https://ai.data.cloud/api/v2/team/sessions/{id}/history?user_id=tmm-dafasdfasdfasdf"
+
+headers = {"x-pd-api-key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+</CodeGroup>
+
+**Example response:**
+
+<Accordion title="Example response">
+
+```json 200
+{
+  "code": 0,
+  "data": {
+    "total_items": 1,
+    "page_number": 1,
+    "page_size": 10,
+    "records": [
+      {
+        "job_id": "job-1dsfasddfasgddsaffds",
+        "question": {
+          "blocks": [
+            {
+              "type": "MESSAGE",
+              "content": "Check for negative values across all sales columns"
+            }
+          ]
+        },
+        "answer": {
+          "blocks": [
+            {
+              "type": "MESSAGE",
+              "content": "- Check for negative values across all sales columns.\n- Filter the DataFrame to retain only rows with no negative sales values.",
+              "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
+              "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
+              "stage": "Analyze"
+            },
+            {
+              "type": "CODE",
+              "content": "```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  SalesByChannelByDay_Summary_Demo.Sheet1_0_table_1.csv\n    '''\n    # Identify columns that represent sales data (all except the first column)\n    sales_columns = input_0.columns[1:]\n    \n    # Filter rows where any sales value is negative\n    filtered_df = input_0[~(input_0[sales_columns] < 0).any(axis=1)]\n    \n    # Assign the result to the output variable\n    output = filtered_df\n    \n    return output\n\n```",
+              "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
+              "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
+              "stage": "Analyze"
+            },
+            {
+              "type": "TABLE",
+              "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/baf7d6d1-fb81-4fdb-bcdd-32923d214c7b.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9bcb5af552793f162e35f41d62fb9306cf90888924bfbdce81ea687265fddf83",
+              "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
+              "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
+              "stage": "Analyze"
+            },
+            {
+              "type": "MESSAGE",
+              "content": "- Sum the sales across all days for each channel.\n- Create a new DataFrame with the channel names and their corresponding total sales.",
+              "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
+              "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
+              "stage": "Analyze"
+            },
+            {
+              "type": "CODE",
+              "content": "```python\n\nimport pandas as pd\n\ndef invoke(negative_sales_channels: pd.DataFrame) -> pd.DataFrame:\n    '''\n    negative_sales_channels: pd.DataFrame  negative_sales_channels.csv\n    '''\n    # Sum the sales across all days for each channel\n    total_sales = negative_sales_channels.iloc[:, 1:].sum(axis=1)\n    \n    # Create a new DataFrame with the channel names and their corresponding total sales\n    output = pd.DataFrame({\n        'Channel': negative_sales_channels.iloc[:, 0],\n        'Total Sales': total_sales\n    })\n    \n    return output\n\n```",
+              "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
+              "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
+              "stage": "Analyze"
+            },
+            {
+              "type": "TABLE",
+              "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/10cffac2-8bf3-45f4-86e6-1ed8457329f2.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c6f5b522d2ddceea730304b86a45d5f5165f05f9fda3c1d275d11e9022c1e7ac",
+              "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
+              "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
+              "stage": "Analyze"
+            },
+            {
+              "type": "MESSAGE",
+              "content": "- Replace any negative sales values with zero in the data.\n- Sum the sales across all days for each channel.\n- Create a new data structure with the summed sales values.",
+              "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
+              "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
+              "stage": "Analyze"
+            },
+            {
+              "type": "CODE",
+              "content": "```python\n\nimport pandas as pd\n\ndef invoke(negative_sales_channels: pd.DataFrame) -> pd.DataFrame:\n    '''\n    negative_sales_channels: pd.DataFrame  negative_sales_channels.csv\n    '''\n    # Replace negative values with zero\n    negative_sales_channels.iloc[:, 1:] = negative_sales_channels.iloc[:, 1:].clip(lower=0)\n    \n    # Sum the sales across all days for each channel\n    sales_sum = negative_sales_channels.iloc[:, 1:].sum(axis=1)\n    \n    # Create a new DataFrame with the summed sales values\n    output = pd.DataFrame({\n        'Channel': negative_sales_channels.iloc[:, 0],\n        'Total Sales': sales_sum\n    })\n    \n    return output\n\n```",
+              "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
+              "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
+              "stage": "Analyze"
+            },
+            {
+              "type": "TABLE",
+              "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/f4c99616-dd7c-48b1-8a35-d3141d732c36.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=d21a8d939ab09547bc201754ba253ca6c0d1da5361752f2228237e3ff59be256",
+              "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
+              "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
+              "stage": "Analyze"
+            },
+            {
+              "type": "MESSAGE",
+              "content": "- Merge the two datasets on the 'Channel' column to align sales data for comparison.\n- Calculate the difference in 'Total Sales' between the datasets for each channel.\n- Store the results, including channel name and calculated difference, in a new dataset.",
+              "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
+              "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
+              "stage": "Analyze"
+            },
+            {
+              "type": "CODE",
+              "content": "```python\n\nimport pandas as pd\n\ndef invoke(sales_trend_with_negatives: pd.DataFrame, sales_trend_without_negatives: pd.DataFrame) -> pd.DataFrame:\n    # Merge the two DataFrames on the 'Channel' column\n    merged_df = pd.merge(sales_trend_with_negatives, sales_trend_without_negatives, on='Channel', suffixes=('_with_negatives', '_without_negatives'))\n    \n    # Calculate the difference in 'Total Sales' between the two DataFrames\n    merged_df['Sales Difference'] = merged_df['Total Sales_without_negatives'] - merged_df['Total Sales_with_negatives']\n    \n    # Create a new DataFrame to store the results\n    output = merged_df[['Channel', 'Sales Difference']]\n    \n    return output\n\n```",
+              "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
+              "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
+              "stage": "Analyze"
+            },
+            {
+              "type": "TABLE",
+              "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/aaf4f2f7-e2db-4f2e-98ae-0bdd18f42333.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=19fcfe97c70bf40292b920ecbf0299c101e1de11e49b54fb8f62934b6e874f52",
+              "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
+              "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
+              "stage": "Analyze"
+            },
+            {
+              "type": "MESSAGE",
+              "content": "\n\n`Analyzing Conclusions` \n\n### The impact of negative sales values on overall sales trends\n\n#### Sales variance analysis\n\n",
+              "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
+              "group_name": "Conclusions",
+              "stage": "Respond"
+            },
+            {
+              "type": "TABLE",
+              "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/aaf4f2f7-e2db-4f2e-98ae-0bdd18f42333.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=19fcfe97c70bf40292b920ecbf0299c101e1de11e49b54fb8f62934b6e874f52",
+              "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
+              "group_name": "Conclusions",
+              "stage": "Respond"
+            },
+            {
+              "type": "MESSAGE",
+              "content": "\n\n- **Sales variance**：In all channels (including EC, JD, Tmall, WeChat, retail, corporate stores, outlets, and total), the sales difference is 0.0. This indicates that regardless of the presence of negative sales values, the sales trend has not changed.\n\n#### Conclusion and Insights\n- **The impact of negative sales values**：Based on the provided data, negative sales values have no impact on the overall sales trend of the affected channels, as the sales variance for all channels is 0.0.\n- **Data consistency**：The sales discrepancies across all channels are consistent, indicating that there are no anomalies or deviations caused by negative sales values during data processing or analysis.",
+              "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
+              "group_name": "Conclusions",
+              "stage": "Respond"
+            },
+            {
+              "type": "SOURCES",
+              "content": [
+                {
+                  "source": "SalesByChannelByDay_Summary_Demo.xlsx",
+                  "datasource_id": "cm2ej4wmo000001fcdkwbdrml",
+                  "dataset_id": "cm2ej4vx900hp01l1o378zr9o",
+                  "file_type": "xlsx",
+                  "external_id": ""
+                }
+              ],
+              "group_id": "",
+              "group_name": "",
+              "stage": "Respond"
+            },
+            {
+              "type": "QUESTIONS",
+              "content": [
+                "Analyze the specific channels with negative sales values on different dates and discuss whether the sales strategies of these channels might lead to negative values.",
+                "Study the long-term impact of negative sales values on overall sales trends and assess whether adjustments to data analysis methods are needed to more accurately reflect the actual situation.",
+                "Investigate the source of negative sales values, whether they are related to returns, discounts, or other factors, and propose possible solutions to reduce the occurrence of negative values."
+              ],
+              "group_id": "-1",
+              "stage": "Respond"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+</Accordion>

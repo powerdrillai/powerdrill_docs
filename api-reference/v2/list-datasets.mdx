@@ -1,4 +1,49 @@
 ---
 openapi: get /v2/team/datasets
+description: "Lists datasets.
+
+Only datasets created within the same project as your API key will be listed. You can specify a search keyword to filter datasets by name and description."
+mode: "wide"
 ---
 
+
+
+**Example request:**
+<CodeGroup>
+```curl cURL
+curl --request GET \?user_id=tmm-dafasdfasdfasdf
+  --header 'x-pd-api-key: <api-key>'
+```
+
+```python Python
+import requests
+
+url = "https://ai.data.cloud/api/v2/team/datasets?user_id=tmm-dafasdfasdfasdf"
+
+headers = {"x-pd-api-key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+</CodeGroup>
+
+**Example response:**
+
+```json 200
+{
+  "code": 0,
+  "data": {
+    "page_number": 1,
+    "page_size": 10,
+    "total_items": 1,
+    "records": [
+      {
+        "id": "dataset-dasfadsgadsgas",
+        "name": "mysql",
+        "description": "mysql databases"
+      }
+    ]
+  }
+}
+```

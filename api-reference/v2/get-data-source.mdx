@@ -1,4 +1,41 @@
 ---
 openapi: get /v2/team/datasets/{dataset_id}/datasources/{datasource_id}
+description: "Obtains information about the specified data source."
+mode: "wide"
 ---
 
+**Example request:**
+<CodeGroup>
+```curl cURL
+curl --request GET \
+  --url https://ai.data.cloud/api/v2/team/datasets/{dataset_id}/datasources/{datasource_id} \?user_id=tmm-dafasdfasdfasdf
+  --header 'x-pd-api-key: <api-key>'
+```
+
+```python Python
+import requests
+
+url = "https://ai.data.cloud/api/v2/team/datasets/{dataset_id}/datasources/{datasource_id}?user_id=tmm-dafasdfasdfasdf"
+
+headers = {"x-pd-api-key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+</CodeGroup>
+
+**Example response:**
+
+```json 200
+{
+  "code": 0,
+  "data": {
+    "id": "datasource-cadsgfsdagasgadsg",
+    "dataset_id": "dataset-dagasdgasgasg",
+    "name": "test.csv",
+    "type": "FILE",
+    "status": "pending"
+  }
+}
+```
