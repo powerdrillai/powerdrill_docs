@@ -122,13 +122,18 @@
         ]
       }
     },
-    "securitySchemes": {}
+    "securitySchemes": {
+      "apikey-header-x-pd-api-key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-pd-api-key"
+      }
+    }
   },
   "servers": [
     {
       "url": "https://ai.data.cloud/api",
       "description": "体验环境"
     }
-  ],
-  "security": {}
+  ]
 }
