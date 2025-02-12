@@ -110,7 +110,8 @@
                 "pages": [
                   "api-reference/v2/overview",
                   "api-reference/authentication",
-                  "api-reference/streaming"
+                  "api-reference/streaming",
+                  "api-reference/error-codes"
                 ]
               },
               {
@@ -169,7 +170,8 @@
                 "pages": [
                   "api-reference/overview",
                   "api-reference/authentication",
-                  "api-reference/streaming"
+                  "api-reference/streaming",
+                  "api-reference/error-codes"
                 ]
               },
               {
@@ -214,7 +216,7 @@
               {
                 "group": "Jobs",
                 "pages": [
-                  "api-reference/v1/create-job"
+                  "api-reference/create-job"
                 ]
               }
             ]
