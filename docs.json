@@ -149,7 +149,7 @@
                   "api-reference/v2/get-job-history",
                   "api-reference/v2/list-sessions",
                   "api-reference/v2/modify-session",
-                  "api-reference/v2/delete-session"
+                  "api-reference/delete-session"
                 ]
               },  
               {
