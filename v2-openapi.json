@@ -138,7 +138,7 @@
                       "properties": {
                         "id": {
                           "type": "string",
-                          "description": "The session ID.\n\nSave it if you want to use this session to [run your jobs](/api-reference/create-job) later."
+                          "description": "The session ID.\n\nSave it if you want to use this session to [run your jobs](/api-reference/v2/create-job) later."
                         }
                       },
                       "required": [
@@ -631,6 +631,9 @@
                 "required": [
                   "user_id"
                 ]
+              },
+              "example": {
+                "user_id": "tmm-dafasdfasdfasdf"
               }
             }
           }
@@ -1370,7 +1373,8 @@
               },
               "example": {
                 "name": "My dataset",
-                "description": "my default dataset"
+                "description": "my default dataset",
+                "user_id": "tmm-dafasdfasdfasdf"
               }
             }
           }
@@ -1392,7 +1396,7 @@
                       "properties": {
                         "id": {
                           "type": "string",
-                          "description": "The dataset ID. \n\nSave the dataset ID if you want to [upload data sources](/api-reference/create-data-source) to it or [associate it with a session](/api-reference/create-session) for data exploration."
+                          "description": "The dataset ID. \n\nSave the dataset ID if you want to [upload data sources](/api-reference/v2/create-data-source) to it or [associate it with a session](/api-reference/v2/create-session) for data exploration."
                         }
                       },
                       "required": [
@@ -1625,6 +1629,9 @@
                 "required": [
                   "user_id"
                 ]
+              },
+              "example": {
+                "user_id": "tmm-dafasdfasdfasdf"
               }
             }
           }
@@ -2303,6 +2310,9 @@
                 "required": [
                   "user_id"
                 ]
+              },
+              "example": {
+                "user_id": "tmm-dafasdfasdfasdf"
               }
             }
           }
@@ -2520,6 +2530,7 @@
               "example": {
                 "name": "test.csv",
                 "type": "FILE",
+                "user_id": "tmm-dafasdfasdfasdf",
                 "file_object_key": "/tmp/sdgsagdsgsadgasdg"
               }
             }
@@ -2680,7 +2691,8 @@
                 ]
               },
               "example": {
-                "expires_in": 600
+                "expires_in": 600,
+                "user_id": "tmm-dafasdfasdfasdf"
               }
             }
           }
@@ -2971,6 +2983,7 @@
               },
               "example": {
                 "session_id": "cxxdgegeegeg3433fff",
+                "user_id": "tmm-dafasdfasdfasdf",
                 "stream": true,
                 "question": "Hello World",
                 "dataset_id": "cm1gjmg8e0057r3x22v1fdu8m",
