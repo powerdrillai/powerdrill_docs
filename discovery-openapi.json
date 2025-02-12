@@ -191,8 +191,7 @@
             "description": "The number of items on a single page. If not specified, the default value `10` will be used.",
             "required": false,
             "schema": {
-              "type": "integer",
-              "default": 10
+              "type": "integer"
             }
           },
           {

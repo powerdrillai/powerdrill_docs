@@ -168,8 +168,8 @@
                 "group": "Overview",
                 "pages": [
                   "api-reference/v1/overview",
-                  "api-reference/v1/authentication",
-                  "api-reference/v1/streaming"
+                  "api-reference/authentication",
+                  "api-reference/streaming"
                 ]
               },
               {
