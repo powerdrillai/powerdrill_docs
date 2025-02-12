@@ -1,0 +1,126 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Team Open API",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "Session"
+    }
+  ],
+  "paths": {
+    "/v1/team/sessions/{sessionId}": {
+      "delete": {
+        "summary": "Delete session",
+        "deprecated": false,
+        "description": "Deletes a session. Once deleted, both the session and its job history will be permanently removed and cannot be recovered.",
+        "tags": [
+          "Session"
+        ],
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "description": "The session ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "Your user ID. \n\nHow to obtain your user ID: Sign in to Powerdrill Enterprise, click **Users** in the top navigation bar, and find your user ID in the list of users.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The external trace ID. The length ranges from 0 to 128 characters.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. Possible error codes include: \n- 100: Bad request. \n- 201: Request frequency limit.\n- 9999: Internal error. \n- 100001: Invalid operation. "
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "Null is returned when the operation is successful."
+                    }
+                  },
+                  "required": [
+                    "code"
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "x-pd-trace-id": {
+                "example": "",
+                "required": true,
+                "description": "The trace ID of Powerdrill.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey-header-x-pd-api-key": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "返回模型": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. Possible error codes include: \n- 100: Bad request. \n- 201: Request frequency limit.\n- 9999: Internal error. \n- 100001: Invalid operation. "
+          }
+        },
+        "required": [
+          "code"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "apikey-header-x-pd-api-key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-pd-api-key"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://ai.data.cloud/api",
+      "description": "体验环境"
+    }
+  ],
+  "security": {}
+}
