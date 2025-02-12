@@ -2914,7 +2914,7 @@
                 "properties": {
                   "session_id": {
                     "type": "string",
-                    "description": "The session ID.\n\nTo check sessions you created, call [GET /v1/team/sessions](/api-reference/list-sessions)."
+                    "description": "The session ID.\n\nTo check sessions you created, call [GET /v2/team/sessions](/api-reference/v2/list-sessions)."
                   },
                   "stream": {
                     "type": "boolean",
@@ -2927,7 +2927,7 @@
                   },
                   "dataset_id": {
                     "type": "string",
-                    "description": "The ID of the dataset to attach to the job. If not specified, the session's `dataset_id` setting will be used. \n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets)."
+                    "description": "The ID of the dataset to attach to the job. If not specified, the session's `dataset_id` setting will be used. \n\nTo check the datasets you have access to, call [GET /v2/team/datasets](/api-reference/v2/list-datasets)."
                   },
                   "datasource_ids": {
                     "type": "array",
