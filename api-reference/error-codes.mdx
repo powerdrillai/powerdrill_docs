@@ -54,8 +54,14 @@ Powerdrill Enterprise uses standard HTTP response codes to indicate the result o
 | `300007` | Failed to upload the file | 200 | An error occured while uploading the file. Please check that the file is in a supported format and try again. |
 | `300008` | An error occurred while generating the presigned URL | 200 | An error occurred while generating the presigned URL. Check that all parameters are correctly set and try again. |
 | `300009` | The number of sessions has reached the upper limit | 200 | The maximum number of sessions has been reached. Please delete any unnecessary sessions and try again. |
-| `300010` | The value of 'model_group' can only be 'default'. | 400 | Please check that the value of `model_group` is set to `default`. |
 | `300011` | Fail to create datasource | 200 | Failed to create the data source due to an internal error. |
+| `210020` | Something went wrong during job execution. Please try again. | 400 | Failed to run the job. You can try again later. |
+| `210021` | Job quota exceeded | 400 | Insuffient job quota. Upgrade your job plan to increase your job quota. | Insufficient job quota. Upgrade your plan to run more jobs. |
+| `210022` | Question too long | 400 | The question exceeds the maximum length of 6000 characters. |
+| `210023` | Selected files are not all ready | 400 | At least one of the selected files is not synchronized. | 
+| `210024` | Text too long for TTS service, limit is 5k characters. | 400 | The text entered to convert to audio exceeds the upper limit of 5000 characters. Please make it shorter. |
+| `210025` | Too many selected files in the query | 400 | Too many files selected. |
+| `210026` | Invalid analysis | 400 | Failed to analyze your data. You can try again later or set `stream` to true to rerun the job. |
 
 
 
@@ -65,8 +71,8 @@ Powerdrill Enterprise uses standard HTTP response codes to indicate the result o
 
 | Error code | Message | HTTP status code | Description |
 | :- | :- | :- | :- |
-| `9999 internal_server_error` | Internal server error | `500` | The request could not be processed due to an unknown error. |
-| `201 rate_limit_error` | Rate limit reached for requests | `429` | A rate limit error occurs when you exceed your assigned limit. Currently, each team is allowed up to 20 API requests per second. |
-| `1002 authentication_error` | Expired credentials | `403` | The provided credentials have expired and are no longer valid. You may need to renew or refresh them. |
-| `1003 authentication_error` | Insufficient authentication | `403` | The provided authentication is insufficient or incomplete. Please ensure all required authentication details are included. |
-| `1004 authentication_error` | Bad credentials | `403` | The provided credentials are incorrect or malformed. Please verify that all credentials are correct. |
+| `9999` | Internal server error | `500` | The request could not be processed due to an unknown error. |
+| `201` | Rate limit reached for requests | `429` | A rate limit error occurs when you exceed your assigned limit. Currently, each team is allowed up to 20 API requests per second. |
+| `1002` | Expired credentials | `403` | The provided credentials have expired and are no longer valid. You may need to renew or refresh them. |
+| `1003` | Insufficient authentication | `403` | The provided authentication is insufficient or incomplete. Please ensure all required authentication details are included. |
+| `1004` | Bad credentials | `403` | The provided credentials are incorrect or malformed. Please verify that all credentials are correct. |

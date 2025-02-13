@@ -1396,7 +1396,7 @@
                       "properties": {
                         "id": {
                           "type": "string",
-                          "description": "The dataset ID. \n\nSave the dataset ID if you want to [upload data sources](/api-reference/v2/create-data-source) to it or [associate it with a session](/api-reference/v2/create-session) for data exploration."
+                          "description": "The dataset ID. \n\nSave the dataset ID if you want to [upload data sources](/api-reference/v2/create-data-source) to it or [associate it with a job](/api-reference/v2/create-job) for data exploration."
                         }
                       },
                       "required": [
@@ -1887,7 +1887,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "apikey-header-x-pd-api-key": []
+          }
+        ]
       }
     },
     "/v2/team/datasets/{id}/datasources": {
@@ -2067,7 +2071,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the dataset of which the data sources you want to list.\n\nTo check the datasets you have access to, call [GET /v1/team/datasets](/api-reference/list-datasets).\n",
+            "description": "The ID of the dataset of which the data sources you want to list.\n\nTo check the datasets you have access to, call [GET /v2/team/datasets](/api-reference/v2/list-datasets).\n",
             "required": true,
             "schema": {
               "type": "string"
@@ -2505,7 +2509,7 @@
       "post": {
         "summary": "Create data source without specifying a dataset",
         "deprecated": false,
-        "description": "Creates a data source without specifying a dataset.\n\nWhen calling this endpoint, Powerdrill will automatically create a dataset for the new data source. Save the dataset ID in the response so that you can [associate it with a session](/api-reference/v2/create-session) and explore the data source.",
+        "description": "Creates a data source without specifying a dataset.\n\nWhen calling this endpoint, Powerdrill will automatically create a dataset for the new data source. Save the dataset ID returned in the response so that you can [associate it with a job](/api-reference/v2/create-job) and explore the data source.",
         "tags": [
           "Data source"
         ],
@@ -2677,9 +2681,8 @@
                 "properties": {
                   "expires_in": {
                     "type": "integer",
-                    "description": "The duration after which the presigned URL will expire. The value is expressed in seconds. The minimum value is `1` and is default to `600`.",
-                    "default": 600,
-                    "minimum": 60
+                    "description": "The duration after which the presigned URL will expire. The value is expressed in seconds. The minimum value is `60` and is default to `600`.",
+                    "default": 600
                   },
                   "user_id": {
                     "type": "string",
@@ -2927,14 +2930,14 @@
                   },
                   "dataset_id": {
                     "type": "string",
-                    "description": "The ID of the dataset to attach to the job. If not specified, the session's `dataset_id` setting will be used. \n\nTo check the datasets you have access to, call [GET /v2/team/datasets](/api-reference/v2/list-datasets)."
+                    "description": "The ID of the dataset to attach to the job. \n\nTo check the datasets you have access to, call [GET /v2/team/datasets](/api-reference/v2/list-datasets)."
                   },
                   "datasource_ids": {
                     "type": "array",
                     "items": {
                       "type": "string"
                     },
-                    "description": "Specifies the IDs of the data sources to use in the conversation, rather than the entire dataset. You can specify up to 1,000 data sources. If not specified, the session's `datasource_ids` setting will be used. "
+                    "description": "Specifies the IDs of the data sources to use in the conversation, rather than the entire dataset. You can specify up to 1,000 data sources. This parameter is effective only when `dataset_id` is specified."
                   },
                   "output_language": {
                     "type": "string",
@@ -2991,11 +2994,7 @@
                   "cm1gjmmoo0001h0x24uk1xgu9"
                 ],
                 "output_language": "AUTO",
-                "job_mode": "AUTO",
-                "answer_config": {
-                  "model_group": "default",
-                  "temperature": 21
-                }
+                "job_mode": "AUTO"
               }
             }
           }
