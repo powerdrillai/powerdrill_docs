@@ -15,6 +15,7 @@ If both `invalidCount` and `synchingCount` in the response are `0`, all data sou
 ```curl cURL
 curl --request GET \
   --url https://ai.data.cloud/api/v2/team/datasets/{id}/status?user_id=tmm-dafasdfasdfasdf
+  --header 'x-pd-api-key: <api-key>'
 ```
 
 ```python Python
@@ -22,7 +23,9 @@ import requests
 
 url = "https://ai.data.cloud/api/v2/team/datasets/{id}/status?user_id=tmm-dafasdfasdfasdf"
 
-response = requests.request("GET", url)
+headers = {"x-pd-api-key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
 
 print(response.text)
 ```
