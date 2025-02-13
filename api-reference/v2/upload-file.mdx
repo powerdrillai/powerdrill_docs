@@ -10,7 +10,10 @@ You can use this endpoint to upload your local file and then use the `file_key` 
 
 Only files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.
 
+
 **Example request:**
+
+<CodeGroup>
 
 ```curl cURL
 curl --location 'http://ai.data.cloud/api/v2/team/file/upload-datasource' \
@@ -20,6 +23,28 @@ curl --location 'http://ai.data.cloud/api/v2/team/file/upload-datasource' \
 --form 'file=@"/Users/username/Downloads/c5168946-8f1a-4c92-a167-5e3be57745be.csv"' \
 --form 'user_id="tmm-cm5ao3yoe00zm01l1u1e7p3pj"'
 ```
+
+```python Python
+import requests
+
+url = "http://ai.data.cloud/api/v2/team/file/upload-datasource"
+
+payload = {'user_id': 'tmm-cm5ao3yoe00zm01l1u1e7p3pj'}
+files=[
+  ('file',('c5168946-8f1a-4c92-a167-5e3be57745be.csv',open('/Users/jiaoqi/Downloads/c5168946-8f1a-4c92-a167-5e3be57745be.csv','rb'),'text/csv'))
+]
+headers = {
+  'x-pd-api-key': '<api-key>',
+  'x-pd-external-trace-id': '',
+  'Cookie': 'Cookie_1=value; metabase.DEVICE=f3cb3dbb-ef62-4026-845e-1480431c751d'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+print(response.text)
+```
+
+</CodeGroup>
 
 
 **Example response:**

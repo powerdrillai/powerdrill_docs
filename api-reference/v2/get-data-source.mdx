@@ -8,8 +8,9 @@ mode: "wide"
 <CodeGroup>
 ```curl cURL
 curl --request GET \
-  --url https://ai.data.cloud/api/v2/team/datasets/{dataset_id}/datasources/{datasource_id}?user_id=tmm-dafasdfasdfasdf
-  --header 'x-pd-api-key: <api-key>'
+  --url 'https://ai.data.cloud/api/v2/team/datasets/{dataset_id}/datasources/{datasource_id}?user_id=tmm-dafasdfasdfasdf' \
+  --header 'x-pd-api-key: <api-key>' \
+  --header 'x-pd-external-trace-id: '
 ```
 
 ```python Python
@@ -17,9 +18,12 @@ import requests
 
 url = "https://ai.data.cloud/api/v2/team/datasets/{dataset_id}/datasources/{datasource_id}?user_id=tmm-dafasdfasdfasdf"
 
-headers = {"x-pd-api-key": "<api-key>"}
+headers = {
+    "x-pd-api-key": "gegeege",
+    "x-pd-external-trace-id": ""
+}
 
-response = requests.request("GET", url, headers=headers)
+response = requests.request("GET", url, headers=headers, params=querystring)
 
 print(response.text)
 ```
