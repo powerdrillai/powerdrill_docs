@@ -1785,7 +1785,7 @@
       "get": {
         "summary": "Get status summary of data sources in dataset",
         "deprecated": false,
-        "description": "This endpoint returns the count of data sources for each status in the specified dataset. You can use it to verify if all data sources are synchronized and ready for running data analysis jobs.\n\nIf both `invalidCount` and `synchingCount` in the response are `0`, all data sources in the dataset are accessible to Powerdrill for answering questions. Otherwise, any unsynchronized data sources cannot be accessed.",
+        "description": "This endpoint returns the count of data sources for each status in the specified dataset. You can use it to verify if all data sources are synchronized and ready for running data analysis jobs.\n\nIf both `invalid_count` and `synching_ount` in the response are `0`, all data sources in the dataset are accessible to Powerdrill for answering questions. Otherwise, any unsynchronized data sources cannot be accessed.",
         "tags": [
           "Dataset"
         ],
@@ -1847,7 +1847,7 @@
                           "description": "The number of data sources waiting to be synchronized or being synchronized."
                         }
                       },
-                      "description": "The number of data sources per state.\n\nNote that only when both `invalidCount` and `synchingCount` are `0`, all data sources in the dataset can be used by Powerdrill to answer your questions. Otherwise, starting a job immediately cannot fetching data from data sources that are not synchronized.",
+                      "description": "The number of data sources per state.\n\nNote that only when both `invalid_count` and `synching_count` are `0`, all data sources in the dataset can be used by Powerdrill to answer your questions. Otherwise, starting a job immediately cannot fetching data from data sources that are not synchronized.",
                       "required": [
                         "synched_count",
                         "invalid_count",
