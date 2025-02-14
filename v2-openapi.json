@@ -3508,7 +3508,12 @@
       }
     }
   },
-  "servers": [],
+  "servers": [
+    {
+      "url": "https://ai.data.cloud/api",
+      "description": "体验环境"
+    }
+  ],
   "security": [
     {
       "apikey-header-x-pd-api-key": []
