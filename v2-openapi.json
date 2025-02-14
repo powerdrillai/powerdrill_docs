@@ -2035,7 +2035,7 @@
                         "dataset_id": "dataset-dagasdgasgasg",
                         "name": "test.csv",
                         "type": "FILE",
-                        "status": "pending"
+                        "status": "synching"
                       }
                     }
                   }
@@ -2234,7 +2234,7 @@
                             "dataset_id": "dataset-dagasdgasgasg",
                             "name": "test.csv",
                             "type": "FILE",
-                            "status": "pending"
+                            "status": "synching"
                           }
                         ]
                       }
@@ -2479,7 +2479,7 @@
                         "dataset_id": "dataset-dagasdgasgasg",
                         "name": "test.csv",
                         "type": "FILE",
-                        "status": "pending"
+                        "status": "synching"
                       }
                     }
                   }
@@ -2606,10 +2606,10 @@
                       "code": 0,
                       "data": {
                         "id": "datasource-cadsgfsdagasgadsg",
-                        "datasetId": "dataset-dagasdgasgasg",
+                        "dataset_id": "dataset-dagasdgasgasg",
                         "name": "test.csv",
                         "type": "FILE",
-                        "status": "pending"
+                        "status": "synching"
                       }
                     }
                   }
