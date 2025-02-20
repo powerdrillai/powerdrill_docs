@@ -1785,7 +1785,7 @@
       "get": {
         "summary": "Get status summary of data sources in dataset",
         "deprecated": false,
-        "description": "This endpoint returns the count of data sources for each status in the specified dataset. You can use it to verify if all data sources are synchronized and ready for running data analysis jobs.\n\nIf both `invalid_count` and `synching_ount` in the response are `0`, all data sources in the dataset are accessible to Powerdrill for answering questions. Otherwise, any unsynchronized data sources cannot be accessed.",
+        "description": "This endpoint returns the count of data sources for each status in the specified dataset. You can use it to verify if all data sources are synchronized and ready for running data analysis jobs.\n\nIf both `invalid_count` and `synching_count` in the response are `0`, all data sources in the dataset are accessible to Powerdrill for answering questions. Otherwise, any unsynchronized data sources cannot be accessed.",
         "tags": [
           "Dataset"
         ],
@@ -2191,6 +2191,10 @@
                                   "synched",
                                   "invalid"
                                 ]
+                              },
+                              "size": {
+                                "type": "number",
+                                "description": "The size of the data source, expressed in bytes. The value is in the `bigint` type. It can be null."
                               }
                             },
                             "description": "Information about each data source.",
@@ -2452,6 +2456,10 @@
                             "synched",
                             "invalid"
                           ]
+                        },
+                        "size": {
+                          "type": "number",
+                          "description": "The size of the data source, expressed in bytes. The value is in the `bigint` type. It can be null."
                         }
                       },
                       "description": "A data source object.",
@@ -2583,6 +2591,10 @@
                             "synched",
                             "invalid"
                           ]
+                        },
+                        "size": {
+                          "type": "number",
+                          "description": "The size of the data source, expressed in bytes. The value is in the `bigint` type. It can be null."
                         }
                       },
                       "required": [
@@ -3381,6 +3393,10 @@
               "synched",
               "invalid"
             ]
+          },
+          "size": {
+            "type": "number",
+            "description": "The size of the data source, expressed in bytes. The value is in the `bigint` type. It can be null."
           }
         },
         "required": [
@@ -3508,12 +3524,7 @@
       }
     }
   },
-  "servers": [
-    {
-      "url": "https://ai.data.cloud/api",
-      "description": "体验环境"
-    }
-  ],
+  "servers": [],
   "security": [
     {
       "apikey-header-x-pd-api-key": []
