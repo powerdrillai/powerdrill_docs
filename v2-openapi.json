@@ -2234,11 +2234,12 @@
                         "page_number": 1,
                         "records": [
                           {
-                            "id": "datasource-cadsgfsdagasgadsg",
-                            "dataset_id": "dataset-dagasdgasgasg",
-                            "name": "test.csv",
+                            "id": "ds-cm7aedl58000501fc52hjj5c3",
+                            "name": "ds1.xlsx",
                             "type": "FILE",
-                            "status": "synching"
+                            "status": "synched",
+                            "size": 14435,
+                            "dataset_id": "dset-cm7ae4d77028n01l1cnapd5si"
                           }
                         ]
                       }
@@ -2483,11 +2484,12 @@
                     "value": {
                       "code": 0,
                       "data": {
-                        "id": "datasource-cadsgfsdagasgadsg",
-                        "dataset_id": "dataset-dagasdgasgasg",
-                        "name": "test.csv",
+                        "id": "ds-cm7aedl58000501fc52hjj5c3",
+                        "name": "ds1.xlsx",
                         "type": "FILE",
-                        "status": "synching"
+                        "status": "synched",
+                        "size": 14435,
+                        "dataset_id": "dset-cm7ae4d77028n01l1cnapd5si"
                       }
                     }
                   }
@@ -2591,10 +2593,6 @@
                             "synched",
                             "invalid"
                           ]
-                        },
-                        "size": {
-                          "type": "number",
-                          "description": "The size of the data source, expressed in bytes. The value is in the `bigint` type. It can be null."
                         }
                       },
                       "required": [
@@ -2617,11 +2615,11 @@
                     "value": {
                       "code": 0,
                       "data": {
-                        "id": "datasource-cadsgfsdagasgadsg",
-                        "dataset_id": "dataset-dagasdgasgasg",
-                        "name": "test.csv",
+                        "id": "ds-cm7aedl58000501fc52hjj5c3",
+                        "name": "ds1.xlsx",
                         "type": "FILE",
-                        "status": "synching"
+                        "status": "synched",
+                        "dataset_id": "dset-cm7ae4d77028n01l1cnapd5si"
                       }
                     }
                   }
@@ -3524,7 +3522,12 @@
       }
     }
   },
-  "servers": [],
+  "servers": [
+    {
+      "url": "https://ai.data.cloud/api",
+      "description": "体验环境"
+    }
+  ],
   "security": [
     {
       "apikey-header-x-pd-api-key": []
