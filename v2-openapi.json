@@ -109,13 +109,17 @@
                   "user_id"
                 ]
               },
-              "example": {
-                "name": "My session",
-                "output_language": "FR",
-                "job_mode": "AUTO",
-                "max_contextual_job_history": 10,
-                "agent_id": "DATA_ANALYSIS_AGENT",
-                "user_id": "tmm-dafasdfasdfasdf"
+              "examples": {
+                "1": {
+                  "value": {
+                    "name": "My session",
+                    "output_language": "FR",
+                    "job_mode": "AUTO",
+                    "max_contextual_job_history": 10,
+                    "agent_id": "DATA_ANALYSIS_AGENT",
+                    "user_id": "tmm-dafasdfasdfasdf"
+                  }
+                }
               }
             }
           }
@@ -536,12 +540,16 @@
                   "user_id"
                 ]
               },
-              "example": {
-                "name": "hello",
-                "output_language": "EN",
-                "job_mode": "DATA_ANALYSIS",
-                "max_contextual_job_history": 3,
-                "user_id": "tmm-ddsdfsfgs"
+              "examples": {
+                "1": {
+                  "value": {
+                    "name": "hello",
+                    "output_language": "EN",
+                    "job_mode": "DATA_ANALYSIS",
+                    "max_contextual_job_history": 3,
+                    "user_id": "tmm-ddsdfsfgs"
+                  }
+                }
               }
             }
           }
@@ -632,8 +640,12 @@
                   "user_id"
                 ]
               },
-              "example": {
-                "user_id": "tmm-dafasdfasdfasdf"
+              "examples": {
+                "1": {
+                  "value": {
+                    "user_id": "tmm-dafasdfasdfasdf"
+                  }
+                }
               }
             }
           }
@@ -1371,10 +1383,14 @@
                   "user_id"
                 ]
               },
-              "example": {
-                "name": "My dataset",
-                "description": "my default dataset",
-                "user_id": "tmm-dafasdfasdfasdf"
+              "examples": {
+                "1": {
+                  "value": {
+                    "name": "My dataset",
+                    "description": "my default dataset",
+                    "user_id": "tmm-dafasdfasdfasdf"
+                  }
+                }
               }
             }
           }
@@ -1630,8 +1646,12 @@
                   "user_id"
                 ]
               },
-              "example": {
-                "user_id": "tmm-dafasdfasdfasdf"
+              "examples": {
+                "1": {
+                  "value": {
+                    "user_id": "tmm-dafasdfasdfasdf"
+                  }
+                }
               }
             }
           }
@@ -1729,10 +1749,14 @@
                   "user_id"
                 ]
               },
-              "example": {
-                "name": "sales_data",
-                "description": "sales data of all regions",
-                "user_id": "tmm-dsadfdsafasdf"
+              "examples": {
+                "1": {
+                  "value": {
+                    "name": "sales_data",
+                    "description": "sales data of all regions",
+                    "user_id": "tmm-dsadfdsafasdf"
+                  }
+                }
               }
             }
           }
@@ -1898,7 +1922,7 @@
       "post": {
         "summary": "Create data source",
         "deprecated": false,
-        "description": "Creates a data source in the specified dataset. You can create data sources only in datasets that you have created.\n\nA data source can be in one of the following formats: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.",
+        "description": "Creates a data source in the specified dataset. You can create data sources only in datasets that you have created.\n\nA data source can be in one of the following formats: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.docx**, **.xls**, or **.xlsx**.",
         "tags": [
           "Data source"
         ],
@@ -1940,11 +1964,11 @@
                   },
                   "url": {
                     "type": "string",
-                    "description": "The URL of the file for public access. \n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**."
+                    "description": "The URL of the file for public access. \n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.docx**, **.xls**, or **.xlsx**."
                   },
                   "file_object_key": {
                     "type": "string",
-                    "description": "The object storage path to your locally uploaded file.\n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.\n\nHow to obtain:\n\nEach time you upload a file through the [Upload file](/api-reference/v2/upload-file) endpoint, its `file_object_key` is returned. For more details, see [How to Upload Local Files](/developer-guides/upload-file).\n"
+                    "description": "The object storage path to your locally uploaded file.\n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.docx**, **.xls**, or **.xlsx**.\n\nHow to obtain:\n\nEach time you upload a file through the [Upload file](/api-reference/v2/upload-file) endpoint, its `file_object_key` is returned. For more details, see [How to Upload Local Files](/developer-guides/upload-file).\n"
                   },
                   "user_id": {
                     "type": "string",
@@ -1957,11 +1981,15 @@
                   "user_id"
                 ]
               },
-              "example": {
-                "name": "test.csv",
-                "type": "FILE",
-                "user_id": "tmm-dsfasdfasdfa",
-                "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2"
+              "examples": {
+                "1": {
+                  "value": {
+                    "name": "test.csv",
+                    "type": "FILE",
+                    "user_id": "tmm-dsfasdfasdfa",
+                    "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2"
+                  }
+                }
               }
             }
           }
@@ -2028,6 +2056,7 @@
                 "examples": {
                   "1": {
                     "summary": "成功示例",
+                    "description": "",
                     "value": {
                       "code": 0,
                       "data": {
@@ -2320,8 +2349,12 @@
                   "user_id"
                 ]
               },
-              "example": {
-                "user_id": "tmm-dafasdfasdfasdf"
+              "examples": {
+                "1": {
+                  "value": {
+                    "user_id": "tmm-dafasdfasdfasdf"
+                  }
+                }
               }
             }
           }
@@ -2541,11 +2574,15 @@
               "schema": {
                 "$ref": "#/components/schemas/DataSourceConfig"
               },
-              "example": {
-                "name": "test.csv",
-                "type": "FILE",
-                "user_id": "tmm-dafasdfasdfasdf",
-                "file_object_key": "/tmp/sdgsagdsgsadgasdg"
+              "examples": {
+                "1": {
+                  "value": {
+                    "name": "test.csv",
+                    "type": "FILE",
+                    "user_id": "tmm-dafasdfasdfasdf",
+                    "file_object_key": "/tmp/sdgsagdsgsadgasdg"
+                  }
+                }
               }
             }
           }
@@ -2703,9 +2740,13 @@
                   "user_id"
                 ]
               },
-              "example": {
-                "expires_in": 600,
-                "user_id": "tmm-dafasdfasdfasdf"
+              "examples": {
+                "1": {
+                  "value": {
+                    "expires_in": 600,
+                    "user_id": "tmm-dafasdfasdfasdf"
+                  }
+                }
               }
             }
           }
@@ -2784,7 +2825,7 @@
       "post": {
         "summary": "Upload local file",
         "deprecated": false,
-        "description": "Uploads a local file in one of the following formats:  **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.\n\nYou can use this endpoint to upload your local file and then use the `file_object_key` you obtained to create a data source. For a detailed guide, refer to [How to Upload Local Files](/developer-guides/upload-file).",
+        "description": "Uploads a local file in one of the following formats:  **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**,  **.docx**, **.xls**, or **.xlsx**.\n\nYou can use this endpoint to upload your local file and then use the `file_object_key` you obtained to create a data source. For a detailed guide, refer to [How to Upload Local Files](/developer-guides/upload-file).",
         "tags": [
           "File"
         ],
@@ -2822,7 +2863,8 @@
                   "file",
                   "user_id"
                 ]
-              }
+              },
+              "examples": {}
             }
           }
         },
@@ -2860,6 +2902,7 @@
                 "examples": {
                   "1": {
                     "summary": "Success example:",
+                    "description": "",
                     "value": {
                       "code": 0,
                       "data": {
@@ -2984,17 +3027,21 @@
                   "user_id"
                 ]
               },
-              "example": {
-                "session_id": "cxxdgegeegeg3433fff",
-                "user_id": "tmm-dafasdfasdfasdf",
-                "stream": true,
-                "question": "Hello World",
-                "dataset_id": "cm1gjmg8e0057r3x22v1fdu8m",
-                "datasource_ids": [
-                  "cm1gjmmoo0001h0x24uk1xgu9"
-                ],
-                "output_language": "AUTO",
-                "job_mode": "AUTO"
+              "examples": {
+                "1": {
+                  "value": {
+                    "session_id": "cxxdgegeegeg3433fff",
+                    "user_id": "tmm-dafasdfasdfasdf",
+                    "stream": true,
+                    "question": "Hello World",
+                    "dataset_id": "cm1gjmg8e0057r3x22v1fdu8m",
+                    "datasource_ids": [
+                      "cm1gjmmoo0001h0x24uk1xgu9"
+                    ],
+                    "output_language": "AUTO",
+                    "job_mode": "AUTO"
+                  }
+                }
               }
             }
           }
@@ -3170,7 +3217,7 @@
                   "properties": {}
                 },
                 "examples": {
-                  "1": {
+                  "2": {
                     "summary": "400",
                     "value": {
                       "code": 210021,
@@ -3191,7 +3238,7 @@
                   "properties": {}
                 },
                 "examples": {
-                  "1": {
+                  "3": {
                     "summary": "403",
                     "value": {
                       "code": 1003,
@@ -3212,7 +3259,7 @@
                   "properties": {}
                 },
                 "examples": {
-                  "1": {
+                  "4": {
                     "summary": "500",
                     "value": {
                       "code": 210020,
@@ -3496,11 +3543,11 @@
           },
           "url": {
             "type": "string",
-            "description": "The URL of the file for public access. \n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**."
+            "description": "The URL of the file for public access. \n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.docx**, **.xls**, or **.xlsx**."
           },
           "file_object_key": {
             "type": "string",
-            "description": "The object storage path to your locally uploaded file.\n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.\n\nHow to obtain:\n\nEach time you upload a file through the [Upload file](/api-reference/v2/upload-file) endpoint, its `file_object_key` is returned. For more details, see [How to Upload Local Files](/developer-guides/upload-file).\n"
+            "description": "The object storage path to your locally uploaded file.\n\nYou must specify either `url` or `file_object_key`, but not both.\n\nOnly files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.docx**, **.xls**, or **.xlsx**.\n\nHow to obtain:\n\nEach time you upload a file through the [Upload file](/api-reference/v2/upload-file) endpoint, its `file_object_key` is returned. For more details, see [How to Upload Local Files](/developer-guides/upload-file).\n"
           },
           "user_id": {
             "type": "string",
