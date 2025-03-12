@@ -118,7 +118,8 @@
                     "max_contextual_job_history": 10,
                     "agent_id": "DATA_ANALYSIS_AGENT",
                     "user_id": "tmm-dafasdfasdfasdf"
-                  }
+                  },
+                  "description": ""
                 }
               }
             }
@@ -548,7 +549,8 @@
                     "job_mode": "DATA_ANALYSIS",
                     "max_contextual_job_history": 3,
                     "user_id": "tmm-ddsdfsfgs"
-                  }
+                  },
+                  "description": ""
                 }
               }
             }
@@ -644,7 +646,8 @@
                 "1": {
                   "value": {
                     "user_id": "tmm-dafasdfasdfasdf"
-                  }
+                  },
+                  "description": ""
                 }
               }
             }
@@ -1382,7 +1385,8 @@
                     "name": "My dataset",
                     "description": "my default dataset",
                     "user_id": "tmm-dafasdfasdfasdf"
-                  }
+                  },
+                  "description": ""
                 }
               }
             }
@@ -1672,7 +1676,8 @@
                 "1": {
                   "value": {
                     "user_id": "tmm-dafasdfasdfasdf"
-                  }
+                  },
+                  "description": ""
                 }
               }
             }
@@ -1777,7 +1782,8 @@
                     "name": "sales_data",
                     "description": "sales data of all regions",
                     "user_id": "tmm-dsadfdsafasdf"
-                  }
+                  },
+                  "description": ""
                 }
               }
             }
@@ -2010,7 +2016,8 @@
                     "type": "FILE",
                     "user_id": "tmm-dsfasdfasdfa",
                     "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2"
-                  }
+                  },
+                  "description": ""
                 }
               }
             }
@@ -2375,7 +2382,8 @@
                 "1": {
                   "value": {
                     "user_id": "tmm-dafasdfasdfasdf"
-                  }
+                  },
+                  "description": ""
                 }
               }
             }
@@ -2603,7 +2611,8 @@
                     "type": "FILE",
                     "user_id": "tmm-dafasdfasdfasdf",
                     "file_object_key": "/tmp/sdgsagdsgsadgasdg"
-                  }
+                  },
+                  "description": ""
                 }
               }
             }
@@ -2767,7 +2776,8 @@
                   "value": {
                     "expires_in": 600,
                     "user_id": "tmm-dafasdfasdfasdf"
-                  }
+                  },
+                  "description": ""
                 }
               }
             }
@@ -3026,8 +3036,7 @@
                       "KO",
                       "ZH-CN",
                       "ZH-TW"
-                    ],
-                    "default": "AUTO"
+                    ]
                   },
                   "job_mode": {
                     "type": "string",
@@ -3062,7 +3071,8 @@
                     ],
                     "output_language": "AUTO",
                     "job_mode": "AUTO"
-                  }
+                  },
+                  "description": ""
                 }
               }
             }
@@ -3111,6 +3121,7 @@
                 "examples": {
                   "1": {
                     "summary": "Stream=false",
+                    "description": "",
                     "value": {
                       "code": 0,
                       "data": {
@@ -3241,6 +3252,7 @@
                 "examples": {
                   "2": {
                     "summary": "400",
+                    "description": "",
                     "value": {
                       "code": 210021,
                       "msg": "Job quota exceeded"
@@ -3262,6 +3274,7 @@
                 "examples": {
                   "3": {
                     "summary": "403",
+                    "description": "",
                     "value": {
                       "code": 1003,
                       "msg": "insufficient.authentication"
@@ -3283,6 +3296,7 @@
                 "examples": {
                   "4": {
                     "summary": "500",
+                    "description": "",
                     "value": {
                       "code": 210020,
                       "msg": "Something went wrong during job execution. Please try again."
