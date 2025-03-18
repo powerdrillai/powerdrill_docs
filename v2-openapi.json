@@ -3050,6 +3050,20 @@
                   "user_id": {
                     "type": "string",
                     "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  },
+                  "custom_options": {
+                    "type": "object",
+                    "properties": {
+                      "user_prompt": {
+                        "type": "string",
+                        "description": "The prompt you set to replace the system prompt."
+                      },
+                      "with_citation": {
+                        "type": "string",
+                        "description": "Whether to include references and citations in the response: true (default) to enable, false to disable."
+                      }
+                    },
+                    "description": "A list of optional settings."
                   }
                 },
                 "required": [
