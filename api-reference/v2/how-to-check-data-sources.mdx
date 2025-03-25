@@ -1,0 +1,61 @@
+---
+title: "Check Statuses of Data Sources"
+description: "How to verify that all data sources in the specified dataset are synchronized"
+icon: "check"
+---
+
+
+Powerdrill lets you upload multiple data sources to a dataset, making it easier to organize your data files. However, any data sources that are not synchronized at the time a job starts will be excluded from analysis or exploration.
+
+To ensure all data sources are used in data analysis, make sure they are fully synchronized before executing data jobs. Here's how:
+
+
+---
+
+
+## 1. Call the endpoint
+
+
+Send a request to the [Get status summary of data sources in dataset
+](/api-reference/v2/get-dataset-status) endpoint.
+
+Following is a request example:
+
+<Tip>
+Set `id` to the dataset ID, `user_id` to your user ID, and `x-pd-api-key` to the API key of the target project.
+</Tip>
+
+
+```python Python
+import requests
+
+url = "https://ai.data.cloud/api/v2/team/datasets/{id}/status?user_id=tmm-dafasdfasdfasdf"
+
+headers = {"x-pd-api-key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+---
+
+## 2. Check the result
+
+Then, review the returned response:
+
+
+```json Example response
+{
+  "code": 0,
+  "data": {
+    "synched_count": 5,
+    "invalid_count": 0,
+    "synching_count": 0
+  }
+}
+```
+
+
+If both `invalid_count` and `synching_count` are `0`, all data sources in the dataset are fully synchronized and ready to be used by Powerdrill. Otherwise, any unsynchronized sources will not be available for analysis.
+
