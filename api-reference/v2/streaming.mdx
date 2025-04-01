@@ -71,7 +71,7 @@ The value of `content` in each response block varies with the block content type
     
     - `url`: The S3 key or URL to the file.
     
-    - `expired_at`: The expiration time for `url`. To save the table for future use, make sure to download it before it expires.
+    - `expires_at`: The expiration time for `url`. To save the table for future use, make sure to download it before it expires.
 
 
 - When the block content type is `IMAGE`:
@@ -82,12 +82,18 @@ The value of `content` in each response block varies with the block content type
     
     - `url`: The S3 key or URL to the image.
     
-    - `expired_at`: The expiration time for `url`. To save the image for future use, make sure to download it before it expires.
+    - `expires_at`: The expiration time for `url`. To save the image for future use, make sure to download it before it expires.
 
 
 - When the block content type is `SOURCES`:
 
     The content represents the source of the response block, including:
+
+    - `id`: The ID of the source.
+
+    - `content`: The chunk content.
+
+    - `page_no`: The location of the chunk in the source file.
 
     - `source`: The file name of the data source.
 
@@ -100,6 +106,7 @@ The value of `content` in each response block varies with the block content type
 - When the block content type is `QUESTIONS`:
 
     The content represents follow-up questions suggested by Powerdrill. 
+
 
 
 Let's see an example.
@@ -190,7 +197,7 @@ data:{"id":"50c14384-2ae3-4351-93a3-3f43db55ef9e","model":"","choices":[{"delta"
 
 id:3cd93b66-bf6f-4532-9ca4-e08119364c03
 event:TABLE
-data:{"id":"3cd93b66-bf6f-4532-9ca4-e08119364c03","model":"","choices":[{"delta":{"content":{"name":"average_price_per_agency.csv","url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/tmm-cm5ao3yoe00zm01l1u1e7p3pj/d65e5112-9615-4fcd-831b-fb9b7bf5da70.csv","expired_at":"2025-02-13T11:27:13.025667Z"}},"index":0,"finish_reason":null}],"created":1739445432,"group_id":"3cd93b66-bf6f-4532-9ca4-e08119364c03","group_name":"Calculate the average booking price for each travel agency. First, group by travel agency, and then compute the average of the price column for each agency.","stage":"Analyze"}
+data:{"id":"3cd93b66-bf6f-4532-9ca4-e08119364c03","model":"","choices":[{"delta":{"content":{"name":"average_price_per_agency.csv","url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/tmm-cm5ao3yoe00zm01l1u1e7p3pj/d65e5112-9615-4fcd-831b-fb9b7bf5da70.csv","expires_at":"2025-02-13T11:27:13.025667Z"}},"index":0,"finish_reason":null}],"created":1739445432,"group_id":"3cd93b66-bf6f-4532-9ca4-e08119364c03","group_name":"Calculate the average booking price for each travel agency. First, group by travel agency, and then compute the average of the price column for each agency.","stage":"Analyze"}
 
 id:3cd93b66-bf6f-4532-9ca4-e08119364c03
 event:TASK
@@ -226,7 +233,7 @@ data:{"id":"af56c606-f813-4d4b-9d3e-76aff11fad85","model":"","choices":[{"delta"
 
 id:af56c606-f813-4d4b-9d3e-76aff11fad85
 event:IMAGE
-data:{"id":"af56c606-f813-4d4b-9d3e-76aff11fad85","model":"","choices":[{"delta":{"content":{"url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/tmm-cm5ao3yoe00zm01l1u1e7p3pj/ed2b799b-070a-4119-a3fa-04b8915583ce.png","name":"visualization.png","expiredAt":"2025-02-13T11:27:15.594379Z"}},"index":0,"finish_reason":null}],"created":1739445435,"group_id":"af56c606-f813-4d4b-9d3e-76aff11fad85","group_name":"Visualize the average booking price for each travel agency using a bar chart to easily compare which travel agency has the highest average price.","stage":"Analyze"}
+data:{"id":"af56c606-f813-4d4b-9d3e-76aff11fad85","model":"","choices":[{"delta":{"content":{"url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/tmm-cm5ao3yoe00zm01l1u1e7p3pj/ed2b799b-070a-4119-a3fa-04b8915583ce.png","name":"visualization.png","expires_at":"2025-02-13T11:27:15.594379Z"}},"index":0,"finish_reason":null}],"created":1739445435,"group_id":"af56c606-f813-4d4b-9d3e-76aff11fad85","group_name":"Visualize the average booking price for each travel agency using a bar chart to easily compare which travel agency has the highest average price.","stage":"Analyze"}
 
 id:af56c606-f813-4d4b-9d3e-76aff11fad85
 event:TASK
@@ -262,7 +269,7 @@ data:{"id":"d7c2bdcc-e330-410c-ae01-b14fd4a6ca58","model":"","choices":[{"delta"
 
 id:d7c2bdcc-e330-410c-ae01-b14fd4a6ca58
 event:TABLE
-data:{"id":"d7c2bdcc-e330-410c-ae01-b14fd4a6ca58","model":"","choices":[{"delta":{"content":{"name":"average_price_per_agency.csv","url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/tmm-cm5ao3yoe00zm01l1u1e7p3pj/d65e5112-9615-4fcd-831b-fb9b7bf5da70.csv","expired_at":"2025-02-13T11:27:20.36399Z"}},"index":0,"finish_reason":null}],"created":1739445440,"group_id":"d7c2bdcc-e330-410c-ae01-b14fd4a6ca58","group_name":"Conclusions","stage":"Respond"}
+data:{"id":"d7c2bdcc-e330-410c-ae01-b14fd4a6ca58","model":"","choices":[{"delta":{"content":{"name":"average_price_per_agency.csv","url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/tmm-cm5ao3yoe00zm01l1u1e7p3pj/d65e5112-9615-4fcd-831b-fb9b7bf5da70.csv","expires_at":"2025-02-13T11:27:20.36399Z"}},"index":0,"finish_reason":null}],"created":1739445440,"group_id":"d7c2bdcc-e330-410c-ae01-b14fd4a6ca58","group_name":"Conclusions","stage":"Respond"}
 
 id:d7c2bdcc-e330-410c-ae01-b14fd4a6ca58
 event:MESSAGE
@@ -286,7 +293,7 @@ data:{"id":"d7c2bdcc-e330-410c-ae01-b14fd4a6ca58","model":"","choices":[{"delta"
 
 id:d7c2bdcc-e330-410c-ae01-b14fd4a6ca58
 event:IMAGE
-data:{"id":"d7c2bdcc-e330-410c-ae01-b14fd4a6ca58","model":"","choices":[{"delta":{"content":{"url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/tmm-cm5ao3yoe00zm01l1u1e7p3pj/ed2b799b-070a-4119-a3fa-04b8915583ce.png","name":"visualization.png","expiredAt":"2025-02-13T11:27:21.19331Z"}},"index":0,"finish_reason":null}],"created":1739445441,"group_id":"d7c2bdcc-e330-410c-ae01-b14fd4a6ca58","group_name":"Conclusions","stage":"Respond"}
+data:{"id":"d7c2bdcc-e330-410c-ae01-b14fd4a6ca58","model":"","choices":[{"delta":{"content":{"url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/tmm-cm5ao3yoe00zm01l1u1e7p3pj/ed2b799b-070a-4119-a3fa-04b8915583ce.png","name":"visualization.png","expires_at":"2025-02-13T11:27:21.19331Z"}},"index":0,"finish_reason":null}],"created":1739445441,"group_id":"d7c2bdcc-e330-410c-ae01-b14fd4a6ca58","group_name":"Conclusions","stage":"Respond"}
 
 id:d7c2bdcc-e330-410c-ae01-b14fd4a6ca58
 event:MESSAGE
@@ -381,7 +388,7 @@ The response looks like this:
                 "content": {
                     "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/tmm-cm5ao3yoe00zm01l1u1e7p3pj/f47e6d58-b0f1-405d-a367-d4055aab1188.csv",
                     "name": "average_price_per_agency.csv",
-                    "expired_at": "2025-02-13T11:13:21.903308Z"
+                    "expires_at": "2025-02-13T11:13:21.903308Z"
                 },
                 "group_id": "e07b6a6a-7cf4-4fec-a068-c339cb1f3fc5",
                 "group_name": "Calculate the average booking price for each travel agency. First, group by travel agency, then calculate the average value of the price column for each agency.",
@@ -399,7 +406,7 @@ The response looks like this:
                 "content": {
                     "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/tmm-cm5ao3yoe00zm01l1u1e7p3pj/b185c0f3-a021-4ceb-b317-b391c0e7df28.png",
                     "name": "visualization.png",
-                    "expired_at": "2025-02-13T11:13:21.903308Z"
+                    "expires_at": "2025-02-13T11:13:21.903308Z"
                 },
                 "group_id": "8580f207-1b66-4231-9266-69c845f2d2cd",
                 "group_name": "Use a bar chart to visualize the average booking price for each travel agency, so you can easily compare which agency has the highest average price.",
@@ -417,7 +424,7 @@ The response looks like this:
                 "content": {
                     "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/tmm-cm5ao3yoe00zm01l1u1e7p3pj/f47e6d58-b0f1-405d-a367-d4055aab1188.csv",
                     "name": "average_price_per_agency.csv",
-                    "expired_at": "2025-02-13T11:13:21.903308Z"
+                    "expires_at": "2025-02-13T11:13:21.903308Z"
                 },
                 "group_id": "60ad92c9-6151-41a3-b3aa-ab695cdaa5f5",
                 "group_name": "Conclusions",
@@ -435,7 +442,7 @@ The response looks like this:
                 "content": {
                     "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/tmm-cm5ao3yoe00zm01l1u1e7p3pj/b185c0f3-a021-4ceb-b317-b391c0e7df28.png",
                     "name": "visualization.png",
-                    "expired_at": "2025-02-13T11:13:21.903308Z"
+                    "expires_at": "2025-02-13T11:13:21.903308Z"
                 },
                 "group_id": "60ad92c9-6151-41a3-b3aa-ab695cdaa5f5",
                 "group_name": "Conclusions",
