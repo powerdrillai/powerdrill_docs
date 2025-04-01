@@ -58,7 +58,7 @@
             "group": "Get Started",
             "pages": [
               "enterprise/introduction",
-              "enterprise/pricing",
+              "enterprise/quick-start",
               "enterprise/what-is-job"
             ]
           },
