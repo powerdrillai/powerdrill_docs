@@ -649,6 +649,10 @@
                   "required": [
                     "code"
                   ]
+                },
+                "example": {
+                  "code": 0,
+                  "data": {}
                 }
               }
             },
@@ -2885,18 +2889,15 @@
                     "description": "The size of the file, in the units of bytes."
                   },
                   "user_id": {
-                    "type": "integer",
-                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
-                    "minimum": 1,
-                    "maximum": 1000,
-                    "exclusiveMaximum": true
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
                   }
                 },
                 "required": [
                   "file_name",
                   "file_size",
-                  "user_id",
-                  "01JF9Z5GRCAAWDHMQ0HZENJ0SS"
+                  "01JF9Z5GRCAAWDHMQ0HZENJ0SS",
+                  "user_id"
                 ]
               },
               "example": {
