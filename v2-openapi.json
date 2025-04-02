@@ -2848,7 +2848,7 @@
       "post": {
         "summary": "Initiate multipart upload",
         "deprecated": false,
-        "description": "Initiates a multipart upload task for local files in multipart mode. Only files in the following formats are supported:  **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**,  **.docx**, **.xls**, or **.xlsx**.\n\n## Important notes\n\nWhen you call this endpoint, Cloud Object Storage, for example, AWS S3, generates and returns a unique upload ID to identify the multipart upload task. This ID is required when you call the [Complete multipart upload](/api-reference/v2/complete-multipart-upload) endpoint.",
+        "description": "Initiates a multipart upload task for local files in multipart mode. Only files in the following formats are supported:  **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**,  **.docx**, **.xls**, or **.xlsx**.\n\n### Important notes\n\nWhen you call this endpoint, Cloud Object Storage, for example, AWS S3, generates and returns a unique upload ID to identify the multipart upload task. This ID is required when you call the [Complete multipart upload](/api-reference/v2/complete-multipart-upload) endpoint.",
         "tags": [
           "File"
         ],
@@ -3001,7 +3001,7 @@
       "post": {
         "summary": "Complete multipart upload",
         "deprecated": false,
-        "description": "Completes a multipart upload task after all parts of the corresponding file are uploaded.\n\n## Important notes\n\nWhen calling this endpoint, you must provide a full list of uploaded parts, including their sequential numbers and corresponding ETag values. Cloud Object Storage service (for example, AWS S3) validates each part in sequence and, upon successful verification, combines them into a complete file.",
+        "description": "Completes a multipart upload task after all parts of the corresponding file are uploaded.\n\n### Important notes\n\nWhen calling this endpoint, you must provide a full list of uploaded parts, including their sequential numbers and corresponding ETag values. Cloud Object Storage service (for example, AWS S3) validates each part in sequence and, upon successful verification, combines them into a complete file.",
         "tags": [
           "File"
         ],
