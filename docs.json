@@ -140,7 +140,9 @@
               {
                 "group": "Files",
                 "pages": [
-                  "api-reference/v2/upload-file"
+                  "api-reference/v2/upload-file",
+                  "api-reference/v2/initiate-multipart-upload",
+                  "api-reference/v2/complete-multipart-upload"
                 ]
               },
               {
