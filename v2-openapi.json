@@ -109,18 +109,13 @@
                   "user_id"
                 ]
               },
-              "examples": {
-                "1": {
-                  "value": {
-                    "name": "My session",
-                    "output_language": "FR",
-                    "job_mode": "AUTO",
-                    "max_contextual_job_history": 10,
-                    "agent_id": "DATA_ANALYSIS_AGENT",
-                    "user_id": "tmm-dafasdfasdfasdf"
-                  },
-                  "description": ""
-                }
+              "example": {
+                "name": "My session",
+                "output_language": "FR",
+                "job_mode": "AUTO",
+                "max_contextual_job_history": 10,
+                "agent_id": "DATA_ANALYSIS_AGENT",
+                "user_id": "tmm-dafasdfasdfasdf"
               }
             }
           }
@@ -156,15 +151,10 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "成功示例",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "id": "session-dasfasdgasdgfasdgasdg"
-                      }
-                    }
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "id": "session-dasfasdgasdgfasdgasdg"
                   }
                 }
               }
@@ -354,83 +344,78 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "成功示例",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "total_items": 8,
-                        "page_size": 10,
-                        "page_number": 1,
-                        "records": [
-                          {
-                            "id": "04b69928-532d-408a-8716-8f5e70fcacc6",
-                            "name": "Finding Your Inner Spark",
-                            "output_language": "AUTO",
-                            "job_mode": "AUTO",
-                            "max_contextual_job_history": 10,
-                            "agent_id": "DATA_ANALYSIS_AGENT"
-                          },
-                          {
-                            "id": "7e9941af-ad1b-4834-a421-4b37b54aae19",
-                            "name": "session_trade_analyze_001",
-                            "output_language": "EN",
-                            "job_mode": "AUTO",
-                            "max_contextual_job_history": 1,
-                            "agent_id": "DATA_ANALYSIS_AGENT"
-                          },
-                          {
-                            "id": "a137ecc8-9554-42c3-b042-2458dd2aeb36",
-                            "name": "My first session",
-                            "output_language": "AUTO",
-                            "job_mode": "AUTO",
-                            "max_contextual_job_history": 10,
-                            "agent_id": "DATA_ANALYSIS_AGENT"
-                          },
-                          {
-                            "id": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
-                            "name": "New name",
-                            "output_language": "EN",
-                            "job_mode": "AUTO",
-                            "max_contextual_job_history": 10,
-                            "agent_id": "DATA_ANALYSIS_AGENT"
-                          },
-                          {
-                            "id": "3eb5e294-11eb-4bf0-8854-7177c415d15c",
-                            "name": "trade_analyze_001",
-                            "output_language": "ZH-CN",
-                            "job_mode": "AUTO",
-                            "max_contextual_job_history": 10,
-                            "agent_id": "DATA_ANALYSIS_AGENT"
-                          },
-                          {
-                            "id": "ccca6d34-894f-4f6f-a8b5-c9df93126309",
-                            "name": "lhtest-old",
-                            "output_language": "ZH-CN",
-                            "job_mode": "AUTO",
-                            "max_contextual_job_history": 5,
-                            "agent_id": "DATA_ANALYSIS_AGENT"
-                          },
-                          {
-                            "id": "c28a1f47-da68-4456-bb0b-e85bf5a0e98e",
-                            "name": "lhtest-newest",
-                            "output_language": "ZH-TW",
-                            "job_mode": "AUTO",
-                            "max_contextual_job_history": 6,
-                            "agent_id": "DATA_ANALYSIS_AGENT"
-                          },
-                          {
-                            "id": "fbde9b45-69cd-408e-97d1-f874236aadac",
-                            "name": "General-session",
-                            "output_language": "ZH-CN",
-                            "job_mode": "AUTO",
-                            "max_contextual_job_history": 10,
-                            "agent_id": "DATA_ANALYSIS_AGENT"
-                          }
-                        ]
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "total_items": 8,
+                    "page_size": 10,
+                    "page_number": 1,
+                    "records": [
+                      {
+                        "id": "04b69928-532d-408a-8716-8f5e70fcacc6",
+                        "name": "Finding Your Inner Spark",
+                        "output_language": "AUTO",
+                        "job_mode": "AUTO",
+                        "max_contextual_job_history": 10,
+                        "agent_id": "DATA_ANALYSIS_AGENT"
+                      },
+                      {
+                        "id": "7e9941af-ad1b-4834-a421-4b37b54aae19",
+                        "name": "session_trade_analyze_001",
+                        "output_language": "EN",
+                        "job_mode": "AUTO",
+                        "max_contextual_job_history": 1,
+                        "agent_id": "DATA_ANALYSIS_AGENT"
+                      },
+                      {
+                        "id": "a137ecc8-9554-42c3-b042-2458dd2aeb36",
+                        "name": "My first session",
+                        "output_language": "AUTO",
+                        "job_mode": "AUTO",
+                        "max_contextual_job_history": 10,
+                        "agent_id": "DATA_ANALYSIS_AGENT"
+                      },
+                      {
+                        "id": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
+                        "name": "New name",
+                        "output_language": "EN",
+                        "job_mode": "AUTO",
+                        "max_contextual_job_history": 10,
+                        "agent_id": "DATA_ANALYSIS_AGENT"
+                      },
+                      {
+                        "id": "3eb5e294-11eb-4bf0-8854-7177c415d15c",
+                        "name": "trade_analyze_001",
+                        "output_language": "ZH-CN",
+                        "job_mode": "AUTO",
+                        "max_contextual_job_history": 10,
+                        "agent_id": "DATA_ANALYSIS_AGENT"
+                      },
+                      {
+                        "id": "ccca6d34-894f-4f6f-a8b5-c9df93126309",
+                        "name": "lhtest-old",
+                        "output_language": "ZH-CN",
+                        "job_mode": "AUTO",
+                        "max_contextual_job_history": 5,
+                        "agent_id": "DATA_ANALYSIS_AGENT"
+                      },
+                      {
+                        "id": "c28a1f47-da68-4456-bb0b-e85bf5a0e98e",
+                        "name": "lhtest-newest",
+                        "output_language": "ZH-TW",
+                        "job_mode": "AUTO",
+                        "max_contextual_job_history": 6,
+                        "agent_id": "DATA_ANALYSIS_AGENT"
+                      },
+                      {
+                        "id": "fbde9b45-69cd-408e-97d1-f874236aadac",
+                        "name": "General-session",
+                        "output_language": "ZH-CN",
+                        "job_mode": "AUTO",
+                        "max_contextual_job_history": 10,
+                        "agent_id": "DATA_ANALYSIS_AGENT"
                       }
-                    }
+                    ]
                   }
                 }
               }
@@ -541,17 +526,12 @@
                   "user_id"
                 ]
               },
-              "examples": {
-                "1": {
-                  "value": {
-                    "name": "hello",
-                    "output_language": "EN",
-                    "job_mode": "DATA_ANALYSIS",
-                    "max_contextual_job_history": 3,
-                    "user_id": "tmm-ddsdfsfgs"
-                  },
-                  "description": ""
-                }
+              "example": {
+                "name": "hello",
+                "output_language": "EN",
+                "job_mode": "DATA_ANALYSIS",
+                "max_contextual_job_history": 3,
+                "user_id": "tmm-ddsdfsfgs"
               }
             }
           }
@@ -642,13 +622,8 @@
                   "user_id"
                 ]
               },
-              "examples": {
-                "1": {
-                  "value": {
-                    "user_id": "tmm-dafasdfasdfasdf"
-                  },
-                  "description": ""
-                }
+              "example": {
+                "user_id": "tmm-dafasdfasdfasdf"
               }
             }
           }
@@ -814,20 +789,15 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "成功示例",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "id": "cckrXXg68P8lmb59dg4yO",
-                        "name": "Analyze performance",
-                        "output_language": "HI",
-                        "job_mode": "AUTO",
-                        "max_contextual_job_history": 76,
-                        "agent_id": "DATA_ANALYSIS_AGENT"
-                      }
-                    }
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "id": "cckrXXg68P8lmb59dg4yO",
+                    "name": "Analyze performance",
+                    "output_language": "HI",
+                    "job_mode": "AUTO",
+                    "max_contextual_job_history": 76,
+                    "agent_id": "DATA_ANALYSIS_AGENT"
                   }
                 }
               }
@@ -1020,164 +990,159 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "成功示例",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "total_items": 1,
-                        "page_number": 1,
-                        "page_size": 10,
-                        "records": [
-                          {
-                            "job_id": "job-1dsfasddfasgddsaffds",
-                            "question": {
-                              "blocks": [
-                                {
-                                  "type": "MESSAGE",
-                                  "content": "Check for negative values across all sales columns"
-                                }
-                              ]
-                            },
-                            "answer": {
-                              "blocks": [
-                                {
-                                  "type": "MESSAGE",
-                                  "content": "- Check for negative values across all sales columns.\n- Filter the DataFrame to retain only rows with no negative sales values.",
-                                  "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
-                                  "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
-                                  "stage": "Analyze"
-                                },
-                                {
-                                  "type": "CODE",
-                                  "content": "```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  SalesByChannelByDay_Summary_Demo.Sheet1_0_table_1.csv\n    '''\n    # Identify columns that represent sales data (all except the first column)\n    sales_columns = input_0.columns[1:]\n    \n    # Filter rows where any sales value is negative\n    filtered_df = input_0[~(input_0[sales_columns] < 0).any(axis=1)]\n    \n    # Assign the result to the output variable\n    output = filtered_df\n    \n    return output\n\n```",
-                                  "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
-                                  "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
-                                  "stage": "Analyze"
-                                },
-                                {
-                                  "type": "TABLE",
-                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/baf7d6d1-fb81-4fdb-bcdd-32923d214c7b.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9bcb5af552793f162e35f41d62fb9306cf90888924bfbdce81ea687265fddf83",
-                                  "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
-                                  "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
-                                  "stage": "Analyze"
-                                },
-                                {
-                                  "type": "MESSAGE",
-                                  "content": "- Sum the sales across all days for each channel.\n- Create a new DataFrame with the channel names and their corresponding total sales.",
-                                  "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
-                                  "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
-                                  "stage": "Analyze"
-                                },
-                                {
-                                  "type": "CODE",
-                                  "content": "```python\n\nimport pandas as pd\n\ndef invoke(negative_sales_channels: pd.DataFrame) -> pd.DataFrame:\n    '''\n    negative_sales_channels: pd.DataFrame  negative_sales_channels.csv\n    '''\n    # Sum the sales across all days for each channel\n    total_sales = negative_sales_channels.iloc[:, 1:].sum(axis=1)\n    \n    # Create a new DataFrame with the channel names and their corresponding total sales\n    output = pd.DataFrame({\n        'Channel': negative_sales_channels.iloc[:, 0],\n        'Total Sales': total_sales\n    })\n    \n    return output\n\n```",
-                                  "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
-                                  "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
-                                  "stage": "Analyze"
-                                },
-                                {
-                                  "type": "TABLE",
-                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/10cffac2-8bf3-45f4-86e6-1ed8457329f2.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c6f5b522d2ddceea730304b86a45d5f5165f05f9fda3c1d275d11e9022c1e7ac",
-                                  "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
-                                  "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
-                                  "stage": "Analyze"
-                                },
-                                {
-                                  "type": "MESSAGE",
-                                  "content": "- Replace any negative sales values with zero in the data.\n- Sum the sales across all days for each channel.\n- Create a new data structure with the summed sales values.",
-                                  "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
-                                  "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
-                                  "stage": "Analyze"
-                                },
-                                {
-                                  "type": "CODE",
-                                  "content": "```python\n\nimport pandas as pd\n\ndef invoke(negative_sales_channels: pd.DataFrame) -> pd.DataFrame:\n    '''\n    negative_sales_channels: pd.DataFrame  negative_sales_channels.csv\n    '''\n    # Replace negative values with zero\n    negative_sales_channels.iloc[:, 1:] = negative_sales_channels.iloc[:, 1:].clip(lower=0)\n    \n    # Sum the sales across all days for each channel\n    sales_sum = negative_sales_channels.iloc[:, 1:].sum(axis=1)\n    \n    # Create a new DataFrame with the summed sales values\n    output = pd.DataFrame({\n        'Channel': negative_sales_channels.iloc[:, 0],\n        'Total Sales': sales_sum\n    })\n    \n    return output\n\n```",
-                                  "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
-                                  "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
-                                  "stage": "Analyze"
-                                },
-                                {
-                                  "type": "TABLE",
-                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/f4c99616-dd7c-48b1-8a35-d3141d732c36.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=d21a8d939ab09547bc201754ba253ca6c0d1da5361752f2228237e3ff59be256",
-                                  "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
-                                  "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
-                                  "stage": "Analyze"
-                                },
-                                {
-                                  "type": "MESSAGE",
-                                  "content": "- Merge the two datasets on the 'Channel' column to align sales data for comparison.\n- Calculate the difference in 'Total Sales' between the datasets for each channel.\n- Store the results, including channel name and calculated difference, in a new dataset.",
-                                  "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
-                                  "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
-                                  "stage": "Analyze"
-                                },
-                                {
-                                  "type": "CODE",
-                                  "content": "```python\n\nimport pandas as pd\n\ndef invoke(sales_trend_with_negatives: pd.DataFrame, sales_trend_without_negatives: pd.DataFrame) -> pd.DataFrame:\n    # Merge the two DataFrames on the 'Channel' column\n    merged_df = pd.merge(sales_trend_with_negatives, sales_trend_without_negatives, on='Channel', suffixes=('_with_negatives', '_without_negatives'))\n    \n    # Calculate the difference in 'Total Sales' between the two DataFrames\n    merged_df['Sales Difference'] = merged_df['Total Sales_without_negatives'] - merged_df['Total Sales_with_negatives']\n    \n    # Create a new DataFrame to store the results\n    output = merged_df[['Channel', 'Sales Difference']]\n    \n    return output\n\n```",
-                                  "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
-                                  "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
-                                  "stage": "Analyze"
-                                },
-                                {
-                                  "type": "TABLE",
-                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/aaf4f2f7-e2db-4f2e-98ae-0bdd18f42333.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=19fcfe97c70bf40292b920ecbf0299c101e1de11e49b54fb8f62934b6e874f52",
-                                  "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
-                                  "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
-                                  "stage": "Analyze"
-                                },
-                                {
-                                  "type": "MESSAGE",
-                                  "content": "\n\n`Analyzing Conclusions` \n\n### The impact of negative sales values on overall sales trends\n\n#### Sales variance analysis\n\n",
-                                  "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
-                                  "group_name": "Conclusions",
-                                  "stage": "Respond"
-                                },
-                                {
-                                  "type": "TABLE",
-                                  "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/aaf4f2f7-e2db-4f2e-98ae-0bdd18f42333.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=19fcfe97c70bf40292b920ecbf0299c101e1de11e49b54fb8f62934b6e874f52",
-                                  "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
-                                  "group_name": "Conclusions",
-                                  "stage": "Respond"
-                                },
-                                {
-                                  "type": "MESSAGE",
-                                  "content": "\n\n- **Sales variance**：In all channels (including EC, JD, Tmall, WeChat, retail, corporate stores, outlets, and total), the sales difference is 0.0. This indicates that regardless of the presence of negative sales values, the sales trend has not changed.\n\n#### Conclusion and Insights\n- **The impact of negative sales values**：Based on the provided data, negative sales values have no impact on the overall sales trend of the affected channels, as the sales variance for all channels is 0.0.\n- **Data consistency**：The sales discrepancies across all channels are consistent, indicating that there are no anomalies or deviations caused by negative sales values during data processing or analysis.",
-                                  "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
-                                  "group_name": "Conclusions",
-                                  "stage": "Respond"
-                                },
-                                {
-                                  "type": "SOURCES",
-                                  "content": [
-                                    {
-                                      "source": "SalesByChannelByDay_Summary_Demo.xlsx",
-                                      "datasource_id": "cm2ej4wmo000001fcdkwbdrml",
-                                      "dataset_id": "cm2ej4vx900hp01l1o378zr9o",
-                                      "file_type": "xlsx",
-                                      "external_id": ""
-                                    }
-                                  ],
-                                  "group_id": "",
-                                  "group_name": "",
-                                  "stage": "Respond"
-                                },
-                                {
-                                  "type": "QUESTIONS",
-                                  "content": [
-                                    "Analyze the specific channels with negative sales values on different dates and discuss whether the sales strategies of these channels might lead to negative values.",
-                                    "Study the long-term impact of negative sales values on overall sales trends and assess whether adjustments to data analysis methods are needed to more accurately reflect the actual situation.",
-                                    "Investigate the source of negative sales values, whether they are related to returns, discounts, or other factors, and propose possible solutions to reduce the occurrence of negative values."
-                                  ],
-                                  "group_id": "-1",
-                                  "stage": "Respond"
-                                }
-                              ]
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "total_items": 1,
+                    "page_number": 1,
+                    "page_size": 10,
+                    "records": [
+                      {
+                        "job_id": "job-1dsfasddfasgddsaffds",
+                        "question": {
+                          "blocks": [
+                            {
+                              "type": "MESSAGE",
+                              "content": "Check for negative values across all sales columns"
                             }
-                          }
-                        ]
+                          ]
+                        },
+                        "answer": {
+                          "blocks": [
+                            {
+                              "type": "MESSAGE",
+                              "content": "- Check for negative values across all sales columns.\n- Filter the DataFrame to retain only rows with no negative sales values.",
+                              "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
+                              "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
+                              "stage": "Analyze"
+                            },
+                            {
+                              "type": "CODE",
+                              "content": "```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  SalesByChannelByDay_Summary_Demo.Sheet1_0_table_1.csv\n    '''\n    # Identify columns that represent sales data (all except the first column)\n    sales_columns = input_0.columns[1:]\n    \n    # Filter rows where any sales value is negative\n    filtered_df = input_0[~(input_0[sales_columns] < 0).any(axis=1)]\n    \n    # Assign the result to the output variable\n    output = filtered_df\n    \n    return output\n\n```",
+                              "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
+                              "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
+                              "stage": "Analyze"
+                            },
+                            {
+                              "type": "TABLE",
+                              "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/baf7d6d1-fb81-4fdb-bcdd-32923d214c7b.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9bcb5af552793f162e35f41d62fb9306cf90888924bfbdce81ea687265fddf83",
+                              "group_id": "ba582fc9-bb36-4c5d-a8e8-d35bda6389cd",
+                              "group_name": "Identify the channels with negative sales values by examining each day's sales data. Filter out the rows where any sales value is negative.",
+                              "stage": "Analyze"
+                            },
+                            {
+                              "type": "MESSAGE",
+                              "content": "- Sum the sales across all days for each channel.\n- Create a new DataFrame with the channel names and their corresponding total sales.",
+                              "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
+                              "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
+                              "stage": "Analyze"
+                            },
+                            {
+                              "type": "CODE",
+                              "content": "```python\n\nimport pandas as pd\n\ndef invoke(negative_sales_channels: pd.DataFrame) -> pd.DataFrame:\n    '''\n    negative_sales_channels: pd.DataFrame  negative_sales_channels.csv\n    '''\n    # Sum the sales across all days for each channel\n    total_sales = negative_sales_channels.iloc[:, 1:].sum(axis=1)\n    \n    # Create a new DataFrame with the channel names and their corresponding total sales\n    output = pd.DataFrame({\n        'Channel': negative_sales_channels.iloc[:, 0],\n        'Total Sales': total_sales\n    })\n    \n    return output\n\n```",
+                              "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
+                              "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
+                              "stage": "Analyze"
+                            },
+                            {
+                              "type": "TABLE",
+                              "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/10cffac2-8bf3-45f4-86e6-1ed8457329f2.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c6f5b522d2ddceea730304b86a45d5f5165f05f9fda3c1d275d11e9022c1e7ac",
+                              "group_id": "47183fd1-307b-4408-9986-e9238d952ec1",
+                              "group_name": "Calculate the overall sales trend for the identified channels with negative sales values. This involves summing up the sales across all days for each channel and analyzing the trend.",
+                              "stage": "Analyze"
+                            },
+                            {
+                              "type": "MESSAGE",
+                              "content": "- Replace any negative sales values with zero in the data.\n- Sum the sales across all days for each channel.\n- Create a new data structure with the summed sales values.",
+                              "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
+                              "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
+                              "stage": "Analyze"
+                            },
+                            {
+                              "type": "CODE",
+                              "content": "```python\n\nimport pandas as pd\n\ndef invoke(negative_sales_channels: pd.DataFrame) -> pd.DataFrame:\n    '''\n    negative_sales_channels: pd.DataFrame  negative_sales_channels.csv\n    '''\n    # Replace negative values with zero\n    negative_sales_channels.iloc[:, 1:] = negative_sales_channels.iloc[:, 1:].clip(lower=0)\n    \n    # Sum the sales across all days for each channel\n    sales_sum = negative_sales_channels.iloc[:, 1:].sum(axis=1)\n    \n    # Create a new DataFrame with the summed sales values\n    output = pd.DataFrame({\n        'Channel': negative_sales_channels.iloc[:, 0],\n        'Total Sales': sales_sum\n    })\n    \n    return output\n\n```",
+                              "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
+                              "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
+                              "stage": "Analyze"
+                            },
+                            {
+                              "type": "TABLE",
+                              "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/f4c99616-dd7c-48b1-8a35-d3141d732c36.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=d21a8d939ab09547bc201754ba253ca6c0d1da5361752f2228237e3ff59be256",
+                              "group_id": "6b93c2b1-8908-4c2b-afb2-2a81f2d24739",
+                              "group_name": "Calculate the overall sales trend for the same channels but excluding the negative sales values. This involves setting negative values to zero or removing them and then summing up the sales across all days for each channel.",
+                              "stage": "Analyze"
+                            },
+                            {
+                              "type": "MESSAGE",
+                              "content": "- Merge the two datasets on the 'Channel' column to align sales data for comparison.\n- Calculate the difference in 'Total Sales' between the datasets for each channel.\n- Store the results, including channel name and calculated difference, in a new dataset.",
+                              "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
+                              "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
+                              "stage": "Analyze"
+                            },
+                            {
+                              "type": "CODE",
+                              "content": "```python\n\nimport pandas as pd\n\ndef invoke(sales_trend_with_negatives: pd.DataFrame, sales_trend_without_negatives: pd.DataFrame) -> pd.DataFrame:\n    # Merge the two DataFrames on the 'Channel' column\n    merged_df = pd.merge(sales_trend_with_negatives, sales_trend_without_negatives, on='Channel', suffixes=('_with_negatives', '_without_negatives'))\n    \n    # Calculate the difference in 'Total Sales' between the two DataFrames\n    merged_df['Sales Difference'] = merged_df['Total Sales_without_negatives'] - merged_df['Total Sales_with_negatives']\n    \n    # Create a new DataFrame to store the results\n    output = merged_df[['Channel', 'Sales Difference']]\n    \n    return output\n\n```",
+                              "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
+                              "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
+                              "stage": "Analyze"
+                            },
+                            {
+                              "type": "TABLE",
+                              "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/aaf4f2f7-e2db-4f2e-98ae-0bdd18f42333.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=19fcfe97c70bf40292b920ecbf0299c101e1de11e49b54fb8f62934b6e874f52",
+                              "group_id": "3488f538-f7fc-4c0e-a265-b66e3a38d41e",
+                              "group_name": "Compare the sales trends with and without negative sales values to determine the impact of negative sales on the overall sales trend for the affected channels.",
+                              "stage": "Analyze"
+                            },
+                            {
+                              "type": "MESSAGE",
+                              "content": "\n\n`Analyzing Conclusions` \n\n### The impact of negative sales values on overall sales trends\n\n#### Sales variance analysis\n\n",
+                              "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
+                              "group_name": "Conclusions",
+                              "stage": "Respond"
+                            },
+                            {
+                              "type": "TABLE",
+                              "content": "https://s3.amazonaws.com/powerdrilltest/tmp_datasource_cache/code_result/clvl4cad2001q01l1m522hxlu/aaf4f2f7-e2db-4f2e-98ae-0bdd18f42333.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241018T104617Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20241018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=19fcfe97c70bf40292b920ecbf0299c101e1de11e49b54fb8f62934b6e874f52",
+                              "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
+                              "group_name": "Conclusions",
+                              "stage": "Respond"
+                            },
+                            {
+                              "type": "MESSAGE",
+                              "content": "\n\n- **Sales variance**：In all channels (including EC, JD, Tmall, WeChat, retail, corporate stores, outlets, and total), the sales difference is 0.0. This indicates that regardless of the presence of negative sales values, the sales trend has not changed.\n\n#### Conclusion and Insights\n- **The impact of negative sales values**：Based on the provided data, negative sales values have no impact on the overall sales trend of the affected channels, as the sales variance for all channels is 0.0.\n- **Data consistency**：The sales discrepancies across all channels are consistent, indicating that there are no anomalies or deviations caused by negative sales values during data processing or analysis.",
+                              "group_id": "fd1a62e6-48cf-4ac1-8bac-025665444710",
+                              "group_name": "Conclusions",
+                              "stage": "Respond"
+                            },
+                            {
+                              "type": "SOURCES",
+                              "content": [
+                                {
+                                  "source": "SalesByChannelByDay_Summary_Demo.xlsx",
+                                  "datasource_id": "cm2ej4wmo000001fcdkwbdrml",
+                                  "dataset_id": "cm2ej4vx900hp01l1o378zr9o",
+                                  "file_type": "xlsx",
+                                  "external_id": ""
+                                }
+                              ],
+                              "group_id": "",
+                              "group_name": "",
+                              "stage": "Respond"
+                            },
+                            {
+                              "type": "QUESTIONS",
+                              "content": [
+                                "Analyze the specific channels with negative sales values on different dates and discuss whether the sales strategies of these channels might lead to negative values.",
+                                "Study the long-term impact of negative sales values on overall sales trends and assess whether adjustments to data analysis methods are needed to more accurately reflect the actual situation.",
+                                "Investigate the source of negative sales values, whether they are related to returns, discounts, or other factors, and propose possible solutions to reduce the occurrence of negative values."
+                              ],
+                              "group_id": "-1",
+                              "stage": "Respond"
+                            }
+                          ]
+                        }
                       }
-                    }
+                    ]
                   }
                 }
               }
@@ -1297,30 +1262,24 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "success example",
-                    "description": "",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "id": "dset-cm5axptyyxxx298",
-                        "name": "sales_indicators_2024",
-                        "description": "A dataset comprising 373 travel bookings with 15 attributes, offering insights into booking patterns, pricing strategies, and more",
-                        "summary": "This dataset contains 373 travel bookings with 15 attributes, enabling analysis of booking trends, pricing strategies, and travel agency dynamics.",
-                        "exploration_questions": [
-                          "How does the booking price trend over time based on the BookingTimestamp?",
-                          "How does the average booking price change with respect to the TravelDate?",
-                          "Are there any significant outliers in the booking prices, and what might be causing them?",
-                          "How does the average price vary between one-way and round-trip bookings?"
-                        ],
-                        "keywords": [
-                          "Travel Bookings",
-                          "Booking Trends",
-                          "Travel Agencies"
-                        ]
-                      }
-                    }
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "id": "dset-cm5axptyyxxx298",
+                    "name": "sales_indicators_2024",
+                    "description": "A dataset comprising 373 travel bookings with 15 attributes, offering insights into booking patterns, pricing strategies, and more",
+                    "summary": "This dataset contains 373 travel bookings with 15 attributes, enabling analysis of booking trends, pricing strategies, and travel agency dynamics.",
+                    "exploration_questions": [
+                      "How does the booking price trend over time based on the BookingTimestamp?",
+                      "How does the average booking price change with respect to the TravelDate?",
+                      "Are there any significant outliers in the booking prices, and what might be causing them?",
+                      "How does the average price vary between one-way and round-trip bookings?"
+                    ],
+                    "keywords": [
+                      "Travel Bookings",
+                      "Booking Trends",
+                      "Travel Agencies"
+                    ]
                   }
                 }
               }
@@ -1379,15 +1338,10 @@
                   "user_id"
                 ]
               },
-              "examples": {
-                "1": {
-                  "value": {
-                    "name": "My dataset",
-                    "description": "my default dataset",
-                    "user_id": "tmm-dafasdfasdfasdf"
-                  },
-                  "description": ""
-                }
+              "example": {
+                "name": "My dataset",
+                "description": "my default dataset",
+                "user_id": "tmm-dafasdfasdfasdf"
               }
             }
           }
@@ -1451,16 +1405,10 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "成功示例",
-                    "description": "",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "id": "dataset-adsdfasafdsfasdgasd"
-                      }
-                    }
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "id": "dataset-adsdfasafdsfasdgasd"
                   }
                 }
               }
@@ -1587,24 +1535,19 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "成功示例",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "page_number": 1,
-                        "page_size": 10,
-                        "total_items": 1,
-                        "records": [
-                          {
-                            "id": "dataset-dasfadsgadsgas",
-                            "name": "mysql",
-                            "description": "mysql databases"
-                          }
-                        ]
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "page_number": 1,
+                    "page_size": 10,
+                    "total_items": 1,
+                    "records": [
+                      {
+                        "id": "dataset-dasfadsgadsgas",
+                        "name": "mysql",
+                        "description": "mysql databases"
                       }
-                    }
+                    ]
                   }
                 }
               }
@@ -1672,13 +1615,8 @@
                   "user_id"
                 ]
               },
-              "examples": {
-                "1": {
-                  "value": {
-                    "user_id": "tmm-dafasdfasdfasdf"
-                  },
-                  "description": ""
-                }
+              "example": {
+                "user_id": "tmm-dafasdfasdfasdf"
               }
             }
           }
@@ -1776,15 +1714,10 @@
                   "user_id"
                 ]
               },
-              "examples": {
-                "1": {
-                  "value": {
-                    "name": "sales_data",
-                    "description": "sales data of all regions",
-                    "user_id": "tmm-dsadfdsafasdf"
-                  },
-                  "description": ""
-                }
+              "example": {
+                "name": "sales_data",
+                "description": "sales data of all regions",
+                "user_id": "tmm-dsadfdsafasdf"
               }
             }
           }
@@ -1912,17 +1845,12 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "成功示例",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "synched_count": 5,
-                        "invalid_count": 0,
-                        "synching_count": 0
-                      }
-                    }
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "synched_count": 5,
+                    "invalid_count": 0,
+                    "synching_count": 0
                   }
                 }
               }
@@ -2009,16 +1937,11 @@
                   "user_id"
                 ]
               },
-              "examples": {
-                "1": {
-                  "value": {
-                    "name": "test.csv",
-                    "type": "FILE",
-                    "user_id": "tmm-dsfasdfasdfa",
-                    "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2"
-                  },
-                  "description": ""
-                }
+              "example": {
+                "name": "test.csv",
+                "type": "FILE",
+                "user_id": "tmm-dsfasdfasdfa",
+                "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2"
               }
             }
           }
@@ -2082,20 +2005,14 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "成功示例",
-                    "description": "",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "id": "datasource-cadsgfsdagasgadsg",
-                        "dataset_id": "dataset-dagasdgasgasg",
-                        "name": "test.csv",
-                        "type": "FILE",
-                        "status": "synching"
-                      }
-                    }
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "id": "datasource-cadsgfsdagasgadsg",
+                    "dataset_id": "dataset-dagasdgasgasg",
+                    "name": "test.csv",
+                    "type": "FILE",
+                    "status": "synching"
                   }
                 }
               }
@@ -2281,27 +2198,22 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "成功示例",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "total_items": 1,
-                        "page_size": 10,
-                        "page_number": 1,
-                        "records": [
-                          {
-                            "id": "ds-cm7aedl58000501fc52hjj5c3",
-                            "name": "ds1.xlsx",
-                            "type": "FILE",
-                            "status": "synched",
-                            "size": 14435,
-                            "dataset_id": "dset-cm7ae4d77028n01l1cnapd5si"
-                          }
-                        ]
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "records": [
+                      {
+                        "id": "ds-cm8iikpzv000b01fcq6ozrjtd",
+                        "name": "olist_sellers_dataset.csv",
+                        "type": "FILE",
+                        "status": "synched",
+                        "size": 174703,
+                        "dataset_id": "dset-cm8iikpc7018f01l1b796jkgu"
                       }
-                    }
+                    ],
+                    "total_items": 1,
+                    "page_size": 10,
+                    "page_number": 1
                   }
                 }
               }
@@ -2378,13 +2290,8 @@
                   "user_id"
                 ]
               },
-              "examples": {
-                "1": {
-                  "value": {
-                    "user_id": "tmm-dafasdfasdfasdf"
-                  },
-                  "description": ""
-                }
+              "example": {
+                "user_id": "tmm-dafasdfasdfasdf"
               }
             }
           }
@@ -2541,20 +2448,15 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "成功示例",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "id": "ds-cm7aedl58000501fc52hjj5c3",
-                        "name": "ds1.xlsx",
-                        "type": "FILE",
-                        "status": "synched",
-                        "size": 14435,
-                        "dataset_id": "dset-cm7ae4d77028n01l1cnapd5si"
-                      }
-                    }
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "id": "ds-cm7aedl58000501fc52hjj5c3",
+                    "name": "ds1.xlsx",
+                    "type": "FILE",
+                    "status": "synched",
+                    "size": 14435,
+                    "dataset_id": "dset-cm7ae4d77028n01l1cnapd5si"
                   }
                 }
               }
@@ -2604,16 +2506,11 @@
               "schema": {
                 "$ref": "#/components/schemas/DataSourceConfig"
               },
-              "examples": {
-                "1": {
-                  "value": {
-                    "name": "test.csv",
-                    "type": "FILE",
-                    "user_id": "tmm-dafasdfasdfasdf",
-                    "file_object_key": "/tmp/sdgsagdsgsadgasdg"
-                  },
-                  "description": ""
-                }
+              "example": {
+                "name": "test.csv",
+                "type": "FILE",
+                "user_id": "tmm-dafasdfasdfasdf",
+                "file_object_key": "/tmp/sdgsagdsgsadgasdg"
               }
             }
           }
@@ -2677,19 +2574,14 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "Success example:",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "id": "ds-cm7aedl58000501fc52hjj5c3",
-                        "name": "ds1.xlsx",
-                        "type": "FILE",
-                        "status": "synched",
-                        "dataset_id": "dset-cm7ae4d77028n01l1cnapd5si"
-                      }
-                    }
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "id": "ds-cm7aedl58000501fc52hjj5c3",
+                    "name": "ds1.xlsx",
+                    "type": "FILE",
+                    "status": "synched",
+                    "dataset_id": "dset-cm7ae4d77028n01l1cnapd5si"
                   }
                 }
               }
@@ -2771,14 +2663,9 @@
                   "user_id"
                 ]
               },
-              "examples": {
-                "1": {
-                  "value": {
-                    "expires_in": 600,
-                    "user_id": "tmm-dafasdfasdfasdf"
-                  },
-                  "description": ""
-                }
+              "example": {
+                "expires_in": 600,
+                "user_id": "tmm-dafasdfasdfasdf"
               }
             }
           }
@@ -2820,16 +2707,11 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "成功示例",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "presigned_url": "string",
-                        "expires_at": "2024-11-13T14:15:22.123Z"
-                      }
-                    }
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "presigned_url": "string",
+                    "expires_at": "2024-11-13T14:15:22.123Z"
                   }
                 }
               }
@@ -2931,16 +2813,10 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "Success example:",
-                    "description": "",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "file_object_key": "/tmp/sdgsagdsgsadgasdg.csv"
-                      }
-                    }
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "file_object_key": "/tmp/sdgsagdsgsadgasdg.csv"
                   }
                 }
               }
@@ -2955,6 +2831,293 @@
                 }
               }
             }
+          }
+        },
+        "security": [
+          {
+            "apikey-header-x-pd-api-key": []
+          }
+        ]
+      }
+    },
+    "/v2/team/file/init-multipart-upload": {
+      "post": {
+        "summary": "Initiate multipart upload",
+        "deprecated": false,
+        "description": "Initiates a multipart upload task for local files in multipart mode. Only files in the following formats are supported:  **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**,  **.docx**, **.xls**, or **.xlsx**.\n\n<Tip>\n**Important notes**\nWhen you call this endpoint, Cloud Object Storage, for example, AWS S3, generates and returns a unique upload ID to identify the multipart upload task. This ID is required when you call the [Complete multipart upload](/api-reference/v2/complete-multipart-upload) endpoint.\n</Tip>",
+        "tags": [
+          "File"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file_name": {
+                    "type": "string",
+                    "description": "The complete name of the file, including its extension, for example `sales_data.csv`.​"
+                  },
+                  "file_size": {
+                    "type": "integer",
+                    "description": "The size of the file, in the units of bytes."
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information).",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "exclusiveMaximum": true
+                  }
+                },
+                "required": [
+                  "file_name",
+                  "file_size",
+                  "user_id",
+                  "01JF9Z5GRCAAWDHMQ0HZENJ0SS"
+                ]
+              },
+              "example": {
+                "user_id": "tmm-cm8gt41kuxxxx1l1d1n2wz8v",
+                "file_name": "sales_data.csv",
+                "file_size": 1024
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "file_object_key": {
+                          "type": "string",
+                          "description": "The object storage path to the file."
+                        },
+                        "part_items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "number": {
+                                "type": "integer",
+                                "description": "The sequential number of the part."
+                              },
+                              "upload_url": {
+                                "type": "string",
+                                "description": "The upload URL of the part."
+                              },
+                              "size": {
+                                "type": "integer",
+                                "description": "The part size in bytes."
+                              }
+                            },
+                            "description": "Information about each part.",
+                            "required": [
+                              "number",
+                              "upload_url",
+                              "size"
+                            ]
+                          },
+                          "description": "A list of parts."
+                        },
+                        "upload_id": {
+                          "type": "string",
+                          "description": "The unique identifier for the multipart upload task. Save this value for later use in [Complete Multipart Upload](/api-reference/v2/complete-multipart-upload)."
+                        }
+                      },
+                      "required": [
+                        "file_object_key",
+                        "part_items",
+                        "upload_id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "upload_id": "5k3EJxAYgtHW1fkbF54ppKEiTWSBeFBQ_01DnFEDSSHChV7w1jpw7SM_KWLkHYXm6Wzaw_NOpMG_OFsi9D5R8Csx9xxxx_m.YuWNjbTMWYIwVKG5rw0VXJZzgWbwSfe",
+                    "file_object_key": "temp/user/tmm-cm8gt41kuxxxx1l1d1n2wz8v/26f6272c-a847-4589-b352-a85471bb5121.csv",
+                    "part_items": [
+                      {
+                        "number": 1,
+                        "size": 1024,
+                        "upload_url": "https://s3.amazonaws.com/powerdrilltest/temp/user/tmm-cm8gt41kuxxxx1l1d1n2wz8v/26f6272c-a847-4589-b352-a85471bb5121.csv?uploadId=5k3EJxAYgtHW1fkbF54ppKEiTWxxxxxx_01DnFEDSSHChV7w1jpw7SM_KWLkHYXm6Wzaw_NOpMG_OFsi9D5R8Csx9DUHbQ_m.YuWNjbTMWYIwVKG5rw0VXJZzgWbwSfe&partNumber=1&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250402T085840Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20250402%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=b7be59679910fabd6603af6b7eb003094498ec7d6ceb47af93253540e734dba3"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "apikey-header-x-pd-api-key": []
+          }
+        ]
+      }
+    },
+    "/v2/team/file/complete-multipart-upload": {
+      "post": {
+        "summary": "Complete multipart upload",
+        "deprecated": false,
+        "description": "Completes a multipart upload task after all parts of the corresponding file are uploaded.\n<Tip>\n**Important notes**\nWhen calling this endpoint, you must provide a full list of uploaded parts, including their sequential numbers and corresponding ETag values. Cloud Object Storage service (for example, AWS S3) validates each part in sequence and, upon successful verification, combines them into a complete file.\n</Tip>",
+        "tags": [
+          "File"
+        ],
+        "parameters": [
+          {
+            "name": "x-pd-external-trace-id",
+            "in": "header",
+            "description": "The trace ID you set in your system to trace this request. It can be up to 128 characters in length. If the request fails, you can provide it to the Powerdrill team to help with troubleshooting.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file_object_key": {
+                    "type": "string",
+                    "description": "The object storage path to the file."
+                  },
+                  "upload_id": {
+                    "type": "string",
+                    "description": "The upload ID of the multipart upload task, which is returned when the [Initiate multipart upload](/api-reference/v2/initiate-multipart-upload) operation is done."
+                  },
+                  "part_etags": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "part_number": {
+                          "type": "integer",
+                          "description": "The part number of the part."
+                        },
+                        "etag": {
+                          "type": "string",
+                          "description": "The ETag value of the part. "
+                        }
+                      },
+                      "required": [
+                        "part_number",
+                        "etag"
+                      ],
+                      "description": "The information about each part."
+                    },
+                    "description": "The full list of ETag values."
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "Your user ID, which uniquely identifies you within your team. To obtain your ID:\n\n- If you're the team admin, refer to [Check user information](/enterprise/users#check-user-information).\n- If you're a system or virtual user, ask your team admin to check your user ID by referring to [Check user information](/enterprise/users#check-user-information)."
+                  }
+                },
+                "required": [
+                  "file_object_key",
+                  "upload_id",
+                  "part_etags",
+                  "user_id"
+                ]
+              },
+              "example": {
+                "file_object_key": "temp/user/tmm-cm8gt41kuxxxx1l1d1n2wz8v/26f6272c-a847-4589-b352-a85471bb5121.csv",
+                "part_etags": [
+                  {
+                    "etag": "124AD7DCA",
+                    "number": 1
+                  }
+                ],
+                "upload_id": "5k3EJxAYgtHW1fkbF54ppKEiTWSBeFBQ_01DnFEDSSHChV7w1jpw7SM_KWLkHYXm6Wzaw_NOpMG_OFsi9D5R8Csx9Dxxxxxx.YuWNjbTMWYIwVKG5rw0VXJZzgWbwSfe",
+                "user_id": "tmm-cm8gt41kuxxxx1l1d1n2wz8v"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Status code. **0** indicates that the operation is successful. Otherwise, the operation fails. For error troubleshooting, refer to [Error Codes](/api-reference/error-codes)."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "file_object_key": {
+                          "type": "string",
+                          "description": "The object storage path to the file."
+                        }
+                      },
+                      "description": "The returned data object.",
+                      "required": [
+                        "file_object_key"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "code"
+                  ]
+                },
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "file_object_key": "temp/user/tmm-cm8gt41kuxxxx1l1d1n2wz8v/26f6272c-a847-4589-b352-a85471bb5121.csv"
+                  }
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": [
@@ -3072,22 +3235,17 @@
                   "user_id"
                 ]
               },
-              "examples": {
-                "1": {
-                  "value": {
-                    "session_id": "cxxdgegeegeg3433fff",
-                    "user_id": "tmm-dafasdfasdfasdf",
-                    "stream": true,
-                    "question": "Hello World",
-                    "dataset_id": "cm1gjmg8e0057r3x22v1fdu8m",
-                    "datasource_ids": [
-                      "cm1gjmmoo0001h0x24uk1xgu9"
-                    ],
-                    "output_language": "AUTO",
-                    "job_mode": "AUTO"
-                  },
-                  "description": ""
-                }
+              "example": {
+                "session_id": "cxxdgegeegeg3433fff",
+                "user_id": "tmm-dafasdfasdfasdf",
+                "stream": true,
+                "question": "Hello World",
+                "dataset_id": "cm1gjmg8e0057r3x22v1fdu8m",
+                "datasource_ids": [
+                  "cm1gjmmoo0001h0x24uk1xgu9"
+                ],
+                "output_language": "AUTO",
+                "job_mode": "AUTO"
               }
             }
           }
@@ -3132,114 +3290,108 @@
                     "code"
                   ]
                 },
-                "examples": {
-                  "1": {
-                    "summary": "Stream=false",
-                    "description": "",
-                    "value": {
-                      "code": 0,
-                      "data": {
-                        "job_id": "job-cm3ikdeuj02zk01l1yeuirt77",
-                        "blocks": [
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "job_id": "job-cm3ikdeuj02zk01l1yeuirt77",
+                    "blocks": [
+                      {
+                        "type": "CODE",
+                        "content": "```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv\n    '''\n    # Group by 'Year' and sum the deaths for each type of disaster\n    aggregated_data = input_0.groupby('Year').sum().reset_index()\n    \n    # Select only the columns related to deaths\n    death_columns = [\n        'Deaths - Drought (decadal)', 'Deaths - Flood (decadal)', \n        'Deaths - Earthquake (decadal)', 'Deaths - Extreme weather (decadal)', \n        'Deaths - Extreme temperature (decadal)', 'Deaths - Volcanic activity (decadal)', \n        'Deaths - Wildfire (decadal)', 'Deaths - Glacial lake outburst flood (decadal)', \n        'Deaths - Dry mass movement (decadal)', 'Deaths - Wet mass movement (decadal)', \n        'Deaths - Fog (decadal)'\n    ]\n    \n    # Create a new DataFrame with the aggregated results\n    output = aggregated_data[['Year'] + death_columns]\n    \n    # Rename columns to be more descriptive\n    output.columns = ['Decade'] + [col.replace('Deaths - ', '').replace(' (decadal)', '') for col in death_columns]\n    \n    return output\n\n```",
+                        "group_id": "33063572-6e88-4912-8e2d-4166bcc8caee",
+                        "group_name": "Analyze the dataset to observe the trend of deaths caused by different types of natural disasters over the past century. This involves aggregating the data by decade and calculating the total number of deaths for each type of disaster to identify any changes in trends.",
+                        "stage": "Analyze"
+                      },
+                      {
+                        "type": "TABLE",
+                        "content": {
+                          "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/e24b6a5f-fdb8-48ca-ae35-dc91ac8e8ef7.csv",
+                          "name": "trend_data.csv",
+                          "expires_at": "2024-11-21T09:56:34.290544Z"
+                        },
+                        "group_id": "33063572-6e88-4912-8e2d-4166bcc8caee",
+                        "group_name": "Analyze the dataset to observe the trend of deaths caused by different types of natural disasters over the past century. This involves aggregating the data by decade and calculating the total number of deaths for each type of disaster to identify any changes in trends.",
+                        "stage": "Analyze"
+                      },
+                      {
+                        "type": "IMAGE",
+                        "content": {
+                          "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/81b75a33-a223-4954-9680-9f397872c8ad.png",
+                          "name": "Trend of Deaths from Natural Disasters Over the Century",
+                          "expires_at": "2024-11-21T09:56:34.290544Z"
+                        },
+                        "group_id": "7501680b-5879-441b-bd96-f58b1029ae17",
+                        "group_name": "Visualize the trend data to show how the number of deaths from different types of natural disasters has changed over the past century. Use line charts to represent the trends for each disaster type, which will help in understanding the impact of measures and technological advancements on reducing deaths.",
+                        "stage": "Analyze"
+                      },
+                      {
+                        "type": "MESSAGE",
+                        "content": "\n\n`Analyzing Conclusions` \n\n### Analysis of Trends in the Number of Deaths from Natural Disasters \n\n#### Data Analysis\n\n",
+                        "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
+                        "group_name": "Conclusions",
+                        "stage": "Respond"
+                      },
+                      {
+                        "type": "TABLE",
+                        "content": {
+                          "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/e24b6a5f-fdb8-48ca-ae35-dc91ac8e8ef7.csv",
+                          "name": "trend_data.csv",
+                          "expires_at": "2024-11-21T09:56:34.290544Z"
+                        },
+                        "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
+                        "group_name": "Conclusions",
+                        "stage": "Respond"
+                      },
+                      {
+                        "type": "MESSAGE",
+                        "content": "\n\n- **Droughts and Floods**: In the early 20th century, droughts and floods caused extremely high death tolls, particularly during the 1920s and 1930s.\n- **Earthquakes and Extreme Weather**: Earthquakes and extreme weather also led to significant death tolls throughout the century, especially in the 1970s and 1990s.\n- **Extreme Temperatures and Volcanic Activity**: These disasters had relatively lower death tolls, but in certain decades, such as the 2000s, deaths caused by extreme temperatures increased.\n\n#### Trend Visualization\n\n",
+                        "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
+                        "group_name": "Conclusions",
+                        "stage": "Respond"
+                      },
+                      {
+                        "type": "IMAGE",
+                        "content": {
+                          "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/81b75a33-a223-4954-9680-9f397872c8ad.png",
+                          "name": "Trend of Deaths from Natural Disasters Over the Century",
+                          "expires_at": "2024-11-21T09:56:34.290544Z"
+                        },
+                        "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
+                        "group_name": "Conclusions",
+                        "stage": "Respond"
+                      },
+                      {
+                        "type": "MESSAGE",
+                        "content": "\n\n- **Overall Trend**: The chart shows that although certain decades experienced spikes in death tolls caused by natural disasters, the overall trend is declining.\n- **Impact of Technology and Measures**: Over time, advancements in technology and the implementation of disaster prevention measures are likely key factors in reducing death tolls.\n\n#### Conclusions and Insights\n- **Technological Advancements**: Modern technological progress, such as improved early warning systems and better construction techniques, may have reduced the fatalities caused by earthquakes and extreme weather.\n- **Disaster Prevention Measures**: The enhancement of disaster prevention measures and emergency response capabilities on a global scale has likely contributed to the decreased fatality rates of natural disasters.",
+                        "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
+                        "group_name": "Conclusions",
+                        "stage": "Respond"
+                      },
+                      {
+                        "type": "SOURCES",
+                        "content": [
                           {
-                            "type": "CODE",
-                            "content": "```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv\n    '''\n    # Group by 'Year' and sum the deaths for each type of disaster\n    aggregated_data = input_0.groupby('Year').sum().reset_index()\n    \n    # Select only the columns related to deaths\n    death_columns = [\n        'Deaths - Drought (decadal)', 'Deaths - Flood (decadal)', \n        'Deaths - Earthquake (decadal)', 'Deaths - Extreme weather (decadal)', \n        'Deaths - Extreme temperature (decadal)', 'Deaths - Volcanic activity (decadal)', \n        'Deaths - Wildfire (decadal)', 'Deaths - Glacial lake outburst flood (decadal)', \n        'Deaths - Dry mass movement (decadal)', 'Deaths - Wet mass movement (decadal)', \n        'Deaths - Fog (decadal)'\n    ]\n    \n    # Create a new DataFrame with the aggregated results\n    output = aggregated_data[['Year'] + death_columns]\n    \n    # Rename columns to be more descriptive\n    output.columns = ['Decade'] + [col.replace('Deaths - ', '').replace(' (decadal)', '') for col in death_columns]\n    \n    return output\n\n```",
-                            "group_id": "33063572-6e88-4912-8e2d-4166bcc8caee",
-                            "group_name": "Analyze the dataset to observe the trend of deaths caused by different types of natural disasters over the past century. This involves aggregating the data by decade and calculating the total number of deaths for each type of disaster to identify any changes in trends.",
-                            "stage": "Analyze"
-                          },
-                          {
-                            "type": "TABLE",
-                            "content": {
-                              "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/e24b6a5f-fdb8-48ca-ae35-dc91ac8e8ef7.csv",
-                              "name": "trend_data.csv",
-                              "expires_at": "2024-11-21T09:56:34.290544Z"
-                            },
-                            "group_id": "33063572-6e88-4912-8e2d-4166bcc8caee",
-                            "group_name": "Analyze the dataset to observe the trend of deaths caused by different types of natural disasters over the past century. This involves aggregating the data by decade and calculating the total number of deaths for each type of disaster to identify any changes in trends.",
-                            "stage": "Analyze"
-                          },
-                          {
-                            "type": "IMAGE",
-                            "content": {
-                              "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/81b75a33-a223-4954-9680-9f397872c8ad.png",
-                              "name": "Trend of Deaths from Natural Disasters Over the Century",
-                              "expires_at": "2024-11-21T09:56:34.290544Z"
-                            },
-                            "group_id": "7501680b-5879-441b-bd96-f58b1029ae17",
-                            "group_name": "Visualize the trend data to show how the number of deaths from different types of natural disasters has changed over the past century. Use line charts to represent the trends for each disaster type, which will help in understanding the impact of measures and technological advancements on reducing deaths.",
-                            "stage": "Analyze"
-                          },
-                          {
-                            "type": "MESSAGE",
-                            "content": "\n\n`Analyzing Conclusions` \n\n### Analysis of Trends in the Number of Deaths from Natural Disasters \n\n#### Data Analysis\n\n",
-                            "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
-                            "group_name": "Conclusions",
-                            "stage": "Respond"
-                          },
-                          {
-                            "type": "TABLE",
-                            "content": {
-                              "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/e24b6a5f-fdb8-48ca-ae35-dc91ac8e8ef7.csv",
-                              "name": "trend_data.csv",
-                              "expires_at": "2024-11-21T09:56:34.290544Z"
-                            },
-                            "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
-                            "group_name": "Conclusions",
-                            "stage": "Respond"
-                          },
-                          {
-                            "type": "MESSAGE",
-                            "content": "\n\n- **Droughts and Floods**: In the early 20th century, droughts and floods caused extremely high death tolls, particularly during the 1920s and 1930s.\n- **Earthquakes and Extreme Weather**: Earthquakes and extreme weather also led to significant death tolls throughout the century, especially in the 1970s and 1990s.\n- **Extreme Temperatures and Volcanic Activity**: These disasters had relatively lower death tolls, but in certain decades, such as the 2000s, deaths caused by extreme temperatures increased.\n\n#### Trend Visualization\n\n",
-                            "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
-                            "group_name": "Conclusions",
-                            "stage": "Respond"
-                          },
-                          {
-                            "type": "IMAGE",
-                            "content": {
-                              "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/81b75a33-a223-4954-9680-9f397872c8ad.png",
-                              "name": "Trend of Deaths from Natural Disasters Over the Century",
-                              "expires_at": "2024-11-21T09:56:34.290544Z"
-                            },
-                            "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
-                            "group_name": "Conclusions",
-                            "stage": "Respond"
-                          },
-                          {
-                            "type": "MESSAGE",
-                            "content": "\n\n- **Overall Trend**: The chart shows that although certain decades experienced spikes in death tolls caused by natural disasters, the overall trend is declining.\n- **Impact of Technology and Measures**: Over time, advancements in technology and the implementation of disaster prevention measures are likely key factors in reducing death tolls.\n\n#### Conclusions and Insights\n- **Technological Advancements**: Modern technological progress, such as improved early warning systems and better construction techniques, may have reduced the fatalities caused by earthquakes and extreme weather.\n- **Disaster Prevention Measures**: The enhancement of disaster prevention measures and emergency response capabilities on a global scale has likely contributed to the decreased fatality rates of natural disasters.",
-                            "group_id": "b842aca7-6fd5-4190-85fa-97085e473877",
-                            "group_name": "Conclusions",
-                            "stage": "Respond"
-                          },
-                          {
-                            "type": "SOURCES",
-                            "content": [
-                              {
-                                "source": "makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv",
-                                "datasource_id": "clxin6l9200oo01l1457bolx3",
-                                "dataset_id": "clxin6l8400ok01l1ff2m0s25",
-                                "file_type": "csv"
-                              }
-                            ],
-                            "group_id": "",
-                            "group_name": "",
-                            "stage": "Respond"
-                          },
-                          {
-                            "type": "QUESTIONS",
-                            "content": [
-                              "Analyze the trends in death tolls from different types of natural disasters over the past century and explore which disaster types have shown the most significant reduction in fatalities.",
-                              "Study the technological advancements and measures in responding to natural disasters across different regions globally, and analyze how these differences have influenced changes in death tolls in each region.",
-                              "Explore how future technological advancements and policy measures could further reduce fatalities caused by natural disasters, and assess their feasibility and potential impacts."
-                            ],
-                            "group_id": "-1",
-                            "stage": "Respond"
+                            "source": "makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv",
+                            "datasource_id": "clxin6l9200oo01l1457bolx3",
+                            "dataset_id": "clxin6l8400ok01l1ff2m0s25",
+                            "file_type": "csv"
                           }
-                        ]
+                        ],
+                        "group_id": "",
+                        "group_name": "",
+                        "stage": "Respond"
+                      },
+                      {
+                        "type": "QUESTIONS",
+                        "content": [
+                          "Analyze the trends in death tolls from different types of natural disasters over the past century and explore which disaster types have shown the most significant reduction in fatalities.",
+                          "Study the technological advancements and measures in responding to natural disasters across different regions globally, and analyze how these differences have influenced changes in death tolls in each region.",
+                          "Explore how future technological advancements and policy measures could further reduce fatalities caused by natural disasters, and assess their feasibility and potential impacts."
+                        ],
+                        "group_id": "-1",
+                        "stage": "Respond"
                       }
-                    }
+                    ]
                   }
                 }
               }
@@ -3263,15 +3415,9 @@
                   "type": "object",
                   "properties": {}
                 },
-                "examples": {
-                  "2": {
-                    "summary": "400",
-                    "description": "",
-                    "value": {
-                      "code": 210021,
-                      "msg": "Job quota exceeded"
-                    }
-                  }
+                "example": {
+                  "code": 210021,
+                  "msg": "Job quota exceeded"
                 }
               }
             },
@@ -3285,15 +3431,9 @@
                   "type": "object",
                   "properties": {}
                 },
-                "examples": {
-                  "3": {
-                    "summary": "403",
-                    "description": "",
-                    "value": {
-                      "code": 1003,
-                      "msg": "insufficient.authentication"
-                    }
-                  }
+                "example": {
+                  "code": 1003,
+                  "msg": "insufficient.authentication"
                 }
               }
             },
@@ -3307,15 +3447,9 @@
                   "type": "object",
                   "properties": {}
                 },
-                "examples": {
-                  "4": {
-                    "summary": "500",
-                    "description": "",
-                    "value": {
-                      "code": 210020,
-                      "msg": "Something went wrong during job execution. Please try again."
-                    }
-                  }
+                "example": {
+                  "code": 210020,
+                  "msg": "Something went wrong during job execution. Please try again."
                 }
               }
             },
@@ -3541,7 +3675,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "The content type of the answer block. Possible values are:\n- `MESSAGE`: The content is a piece of text.\n- `CODE`: The content a code snippet.\n- `TABLE`: The content represents a table.\n- `IMAGE`: The content represents an image.\n- `SOURCE`: The content represents a reference source of the answer block.\n- `QUESTIONS`: Suggested questions generated by Powerdrill to help guide your follow-up exploration of the data.",
+            "description": "The content type of the answer block. Possible values are:\n- `MESSAGE`: The content is a piece of text.\n- `CODE`: The content a code snippet.\n- `TABLE`: The content represents a table, consisting of:\n    - `name`: The `.csv` file name.\n    - `url`: The S3 key or URL to the file.\n    - `expires_at`: The expiration time for `url`. To save the table for future use, make sure to download it before it expires.\n- `IMAGE`: The content represents an image, consisting of:\n    - `name`: The image name.\n    - `url`: The S3 key or URL to the image.\n    - `expires_at`: The expiration time for `url`. To save the image for future use, make sure to download it before it expires.\n- `SOURCES`: The content represents a reference source of the answer block, including:\n    - `id`: The ID of the source.\n    - `content`: The chunk content.\n    - `page_no`: The location of the chunk in the source file.\n\n    - `source`: The file name of the data source.\n\n    - `datasource_id`: The ID of the data source.\n\n    - `dataset_id`: The ID of the dataset.\n\n    - `file_type`: The name extension of the data source file.\n\n- `QUESTIONS`: Suggested questions generated by Powerdrill to help guide your follow-up exploration of the data.\n- `CHART_INFO`: The content is a generated chart or graph.\n\n- When the block content type is `CHART_INFO`:\n\n    The content is a generated chart, including:\n\n    - `code`: The code executed to generate the chart.\n\n    - `code_type`: The code language, which is fixed to `PYTHON`.\n\n    - `name`: The name of the **.csv** analysis result file on which the chart is based.\n\n    - `url`: The URL of the **.csv** analysis result file.\n\n    - `image`: The static image of the chart.\n\n    - `options`: [Available chart types](https://pyecharts.org/#/en-us/) you can select.\n\n    - `columns`: The column headers from the **.csv** analysis result file.\n\n    - `chart_config`: A JSON string containing configuration settings for rendering the chart (details at [pyecharts.org](https://pyecharts.org/#/en-us/)).\n\n    - `expires_at`: The expiration timestamp for the `url`. Make sure to download the file before it expires to retain access.",
             "enum": [
               "MESSAGE",
               "CODE",
