@@ -2956,7 +2956,7 @@
                         },
                         "upload_id": {
                           "type": "string",
-                          "description": "The unique identifier for the multipart upload task. Save this value for later use in [Complete Multipart Upload](/api-reference/v2/complete-multipart-upload)."
+                          "description": "The unique identifier for the multipart upload task. Save this value for later use in [Complete multipart upload](/api-reference/v2/complete-multipart-upload)."
                         }
                       },
                       "required": [
