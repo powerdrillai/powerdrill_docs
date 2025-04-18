@@ -10,6 +10,10 @@ You can use this endpoint to upload your local file and then use the `file_key` 
 
 Only files with the following extensions are supported: **.csv**, **.tsv**, **.md**, **.mdx**, **.json**, **.txt**, **.pdf**, **.pptx**, **.ppt**, **.doc**, **.docx**, **.xls**, or **.xlsx**.
 
+<Warning>
+For optimal upload efficiency, we recommend using this endpoint for files **smaller than 1 MB**. For files larger than 1 MB, please initiate a [multipart upload](/api-reference/v2/initiate-multipart-upload) task.
+</Warning>
+
 
 **Example request:**
 
