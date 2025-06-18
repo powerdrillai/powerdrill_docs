@@ -83,23 +83,6 @@
         ]
       },
       {
-        "tab": "Developer Guides",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": [
-              "developer-guides/create-subscription"
-            ]
-          },
-          {
-            "group": "Manage data",
-            "pages": [
-              "developer-guides/upload-file"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "API Reference",
         "anchors": [
           {
@@ -113,13 +96,14 @@
                   "api-reference/v2/authentication",
                   "api-reference/v2/streaming",
                   "api-reference/error-codes",
-                  "api-reference/v2/how-to-check-data-sources"
+                  "api-reference/v2/create-subscription"
                 ]
               },
               {
                 "group": "Developer Guides",
                 "pages": [
-                  "developer-guides/quick-start-v2"
+                  "developer-guides/quick-start-v2",
+                  "api-reference/v2/how-to-check-data-sources"
                 ]
               },
               {
@@ -184,6 +168,13 @@
                   "api-reference/error-codes"
                 ]
               },
+              {
+              "group": "Developer Guides",
+              "pages": [
+                "developer-guides/quick-start",
+                "developer-guides/upload-file"
+              ]
+            },
               {
                 "group": "Datasets",
                 "pages": [

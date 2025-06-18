@@ -318,7 +318,15 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
 
 
 <Tip>
- Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key) and `$UID` with your user ID in the target project.
+When making the request:
+
+- Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key) and `$UID` with your user ID in the target project.
+
+- Replace the `session_id` value with the ID of the session you've created in [Step 3](#step-3-create-a-session).
+
+- To enable Powerdrill to retrieve information from your own data and provide responses specific to it, set the `dataset_id` to the ID of the dataset obtained in [Step 2](#step-2-create-a-dataset-and-a-data-source).
+
+- If you want to use specific data sources in the specified dataset, list the data source IDs in the `datasource_ids` field.
 </Tip>
 
 
@@ -663,21 +671,13 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
 
 
 
+import MySnippet from '/snippets/discord-cta.mdx';
+
+<MySnippet beta="community" />
 
 
 
-<Tip>
 
-When making a request:
 
-- Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-api-key).
-
-- Since this topic covers running a general job and no data agent is used, set the `x-pd-api-agent-id` header to `GENERAL` (uppercase).
-
-- Replace the `sessionId` value with the ID of the session you've created in [Step 3](#step-3-create-a-session).
-
-- To enable Powerdrill to retrieve information from your own data and provide responses specific to it, set the `datasetId` to the ID of the dataset obtained in [Step 2](#step-2-create-a-dataset-and-a-data-source).
-
-</Tip>
 
 
