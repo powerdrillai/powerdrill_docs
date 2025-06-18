@@ -42,6 +42,10 @@ You can create datasets and data sources in two ways:
   <Tab title="Method 1">
 
     1. Make a request to [POST /v2/team/datasets](/api-reference/v2/create-dataset) endpoint to create a dataset.
+    
+      <Tip>
+        Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key) and `$UID` with your user ID in the target project.
+      </Tip>
 
         **Example request**:
 
@@ -55,7 +59,7 @@ You can create datasets and data sources in two ways:
           --data '{
           "name": "My dataset",
           "description": "my default dataset",
-          "user_id": "tmm-dafasdfasdfasdf"
+          "user_id": "$UID"
         }'
         ```
 
@@ -67,71 +71,7 @@ You can create datasets and data sources in two ways:
         payload = {
             "name": "My dataset",
             "description": "my default dataset",
-            "user_id": "tmm-dafasdfasdfasdf"
-        }
-        headers = {
-            "x-pd-api-key": "<api-key>",
-            "Content-Type": "application/json"
-        }
-
-        response = requests.request("POST", url, json=payload, headers=headers)
-
-        print(response.text)
-        ```
-        </CodeGroup>
-
-
-        <Tip>
-         Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key).  
-        </Tip>
-
-        **Example response**:
-
-        ```json
-        {
-            "code": 0,
-            "data": {
-                "id": "cm3my37en3q36017q7x3hyyf4"
-            }
-        }
-        ```
-
-        Obtain the `id` value (dataset ID) from the response and save it for later use.
-        
-    2. Make a request to the [`POST /v2/team/datasets/{id}/datasources`](/api-reference/create-data-source) endpoint. Replace the `id` value with the ID of the dataset you've created in the previous sub-step.
-    
-    <Warning>
-    When making the request, specify either `url` or `fileKey`, **but not both**. Use `url` to upload a file through a publicly accessible URL. For privately accessible files, use `fileKey`.
-    </Warning>
-
-        **Example request**:
-
-        <CodeGroup>
-        ```curl cURL
-        curl --request POST \
-          --url https://ai.data.cloud/api/v2/team/datasets/{datasetId}/datasources \
-          --header 'Content-Type: application/json' \
-          --header 'x-pd-api-key: $PD_API_KEY' \
-          --data '{
-          "name": "test.csv",
-          "fileName": "test.csv",
-          "type": "FILE",
-          "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2",
-          "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
-        }'
-        ```
-
-        ```python Python
-        import requests
-
-        url = "https://ai.data.cloud/api/v2/team/datasets/{id}/datasources"
-
-        payload = {
-            "name": "test.csv",
-            "fileName": "test.csv",
-            "type": "FILE",
-            "url": "https://s3.amazonaws.com/powerdrilltest/user/clvl4cad2001q01l1m522hxlu/upload/f9773f1e-cd68-489a-8121-d566ca9218b1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240924T143419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=AKIARLSQLXURHEIDN4OZ%2F20240924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9ca0c58d508926a5811818041d557ffb53c64025dae94c0855280d457c7089a2",
-            "userId": "tmm-cm5m7khoz52zh07n4m7x1ut60"
+            "user_id": "$UID"
         }
         headers = {
             "x-pd-api-key": "$PD_API_KEY",
@@ -144,9 +84,6 @@ You can create datasets and data sources in two ways:
         ```
         </CodeGroup>
 
-        <Tip>
-
-        </Tip>
 
         **Example response**:
 
@@ -154,68 +91,120 @@ You can create datasets and data sources in two ways:
         {
             "code": 0,
             "data": {
-                "id": "cm3myfsfc03jn011csb8wah6p",
-                "datasetId": "cm3my37en3q36017q7x3hyyf4",
-                "name": "test.pdf",
-                "fileName": "test.pdf",
-                "type": "FILE",
-                "status": "pending"
+                "id": "dset-cmc1nh2e2lqf507retfodc0dn"
             }
         }
-
         ```
 
-        <Tip>
-         Repeat this sub-step to create multiple data sources in the same dataset.
-        </Tip>
+        Obtain the `id` value (dataset ID) from the response and save it for later use.
+        
+    2. Make a request to the [`POST /v2/team/datasets/{id}/datasources`](/api-reference/v2/create-data-source) endpoint. Replace the `id` value with the ID of the dataset you've created in the previous sub-step.
 
+      <Tip>
+        Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key) and `$UID` with your user ID in the target project.
+      </Tip>
     
+      <Warning>
+        When making the request, specify either `url` or `file_key`, **but not both**. Use `url` to upload a file through a publicly accessible URL. For privately accessible files, use `file_key`.
+      </Warning>
+
+        **Example request**:
+
+        <CodeGroup>
+        ```curl cURL
+        curl --request POST \
+          --url https://ai.data.cloud/api/v2/team/datasets/dset-cmc1nh2e2lqf507retfodc0dn/datasources \
+          --header 'Content-Type: application/json' \
+          --header 'x-pd-api-key: $PD_API_KEY' \
+          --data '{
+          "name": "test.pdf",
+          "type": "FILE",
+          "user_id": "$UID",
+          "url": "https://arxiv.org/pdf/2406.12660v1"
+        }'
+        ```
+
+        ```python Python
+        import requests
+
+        url = "https://ai.data.cloud/api/v2/team/datasets/dset-cmc1nh2e2lqf507retfodc0dn/datasources"
+
+        payload = {
+            "name": "test.pdf",
+            "type": "FILE",
+            "user_id": "$UID",
+            "url": "https://arxiv.org/pdf/2406.12660v1"
+        }
+        headers = {
+            "x-pd-api-key": "$PD_API_KEY",
+            "Content-Type": "application/json"
+        }
+
+        response = requests.request("POST", url, json=payload, headers=headers)
+
+        print(response.text)
+        ```
+        </CodeGroup>
+
+
+
+        **Example response**:
+
+        ```json
+        {
+            "code": 0,
+            "data": {
+                "id": "ds-cmc1ntbw105ug07j49zei4kcb",
+                "name": "test.pdf",
+                "type": "FILE",
+                "status": "synching",
+                "dataset_id":"dset-cmc1nh2e2lqf507retfodc0dn"
+            }
+        }
+        ```
+        <Tip>
+         Repeat this sub-step to create multiple data sources in the same dataset, if needed.
+        </Tip>
+ 
   </Tab>
+
+
   <Tab title="Method 2">
-    Make a request to the [POST /v1/team/datasources](create-data-source-without-dataset) endpoint.
+    Make a request to the [POST /v2/team/datasources](/api-reference/create-data-source-without-dataset) endpoint.
 
     **Example request**:
 
     <CodeGroup>
     ```curl cURL
-    curl --location 'https://ai.data.cloud/api/v1/team/datasets/cm3my37en3q36017q7x3hyyf4/datasources' \
-      --header 'x-pd-api-key: $PD_API_KEY' \
-      --header 'Content-Type: application/json' \
-      --data '{
-      "name": "test.pdf",
-      "fileName": "test.pdf",
-      "type": "FILE",
-      "url": "https://arxiv.org/pdf/2406.12660v1.pdf"
-    }'
+    curl --request GET \
+      --url "https://ai.data.cloud/api/v2/team/datasets/dset-cmc1nh2e2lqf507retfodc0dn/datasources/ds-cmc1ntbw105ug07j49zei4kcb?user_id=$UID" \
+      --header 'x-pd-api-key: $PD_API_KEY'
     ```
 
     ```python Python
     import requests
-    import json
 
-    url = "https://ai.data.cloud/api/v1/team/datasets/cm3my37en3q36017q7x3hyyf4/datasources"
+    url = "https://ai.data.cloud/api/v2/team/datasets"
 
-    payload = json.dumps({
-      "name": "test.pdf",
-      "fileName": "test.pdf",
-      "type": "FILE",
-      "url": "https://arxiv.org/pdf/2406.12660v1.pdf"
-    })
+    payload = {
+        "name": "My dataset",
+        "description": "my default dataset",
+        "user_id": "$UID"
+    }
     headers = {
-      'x-pd-api-key': '$PD_API_KEY',
-      'Content-Type': 'application/json'
+        "x-pd-api-key": "$PD_API_KEY",
+        "Content-Type": "application/json"
     }
 
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, json=payload, headers=headers)
 
     print(response.text)
     ```
-
     </CodeGroup>
 
 
     <Info>
-    Specify either `url` or `fileKey`, but not both. Use `url` to upload a file through a publicly accessible URL. For privately accessible files, use `fileKey` (this feature will be supported soon).
+    Specify either `url` or `file_key`, but not both. Use `url` to upload a file through a publicly accessible URL. For privately accessible files, use `file_key` (this feature will be supported soon).
     </Info>
 
     **Example response**:
@@ -224,17 +213,17 @@ You can create datasets and data sources in two ways:
     {
         "code": 0,
         "data": {
-            "id": "cm3myfsfc03jn011csb8wah6p",
-            "datasetId": "cm3my37en3q36017q7x3hyyf4",
+            "id": "ds-cmc1ntbw105ug07j49zei4kcb",
             "name": "test.pdf",
-            "fileName": "test.pdf",
             "type": "FILE",
-            "status": "pending"
+            "status": "synched",
+            "size":781886,
+            "dataset_id":"dset-cmc1nh2e2lqf507retfodc0dn"
         }
     }
     ```
 
-    Obtain the `datasetId` value (dataset ID) from the response and save it for later use.
+    Obtain the `dataset_id` value (dataset ID) from the response and save it for later use.
   </Tab>
 </Tabs>
 
@@ -251,29 +240,29 @@ To create a session, make a request to the [POST /v1/team/sessions](create-sessi
 
 ```curl cURL
 curl --request POST \
-  --url https://ai.data.cloud/api/v1/team/sessions \
+  --url https://ai.data.cloud/api/v2/team/sessions \
   --header 'Content-Type: application/json' \
   --header 'x-pd-api-key: $PD_API_KEY' \
   --data '{
-  "title": "My session",
-  "languageType": "AUTO",
-  "jobMode": "AUTO",
-  "maxMessagesInContext": 10,
-  "userId": "tmm-egejgowqg=g=egen"
+  "name": "My session",
+  "output_language": "FR",
+  "job_mode": "AUTO",
+  "max_contextual_job_history": 10,
+  "user_id": "$UID"
 }'
 ```
 
 ```python Python
 import requests
 
-url = "https://ai.data.cloud/api/v1/team/sessions"
+url = "https://ai.data.cloud/api/v2/team/sessions"
 
 payload = {
-    "title": "My session",
-    "languageType": "AUTO",
-    "jobMode": "AUTO",
-    "maxMessagesInContext": 10,
-    "userId": "tmm-egejgowqg=g=egen"
+    "name": "My session1",
+    "output_language": "FR",
+    "job_mode": "AUTO",
+    "max_contextual_job_history": 10,
+    "user_id": "$UID"
 }
 headers = {
     "x-pd-api-key": "$PD_API_KEY",
@@ -294,7 +283,7 @@ When making a request:
 
 - Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key). 
 
-- Set the user ID to your actual user ID.
+- Replace `$UID` with your actual user ID in the target project.
 
 </Tip>
 
@@ -305,7 +294,7 @@ When making a request:
 {
     "code": 0,
     "data": {
-        "id": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2"
+        "id": "bc9a8127-4214-42b2-bbbe-a022f23d9795"
     }
 }
 ```
@@ -322,7 +311,7 @@ Now, after you've prepared a session and probably a dataset stuffed with data so
 For the definition of job, see [What Is Job?](/enterprise/what-is-job).
 </Info>
 
-Make a request to the [POST /v1/team/jobs](create-job) endpoint. 
+Make a request to the [POST /v2/team/jobs](/api-reference/v2/create-job) endpoint. 
 
 Powerdrill provides the ability to stream responses, controlled by the `stream` parameter. For more details about how to understand the streaming mode, see [Streaming](streaming).
 
@@ -339,44 +328,44 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
 
     ```curl cURL
     curl --request POST \
-      --url https://ai.data.cloud/api/v1/team/jobs \
+      --url https://ai.data.cloud/api/v2/team/jobs \
       --header 'Content-Type: application/json' \
       --header 'x-pd-api-key: $PD_API_KEY' \
       --data '{
-    "datasetId": "cm1gjmg8e0057r3x22v1fdu8m",
-    "datasourceIdList": [
-      "cm1gjmmoo0001h0x24uk1xgu9"
-    ],
-    "languageType": "EN",
-    "question": "Hello World",
-    "sessionId": "5534f591-1520-4e74-b753-b87615b2c57a",
-    "stream": false
+      "session_id": "bc9a8127-4214-42b2-bbbe-a022f23d9795",
+      "user_id": "$UID",
+      "stream": true,
+      "question": "introducing the dataset",
+      "dataset_id": "dset-cmc1nh2e2lqf507retfodc0dn",
+      "datasource_ids": [
+        "ds-cmc1ntbw105ug07j49zei4kcb"
+      ],
+      "output_language": "EN",
+      "job_mode": "AUTO"
     }'
     ```
 
     ```python Python
     import requests
-    import json
 
-    url = "https://ai.data.cloud/api/v1/team/jobs"
+    url = "https://ai.data.cloud/api/v2/team/jobs"
 
-    payload = json.dumps({
-      "datasetId": "cm3my37en3q36017q7x3hyyf4",
-      "datasourceIdList": [
-        "cm3myfsfc03jn011csb8wah6p"
-      ],
-      "languageType": "EN",
-      "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
-      "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
-      "stream": True
-    })
+    payload = {
+        "session_id": "bc9a8127-4214-42b2-bbbe-a022f23d9795",
+        "user_id": "$UID",
+        "stream": True,
+        "question": "introducing the dataset",
+        "dataset_id": "dset-cmc1nh2e2lqf507retfodc0dn",
+        "datasource_ids": ["ds-cmc1ntbw105ug07j49zei4kcb"],
+        "output_language": "EN",
+        "job_mode": "AUTO"
+    }
     headers = {
-      'x-pd-api-key': '$PD_API_KEY',
-      'x-pd-api-agent-id': 'GENERAL',
-      'Content-Type': 'application/json'
+        "x-pd-api-key": "$PD_API_KEY",
+        "Content-Type": "application/json"
     }
 
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, json=payload, headers=headers)
 
     print(response.text)
     ```
@@ -389,79 +378,131 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
 
     ```
     event:JOB_ID
-    data:job-cm3ik4yhz01vg01l17yk4467y
+    data:job-cmc1ohgsllys907reaaowv4fl
 
-    event:TITLE_GENERATION
-    data:test session
-
-    id:2b5cba4a-d8a5-4beb-aef9-a8612828c405
+    id:9fbe40de-5c5b-4e27-b82e-ecf727b15248
     event:TASK
-    data:{"id":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","model":"","choices":[{"delta":{"content":{"name":"Analyze","id":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","status":"running","stage":"Analyze","properties":{}}},"index":0}],"created":1731664172,"groupId":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","groupName":"Analyze","stage":"Analyze"}
+    data:{"id":"9fbe40de-5c5b-4e27-b82e-ecf727b15248","model":"","choices":[{"delta":{"content":{"name":"Analyze","id":"9fbe40de-5c5b-4e27-b82e-ecf727b15248","status":"running","parent_id":null,"stage":"Analyze","properties":{}}},"finish_reason":null,"index":0}],"created":1750234590,"group_id":"9fbe40de-5c5b-4e27-b82e-ecf727b15248","group_name":"Analyze","stage":"Analyze"}
 
-    id:2b5cba4a-d8a5-4beb-aef9-a8612828c405
+    :keep-alive
+
+    id:9fbe40de-5c5b-4e27-b82e-ecf727b15248
     event:TASK
-    data:{"id":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","model":"","choices":[{"delta":{"content":{"name":"Analyze","id":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","status":"running","stage":"Analyze","properties":{"files":""}}},"index":0}],"created":1731664172,"groupId":"2b5cba4a-d8a5-4beb-aef9-a8612828c405","groupName":"Analyze","stage":"Analyze"}
+    data:{"id":"9fbe40de-5c5b-4e27-b82e-ecf727b15248","model":"","choices":[{"delta":{"content":{"name":"Analyze","id":"9fbe40de-5c5b-4e27-b82e-ecf727b15248","status":"running","parent_id":null,"stage":"Analyze","properties":{"files":"test.pdf"}}},"finish_reason":null,"index":0}],"created":1750234590,"group_id":"9fbe40de-5c5b-4e27-b82e-ecf727b15248","group_name":"Analyze","stage":"Analyze"}
 
-    ...
-    ...
-    ...
-
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
-    event:IMAGE
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":{"url":"https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/5e3a766c-8d16-4fc0-b06f-7a337196186d.png","name":"Trends of Deaths from Different Disaster Types Over the Years","expiredAt":"2024-11-21T09:50:00.026476Z"}},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
-    event:MESSAGE
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"\n\n"},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
-    event:MESSAGE
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"- **Chart Description**: The chart illustrates the trend of death tolls over time for various types of disasters.\n"},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
-    event:MESSAGE
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"- **Key Trends**:\n"},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
-    event:MESSAGE
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"  - Droughts and floods had high death tolls in the early 20th century.\n"},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
-    event:MESSAGE
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"  - Droughts and floods had higher death tolls in the early 20th century. \n"},"index":0}],"created":1731664200,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
-    event:MESSAGE
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"  - Death tolls from other disaster types remained relatively low and stable. \n\n"},"index":0}],"created":1731664201,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
-    event:MESSAGE
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"#### Conclusions and Insights\n"},"index":0}],"created":1731664201,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
-    event:MESSAGE
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"- **Significant Impact of Droughts and Floods**: In the early 20th century, droughts and floods caused significantly higher death tolls compared to other disasters.\n"},"index":0}],"created":1731664201,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
-    event:MESSAGE
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":"- **Fluctuations in Earthquakes and Extreme Weather**: These disasters had significant impacts on death tolls in certain years, highlighting the need for enhanced preventive measures."},"index":0}],"created":1731664202,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
-    event:QUESTIONS
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":["Please analyze the distribution of deaths caused by different types of natural disasters across various countries and regions, and generate a corresponding ECharts map chart.","Please compare the changes in death tolls caused by natural disasters across different decades, and generate a corresponding ECharts line chart.","Please analyze the global death toll trend of a specific natural disaster (e.g., earthquakes) and generate a corresponding ECharts bar chart."]},"index":0}],"created":1731664202,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
-    event:TRIGGER
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":{"name":"conclusion_slice","arguments":{"answer":"$answer"}}},"index":0}],"created":1731664202,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
-
-    id:ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3
+    id:9fbe40de-5c5b-4e27-b82e-ecf727b15248
     event:TASK
-    data:{"id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","model":"","choices":[{"delta":{"content":{"name":"Conclusions","id":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","status":"done","stage":"Respond","properties":{}}},"index":0}],"created":1731664202,"groupId":"ccd0c9a2-b8d5-4066-8d29-2f54c87a60a3","groupName":"Conclusions","stage":"Respond"}
+    data:{"id":"9fbe40de-5c5b-4e27-b82e-ecf727b15248","model":"","choices":[{"delta":{"content":{"name":"Analyze","id":"9fbe40de-5c5b-4e27-b82e-ecf727b15248","status":"done","parent_id":null,"stage":"Analyze","properties":{"files":"test.pdf"}}},"finish_reason":null,"index":0}],"created":1750234591,"group_id":"9fbe40de-5c5b-4e27-b82e-ecf727b15248","group_name":"Analyze","stage":"Analyze"}
 
-    id:-1
+    id:f5e680eb-3762-481b-826f-483a8e74e268
+    event:TASK
+    data:{"id":"f5e680eb-3762-481b-826f-483a8e74e268","model":"","choices":[{"delta":{"content":{"name":"Search summary","id":"f5e680eb-3762-481b-826f-483a8e74e268","status":"running","parent_id":null,"stage":"Analyze","properties":{}}},"finish_reason":null,"index":0}],"created":1750234592,"group_id":"f5e680eb-3762-481b-826f-483a8e74e268","group_name":"Search summary","stage":"Analyze"}
+
+    id:f5e680eb-3762-481b-826f-483a8e74e268
     event:SOURCES
-    data:{"id":"-1","model":"","choices":[{"delta":{"content":[{"id":"1","source":"makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv","datasourceId":"clxin6l9200oo01l1457bolx3","datasetId":"clxin6l8400ok01l1ff2m0s25","fileType":"csv","externalId":"clxin6l0h001901hzxhjaae6q"}]},"index":0}],"created":1731664202,"groupId":"-1","groupName":"","stage":"Analyze"}
+    data:{"id":"f5e680eb-3762-481b-826f-483a8e74e268","model":"","choices":[{"delta":{"content":[{"id":"1","source":"test.pdf","page_no":null,"content":"summary: test.pdf\nAn experiment with 562 participants investigated the impact of Explainable AI (XAI) and AI literacy on user compliance. Results revealed that XAI boosts compliance, influenced by AI literacy, with the relationship mediated by users' mental model of AI. This study highlights the importance of XAI in AI-based system design. It explores the connection between AI literacy, mental models, XAI techniques, and user compliance with AI recommendations. The research also examines the effect of presenting different XAI types on user compliance. An AI artifact was developed to predict age from photographs, offering personalized explanations to enhance decision-making and compliance with AI recommendations. The study delves into AI interpretability, AI literacy, explainable AI models, and their influence on user behavior. It discusses advancements in AI, machine learning, and user interaction, addressing areas like facial recognition, digital resilience, and algorithmic fairness.","datasource_id":"ds-cmc1ntbw105ug07j49zei4kcb","dataset_id":"dset-cmc1nh2e2lqf507retfodc0dn","file_type":".pdf","external_id":null},{"id":"2","source":"test.pdf","page_no":null,"content":"summary: test.pdf\nAn experiment with 562 participants investigated the impact of Explainable AI (XAI) and AI literacy on user compliance. Results revealed that XAI boosts compliance, influenced by AI literacy, with the relationship mediated by users' mental model of AI. This study highlights the importance of designing AI systems with XAI for better user engagement.","datasource_id":"ds-cmc1nrv4a05ue07j4vscij2z7","dataset_id":"dset-cmc1nh2e2lqf507retfodc0dn","file_type":".pdf","external_id":null},{"id":"3","source":"test.pdf","page_no":null,"content":"7 \nThe decision for a data set for building an AI for age estimation is tightly bound to the current research basis on ML \nmodels for age estimation. Age estimation has been of particular interest in the ML community, and many researchers have \ntackled the task of predicting the age of a person on an image [11,47]. The largest and most popular data set is the IMDB-\nWIKI data set [47], which we utilize for training our AI. For our implementation, we take advantage of the source code \npublished by Serengil [51], with minor adjustments in Python, using the popular keras package. The model itself is based \non a CNN, which uses the VGG-16 architecture and is pre-trained on the FaceNet database [50]. The network architecture \nis then adjusted to the age estimation task and our specific data set. \nWhile the IMDB-WIKI data set is widely used as a training basis for age estimation models and the use of existing, \npublished models makes them convenient to use, there are multiple reasons for which the pictures in this data set cannot \nbe used for display (≠ model training) in our study; the quality of the images varies vastly, the ages of the persons are not \nvalidated, and the data set contains many pictures of celebrities. Especially the latter could falsify the participants' \nperformance as they might have existing knowledge of the age of a person. Another factor that might have an unintended \neffect on the study is the fact that the images are taken “in the wild”, meaning that there is no standard way of how the \npeople are shown in the image. The people are pictured in various ways, with different poses, facial expressions like smiles \nor laughter, and clothing like sunglasses, headgear, or jewelry. To address these shortcomings, we use the MORPH data \nset Feld for model adoption and presentation to the study participants[46]. It has been specifically developed for research \npurposes and contains the actual age of the people depicted in the pictures. While there are multiple versions of MORPH, \nthe non-commercial release MORPH-II has become a benchmark data set for age recognition [7]. The MORPH-II data set \ncontains unique images of more than 13,000 individuals. \nAfter the model is built, we test its performance in a 10% holdout set, which will also be used within the experiment \nlater. The performance of the models for age prediction is often evaluated by their mean absolute error (MAE). After \ntraining and optimization procedures, we reach an MAE of ~2.9 on the MORPH-II data set, which is in line with other \nresearchers [1,54]. This means, on average, our model has an error boundary of +/-3 years when predicting the age.  \nAs stated above, we generate two fundamentally different types of explanations, a chart showing the probability \ndistribution for each age (“XAI1”, in-model [2]) and an overlay on an image showing particularly relevant parts of the \npicture for the AI’s prediction (“XAI2”, post-model [45]). For the probability distributions, we plot a bar chart that depicts \nthe probabilities—more precisely, the softmax values [56]—for each of the 40 most probable ages. The bars which \ncorrespond to the five most probable ages are highlighted in red. An example of such a bar chart, as presented to the \nparticipants, is depicted in Figure 3. Note that the probabilities are relatively low, which is rooted in the fact that the \nprobabilities for each of the 101 classes add up to 100%. The model often generates somewhat similar probabilities for \nages that are close to each other.","datasource_id":"ds-cmc1ntbw105ug07j49zei4kcb","dataset_id":"dset-cmc1nh2e2lqf507retfodc0dn","file_type":".pdf","external_id":null},{"id":"4","source":"test.pdf","page_no":"10","content":"10 \nAs both between-subject and within-subject analyses show significant results, we can support hypothesis 1.1. From an \nanalysis of the boxplot in Figure 5 on p. 11, we see that compliance not only changes but increases with the introduction \nof XAI. Thus, our first finding is: \nFinding 1.1: The introduction of explainability in AI (XAI) increases users’ compliance with the recommendations of \nAI.  \nAs our Post Hoc Analysis in Table 2 also reveals, we cannot find significant differences between our treatments \nregarding XAI1 and XAI2. This means we reject hypothesis 1.2.  \n \nTable 2: Significance levels of ANOVA and Multiple Comparison of Means with Tukey for Between-subject perspective \n \nCompliance \nANOVA \nAll groups compared \n*** \nMultiple Comparison \nof Means with Tukey \n \nCG ⟷ XAI1 \n*** \nCG ⟷ XAI2 \n*** \nXAI1 ⟷ XAI2 \nn.s. \nNotes: *p < 0.05, **p < 0.01, ***p < 0.001, n.s. = not significant \n \nTable 3: Two-sided t-test comparing compliance with AI before and after treatment \n \nCompliance \nAI1 (Baseline, Stage 1) ⟷ XAI1 (Stage 2) \n*** \nAI2 (Baseline, Stage 1) ⟷ XAI2 (Stage 2) \n* \nNotes: *p < 0.05, **p < 0.01, ***p < 0.001, n.s. = not significant","datasource_id":"ds-cmc1ntbw105ug07j49zei4kcb","dataset_id":"dset-cmc1nh2e2lqf507retfodc0dn","file_type":".pdf","external_id":null},{"id":"5","source":"test.pdf","page_no":null,"content":"11 \n \n \nFigure 5: Mean absolute difference (MAD) boxplot of ANOVA for Between-subject perspective of compliance \n5.2 XAI effects on mental model \nWe are not only interested in if and how XAI changes participants’ compliance with the recommendations of AI, but we \nalso investigate potential changes in their MMs. To do so, we first need to set a few statistical prerequisites to ensure the \neligibility of our data. To assess the validity and the reliability of our MM construct, we conduct a confirmatory factor \nanalysis and assess the results with respect to multiple measures. As measures for convergent reliability, we examine \nCronbach’s alpha (CA), average variance extracted (AVE) and composite reliability (CR). \nTable 4: Measurement Information for Latent Factors of Mental Model Construct \n \nAs depicted in Table 4, for all included cases, the constructs of MM GOAL, TASK and PROCESS, the CA, AVE, and CR \nare above the recommended thresholds. A confirmatory factor analysis reveals that factor loadings on all items load highly \n(>0.65) on one factor and with low cross-loadings. These findings demonstrate that our constructs are robust and can be \n \nControl group w/o XAI \nTreatment with XAI1 \nTreatment with XAI2 \nGOAL \nTASK \nPROC \nGOAL  \nTASK \nPROC \nGOAL \nTASK \nPROC \n1st order  \nReliability \nCA \n0.825 \n0.950 \n0.894 \n0.813 \n0.945 \n0.904 \n0.876 \n0.939 \n0.902 \nCR \n0.832 \n0.951 \n0.894 \n0.816 \n0.945 \n0.905 \n0.879 \n0.939 \n0.902 \nAVE \n0.625 \n0.866 \n0.739 \n0.597 \n0.851 \n0.762 \n0.709 \n0.838 \n0.755 \n2nd order  \nReliability \nCR \nMM: \n0.705 \nMM: \n0.757 \nMM: \n0.772 \nNotes: CA = Cronbach’s alpha, CR = composite reliability, AVE = average variance extracted","datasource_id":"ds-cmc1ntbw105ug07j49zei4kcb","dataset_id":"dset-cmc1nh2e2lqf507retfodc0dn","file_type":".pdf","external_id":null},{"id":"6","source":"test.pdf","page_no":null,"content":"16 \nstatistical figures and language, it will be useful to conduct future experiments where simple explanations using plain \neveryday language are utilized to test whether they assist in enhancing compliance of users with low AI literacy.   \nBeyond the discovery of the above two phenomena, our study further extends the work in IS on MMs. Existing literature \nin IS has mostly focused on how to measure MMs, while the impact of MMs on actual user behavior is scarce so far. With \nour findings, we increase the understanding of how MMs influence human-AI-interaction, more specifically, their impact \non the compliance of users with AI’s recommendations. With this new understanding, we emphasize that users' MM is a \nvariable that researchers and practitioners need to consider when designing and introducing AI.  \n7 CONCLUSION \nThe importance of AI-based systems is on the rise. However, more exploration into the relationship between humans and \nAI systems is needed, especially to understand the impact of explanations on users’ compliance with the AI \nrecommendations.  \nIn the current study, we elaborate on the relationship between different explainable AI (XAI) methods, users’ AI \nLiteracy, MMSs, and compliance with AI recommendations. We layout a research model and an experimental survey \nsetup. We perform a study with 562 participants who estimate the age of multiple persons—once with the help of an AI \nand once with different treatments of XAI. \nOur overall results show that people’s compliance with the recommendation of AI increases with the introduction of \nXAI. Furthermore, we demonstrate that the introduction of XAI changes users’ MMs of AI. As analyzed with our full \nstructured equation model, the mental model, in turn, significantly influences users’ compliance with the recommendation \nof AI as well. As MMs originate from the background and experience of people, it is not surprising that their AI Literacy, \ni.e., their AI skills and usage, influences their compliance with the recommendations of AI as well. In a subsequent analysis, \nwe even find that by differentiating participants into “low” and “high” AI Literacy groups, we can identify that XAI plays \ndifferent roles for these groups; The type of XAI has no effect on the compliance of participants with low AI Literacy. \nHowever, for participants with high AI Literacy, the type of XAI played a significant role. \nWith these insights, we contribute to the body of knowledge by shedding more light on the relationships between XAI \nand compliance and the related personal characteristics of the users. We show the importance of personalizing XAI as a \nfunction of users’ background and experience, i.e., their AI Literacy. We believe this article should start a debate on the \nnecessity of personalized XAI (PXAI). For instance, in the case of medicine, certain types of XAI—like the visual \nexplanation XAI2 from our treatment—might help doctors better understand the recommendation of an AI-based systems. \nHowever, when presenting explanations to different patients, different XAI techniques might be required, as their MMs \nand expertise are probably at different levels. Therefore, we believe PXAI should be the next frontier in user-centric XAI \nresearch. \nThe generalizability of these results is subject to certain limitations. For instance, other relationships might exist that \nwe did not model in our setup. An additional restrictive factor A limitation of this study is the fact that we only included \none use case with two different types of XAI. Future work needs to implement additional use cases, especially within \nspecialized domains like medicine, and also study the impact of other XAI techniques. Such work would further deepen \nour understanding of the influence of XAI on compliance—and might also help to shed more light on the role of the mental \nmodel. A promising field of research lies ahead.","datasource_id":"ds-cmc1ntbw105ug07j49zei4kcb","dataset_id":"dset-cmc1nh2e2lqf507retfodc0dn","file_type":".pdf","external_id":null},{"id":"7","source":"test.pdf","page_no":null,"content":"12 \nfurther used in the upcoming analyses. To examine if and how the MMs of participants change with the introduction of \nXAI with a statistical test, we first need to test for measurement invariance. Measurement invariance is a statistical property \nof measurement that indicates that the same construct is being measured across some specified groups. Precisely, this \nmeans we need to eliminate the possibility that changes in the latent variable between measurement occasions (before and \nafter the treatment) are not attributed to actual change in the latent construct. In the case of an experimental study, this \nmeans we need to eliminate a change in the “psychometric” properties of the measurement instrument, i.e., the construct \nhad a different meaning for the participants at measurement occasions. We test the construct of MM, consisting of the \nsubconstructs GOAL, TASK, and PROCESS for metric, scalar, and strict invariance. To compare the means, we require \nat least scalar invariance [44].  \nIn our case, both metric and scalar invariance are not significant, while strict invariance is significant at the 0.05 level. \nThis means we can compare the latent means of the constructs from before and after the treatment. The results of this \ncomparison are depicted in Table 5. \nThe values show that the MM changes significantly with the introduction of XAI. For XAI1, the constructs TASK and \nPROCESS increase by 0.172 and 0.240, respectively. In the case of XAI2, the PROCESS construct changes significantly; \nmore precisely, it increases by 0.3. We can observe no significant change in the GOAL construct, which is, however, not \nsurprising, as the goal of the decision task didn’t change. In summary, we can support hypothesis 2.1 and conclude: \nFinding 2.1:  The introduction of XAI has a positive association with users’ mental models of AI. \nTable 5: Comparison of latent mean differences across measurement occasions with Wald-Test \n5.3 Analysis of mental model and AI Literacy \nWe estimate a full structural equation model (SEM) to better understand the interplay of the different variables considered \nin our study, we estimate a full structural equation model (SEM). Besides the mental model (MM), compliance (COMP), \nand the type of XAI (XAI_T), we also include AI Literacy (AILIT). AI Literacy is modeled as the sum of AI Skills and AI \nUsage. A correlation analysis of the control group reveals that AILIT, MM, and COMP are not considerably correlated \n(<0.3). Table 6 provides the assessment of our model fit. All indices except for Chi-square are within their required \nTreatment \nConstruct \nEstimate \nSE \nz-value \nStd.lv \nStd.all \nXAI1 \nGOAL  \n0.029 \n0.061 \n0.467 \n0.027 \n0.027 \nTASK \n0.168** \n0.055 \n3.036 \n0.172 \n0.172 \nPROC  \n0.229*** \n0.050 \n4.601 \n0.240 \n0.240 \nXAI2 \nGOAL  \n0.063 \n0.072 \n0.873 \n0.061 \n0.061 \nTASK \n0.093 \n0.068 \n1.362 \n0.091 \n0.091 \nPROC \n0.294*** \n0.058 \n5.051 \n0.300 \n0.300 \nNotes: *p < 0.05, **p < 0.01, ***p < 0.001, SE = standard error, Std.lv = standardized estimates (latent), Std.lv = standardized \nestimates (all)","datasource_id":"ds-cmc1ntbw105ug07j49zei4kcb","dataset_id":"dset-cmc1nh2e2lqf507retfodc0dn","file_type":".pdf","external_id":null}]},"finish_reason":null,"index":0}],"created":1750234596,"group_id":"f5e680eb-3762-481b-826f-483a8e74e268","group_name":"Search summary","stage":"Analyze"}
+
+    id:f5e680eb-3762-481b-826f-483a8e74e268
+    event:TASK
+    data:{"id":"f5e680eb-3762-481b-826f-483a8e74e268","model":"","choices":[{"delta":{"content":{"name":"Search summary","id":"f5e680eb-3762-481b-826f-483a8e74e268","status":"done","parent_id":null,"stage":"Analyze","properties":{}}},"finish_reason":null,"index":0}],"created":1750234596,"group_id":"f5e680eb-3762-481b-826f-483a8e74e268","group_name":"Search summary","stage":"Analyze"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:TASK
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"content":{"name":"Answer","id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","status":"running","parent_id":null,"stage":"Respond","properties":{}}},"finish_reason":null,"index":0}],"created":1750234597,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"Okay, let's try a different perspective and provide more details about the dataset, focusing on its potential uses and limitations:\n"},"finish_reason":null,"index":0}],"created":1750234597,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"\n"},"finish_reason":null,"index":0}],"created":1750234597,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"**Dataset as a Tool for Understanding Human-AI Interaction:**\n"},"finish_reason":null,"index":0}],"created":1750234597,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"\n"},"finish_reason":null,"index":0}],"created":1750234597,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"Instead of just listing the components, let's frame the dataset as a tool for researchers and practitioners interested in building *trustworthy* AI systems. The core value of this dataset lies in its ability to:\n"},"finish_reason":null,"index":0}],"created":1750234597,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"\n"},"finish_reason":null,"index":0}],"created":1750234597,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"*   **Quantify the impact of XAI:** The dataset allows researchers to measure how different XAI techniques (the probability distribution chart vs. the image overlay) affect user compliance with AI recommendations. This is crucial for determining which types of explanations are most effective in different contexts.\n"},"finish_reason":null,"index":0}],"created":1750234598,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"*   **Uncover the role of AI literacy:** By including measures of AI skills and usage, the dataset enables analysis of how prior knowledge and experience with AI influence a user's response to explanations. This is vital for tailoring XAI to specific user groups.\n"},"finish_reason":null,"index":0}],"created":1750234598,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"*   **Model the influence of mental models:** The inclusion of a mental model construct allows researchers to investigate how XAI shapes users' understanding of how the AI works, and how this understanding, in turn, affects their willingness to follow the AI's advice. This provides a deeper understanding of the cognitive processes involved in human-AI collaboration.\n"},"finish_reason":null,"index":0}],"created":1750234598,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"*   **Inform the design of personalized XAI (PXAI):** The findings from analyzing this dataset can be used to develop personalized XAI systems that adapt explanations based on a user's AI literacy and mental model. This is a key step towards building AI that is both effective and understandable.\n"},"finish_reason":null,"index":0}],"created":1750234599,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"\n"},"finish_reason":null,"index":0}],"created":1750234599,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"**Limitations and Considerations:**\n"},"finish_reason":null,"index":0}],"created":1750234599,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"\n"},"finish_reason":null,"index":0}],"created":1750234599,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"It's also important to acknowledge the limitations of the dataset:\n"},"finish_reason":null,"index":0}],"created":1750234599,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"\n"},"finish_reason":null,"index":0}],"created":1750234599,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    :keep-alive
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"*   **Single Use Case:** The study focuses on a single task (age estimation) and a limited set of XAI techniques. The results may not generalize to other domains or other types of explanations.  As the original paper mentions, future work should include additional use cases, especially within specialized domains like medicine.\n"},"finish_reason":null,"index":0}],"created":1750234600,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"*   **Image Quality and Demographics:** While the MORPH dataset addresses some issues with the IMDB-WIKI dataset, there might still be biases related to the demographics represented in the images. The dataset should be carefully examined for potential biases before being used to train or evaluate AI systems.\n"},"finish_reason":null,"index":0}],"created":1750234600,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"*   **Online Experiment Setting:** The online experiment setting may introduce biases related to participant attention and motivation. The use of attention checks helps to mitigate this, but it's still a factor to consider.\n"},"finish_reason":null,"index":0}],"created":1750234600,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"*   **Self-Reported Measures:** The measures of AI literacy and mental models are based on self-reported data, which may be subject to biases.\n"},"finish_reason":null,"index":0}],"created":1750234601,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"*   **Specific XAI Implementations:** The specific implementations of XAI1 (probability distribution) and XAI2 (LIME overlay) might influence the results. Different implementations of these techniques could lead to different outcomes.\n"},"finish_reason":null,"index":0}],"created":1750234601,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"\n"},"finish_reason":null,"index":0}],"created":1750234601,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:MESSAGE
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"role":null,"content":"**In summary:** This dataset is a valuable resource for studying the impact of XAI on user compliance and understanding. However, it's crucial to be aware of its limitations and to interpret the results in the context of the specific task, XAI techniques, and participant population used in the study. The dataset provides a foundation for further research into personalized and trustworthy AI.\n"},"finish_reason":null,"index":0}],"created":1750234601,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
+
+    id:abab8d59-57d6-4e4e-8454-a03a264fb04b
+    event:TASK
+    data:{"id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","model":"","choices":[{"delta":{"content":{"name":"Answer","id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","status":"done","parent_id":null,"stage":"Respond","properties":{}}},"finish_reason":null,"index":0}],"created":1750234601,"group_id":"abab8d59-57d6-4e4e-8454-a03a264fb04b","group_name":"Answer","stage":"Respond"}
 
     event:END_MARK
     data:[DONE]
@@ -475,76 +516,47 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
 
     <CodeGroup>
     ```curl cURL
-    curl --location 'https://ai.data.cloud/api/v1/team/jobs' \
-      --header 'x-pd-api-key: $PD_API_KEY' \
-      --header 'x-pd-api-agent-id: GENERAL' \
+    curl --request POST \
+      --url https://ai.data.cloud/api/v2/team/jobs \
       --header 'Content-Type: application/json' \
+      --header 'x-pd-api-key: $PD_API_KEY' \
       --data '{
-      "datasetId": "cm3my37en3q36017q7x3hyyf4",
-      "datasourceIdList": [
-        "cm3myfsfc03jn011csb8wah6p"
+      "session_id": "bc9a8127-4214-42b2-bbbe-a022f23d9795",
+      "user_id": "$UID",
+      "stream": false,
+      "question": "introducing the dataset",
+      "dataset_id": "dset-cmc1nh2e2lqf507retfodc0dn",
+      "datasource_ids": [
+        "ds-cmc1ntbw105ug07j49zei4kcb"
       ],
-      "languageType": "EN",
-      "question": "How do '\''Digital Services for Taxpayers'\'' scores vary across economies, and which economy has the most advanced digital services?",
-      "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
-      "stream": false
+      "output_language": "EN",
+      "job_mode": "AUTO"
     }'
     ```
 
     ```python Python
     import requests
-    import json
 
-    url = "https://ai.data.cloud/api/v1/team/jobs"
+    url = "https://ai.data.cloud/api/v2/team/jobs"
 
-    payload = json.dumps({
-      "datasetId": "cm3my37en3q36017q7x3hyyf4",
-      "datasourceIdList": [
-        "cm3myfsfc03jn011csb8wah6p"
-      ],
-      "languageType": "EN",
-      "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
-      "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
-      "stream": False
-    })
+    payload = {
+        "session_id": "bc9a8127-4214-42b2-bbbe-a022f23d9795",
+        "user_id": "$UID",
+        "stream": False,
+        "question": "introducing the dataset",
+        "dataset_id": "dset-cmc1nh2e2lqf507retfodc0dn",
+        "datasource_ids": ["ds-cmc1ntbw105ug07j49zei4kcb"],
+        "output_language": "EN",
+        "job_mode": "AUTO"
+    }
     headers = {
-      'x-pd-api-key': '$PD_API_KEY',
-      'x-pd-api-agent-id': 'GENERAL',
-      'Content-Type': 'application/json'
+        "x-pd-api-key": "$PD_API_KEY",
+        "Content-Type": "application/json"
     }
 
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, json=payload, headers=headers)
 
     print(response.text)
-    ```
-
-
-    ```node.js Nodejs
-    var request = require('request');
-    var options = {
-      'method': 'POST',
-      'url': 'https://ai.data.cloud/api/v1/team/jobs',
-      'headers': {
-        'x-pd-api-key': '$PD_API_KEY',
-        'x-pd-api-agent-id': 'GENERAL',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        "datasetId": "cm3my37en3q36017q7x3hyyf4",
-        "datasourceIdList": [
-          "cm3myfsfc03jn011csb8wah6p"
-        ],
-        "languageType": "EN",
-        "question": "How do 'Digital Services for Taxpayers' scores vary across economies, and which economy has the most advanced digital services?",
-        "sessionId": "4440ab38-3df0-465b-a66c-bf6acb0f1bc2",
-        "stream": false
-      })
-
-    };
-    request(options, function (error, response) {
-      if (error) throw new Error(error);
-      console.log(response.body);
-    });
     ```
     </CodeGroup>
 
@@ -557,108 +569,90 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
     {
     "code": 0,
     "data": {
-        "jobId": "job-cm3ikdeuj02zk01l1yeuirt77",
         "blocks": [
             {
-                "type": "CODE",
-                "content": "```python\n\nimport pandas as pd\n\ndef invoke(input_0: pd.DataFrame) -> pd.DataFrame:\n    '''\n    input_0: pd.DataFrame  makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv\n    '''\n    # Group by 'Year' and sum the deaths for each type of disaster\n    aggregated_data = input_0.groupby('Year').sum().reset_index()\n    \n    # Select only the columns related to deaths\n    death_columns = [\n        'Deaths - Drought (decadal)', 'Deaths - Flood (decadal)', \n        'Deaths - Earthquake (decadal)', 'Deaths - Extreme weather (decadal)', \n        'Deaths - Extreme temperature (decadal)', 'Deaths - Volcanic activity (decadal)', \n        'Deaths - Wildfire (decadal)', 'Deaths - Glacial lake outburst flood (decadal)', \n        'Deaths - Dry mass movement (decadal)', 'Deaths - Wet mass movement (decadal)', \n        'Deaths - Fog (decadal)'\n    ]\n    \n    # Create a new DataFrame with the aggregated results\n    output = aggregated_data[['Year'] + death_columns]\n    \n    # Rename columns to be more descriptive\n    output.columns = ['Decade'] + [col.replace('Deaths - ', '').replace(' (decadal)', '') for col in death_columns]\n    \n    return output\n\n```",
-                "groupId": "33063572-6e88-4912-8e2d-4166bcc8caee",
-                "groupName": "Analyze the dataset to observe the trend of deaths caused by different types of natural disasters over the past century. This involves aggregating the data by decade and calculating the total number of deaths for each type of disaster to identify any changes in trends.",
-                "stage": "Analyze"
-            },
-            {
-                "type": "TABLE",
-                "content": {
-                    "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/e24b6a5f-fdb8-48ca-ae35-dc91ac8e8ef7.csv",
-                    "name": "trend_data.csv",
-                    "expiredAt": "2024-11-21T09:56:34.290544Z"
-                },
-                "groupId": "33063572-6e88-4912-8e2d-4166bcc8caee",
-                "groupName": "Analyze the dataset to observe the trend of deaths caused by different types of natural disasters over the past century. This involves aggregating the data by decade and calculating the total number of deaths for each type of disaster to identify any changes in trends.",
-                "stage": "Analyze"
-            },
-            {
-                "type": "IMAGE",
-                "content": {
-                    "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/81b75a33-a223-4954-9680-9f397872c8ad.png",
-                    "name": "Trend of Deaths from Natural Disasters Over the Century",
-                    "expiredAt": "2024-11-21T09:56:34.290544Z"
-                },
-                "groupId": "7501680b-5879-441b-bd96-f58b1029ae17",
-                "groupName": "Visualize the trend data to show how the number of deaths from different types of natural disasters has changed over the past century. Use line charts to represent the trends for each disaster type, which will help in understanding the impact of measures and technological advancements on reducing deaths.",
-                "stage": "Analyze"
-            },
-            {
                 "type": "MESSAGE",
-                "content": "\n\n`Analyzing Conclusions` \n\n### Analysis of Trends in Natural Disaster Fatalities\n\n#### Data Analysis\n\n",
-                "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
-                "groupName": "Conclusions",
-                "stage": "Respond"
-            },
-            {
-                "type": "TABLE",
-                "content": {
-                    "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/e24b6a5f-fdb8-48ca-ae35-dc91ac8e8ef7.csv",
-                    "name": "trend_data.csv",
-                    "expiredAt": "2024-11-21T09:56:34.290544Z"
-                },
-                "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
-                "groupName": "Conclusions",
-                "stage": "Respond"
-            },
-            {
-                "type": "MESSAGE",
-                "content": "\n\n- **Droughts and Floods**: In the early 20th century, droughts and floods caused extremely high death tolls, particularly in the 1920s and 1930s.\n- **Earthquakes and Extreme Weather**: Earthquakes and extreme weather also led to significant fatalities throughout the century, especially in the 1970s and 1990s.\n- **Extreme Temperatures and Volcanic Activity**: These disasters had relatively lower death tolls, but in certain decades, such as the 2000s, deaths caused by extreme temperatures increased.\n\n#### Trend Visualization\n\n",
-                "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
-                "groupName": "Conclusions",
-                "stage": "Respond"
-            },
-            {
-                "type": "IMAGE",
-                "content": {
-                    "url": "https://static.powerdrill.ai/tmp_datasource_cache/code_result/cm37bchx106e301l1v9yf67yc/81b75a33-a223-4954-9680-9f397872c8ad.png",
-                    "name": "Trend of Deaths from Natural Disasters Over the Century",
-                    "expiredAt": "2024-11-21T09:56:34.290544Z"
-                },
-                "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
-                "groupName": "Conclusions",
-                "stage": "Respond"
-            },
-            {
-                "type": "MESSAGE",
-                "content": "\n\n- **Overall Trend**: The chart shows that, despite spikes in death tolls caused by natural disasters in certain decades, the overall trend is declining.\n- **Impact of Technology and Measures**: Over time, advancements in technology and the strengthening of disaster prevention measures are likely key factors contributing to the reduction in fatalities.\n\n#### Conclusions and Insights\n- **Technological Advancements**: Progress in modern technology, such as improved early warning systems and construction techniques, may have reduced deaths caused by earthquakes and extreme weather.\n- **Disaster Prevention Measures**: The enhancement of global disaster prevention efforts and emergency response capabilities has likely played a crucial role in mitigating the fatality rates of natural disasters.",
-                "groupId": "b842aca7-6fd5-4190-85fa-97085e473877",
-                "groupName": "Conclusions",
-                "stage": "Respond"
+                "content": "Okay, let's introduce the dataset from the perspective of **Explainable AI (XAI) methodology and the evaluation of explanation quality:**\n\n**Dataset as a Benchmark for Evaluating XAI Techniques and Explanation Quality:**\n\nThis dataset provides a valuable resource for researchers working on Explainable AI (XAI) methodologies. It allows for the evaluation and comparison of different XAI techniques based on their impact on user behavior and understanding. Instead of just focusing on user compliance, we can use this dataset to assess the *quality* of the explanations themselves.\n\n*   **Comparing XAI Techniques:** The dataset directly compares two different XAI techniques (probability distribution and image overlay) in the context of age estimation. This allows researchers to assess the strengths and weaknesses of each technique in terms of:\n    *   **Comprehensibility:** How easily can users understand the explanation?\n    *   **Faithfulness:** How accurately does the explanation reflect the AI's decision-making process?\n    *   **Sufficiency:** Does the explanation provide enough information for users to make informed decisions?\n    *   **Necessity:** Does the explanation contain only the information that is necessary for users to understand the AI's decision?\n*   **Developing New XAI Metrics:** The dataset can be used to develop and validate new metrics for evaluating the quality of XAI explanations. These metrics could be based on:\n    *   **User Understanding:** Measuring how well users can answer questions about the AI's decision-making process after seeing the explanation.\n    *   **User Trust:** Measuring how much users trust the AI's recommendations after seeing the explanation.\n    *   **Decision Quality:** Measuring how well users perform on the age estimation task after seeing the explanation.\n*   **Investigating the Relationship Between Explanation Quality and User Behavior:** The dataset allows researchers to explore the relationship between different aspects of explanation quality (e.g., comprehensibility, faithfulness) and user behavior (e.g., compliance, trust, decision quality). Which aspects of explanation quality are most important for influencing user behavior?\n*   **Benchmarking XAI Algorithms:** The dataset can serve as a benchmark for evaluating the performance of different XAI algorithms. Researchers can use the dataset to compare the explanations generated by different algorithms in terms of their quality and impact on user behavior.\n*   **Exploring the Impact of Explanation Fidelity:** How accurately does the explanation reflect the true reasoning of the AI model? While the dataset doesn't directly measure fidelity, it provides a context to infer it. For example, if users with high AI literacy *decrease* compliance despite seeing explanations, it might suggest the explanations are not faithful to the underlying model.\n*   **Analyzing Explanation Effectiveness Across Different User Groups:** Does the effectiveness of different XAI techniques vary depending on the user's AI literacy, cognitive abilities, or other characteristics? The dataset allows researchers to investigate these questions.\n\n**Key XAI Methodology Considerations:**\n\n*   **Formal Definitions of Explanation Quality:** Researchers should strive to develop formal definitions of explanation quality that are grounded in theory and empirically validated.\n*   **Objective Evaluation Metrics:** The evaluation of XAI techniques should rely on objective metrics whenever possible, rather than solely on subjective user ratings.\n*   **Human-Centered Evaluation:** XAI techniques should be evaluated in the context of real-world tasks and with real users.\n*   **Iterative Design and Evaluation:** The design and evaluation of XAI techniques should be an iterative process, with feedback from users informing the development of new and improved explanations.\n\n**In summary:** This dataset provides a valuable resource for advancing the field of Explainable AI by enabling the rigorous evaluation and comparison of different XAI techniques. By focusing on explanation quality, developing new evaluation metrics, and understanding the relationship between explanation quality and user behavior, researchers can contribute to the development of more effective and trustworthy AI systems. This perspective emphasizes the importance of not just providing explanations, but of providing *good* explanations that are truly helpful to users.\n",
+                "stage": "Respond",
+                "group_id": "5538c8d3-5acd-4831-b40d-37fbdbeb5071",
+                "group_name": "Answer"
             },
             {
                 "type": "SOURCES",
                 "content": [
                     {
-                        "source": "makeovermonday-a-century-of-global-deaths-from-disasters_decadal-deaths-disasters-type.csv",
-                        "datasourceId": "clxin6l9200oo01l1457bolx3",
-                        "datasetId": "clxin6l8400ok01l1ff2m0s25",
-                        "fileType": "csv",
-                        "externalId": "clxin6l0h001901hzxhjaae6q"
+                        "id": "1",
+                        "source": "test.pdf",
+                        "content": "summary: test.pdf An experiment with 562 participants investigated the impact of Explainable AI (XAI) and AI literacy on user compliance. Results revealed that XAI boosts compliance, influenced by AI literacy, with the relationship mediated by users' mental model of AI. This study highlights the importance of XAI in AI-based system design. It explores the connection between AI literacy, mental models, XAI techniques, and user compliance with AI recommendations. The research also examines the effect of presenting different XAI types on user compliance. An AI artifact was developed to predict age from photographs, offering personalized explanations to enhance decision-making and compliance with AI recommendations. The study delves into AI interpretability, AI literacy, explainable AI models, and their influence on user behavior. It discusses advancements in AI, machine learning, and user interaction, addressing areas like facial recognition, digital resilience, and algorithmic fairness.",
+                        "page_no": "",
+                        "datasource_id": "ds-cmc1ntbw105ug07j49zei4kcb",
+                        "dataset_id": "dset-cmc1nh2e2lqf507retfodc0dn",
+                        "file_type": ".pdf"
+                    },
+                    {
+                        "id": "2",
+                        "source": "test.pdf",
+                        "content": "summary: test.pdf An experiment with 562 participants investigated the impact of Explainable AI (XAI) and AI literacy on user compliance. Results revealed that XAI boosts compliance, influenced by AI literacy, with the relationship mediated by users' mental model of AI. This study highlights the importance of designing AI systems with XAI for better user engagement.",
+                        "page_no": "",
+                        "datasource_id": "ds-cmc1nrv4a05ue07j4vscij2z7",
+                        "dataset_id": "dset-cmc1nh2e2lqf507retfodc0dn",
+                        "file_type": ".pdf"
+                    },
+                    {
+                        "id": "3",
+                        "source": "test.pdf",
+                        "content": "7  The decision for a data set for building an AI for age estimation is tightly bound to the current research basis on ML  models for age estimation. Age estimation has been of particular interest in the ML community, and many researchers have  tackled the task of predicting the age of a person on an image [11,47]. The largest and most popular data set is the IMDB- WIKI data set [47], which we utilize for training our AI. For our implementation, we take advantage of the source code  published by Serengil [51], with minor adjustments in Python, using the popular keras package. The model itself is based  on a CNN, which uses the VGG-16 architecture and is pre-trained on the FaceNet database [50]. The network architecture  is then adjusted to the age estimation task and our specific data set.  While the IMDB-WIKI data set is widely used as a training basis for age estimation models and the use of existing,  published models makes them convenient to use, there are multiple reasons for which the pictures in this data set cannot  be used for display (≠ model training) in our study; the quality of the images varies vastly, the ages of the persons are not  validated, and the data set contains many pictures of celebrities. Especially the latter could falsify the participants'  performance as they might have existing knowledge of the age of a person. Another factor that might have an unintended  effect on the study is the fact that the images are taken “in the wild”, meaning that there is no standard way of how the  people are shown in the image. The people are pictured in various ways, with different poses, facial expressions like smiles  or laughter, and clothing like sunglasses, headgear, or jewelry. To address these shortcomings, we use the MORPH data  set Feld for model adoption and presentation to the study participants[46]. It has been specifically developed for research  purposes and contains the actual age of the people depicted in the pictures. While there are multiple versions of MORPH,  the non-commercial release MORPH-II has become a benchmark data set for age recognition [7]. The MORPH-II data set  contains unique images of more than 13,000 individuals.  After the model is built, we test its performance in a 10% holdout set, which will also be used within the experiment  later. The performance of the models for age prediction is often evaluated by their mean absolute error (MAE). After  training and optimization procedures, we reach an MAE of ~2.9 on the MORPH-II data set, which is in line with other  researchers [1,54]. This means, on average, our model has an error boundary of +/-3 years when predicting the age.   As stated above, we generate two fundamentally different types of explanations, a chart showing the probability  distribution for each age (“XAI1”, in-model [2]) and an overlay on an image showing particularly relevant parts of the  picture for the AI’s prediction (“XAI2”, post-model [45]). For the probability distributions, we plot a bar chart that depicts  the probabilities—more precisely, the softmax values [56]—for each of the 40 most probable ages. The bars which  correspond to the five most probable ages are highlighted in red. An example of such a bar chart, as presented to the  participants, is depicted in Figure 3. Note that the probabilities are relatively low, which is rooted in the fact that the  probabilities for each of the 101 classes add up to 100%. The model often generates somewhat similar probabilities for  ages that are close to each other.",
+                        "page_no": "7",
+                        "datasource_id": "ds-cmc1ntbw105ug07j49zei4kcb",
+                        "dataset_id": "dset-cmc1nh2e2lqf507retfodc0dn",
+                        "file_type": ".pdf"
+                    },
+                    {
+                        "id": "4",
+                        "source": "test.pdf",
+                        "content": "10  As both between-subject and within-subject analyses show significant results, we can support hypothesis 1.1. From an  analysis of the boxplot in Figure 5 on p. 11, we see that compliance not only changes but increases with the introduction  of XAI. Thus, our first finding is:  Finding 1.1: The introduction of explainability in AI (XAI) increases users’ compliance with the recommendations of  AI.   As our Post Hoc Analysis in Table 2 also reveals, we cannot find significant differences between our treatments  regarding XAI1 and XAI2. This means we reject hypothesis 1.2.     Table 2: Significance levels of ANOVA and Multiple Comparison of Means with Tukey for Between-subject perspective    Compliance  ANOVA  All groups compared  ***  Multiple Comparison  of Means with Tukey    CG ⟷ XAI1  ***  CG ⟷ XAI2  ***  XAI1 ⟷ XAI2  n.s.  Notes: *p < 0.05, **p < 0.01, ***p < 0.001, n.s. = not significant    Table 3: Two-sided t-test comparing compliance with AI before and after treatment    Compliance  AI1 (Baseline, Stage 1) ⟷ XAI1 (Stage 2)  ***  AI2 (Baseline, Stage 1) ⟷ XAI2 (Stage 2)  *  Notes: *p < 0.05, **p < 0.01, ***p < 0.001, n.s. = not significant",
+                        "page_no": "10",
+                        "datasource_id": "ds-cmc1ntbw105ug07j49zei4kcb",
+                        "dataset_id": "dset-cmc1nh2e2lqf507retfodc0dn",
+                        "file_type": ".pdf"
+                    },
+                    {
+                        "id": "5",
+                        "source": "test.pdf",
+                        "content": "15  detail, we find two interesting phenomena. First, we find that AI literacy impacts compliance positively when it is mediated  through MM; however, negatively when the impact is measured directly from AI literacy on compliance. Second, we find  that the compliance with AI recommendations of users with low AI literacy is not impacted by the explanations provided  to them.     Figure 7: Summary of Findings  The first phenomenon uncovered highlights a paradox where AI Literacy reduces compliance on the one hand but  improves MM (which then improves compliance) on the other. This phenomenon is also referred to as inconsistent  mediation [37]. We believe that an increase in AI literacy impacts MMs because the increase in skills and experience with  AI allows for different, potentially more precise, mental representations of AI (as compared to without that skill and  experience). Having said this, in accordance with the algorithm aversion theory, the individuals with a higher level of AI  literacy also understand the imperfections in the AI models. This knowledge of imperfections in AI models may decrease  their trust in the AI recommendations. With a lower level of trust in AI models, individuals with high AI literacy may tend  to trust their own judgment than complying with AI’s recommendations. The fact that the SEM model shows an increase  in compliance with shifts in MMs but a decrease in compliance directly highlights a tension in the minds of individuals  with high AI literacy. They must constantly balance between trusting the precision brought through an AI model or  mistrusting the imperfections inherent in the AI model.   The second phenomenon uncovered applies to users with low AI literacy, and the lack of impact of explanations (XA1  and XAI2) on their compliance with AI’s recommendations. We made this discovery while conducting subsample analyses  of the AI Literacy construct. We found that while the type of XAI (i.e., XAI1 or XAI2) has a significant effect on  compliance for participants with high AI Literacy, this does not hold true for participants with low AI Literacy. This means  that in terms of compliance, it does not make a difference for participants with low AI Literacy as to which type of XAI is  presented to them.   It appears that participants with low AI literacy do not know what to do with the explanations provided to them. Instead,  their compliance with AI recommendations is only impacted by their MMs. This finding is a proof point for our call to  design more user-centric, more personalized explanations in AI (PXAI). With more personalized explanations, the AI  practitioner community can potentially develop explanations that serve users who have no education in AI or statistics to  understand even the most basic statistical charts or figures. Since both types of explanations tested within our study used  AI  Explainability (experimental Treatment:  None/XAI Type1/ XAI Type 2) Compliance  with AI (+) (+) (+) (-) (+) Mental  Model AI Literacy",
+                        "page_no": "15",
+                        "datasource_id": "ds-cmc1ntbw105ug07j49zei4kcb",
+                        "dataset_id": "dset-cmc1nh2e2lqf507retfodc0dn",
+                        "file_type": ".pdf"
+                    },
+                    {
+                        "id": "6",
+                        "source": "test.pdf",
+                        "content": "11      Figure 5: Mean absolute difference (MAD) boxplot of ANOVA for Between-subject perspective of compliance  5.2 XAI effects on mental model  We are not only interested in if and how XAI changes participants’ compliance with the recommendations of AI, but we  also investigate potential changes in their MMs. To do so, we first need to set a few statistical prerequisites to ensure the  eligibility of our data. To assess the validity and the reliability of our MM construct, we conduct a confirmatory factor  analysis and assess the results with respect to multiple measures. As measures for convergent reliability, we examine  Cronbach’s alpha (CA), average variance extracted (AVE) and composite reliability (CR).  Table 4: Measurement Information for Latent Factors of Mental Model Construct    As depicted in Table 4, for all included cases, the constructs of MM GOAL, TASK and PROCESS, the CA, AVE, and CR  are above the recommended thresholds. A confirmatory factor analysis reveals that factor loadings on all items load highly  (>0.65) on one factor and with low cross-loadings. These findings demonstrate that our constructs are robust and can be    Control group w/o XAI  Treatment with XAI1  Treatment with XAI2  GOAL  TASK  PROC  GOAL   TASK  PROC  GOAL  TASK  PROC  1st order   Reliability  CA  0.825  0.950  0.894  0.813  0.945  0.904  0.876  0.939  0.902  CR  0.832  0.951  0.894  0.816  0.945  0.905  0.879  0.939  0.902  AVE  0.625  0.866  0.739  0.597  0.851  0.762  0.709  0.838  0.755  2nd order   Reliability  CR  MM:  0.705  MM:  0.757  MM:  0.772  Notes: CA = Cronbach’s alpha, CR = composite reliability, AVE = average variance extracted",
+                        "page_no": "",
+                        "datasource_id": "ds-cmc1ntbw105ug07j49zei4kcb",
+                        "dataset_id": "dset-cmc1nh2e2lqf507retfodc0dn",
+                        "file_type": ".pdf"
+                    },
+                    {
+                        "id": "7",
+                        "source": "test.pdf",
+                        "content": "12  further used in the upcoming analyses. To examine if and how the MMs of participants change with the introduction of  XAI with a statistical test, we first need to test for measurement invariance. Measurement invariance is a statistical property  of measurement that indicates that the same construct is being measured across some specified groups. Precisely, this  means we need to eliminate the possibility that changes in the latent variable between measurement occasions (before and  after the treatment) are not attributed to actual change in the latent construct. In the case of an experimental study, this  means we need to eliminate a change in the “psychometric” properties of the measurement instrument, i.e., the construct  had a different meaning for the participants at measurement occasions. We test the construct of MM, consisting of the  subconstructs GOAL, TASK, and PROCESS for metric, scalar, and strict invariance. To compare the means, we require  at least scalar invariance [44].   In our case, both metric and scalar invariance are not significant, while strict invariance is significant at the 0.05 level.  This means we can compare the latent means of the constructs from before and after the treatment. The results of this  comparison are depicted in Table 5.  The values show that the MM changes significantly with the introduction of XAI. For XAI1, the constructs TASK and  PROCESS increase by 0.172 and 0.240, respectively. In the case of XAI2, the PROCESS construct changes significantly;  more precisely, it increases by 0.3. We can observe no significant change in the GOAL construct, which is, however, not  surprising, as the goal of the decision task didn’t change. In summary, we can support hypothesis 2.1 and conclude:  Finding 2.1:  The introduction of XAI has a positive association with users’ mental models of AI.  Table 5: Comparison of latent mean differences across measurement occasions with Wald-Test  5.3 Analysis of mental model and AI Literacy  We estimate a full structural equation model (SEM) to better understand the interplay of the different variables considered  in our study, we estimate a full structural equation model (SEM). Besides the mental model (MM), compliance (COMP),  and the type of XAI (XAI_T), we also include AI Literacy (AILIT). AI Literacy is modeled as the sum of AI Skills and AI  Usage. A correlation analysis of the control group reveals that AILIT, MM, and COMP are not considerably correlated  (<0.3). Table 6 provides the assessment of our model fit. All indices except for Chi-square are within their required  Treatment  Construct  Estimate  SE  z-value  Std.lv  Std.all  XAI1  GOAL   0.029  0.061  0.467  0.027  0.027  TASK  0.168**  0.055  3.036  0.172  0.172  PROC   0.229***  0.050  4.601  0.240  0.240  XAI2  GOAL   0.063  0.072  0.873  0.061  0.061  TASK  0.093  0.068  1.362  0.091  0.091  PROC  0.294***  0.058  5.051  0.300  0.300  Notes: *p < 0.05, **p < 0.01, ***p < 0.001, SE = standard error, Std.lv = standardized estimates (latent), Std.lv = standardized  estimates (all)",
+                        "page_no": "",
+                        "datasource_id": "ds-cmc1ntbw105ug07j49zei4kcb",
+                        "dataset_id": "dset-cmc1nh2e2lqf507retfodc0dn",
+                        "file_type": ".pdf"
                     }
                 ],
-                "groupId": "",
-                "groupName": "",
-                "stage": "Respond"
-            },
-            {
-                "type": "QUESTIONS",
-                "content": [
-                    "Analyze the changes in death toll trends for different types of natural disasters over the past century and explore which types of disasters have experienced the most significant reductions in fatalities.",
-                    "Study the differences in technological advancements and measures for responding to natural disasters across various regions globally, and analyze how these differences have influenced changes in death tolls in each region.",
-                    "Explore how potential future technological advancements and policy measures could further reduce fatalities caused by natural disasters, and assess their feasibility and potential impacts."
-                ],
-                "groupId": "-1",
-                "stage": "Respond"
+                "stage": "Analyze",
+                "group_id": "49f27d13-6b8b-4449-951e-eb0861932615",
+                "group_name": "Search summary"
             }
-        ]
+        ],
+        "job_id": "job-cmc1qop11mc5007replx25nk3"
+      }
     }
-    }
+
     ```
     </Accordion>
 

@@ -117,6 +117,12 @@
                 ]
               },
               {
+                "group": "Developer Guides",
+                "pages": [
+                  "developer-guides/quick-start-v2"
+                ]
+              },
+              {
                 "group": "Datasets",
                 "pages": [
                   "api-reference/v2/create-dataset",
