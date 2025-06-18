@@ -43,46 +43,46 @@ You can create datasets and data sources in two ways:
 
     1. Make a request to [POST /v2/team/datasets](/api-reference/v2/create-dataset) endpoint to create a dataset.
     
-      <Tip>
-        Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key) and `$UID` with your user ID in the target project.
-      </Tip>
+        <Tip>
+          Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key) and `$UID` with your user ID in the target project.
+        </Tip>
 
-        **Example request**:
+          **Example request**:
 
-        <CodeGroup>
+          <CodeGroup>
 
-        ```curl cURL
-        curl --request POST \
-          --url https://ai.data.cloud/api/v2/team/datasets \
-          --header 'Content-Type: application/json' \
-          --header 'x-pd-api-key: $PD_API_KEY' \
-          --data '{
-          "name": "My dataset",
-          "description": "my default dataset",
-          "user_id": "$UID"
-        }'
-        ```
-
-        ```python Python
-        import requests
-
-        url = "https://ai.data.cloud/api/v2/team/datasets"
-
-        payload = {
+          ```curl cURL
+          curl --request POST \
+            --url https://ai.data.cloud/api/v2/team/datasets \
+            --header 'Content-Type: application/json' \
+            --header 'x-pd-api-key: $PD_API_KEY' \
+            --data '{
             "name": "My dataset",
             "description": "my default dataset",
             "user_id": "$UID"
-        }
-        headers = {
-            "x-pd-api-key": "$PD_API_KEY",
-            "Content-Type": "application/json"
-        }
+          }'
+          ```
 
-        response = requests.request("POST", url, json=payload, headers=headers)
+          ```python Python
+          import requests
 
-        print(response.text)
-        ```
-        </CodeGroup>
+          url = "https://ai.data.cloud/api/v2/team/datasets"
+
+          payload = {
+              "name": "My dataset",
+              "description": "my default dataset",
+              "user_id": "$UID"
+          }
+          headers = {
+              "x-pd-api-key": "$PD_API_KEY",
+              "Content-Type": "application/json"
+          }
+
+          response = requests.request("POST", url, json=payload, headers=headers)
+
+          print(response.text)
+          ```
+          </CodeGroup>
 
 
         **Example response**:
@@ -100,72 +100,72 @@ You can create datasets and data sources in two ways:
         
     2. Make a request to the [`POST /v2/team/datasets/{id}/datasources`](/api-reference/v2/create-data-source) endpoint. Replace the `id` value with the ID of the dataset you've created in the previous sub-step.
 
-      <Tip>
-        Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key) and `$UID` with your user ID in the target project.
-      </Tip>
-    
-      <Warning>
-        When making the request, specify either `url` or `file_key`, **but not both**. Use `url` to upload a file through a publicly accessible URL. For privately accessible files, use `file_key`.
-      </Warning>
+        <Tip>
+          Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key) and `$UID` with your user ID in the target project.
+        </Tip>
+      
+        <Warning>
+          When making the request, specify either `url` or `file_key`, **but not both**. Use `url` to upload a file through a publicly accessible URL. For privately accessible files, use `file_key`.
+        </Warning>
 
-        **Example request**:
+          **Example request**:
 
-        <CodeGroup>
-        ```curl cURL
-        curl --request POST \
-          --url https://ai.data.cloud/api/v2/team/datasets/dset-cmc1nh2e2lqf507retfodc0dn/datasources \
-          --header 'Content-Type: application/json' \
-          --header 'x-pd-api-key: $PD_API_KEY' \
-          --data '{
-          "name": "test.pdf",
-          "type": "FILE",
-          "user_id": "$UID",
-          "url": "https://arxiv.org/pdf/2406.12660v1"
-        }'
-        ```
-
-        ```python Python
-        import requests
-
-        url = "https://ai.data.cloud/api/v2/team/datasets/dset-cmc1nh2e2lqf507retfodc0dn/datasources"
-
-        payload = {
+          <CodeGroup>
+          ```curl cURL
+          curl --request POST \
+            --url https://ai.data.cloud/api/v2/team/datasets/dset-cmc1nh2e2lqf507retfodc0dn/datasources \
+            --header 'Content-Type: application/json' \
+            --header 'x-pd-api-key: $PD_API_KEY' \
+            --data '{
             "name": "test.pdf",
             "type": "FILE",
             "user_id": "$UID",
             "url": "https://arxiv.org/pdf/2406.12660v1"
-        }
-        headers = {
-            "x-pd-api-key": "$PD_API_KEY",
-            "Content-Type": "application/json"
-        }
+          }'
+          ```
 
-        response = requests.request("POST", url, json=payload, headers=headers)
+          ```python Python
+          import requests
 
-        print(response.text)
-        ```
+          url = "https://ai.data.cloud/api/v2/team/datasets/dset-cmc1nh2e2lqf507retfodc0dn/datasources"
+
+          payload = {
+              "name": "test.pdf",
+              "type": "FILE",
+              "user_id": "$UID",
+              "url": "https://arxiv.org/pdf/2406.12660v1"
+          }
+          headers = {
+              "x-pd-api-key": "$PD_API_KEY",
+              "Content-Type": "application/json"
+          }
+
+          response = requests.request("POST", url, json=payload, headers=headers)
+
+          print(response.text)
+          ```
         </CodeGroup>
 
 
 
-        **Example response**:
+          **Example response**:
 
-        ```json
-        {
-            "code": 0,
-            "data": {
-                "id": "ds-cmc1ntbw105ug07j49zei4kcb",
-                "name": "test.pdf",
-                "type": "FILE",
-                "status": "synching",
-                "dataset_id":"dset-cmc1nh2e2lqf507retfodc0dn"
-            }
-        }
-        ```
-        <Tip>
-         Repeat this sub-step to create multiple data sources in the same dataset, if needed.
-        </Tip>
- 
+          ```json
+          {
+              "code": 0,
+              "data": {
+                  "id": "ds-cmc1ntbw105ug07j49zei4kcb",
+                  "name": "test.pdf",
+                  "type": "FILE",
+                  "status": "synching",
+                  "dataset_id":"dset-cmc1nh2e2lqf507retfodc0dn"
+              }
+          }
+          ```
+          <Tip>
+          Repeat this sub-step to create multiple data sources in the same dataset, if needed.
+          </Tip>
+  
   </Tab>
 
 
