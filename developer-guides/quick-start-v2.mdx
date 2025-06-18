@@ -1,5 +1,5 @@
 ---
-title: "Quick Start for V2"
+title: "Quick Start"
 description: "Start running your first data job on Powerdrill Enterprise"
 icon: "rocket"
 ---
@@ -171,6 +171,14 @@ You can create datasets and data sources in two ways:
 
   <Tab title="Method 2">
     Make a request to the [POST /v2/team/datasources](/api-reference/create-data-source-without-dataset) endpoint.
+    
+    <Tip>
+      Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key) and `$UID` with your user ID in the target project.
+    </Tip>
+
+    <Warning>
+      Specify either `url` or `file_key`, but not both. Use `url` to upload a file through a publicly accessible URL. For privately accessible files, use `file_key` (this feature will be supported soon).
+    </Warning>
 
     **Example request**:
 
@@ -203,10 +211,6 @@ You can create datasets and data sources in two ways:
     </CodeGroup>
 
 
-    <Info>
-    Specify either `url` or `file_key`, but not both. Use `url` to upload a file through a publicly accessible URL. For privately accessible files, use `file_key` (this feature will be supported soon).
-    </Info>
-
     **Example response**:
 
      ```json
@@ -227,12 +231,15 @@ You can create datasets and data sources in two ways:
   </Tab>
 </Tabs>
 
-
+---
 
 ## Step 3. Create a session
 
-To create a session, make a request to the [POST /v1/team/sessions](create-session) endpoint. Sessions are essential for running jobs on Powerdrill, as each job must be linked to a session using its session ID.
+To create a session, make a request to the [POST /v2/team/sessions](/api-reference/create-session) endpoint. Sessions are essential for running jobs on Powerdrill, as each job must be linked to a session using its session ID.
 
+<Tip>
+ Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key) and `$UID` with your user ID in the target project.
+</Tip>
 
 **Example request**:
 
@@ -245,7 +252,7 @@ curl --request POST \
   --header 'x-pd-api-key: $PD_API_KEY' \
   --data '{
   "name": "My session",
-  "output_language": "FR",
+  "output_language": "EN",
   "job_mode": "AUTO",
   "max_contextual_job_history": 10,
   "user_id": "$UID"
@@ -277,16 +284,6 @@ print(response.text)
 </CodeGroup>
 
 
-<Tip> 
-
-When making a request:
-
-- Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key). 
-
-- Replace `$UID` with your actual user ID in the target project.
-
-</Tip>
-
 
 **Example response**:
 
@@ -307,9 +304,9 @@ Obtain the `id` value (session ID) from the response and save it for use in the 
 
 Now, after you've prepared a session and probably a dataset stuffed with data sources, you can create a job to start conversing with Powerdrill.
 
-<Info>
-For the definition of job, see [What Is Job?](/enterprise/what-is-job).
-</Info>
+<Tip>
+ For the definition of job, see [What Is Job?](/enterprise/what-is-job).
+</Tip>
 
 Make a request to the [POST /v2/team/jobs](/api-reference/v2/create-job) endpoint. 
 
@@ -318,6 +315,11 @@ Powerdrill provides the ability to stream responses, controlled by the `stream` 
 - If `stream` is set to true, streaming is enabled.
 
 - If `stream` is set to false, streaming is disabled.
+
+
+<Tip>
+ Replace `$PD_API_KEY` with the API key you've obtained in [Step 1](#step-1-get-your-project-api-key) and `$UID` with your user ID in the target project.
+</Tip>
 
 
 <Tabs>
