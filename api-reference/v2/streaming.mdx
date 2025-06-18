@@ -6,7 +6,7 @@ icon: "grip-lines"
 
 Powerdrill Enterprise Open API supports streaming responses to clients, enabling partial results for specific requests. This functionality is implemented using the [Server-Sent Events (SSE)](https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events) standard.
 
-
+---
 
 ## How to understand streaming responses
 
@@ -50,7 +50,13 @@ Each streaming response block contains the following fields:
 - `stage`: The stage to which the response block belongs. Two stages are available: `Analyze` and `Respond`.
 
 
-### Content description
+<Warning>
+When you encounter `:keep-alive` in a response, simply ignore it—it serves only as a heartbeat signal to maintain the connection.
+</Warning>
+
+---
+
+## Content description
 
 The value of `content` in each response block varies with the block content type:
 
@@ -486,6 +492,12 @@ The response looks like this:
 }
 ```
 </Accordion>
+
+
+
+import MySnippet from '/snippets/discord-cta.mdx';
+
+<MySnippet beta="community" />
 
 
 
